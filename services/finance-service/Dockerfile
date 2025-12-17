@@ -1,12 +1,12 @@
-FROM eclipse-temurin:17-jdk AS build
+FROM maven:3.9-jdk-17 AS build
 WORKDIR /app
-COPY ServiceServer.java .
-RUN javac ServiceServer.java
+COPY pom.xml ./
+COPY src ./src
+RUN mvn package -DskipTests
 
-FROM eclipse-temurin:17-jre
+# Second stage: run the app
+FROM openjdk:17-jdk-slim
 WORKDIR /app
-COPY --from=build /app/ServiceServer.class .
-ENV PORT=8080
-ENV SERVICE_NAME=java-service
+COPY --from=build /app/target/finance-service-0.0.1-SNAPSHOT.jar ./finance-service.jar
 EXPOSE 8080
-CMD ["java", "ServiceServer"]
+CMD ["java", "-jar", "finance-service.jar"]
