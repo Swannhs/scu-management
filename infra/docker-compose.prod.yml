@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  student-service:
+    image: ${REGISTRY:-scu-management}/student-service:${TAG:-latest}
+  course-service:
+    image: ${REGISTRY:-scu-management}/course-service:${TAG:-latest}
+  grades-service:
+    image: ${REGISTRY:-scu-management}/grades-service:${TAG:-latest}
+  attendance-service:
+    image: ${REGISTRY:-scu-management}/attendance-service:${TAG:-latest}
+  user-auth-service:
+    image: ${REGISTRY:-scu-management}/user-auth-service:${TAG:-latest}
+  document-service:
+    image: ${REGISTRY:-scu-management}/document-service:${TAG:-latest}
+  maintenance-service:
+    image: ${REGISTRY:-scu-management}/maintenance-service:${TAG:-latest}
+  enrollment-service:
+    image: ${REGISTRY:-scu-management}/enrollment-service:${TAG:-latest}
+  notifications-service:
+    image: ${REGISTRY:-scu-management}/notifications-service:${TAG:-latest}
+  transport-service:
+    image: ${REGISTRY:-scu-management}/transport-service:${TAG:-latest}
+  analytics-service:
+    image: ${REGISTRY:-scu-management}/analytics-service:${TAG:-latest}
+  audit-logging-service:
+    image: ${REGISTRY:-scu-management}/audit-logging-service:${TAG:-latest}
+  faculty-service:
+    image: ${REGISTRY:-scu-management}/faculty-service:${TAG:-latest}
+  administration-service:
+    image: ${REGISTRY:-scu-management}/administration-service:${TAG:-latest}
+  hostel-service:
+    image: ${REGISTRY:-scu-management}/hostel-service:${TAG:-latest}
+  parent-portal-service:
+    image: ${REGISTRY:-scu-management}/parent-portal-service:${TAG:-latest}
+  finance-service:
+    image: ${REGISTRY:-scu-management}/finance-service:${TAG:-latest}
+  library-service:
+    image: ${REGISTRY:-scu-management}/library-service:${TAG:-latest}
