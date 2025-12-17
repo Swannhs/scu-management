@@ -1,0 +1,342 @@
+version: "3.9"
+
+x-service-env: &default-db-env
+  DB_HOST: postgres
+  DB_PORT: 5432
+  DB_USER: ${POSTGRES_USER:-postgres}
+  DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: ums-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    networks:
+      - ums
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0.5
+    container_name: ums-keycloak
+    command: start-dev --http-port=8080 --hostname-strict=false --hostname-strict-https=false
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: ${POSTGRES_USER:-postgres}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN:-admin}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-admin}
+    ports:
+      - "${KEYCLOAK_PORT:-8080}:8080"
+    depends_on:
+      - postgres
+    networks:
+      - ums
+
+  redis:
+    image: redis:7-alpine
+    container_name: ums-redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    networks:
+      - ums
+
+  mongo:
+    image: mongo:7
+    container_name: ums-mongo
+    ports:
+      - "${MONGO_PORT:-27017}:27017"
+    networks:
+      - ums
+
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: ums-rabbitmq
+    ports:
+      - "${RABBITMQ_PORT:-5672}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
+    networks:
+      - ums
+
+  student-service:
+    build: ../services/student-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: studentdb
+      SERVICE_NAME: student-service
+      PORT: 3000
+      KEYCLOAK_URL: http://keycloak:8080
+      RABBITMQ_URL: amqp://rabbitmq:5672
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      - postgres
+      - keycloak
+      - rabbitmq
+    ports:
+      - "3001:3000"
+    networks:
+      - ums
+
+  course-service:
+    build: ../services/course-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: coursedb
+      SERVICE_NAME: course-service
+      PORT: 3000
+      KEYCLOAK_URL: http://keycloak:8080
+    depends_on:
+      - postgres
+      - keycloak
+    ports:
+      - "3002:3000"
+    networks:
+      - ums
+
+  grades-service:
+    build: ../services/grades-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: gradesdb
+      SERVICE_NAME: grades-service
+      PORT: 3000
+      KEYCLOAK_URL: http://keycloak:8080
+    depends_on:
+      - postgres
+      - keycloak
+    ports:
+      - "3003:3000"
+    networks:
+      - ums
+
+  attendance-service:
+    build: ../services/attendance-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: attendancedb
+      SERVICE_NAME: attendance-service
+      PORT: 3000
+    depends_on:
+      - postgres
+    ports:
+      - "3004:3000"
+    networks:
+      - ums
+
+  user-auth-service:
+    build: ../services/user-auth-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: userauthdb
+      SERVICE_NAME: user-auth-service
+      PORT: 3000
+      KEYCLOAK_URL: http://keycloak:8080
+    depends_on:
+      - postgres
+      - keycloak
+    ports:
+      - "3005:3000"
+    networks:
+      - ums
+
+  document-service:
+    build: ../services/document-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: documentdb
+      SERVICE_NAME: document-service
+      PORT: 3000
+    depends_on:
+      - postgres
+    ports:
+      - "3006:3000"
+    networks:
+      - ums
+
+  maintenance-service:
+    build: ../services/maintenance-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: maintenancedb
+      SERVICE_NAME: maintenance-service
+      PORT: 3000
+    depends_on:
+      - postgres
+    ports:
+      - "3007:3000"
+    networks:
+      - ums
+
+  enrollment-service:
+    build: ../services/enrollment-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: enrollmentdb
+      SERVICE_NAME: enrollment-service
+      PORT: 8000
+      RABBITMQ_URL: amqp://rabbitmq:5672
+    depends_on:
+      - postgres
+      - rabbitmq
+    ports:
+      - "3008:8000"
+    networks:
+      - ums
+
+  notifications-service:
+    build: ../services/notifications-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: notificationsdb
+      SERVICE_NAME: notifications-service
+      PORT: 8000
+      RABBITMQ_URL: amqp://rabbitmq:5672
+    depends_on:
+      - postgres
+      - rabbitmq
+    ports:
+      - "3009:8000"
+    networks:
+      - ums
+
+  transport-service:
+    build: ../services/transport-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: transportdb
+      SERVICE_NAME: transport-service
+      PORT: 8000
+    depends_on:
+      - postgres
+    ports:
+      - "3010:8000"
+    networks:
+      - ums
+
+  analytics-service:
+    build: ../services/analytics-service
+    environment:
+      SERVICE_NAME: analytics-service
+      PORT: 8000
+      MONGO_URI: mongodb://mongo:27017/analyticsdb
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      - mongo
+      - redis
+    ports:
+      - "3011:8000"
+    networks:
+      - ums
+
+  audit-logging-service:
+    build: ../services/audit-logging-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: auditdb
+      SERVICE_NAME: audit-logging-service
+      PORT: 8000
+      MONGO_URI: mongodb://mongo:27017/auditdb
+    depends_on:
+      - postgres
+      - mongo
+    ports:
+      - "3012:8000"
+    networks:
+      - ums
+
+  faculty-service:
+    build: ../services/faculty-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: facultystaffdb
+      SERVICE_NAME: faculty-service
+      PORT: 8000
+    depends_on:
+      - postgres
+    ports:
+      - "8101:8000"
+    networks:
+      - ums
+
+  administration-service:
+    build: ../services/administration-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: admindb
+      SERVICE_NAME: administration-service
+      PORT: 8000
+    depends_on:
+      - postgres
+    ports:
+      - "8102:8000"
+    networks:
+      - ums
+
+  hostel-service:
+    build: ../services/hostel-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: hosteldb
+      SERVICE_NAME: hostel-service
+      PORT: 8000
+    depends_on:
+      - postgres
+    ports:
+      - "8103:8000"
+    networks:
+      - ums
+
+  parent-portal-service:
+    build: ../services/parent-portal-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: parentportaldb
+      SERVICE_NAME: parent-portal-service
+      PORT: 8000
+    depends_on:
+      - postgres
+    ports:
+      - "8104:8000"
+    networks:
+      - ums
+
+  finance-service:
+    build: ../services/finance-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: financedb
+      SERVICE_NAME: finance-service
+      PORT: 8080
+    depends_on:
+      - postgres
+    ports:
+      - "8201:8080"
+    networks:
+      - ums
+
+  library-service:
+    build: ../services/library-service
+    environment:
+      <<: *default-db-env
+      DB_NAME: librarydb
+      SERVICE_NAME: library-service
+      PORT: 8080
+    depends_on:
+      - postgres
+    ports:
+      - "8202:8080"
+    networks:
+      - ums
+
+networks:
+  ums:
+    driver: bridge
+
+volumes:
+  postgres-data:
