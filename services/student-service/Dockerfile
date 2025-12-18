@@ -1,7 +1,17 @@
-FROM node:20-alpine
+FROM node:18-alpine
 WORKDIR /app
-COPY server.js .
-ENV PORT=3000
-ENV SERVICE_NAME=node-service
+
+# Install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy source code and build
+COPY . .
+RUN npm run build
+
+# Set environment (if any) and expose port
+ENV NODE_ENV=production
 EXPOSE 3000
-CMD ["node", "server.js"]
+
+# Start the app
+CMD ["node", "dist/main.js"]
