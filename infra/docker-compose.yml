@@ -158,6 +158,24 @@ services:
     networks:
       - ums-network
 
+  enrollment-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: enrollmentdb
+      POSTGRES_USER: enrollmentuser
+      POSTGRES_PASSWORD: enrollmentpass
+    networks:
+      - ums-network
+
+  user-auth-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: userauthdb
+      POSTGRES_USER: userauthuser
+      POSTGRES_PASSWORD: userauthpass
+    networks:
+      - ums-network
+
   # Microservices
 
   student-service:
@@ -283,6 +301,11 @@ services:
       - ums-network
     ports:
       - "8005:80"
+    environment:
+      - DB_HOST=hostel-db
+      - DB_DATABASE=hosteldb
+      - DB_USERNAME=hosteluser
+      - DB_PASSWORD=hostelpass
 
   parent-portal-service:
     build: ./services/parent-portal-service
@@ -292,6 +315,11 @@ services:
       - ums-network
     ports:
       - "8006:80"
+    environment:
+      - DB_HOST=parent-db
+      - DB_DATABASE=parentdb
+      - DB_USERNAME=parentuser
+      - DB_PASSWORD=parentpass
 
   admin-config-service:
     build: ./services/admin-config-service
@@ -301,6 +329,51 @@ services:
       - ums-network
     ports:
       - "8007:80"
+    environment:
+      - DB_HOST=admin-db
+      - DB_DATABASE=admindb
+      - DB_USERNAME=adminuser
+      - DB_PASSWORD=adminpass
+
+  enrollment-service:
+    build: ./services/enrollment-service
+    depends_on:
+      - enrollment-db
+    networks:
+      - ums-network
+    ports:
+      - "8008:8000"
+
+  user-auth-service:
+    build: ./services/user-auth-service
+    depends_on:
+      - user-auth-db
+      - keycloak
+    networks:
+      - ums-network
+    ports:
+      - "3005:3000"
+
+  document-service:
+    build: ./services/document-service
+    networks:
+      - ums-network
+    ports:
+      - "3006:3000"
+
+  maintenance-service:
+    build: ./services/maintenance-service
+    networks:
+      - ums-network
+    ports:
+      - "3007:3000"
+
+  audit-logging-service:
+    build: ./services/audit-logging-service
+    networks:
+      - ums-network
+    ports:
+      - "8009:8000"
 
 networks:
   ums-network:
