@@ -3,7 +3,7 @@ services:
   # Infrastructure Services
   keycloak:
     image: quay.io/keycloak/keycloak:22.0.5
-    command: start-dev --http-port=8080 --hostname-url=http://localhost:8080 --hostname-strict=false
+    command: start-dev --http-port=8080 --hostname-url=http://localhost:8080 --hostname-strict=false --import-realm
     environment:
       KC_DB: postgres
       KC_DB_URL: jdbc:postgresql://keycloak-db:5432/keycloak
@@ -11,6 +11,8 @@ services:
       KC_DB_PASSWORD: keycloakpass
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./keycloak-config:/opt/keycloak/data/import
     ports:
       - "8080:8080"
     depends_on:
@@ -374,6 +376,26 @@ services:
       - ums-network
     ports:
       - "8009:8000"
+
+  api-gateway:
+    build: ./services/api-gateway
+    depends_on:
+      - admin-config-service
+      - redis
+      - keycloak
+    networks:
+      - ums-network
+    ports:
+      - "80:3000"
+    environment:
+      - PORT=3000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=university-platform
+      - KEYCLOAK_CLIENT_ID=api-gateway
+      - KEYCLOAK_CLIENT_SECRET=secret
+      - ADMIN_CONFIG_SERVICE_URL=http://admin-config-service
 
 networks:
   ums-network:

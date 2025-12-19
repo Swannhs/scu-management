@@ -1,0 +1,67 @@
+{
+    "realm": "university-platform",
+    "enabled": true,
+    "roles": {
+        "realm": [
+            {
+                "name": "TENANT_ADMIN"
+            },
+            {
+                "name": "ADMISSION_OFFICER"
+            },
+            {
+                "name": "FACULTY"
+            },
+            {
+                "name": "STUDENT"
+            },
+            {
+                "name": "ACCOUNTANT"
+            },
+            {
+                "name": "WARDEN"
+            },
+            {
+                "name": "LIBRARIAN"
+            },
+            {
+                "name": "PLACEMENT_OFFICER"
+            }
+        ]
+    },
+    "clients": [
+        {
+            "clientId": "user-auth-service",
+            "enabled": true,
+            "publicClient": false,
+            "secret": "secret",
+            "redirectUris": [
+                "*"
+            ],
+            "protocolMappers": [
+                {
+                    "name": "tenant_id",
+                    "protocol": "openid-connect",
+                    "protocolMapper": "oidc-usermodel-attribute-mapper",
+                    "config": {
+                        "user.attribute": "tenant_id",
+                        "claim.name": "tenant_id",
+                        "jsonType.label": "String",
+                        "id.token.claim": "true",
+                        "access.token.claim": "true",
+                        "userinfo.token.claim": "true"
+                    }
+                }
+            ]
+        },
+        {
+            "clientId": "api-gateway",
+            "enabled": true,
+            "publicClient": false,
+            "secret": "secret",
+            "redirectUris": [
+                "*"
+            ]
+        }
+    ]
+}
