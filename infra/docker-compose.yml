@@ -191,11 +191,12 @@ services:
     ports:
       - "3001:3000"
     environment:
-      - DB_HOST=student-db
-      - DB_PORT=5432
-      - DB_USERNAME=studentuser
-      - DB_PASSWORD=studentpass
-      - DB_DATABASE=studentdb
+      - DATABASE_URL=postgresql://studentuser:studentpass@student-db:5432/studentdb
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=university-platform
+      - KEYCLOAK_CLIENT_ID=student-service
+      - KEYCLOAK_CLIENT_SECRET=secret
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
 
   grades-service:
     build: ./services/grades-service
@@ -220,24 +221,34 @@ services:
     build: ./services/course-service
     depends_on:
       - course-db
+      - keycloak
     networks:
       - ums-network
     ports:
       - "3004:3000"
+    environment:
+      - DATABASE_URL=postgresql://courseuser:coursepass@course-db:5432/coursedb
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=university-platform
+      - KEYCLOAK_CLIENT_ID=course-service
+      - KEYCLOAK_CLIENT_SECRET=secret
 
   finance-service:
     build: ./services/finance-service
     depends_on:
       - finance-db
       - keycloak
+      - rabbitmq
     networks:
       - ums-network
     ports:
       - "8081:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://finance-db:5432/financedb
-      - SPRING_DATASOURCE_USERNAME=financeuser
-      - SPRING_DATASOURCE_PASSWORD=financepass
+      - DB_HOST=finance-db
+      - DB_DATABASE=financedb
+      - DB_USERNAME=financeuser
+      - DB_PASSWORD=financepass
+      - SPRING_RABBITMQ_HOST=rabbitmq
 
   library-service:
     build: ./services/library-service
@@ -290,7 +301,9 @@ services:
     ports:
       - "8004:80"
     environment:
+      - DB_CONNECTION=pgsql
       - DB_HOST=faculty-db
+      - DB_PORT=5432
       - DB_DATABASE=facultydb
       - DB_USERNAME=facultyuser
       - DB_PASSWORD=facultypass
@@ -304,7 +317,9 @@ services:
     ports:
       - "8005:80"
     environment:
+      - DB_CONNECTION=pgsql
       - DB_HOST=hostel-db
+      - DB_PORT=5432
       - DB_DATABASE=hosteldb
       - DB_USERNAME=hosteluser
       - DB_PASSWORD=hostelpass
@@ -318,7 +333,9 @@ services:
     ports:
       - "8006:80"
     environment:
+      - DB_CONNECTION=pgsql
       - DB_HOST=parent-db
+      - DB_PORT=5432
       - DB_DATABASE=parentdb
       - DB_USERNAME=parentuser
       - DB_PASSWORD=parentpass
@@ -341,10 +358,15 @@ services:
     build: ./services/enrollment-service
     depends_on:
       - enrollment-db
+      - keycloak
     networks:
       - ums-network
     ports:
       - "8008:8000"
+    environment:
+      - DATABASE_URL=postgresql://enrollmentuser:enrollmentpass@enrollment-db:5432/enrollmentdb
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=university-platform
 
   user-auth-service:
     build: ./services/user-auth-service
@@ -396,6 +418,20 @@ services:
       - KEYCLOAK_CLIENT_ID=api-gateway
       - KEYCLOAK_CLIENT_SECRET=secret
       - ADMIN_CONFIG_SERVICE_URL=http://admin-config-service
+
+  dashboard-ui:
+    build: ./services/dashboard-ui
+    depends_on:
+      - api-gateway
+    networks:
+      - ums-network
+    ports:
+      - "8010:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost/api
+      - NEXT_PUBLIC_KEYCLOAK_URL=http://localhost/auth
+      - NEXT_PUBLIC_KEYCLOAK_REALM=university-platform
+      - NEXT_PUBLIC_KEYCLOAK_CLIENT_ID=dashboard-ui
 
 networks:
   ums-network:

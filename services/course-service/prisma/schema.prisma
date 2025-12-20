@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Unified Academic Model
+enum ProgramType {
+  K12
+  HIGHER_ED
+}
+
+model Program {
+  id          String      @id @default(uuid())
+  tenantId    String
+  name        String
+  code        String
+  type        ProgramType
+  levels      Level[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([tenantId])
+}
+
+model Level {
+  id          String            @id @default(uuid())
+  tenantId    String
+  programId   String
+  program     Program           @relation(fields: [programId], references: [id])
+  name        String            // e.g. "Semester 1" or "Grade 10"
+  sequence    Int
+  offerings   CourseOffering[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([tenantId])
+}
+
+model Subject {
+  id          String            @id @default(uuid())
+  tenantId    String
+  name        String
+  code        String            // e.g. "PHYS101"
+  credits     Float             @default(0)
+  offerings   CourseOffering[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([tenantId])
+}
+
+model Section {
+  id          String            @id @default(uuid())
+  tenantId    String
+  name        String            // e.g. "A", "B", "Morning Batch"
+  offerings   CourseOffering[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([tenantId])
+}
+
+model CourseOffering {
+  id          String    @id @default(uuid())
+  tenantId    String
+  subjectId   String
+  subject     Subject   @relation(fields: [subjectId], references: [id])
+  levelId     String
+  level       Level     @relation(fields: [levelId], references: [id])
+  sectionId   String
+  section     Section   @relation(fields: [sectionId], references: [id])
+  facultyId   String?   // Reference to faculty in another service
+  academicYear String    // e.g. "2024-2025"
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([tenantId])
+  @@index([subjectId])
+  @@index([levelId])
+  @@index([sectionId])
+}

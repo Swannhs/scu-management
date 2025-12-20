@@ -62,6 +62,45 @@
             "redirectUris": [
                 "*"
             ]
+        },
+        {
+            "clientId": "course-service",
+            "enabled": true,
+            "publicClient": false,
+            "secret": "secret",
+            "redirectUris": [
+                "*"
+            ]
+        },
+        {
+            "clientId": "enrollment-service",
+            "enabled": true,
+            "publicClient": false,
+            "secret": "secret",
+            "redirectUris": [
+                "*"
+            ]
+        },
+        {
+            "clientId": "student-service",
+            "enabled": true,
+            "publicClient": false,
+            "secret": "secret",
+            "redirectUris": [
+                "*"
+            ]
+        },
+        {
+            "clientId": "dashboard-ui",
+            "enabled": true,
+            "publicClient": true,
+            "directAccessGrantsEnabled": true,
+            "redirectUris": [
+                "*"
+            ],
+            "webOrigins": [
+                "*"
+            ]
         }
     ]
 }
