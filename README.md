@@ -16,6 +16,11 @@ A microservices-based University Management System.
 - **Hostel Service** (Laravel)
 - **Parent Portal Service** (Laravel)
 - **Admin Config Service** (Laravel)
+- **Enrollment Service** (FastAPI)
+- **User Auth Service** (NestJS)
+- **Document Service** (Express)
+- **Maintenance Service** (Express)
+- **Audit & Logging Service** (FastAPI)
 - **Infrastructure**: Keycloak, PostgreSQL, MongoDB, Redis, RabbitMQ.
 
 ## Prerequisites
@@ -49,4 +54,19 @@ Each service is located in `services/<service-name>`.
 - **FastAPI**: `pip install -r requirements.txt` && `uvicorn main:app --reload`
 - **Laravel**: `composer install` && `php artisan serve`
 
-Refer to individual service READMEs (if available) or the main documentation for details.
+## Testing
+Tests can be run locally for each service:
+- **NestJS/Express**: `npm test`
+- **Spring Boot**: `mvn test` (or use docker if `mvn` not installed)
+- **FastAPI**: `pytest`
+- **Laravel (Stubs)**: `php test_stub.php`
+
+To run all tests in one go:
+```bash
+# NestJS/Express
+for d in services/*-service; do [ -f "$d/package.json" ] && (cd "$d" && npm test); done
+# FastAPI
+for d in services/*-service; do [ -f "$d/test_main.py" ] && (cd "$d" && pytest); done
+# PHP
+for d in services/*-service; do [ -f "$d/test_stub.php" ] && (php "$d/test_stub.php"); done
+```
