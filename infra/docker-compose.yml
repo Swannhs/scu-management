@@ -1,442 +1,301 @@
 version: "3.8"
 services:
-  # Infrastructure Services
-  keycloak:
-    image: quay.io/keycloak/keycloak:22.0.5
-    command: start-dev --http-port=8080 --hostname-url=http://localhost:8080 --hostname-strict=false --import-realm
-    environment:
-      KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://keycloak-db:5432/keycloak
-      KC_DB_USERNAME: keycloak
-      KC_DB_PASSWORD: keycloakpass
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    volumes:
-      - ./keycloak-config:/opt/keycloak/data/import
-    ports:
-      - "8080:8080"
-    depends_on:
-      - keycloak-db
-    networks:
-      - ums-network
-
-  keycloak-db:
+  # Shared Database for all Odoo services
+  db:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: keycloakpass
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: odoopass
+      POSTGRES_USER: odoo
+    ports:
+      - "5432:5432"
     networks:
       - ums-network
     volumes:
-      - keycloak_db_data:/var/lib/postgresql/data
+      - odoo_db_data:/var/lib/postgresql/data
 
-  rabbitmq:
-    image: rabbitmq:3.12-management
+  # API Gateway
+  api-gateway:
+    image: devopsfaith/krakend:2.3
+    volumes:
+      - ../services/krakend/krakend.json:/etc/krakend/krakend.json
+    networks:
+      - ums-network
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "80:8080"
+    command: ["run", "-c", "/etc/krakend/krakend.json"]
+
+  # Swagger Documentation
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8088:8080"
+    environment:
+      SWAGGER_JSON: /app/swagger.json
+    volumes:
+      - ../services/krakend/swagger.json:/app/swagger.json
     networks:
       - ums-network
 
-  redis:
-    image: redis:7-alpine
+  activity-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
+    depends_on:
+      - db
     ports:
-      - "6379:6379"
-    networks:
-      - ums-network
-
-  mongo:
-    image: mongo:6-jammy
-    ports:
-      - "27017:27017"
+      - "8069:8069"
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
     networks:
       - ums-network
     volumes:
-      - mongo_data:/data/db
+      - odoo_web_data:/var/lib/odoo
 
-  # Shared Database for Microservices (Optimized for Dev)
-  # We use one Postgres instance but logically separate DBs would be better.
-  # For simplicity in this setup, we will use one postgres instance and create multiple DBs via init script if possible.
-  # But the guide lists separate DB containers. I will follow the guide to stick to the "microservices" purity.
-  # Warning: This uses a lot of memory.
-
-  student-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: studentdb
-      POSTGRES_USER: studentuser
-      POSTGRES_PASSWORD: studentpass
-    networks:
-      - ums-network
-
-  grades-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: gradesdb
-      POSTGRES_USER: gradesuser
-      POSTGRES_PASSWORD: gradespass
-    networks:
-      - ums-network
-
-  attendance-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: attendancedb
-      POSTGRES_USER: attendanceuser
-      POSTGRES_PASSWORD: attendancepass
-    networks:
-      - ums-network
-
-  course-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: coursedb
-      POSTGRES_USER: courseuser
-      POSTGRES_PASSWORD: coursepass
-    networks:
-      - ums-network
-
-  finance-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: financedb
-      POSTGRES_USER: financeuser
-      POSTGRES_PASSWORD: financepass
-    networks:
-      - ums-network
-
-  library-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: librarydb
-      POSTGRES_USER: libraryuser
-      POSTGRES_PASSWORD: librarypass
-    networks:
-      - ums-network
-
-  faculty-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: facultydb
-      POSTGRES_USER: facultyuser
-      POSTGRES_PASSWORD: facultypass
-    networks:
-      - ums-network
-
-  hostel-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: hosteldb
-      POSTGRES_USER: hosteluser
-      POSTGRES_PASSWORD: hostelpass
-    networks:
-      - ums-network
-
-  parent-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: parentdb
-      POSTGRES_USER: parentuser
-      POSTGRES_PASSWORD: parentpass
-    networks:
-      - ums-network
-
-  admin-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: admindb
-      POSTGRES_USER: adminuser
-      POSTGRES_PASSWORD: adminpass
-    networks:
-      - ums-network
-
-  transport-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: transportdb
-      POSTGRES_USER: transportuser
-      POSTGRES_PASSWORD: transportpass
-    networks:
-      - ums-network
-
-  enrollment-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: enrollmentdb
-      POSTGRES_USER: enrollmentuser
-      POSTGRES_PASSWORD: enrollmentpass
-    networks:
-      - ums-network
-
-  user-auth-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: userauthdb
-      POSTGRES_USER: userauthuser
-      POSTGRES_PASSWORD: userauthpass
-    networks:
-      - ums-network
-
-  # Microservices
-
-  student-service:
-    build: ./services/student-service
+  admission-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
     depends_on:
-      - student-db
-      - keycloak
-      - rabbitmq
-    networks:
-      - ums-network
+      - db
     ports:
-      - "3001:3000"
+      - "8070:8069"
     environment:
-      - DATABASE_URL=postgresql://studentuser:studentpass@student-db:5432/studentdb
-      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
-      - KEYCLOAK_REALM=university-platform
-      - KEYCLOAK_CLIENT_ID=student-service
-      - KEYCLOAK_CLIENT_SECRET=secret
-      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
-
-  grades-service:
-    build: ./services/grades-service
-    depends_on:
-      - grades-db
-      - keycloak
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
     networks:
       - ums-network
+    volumes:
+      - odoo_web_data:/var/lib/odoo
+
+  assignment-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
+    depends_on:
+      - db
     ports:
-      - "3002:3000"
+      - "8071:8069"
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
+    networks:
+      - ums-network
+    volumes:
+      - odoo_web_data:/var/lib/odoo
 
   attendance-service:
-    build: ./services/attendance-service
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
     depends_on:
-      - attendance-db
-    networks:
-      - ums-network
+      - db
     ports:
-      - "3003:3000"
-
-  course-service:
-    build: ./services/course-service
-    depends_on:
-      - course-db
-      - keycloak
-    networks:
-      - ums-network
-    ports:
-      - "3004:3000"
+      - "8072:8069"
     environment:
-      - DATABASE_URL=postgresql://courseuser:coursepass@course-db:5432/coursedb
-      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
-      - KEYCLOAK_REALM=university-platform
-      - KEYCLOAK_CLIENT_ID=course-service
-      - KEYCLOAK_CLIENT_SECRET=secret
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
+    networks:
+      - ums-network
+    volumes:
+      - odoo_web_data:/var/lib/odoo
+
+  classroom-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8073:8069"
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
+    networks:
+      - ums-network
+    volumes:
+      - odoo_web_data:/var/lib/odoo
+
+  core-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8074:8069"
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
+    networks:
+      - ums-network
+    volumes:
+      - odoo_web_data:/var/lib/odoo
+
+  erp-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8075:8069"
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
+    networks:
+      - ums-network
+    volumes:
+      - odoo_web_data:/var/lib/odoo
+
+  exam-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8076:8069"
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
+    networks:
+      - ums-network
+    volumes:
+      - odoo_web_data:/var/lib/odoo
+
+  facility-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8077:8069"
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
+    networks:
+      - ums-network
+    volumes:
+      - odoo_web_data:/var/lib/odoo
+
+  fees-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8078:8069"
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
+    networks:
+      - ums-network
+    volumes:
+      - odoo_web_data:/var/lib/odoo
 
   finance-service:
-    build: ./services/finance-service
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
     depends_on:
-      - finance-db
-      - keycloak
-      - rabbitmq
+      - db
+    ports:
+      - "8079:8069"
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
     networks:
       - ums-network
-    ports:
-      - "8081:8080"
-    environment:
-      - DB_HOST=finance-db
-      - DB_DATABASE=financedb
-      - DB_USERNAME=financeuser
-      - DB_PASSWORD=financepass
-      - SPRING_RABBITMQ_HOST=rabbitmq
+    volumes:
+      - odoo_web_data:/var/lib/odoo
 
   library-service:
-    build: ./services/library-service
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
     depends_on:
-      - library-db
-    networks:
-      - ums-network
+      - db
     ports:
-      - "8082:8080"
+      - "8081:8069"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://library-db:5432/librarydb
-      - SPRING_DATASOURCE_USERNAME=libraryuser
-      - SPRING_DATASOURCE_PASSWORD=librarypass
-
-  notifications-service:
-    build: ./services/notifications-service
-    depends_on:
-      - rabbitmq
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
     networks:
       - ums-network
-    ports:
-      - "8001:8000"
+    volumes:
+      - odoo_web_data:/var/lib/odoo
 
-  transport-service:
-    build: ./services/transport-service
+  parent-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
     depends_on:
-      - transport-db
-    networks:
-      - ums-network
+      - db
     ports:
-      - "8002:8000"
-
-  analytics-service:
-    build: ./services/analytics-service
-    depends_on:
-      - mongo
-    networks:
-      - ums-network
-    ports:
-      - "8003:8000"
+      - "8082:8069"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/university_analytics
-
-  faculty-service:
-    build: ./services/faculty-service
-    depends_on:
-      - faculty-db
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
     networks:
       - ums-network
+    volumes:
+      - odoo_web_data:/var/lib/odoo
+
+  theme-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
+    depends_on:
+      - db
     ports:
-      - "8004:80"
+      - "8083:8069"
     environment:
-      - DB_CONNECTION=pgsql
-      - DB_HOST=faculty-db
-      - DB_PORT=5432
-      - DB_DATABASE=facultydb
-      - DB_USERNAME=facultyuser
-      - DB_PASSWORD=facultypass
-
-  hostel-service:
-    build: ./services/hostel-service
-    depends_on:
-      - hostel-db
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
     networks:
       - ums-network
+    volumes:
+      - odoo_web_data:/var/lib/odoo
+
+  timetable-service:
+    build:
+      context: ../
+      dockerfile: infra/docker/odoo-unified.Dockerfile
+    depends_on:
+      - db
     ports:
-      - "8005:80"
+      - "8084:8069"
     environment:
-      - DB_CONNECTION=pgsql
-      - DB_HOST=hostel-db
-      - DB_PORT=5432
-      - DB_DATABASE=hosteldb
-      - DB_USERNAME=hosteluser
-      - DB_PASSWORD=hostelpass
-
-  parent-portal-service:
-    build: ./services/parent-portal-service
-    depends_on:
-      - parent-db
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoopass
     networks:
       - ums-network
-    ports:
-      - "8006:80"
-    environment:
-      - DB_CONNECTION=pgsql
-      - DB_HOST=parent-db
-      - DB_PORT=5432
-      - DB_DATABASE=parentdb
-      - DB_USERNAME=parentuser
-      - DB_PASSWORD=parentpass
-
-  admin-config-service:
-    build: ./services/admin-config-service
-    depends_on:
-      - admin-db
-    networks:
-      - ums-network
-    ports:
-      - "8007:80"
-    environment:
-      - DB_HOST=admin-db
-      - DB_DATABASE=admindb
-      - DB_USERNAME=adminuser
-      - DB_PASSWORD=adminpass
-
-  enrollment-service:
-    build: ./services/enrollment-service
-    depends_on:
-      - enrollment-db
-      - keycloak
-    networks:
-      - ums-network
-    ports:
-      - "8008:8000"
-    environment:
-      - DATABASE_URL=postgresql://enrollmentuser:enrollmentpass@enrollment-db:5432/enrollmentdb
-      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
-      - KEYCLOAK_REALM=university-platform
-
-  user-auth-service:
-    build: ./services/user-auth-service
-    depends_on:
-      - user-auth-db
-      - keycloak
-    networks:
-      - ums-network
-    ports:
-      - "3005:3000"
-
-  document-service:
-    build: ./services/document-service
-    networks:
-      - ums-network
-    ports:
-      - "3006:3000"
-
-  maintenance-service:
-    build: ./services/maintenance-service
-    networks:
-      - ums-network
-    ports:
-      - "3007:3000"
-
-  audit-logging-service:
-    build: ./services/audit-logging-service
-    networks:
-      - ums-network
-    ports:
-      - "8009:8000"
-
-  api-gateway:
-    build: ./services/api-gateway
-    depends_on:
-      - admin-config-service
-      - redis
-      - keycloak
-    networks:
-      - ums-network
-    ports:
-      - "80:3000"
-    environment:
-      - PORT=3000
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
-      - KEYCLOAK_REALM=university-platform
-      - KEYCLOAK_CLIENT_ID=api-gateway
-      - KEYCLOAK_CLIENT_SECRET=secret
-      - ADMIN_CONFIG_SERVICE_URL=http://admin-config-service
-
-  dashboard-ui:
-    build: ./services/dashboard-ui
-    depends_on:
-      - api-gateway
-    networks:
-      - ums-network
-    ports:
-      - "8010:3000"
-    environment:
-      - NEXT_PUBLIC_API_URL=http://localhost/api
-      - NEXT_PUBLIC_KEYCLOAK_URL=http://localhost/auth
-      - NEXT_PUBLIC_KEYCLOAK_REALM=university-platform
-      - NEXT_PUBLIC_KEYCLOAK_CLIENT_ID=dashboard-ui
+    volumes:
+      - odoo_web_data:/var/lib/odoo
 
 networks:
   ums-network:
     driver: bridge
 
 volumes:
-  keycloak_db_data:
-  mongo_data:
+  odoo_db_data:
+  odoo_web_data:

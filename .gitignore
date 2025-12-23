@@ -1,25 +1,89 @@
-# Node
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+.project
+.settings/
+.classpath
+.factorypath
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node.js
 node_modules/
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm
+dist/
+build/
+.next/
+out/
+.svelte-kit
+.vercel
+.turbo
 
 # Python
 __pycache__/
 *.py[cod]
-*.pyc
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
 
-# PHP
-vendor/
-
-# Java
+# Java / Maven / Gradle
 *.class
 *.jar
 *.war
 *.ear
-/target/
+target/
+.mvn/
+.gradle/
+build/
+bin/
 
-# Environment
+# Odoo / OpenEducat
+*.log
+/data/
+/filestore/
+/sessions/
+
+# Environment / Secret
 .env
+.env.*
+!.env.example
+*.pem
+*.key
 
 # Docker
-*.log
-.idea
+.dockerignore

@@ -1,17 +1,18 @@
-FROM node:18-alpine
-WORKDIR /app
+FROM odoo:16.0
 
-# Install dependencies
-COPY package*.json ./
-RUN npm install
+USER root
 
-# Copy source code and build
-COPY . .
-RUN npm run build
+# Install common OpenEducat dependencies
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+RUN pip3 install --no-cache-dir \
+    num2words \
+    xlwt \
+    phonenumbers \
+    polib
 
-# Set environment (if any) and expose port
-ENV NODE_ENV=production
-EXPOSE 3000
+# Copy service code into Odoo addons directory
+COPY . /usr/lib/python3/dist-packages/odoo/addons/openeducat_attendance
 
-# Start the app
-CMD ["node", "dist/main.js"]
+USER odoo

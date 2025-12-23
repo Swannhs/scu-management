@@ -1,0 +1,763 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SCU Management API (Complete OpenEducat Suite)",
+        "description": "JSON-RPC 2.0 API for SCU Management system powered by OpenEducat (Odoo). \n\n**Note**: All endpoints require a JSON-RPC 2.0 POSST payload. Authentication is required via the `common/authenticate` method (see `/core`).",
+        "version": "1.1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api",
+            "description": "SCU API Gateway"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Core",
+            "description": "Authentication, Student, Faculty, Courses"
+        },
+        {
+            "name": "Academic",
+            "description": "Attendance, Timetable, Assignments, Exams"
+        },
+        {
+            "name": "Administrative",
+            "description": "Admission, Fees, Finance"
+        },
+        {
+            "name": "Campus",
+            "description": "Library, Facility, Activity, Classroom"
+        },
+        {
+            "name": "Portal",
+            "description": "Parent and Student Portal"
+        }
+    ],
+    "paths": {
+        "/core": {
+            "post": {
+                "tags": [
+                    "Core"
+                ],
+                "summary": "Core Services (Auth, Students, Faculty)",
+                "description": "Authenticate users and manage core entities (Students, Faculty, Courses).",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "authenticate": {
+                                    "summary": "Authenticate User (Login)",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "common",
+                                            "method": "authenticate",
+                                            "args": [
+                                                "postgres",
+                                                "admin",
+                                                "admin",
+                                                {}
+                                            ]
+                                        }
+                                    }
+                                },
+                                "search_students": {
+                                    "summary": "List All Students",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.student",
+                                                "search_read",
+                                                [
+                                                    []
+                                                ],
+                                                {
+                                                    "fields": [
+                                                        "name",
+                                                        "last_name",
+                                                        "gender"
+                                                    ],
+                                                    "limit": 10
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "create_student": {
+                                    "summary": "Create New Student",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.student",
+                                                "create",
+                                                [
+                                                    {
+                                                        "name": "John",
+                                                        "last_name": "Doe",
+                                                        "gender": "m",
+                                                        "birth_date": "2000-01-01"
+                                                    }
+                                                ]
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        },
+        "/admission": {
+            "post": {
+                "tags": [
+                    "Administrative"
+                ],
+                "summary": "Admission & Registration",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "create_registration": {
+                                    "summary": "Create Admission Registration",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.admission.register",
+                                                "create",
+                                                [
+                                                    {
+                                                        "name": "Fall 2025 Admission",
+                                                        "start_date": "2025-09-01",
+                                                        "end_date": "2025-09-30"
+                                                    }
+                                                ]
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        },
+        "/fees": {
+            "post": {
+                "tags": [
+                    "Administrative"
+                ],
+                "summary": "Student Fees Management",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "get_fee_structure": {
+                                    "summary": "List Fee Structures",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.fees.element",
+                                                "search_read",
+                                                [
+                                                    []
+                                                ],
+                                                {
+                                                    "limit": 10
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        },
+        "/assignment": {
+            "post": {
+                "tags": [
+                    "Academic"
+                ],
+                "summary": "Assignments & Submissions",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "list_assignments": {
+                                    "summary": "List Active Assignments",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.assignment",
+                                                "search_read",
+                                                [
+                                                    [
+                                                        [
+                                                            "state",
+                                                            "=",
+                                                            "publish"
+                                                        ]
+                                                    ]
+                                                ],
+                                                {
+                                                    "fields": [
+                                                        "name",
+                                                        "course_id",
+                                                        "issued_date",
+                                                        "submission_date"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        },
+        "/attendance": {
+            "post": {
+                "tags": [
+                    "Academic"
+                ],
+                "summary": "Attendance Tracking",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "create_attendance_sheet": {
+                                    "summary": "Create Attendance Sheet",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.attendance.sheet",
+                                                "create",
+                                                [
+                                                    {
+                                                        "name": "Math 101 - Lecture 5",
+                                                        "attendance_date": "2025-10-10"
+                                                    }
+                                                ]
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        },
+        "/exam": {
+            "post": {
+                "tags": [
+                    "Academic"
+                ],
+                "summary": "Exam Management",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "list_exams": {
+                                    "summary": "List Scheduled Exams",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.exam",
+                                                "search_read",
+                                                [
+                                                    []
+                                                ],
+                                                {
+                                                    "fields": [
+                                                        "name",
+                                                        "subject_id",
+                                                        "start_time",
+                                                        "end_time"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        },
+        "/library": {
+            "post": {
+                "tags": [
+                    "Campus"
+                ],
+                "summary": "Library & Media",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "search_books": {
+                                    "summary": "Search Library Books",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.media",
+                                                "search_read",
+                                                [
+                                                    []
+                                                ],
+                                                {
+                                                    "fields": [
+                                                        "name",
+                                                        "isbn",
+                                                        "author_id"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        },
+        "/timetable": {
+            "post": {
+                "tags": [
+                    "Academic"
+                ],
+                "summary": "Timetable & Sessions",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "view_timetable": {
+                                    "summary": "View Timetable Sessions",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.session",
+                                                "search_read",
+                                                [
+                                                    []
+                                                ],
+                                                {
+                                                    "fields": [
+                                                        "start_datetime",
+                                                        "end_datetime",
+                                                        "course_id",
+                                                        "faculty_id"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        },
+        "/facility": {
+            "post": {
+                "tags": [
+                    "Campus"
+                ],
+                "summary": "Facility & Asset Management",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "list_facilities": {
+                                    "summary": "List Facilities",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.facility",
+                                                "search_read",
+                                                [
+                                                    []
+                                                ]
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        },
+        "/activity": {
+            "post": {
+                "tags": [
+                    "Campus"
+                ],
+                "summary": "Student Activities",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "list_activities": {
+                                    "summary": "List Activities",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.activity",
+                                                "search_read",
+                                                [
+                                                    []
+                                                ]
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        },
+        "/classroom": {
+            "post": {
+                "tags": [
+                    "Campus"
+                ],
+                "summary": "Classroom Management",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "list_classrooms": {
+                                    "summary": "List Classrooms",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.classroom",
+                                                "search_read",
+                                                [
+                                                    []
+                                                ]
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        },
+        "/parent": {
+            "post": {
+                "tags": [
+                    "Portal"
+                ],
+                "summary": "Parent Portal Services",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JsonRpcRequest"
+                            },
+                            "examples": {
+                                "list_parents": {
+                                    "summary": "List Parents",
+                                    "value": {
+                                        "jsonrpc": "2.0",
+                                        "method": "call",
+                                        "params": {
+                                            "service": "object",
+                                            "method": "execute_kw",
+                                            "args": [
+                                                "postgres",
+                                                2,
+                                                "admin",
+                                                "op.parent",
+                                                "search_read",
+                                                [
+                                                    []
+                                                ]
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "Success": {
+                "description": "Successful Response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/JsonRpcResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "schemas": {
+            "JsonRpcRequest": {
+                "type": "object",
+                "required": [
+                    "jsonrpc",
+                    "method",
+                    "params"
+                ],
+                "properties": {
+                    "jsonrpc": {
+                        "type": "string",
+                        "enum": [
+                            "2.0"
+                        ]
+                    },
+                    "method": {
+                        "type": "string",
+                        "example": "call"
+                    },
+                    "params": {
+                        "type": "object",
+                        "properties": {
+                            "service": {
+                                "type": "string",
+                                "enum": [
+                                    "common",
+                                    "object",
+                                    "db"
+                                ]
+                            },
+                            "method": {
+                                "type": "string"
+                            },
+                            "args": {
+                                "type": "array"
+                            }
+                        }
+                    }
+                }
+            },
+            "JsonRpcResponse": {
+                "type": "object",
+                "properties": {
+                    "jsonrpc": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "result": {
+                        "type": "object"
+                    },
+                    "error": {
+                        "type": "object",
+                        "nullable": true
+                    }
+                }
+            }
+        }
+    }
+}

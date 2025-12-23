@@ -1,0 +1,272 @@
+{
+    "version": 3,
+    "name": "SCU API Gateway",
+    "port": 8080,
+    "cache_ttl": "3600s",
+    "timeout": "3000ms",
+    "extra_config": {
+        "github_com/devopsfaith/krakend-cors": {
+            "allow_origins": [
+                "*"
+            ],
+            "allow_methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "PATCH"
+            ],
+            "allow_headers": [
+                "Authorization",
+                "Content-Type",
+                "X-Tenant-ID"
+            ],
+            "expose_headers": [
+                "Content-Length"
+            ],
+            "max_age": "12h"
+        }
+    },
+    "endpoints": [
+        {
+            "endpoint": "/api/activity",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://activity-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/admission",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://admission-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/assignment",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://assignment-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/attendance",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://attendance-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/classroom",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://classroom-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/core",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://core-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/students",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://core-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/faculty",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://core-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/courses",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://core-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/exam",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://exam-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/facility",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://facility-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/fees",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://fees-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/finance",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://finance-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/library",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://library-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/parent",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://parent-service:8069"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/timetable",
+            "method": "POST",
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/jsonrpc",
+                    "host": [
+                        "http://timetable-service:8069"
+                    ]
+                }
+            ]
+        }
+    ]
+}

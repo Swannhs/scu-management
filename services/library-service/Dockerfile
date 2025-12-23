@@ -1,12 +1,18 @@
-FROM maven:3.9-jdk-17 AS build
-WORKDIR /app
-COPY pom.xml ./
-COPY src ./src
-RUN mvn package -DskipTests
+FROM odoo:16.0
 
-# Second stage: run the app
-FROM openjdk:17-jdk-slim
-WORKDIR /app
-COPY --from=build /app/target/library-service-0.0.1-SNAPSHOT.jar ./library-service.jar
-EXPOSE 8080
-CMD ["java", "-jar", "library-service.jar"]
+USER root
+
+# Install common OpenEducat dependencies
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+RUN pip3 install --no-cache-dir \
+    num2words \
+    xlwt \
+    phonenumbers \
+    polib
+
+# Copy service code into Odoo addons directory
+COPY . /usr/lib/python3/dist-packages/odoo/addons/openeducat_library
+
+USER odoo

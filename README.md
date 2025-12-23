@@ -3,24 +3,10 @@
 A microservices-based University Management System.
 
 ## Architecture
-- **Student Service** (NestJS)
-- **Grades Service** (NestJS)
-- **Attendance Service** (NestJS)
-- **Course Service** (NestJS)
-- **Finance Service** (Spring Boot)
-- **Library Service** (Spring Boot)
-- **Notifications Service** (FastAPI)
-- **Transport Service** (FastAPI)
-- **Analytics Service** (FastAPI)
-- **Faculty Service** (Laravel)
-- **Hostel Service** (Laravel)
-- **Parent Portal Service** (Laravel)
-- **Admin Config Service** (Laravel)
-- **Enrollment Service** (FastAPI)
-- **User Auth Service** (NestJS)
-- **Document Service** (Express)
-- **Maintenance Service** (Express)
-- **Audit & Logging Service** (FastAPI)
+- **ERP Engine**: [OpenEduCat](https://openeducat.org) (Odoo-based)
+  - Services: activity-service, admission-service, assignment-service, attendance-service, classroom-service, core-service, erp-service, exam-service, facility-service, fees-service, library-service, parent-service, timetable-service, theme-service.
+- **REST Gateway**: KrakenD (Proxies REST calls to OpenEduCat JSON-RPC)
+- **Frontend**: Next.js Dashboard UI (Planned/In Development)
 - **Infrastructure**: Keycloak, PostgreSQL, MongoDB, Redis, RabbitMQ.
 
 ## Prerequisites
@@ -40,11 +26,9 @@ A microservices-based University Management System.
    *Note: First run will take time to build all images.*
 
 3. Access services:
+   - **OpenEduCat (Odoo)**: http://localhost:8069
+   - **API Gateway (KrakenD)**: http://localhost:80
    - **Keycloak**: http://localhost:8080 (admin/admin)
-   - **Student Service**: http://localhost:3001
-   - **Finance Service**: http://localhost:8081
-   - **Notifications Service**: http://localhost:8001
-   - **Faculty Service**: http://localhost:8004
    - **RabbitMQ Management**: http://localhost:15672
 
 ## Development
