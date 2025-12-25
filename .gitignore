@@ -86,4 +86,4 @@ bin/
 *.key
 
 # Docker
-.dockerignore
+# .dockerignore removed

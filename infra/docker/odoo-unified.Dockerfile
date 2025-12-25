@@ -1,4 +1,4 @@
-FROM odoo:16.0
+FROM odoo:18.0
 
 USER root
 
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install python packages
-RUN pip3 install --no-cache-dir \
+RUN pip3 install --no-cache-dir --break-system-packages \
     num2words \
     xlwt \
     phonenumbers \
@@ -43,6 +43,7 @@ COPY services/parent-service /usr/lib/python3/dist-packages/odoo/addons/openeduc
 
 # ERP & Theme
 COPY services/erp-service /usr/lib/python3/dist-packages/odoo/addons/openeducat_erp
+COPY services/finance-service /usr/lib/python3/dist-packages/odoo/addons/openeducat_finance
 COPY services/theme-service /usr/lib/python3/dist-packages/odoo/addons/theme_web_openeducat
 
 USER odoo
