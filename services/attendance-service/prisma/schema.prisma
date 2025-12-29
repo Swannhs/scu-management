@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AttendanceState {
+  DRAFT
+  START
+  DONE
+  CANCEL
+}
+
+enum SheetState {
+  DRAFT
+  DONE
+  CANCELLED
+}
+
+model AttendanceRegister {
+  id          String   @id @default(uuid())
+  tenantId    String
+  name        String
+  courseId    String   // Reference to OpCourse
+  batchId     String   // Reference to OpBatch
+  
+  sheets      AttendanceSheet[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([tenantId])
+}
+
+model AttendanceSheet {
+  id              String   @id @default(uuid())
+  tenantId        String
+  registerId      String
+  register        AttendanceRegister @relation(fields: [registerId], references: [id])
+  
+  attendanceDate  DateTime @default(now())
+  sessionId       String?  // Reference to OpSession
+  facultyId       String?  // Reference to OpFaculty
+  
+  lines           AttendanceLine[]
+  
+  state           SheetState @default(DRAFT)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([tenantId])
+  @@index([registerId])
+}
+
+model AttendanceLine {
+  id          String   @id @default(uuid())
+  sheetId     String
+  sheet       AttendanceSheet @relation(fields: [sheetId], references: [id])
+  
+  studentId   String
+  present     Boolean  @default(false)
+  remark      String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sheetId])
+}

@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AdmissionState {
+  DRAFT
+  SUBMITTED
+  CONFIRMED
+  ADMISSION_CONFIRM
+  REJECTED
+  PENDING
+  CANCELLED
+  DONE
+}
+
+enum RegisterState {
+  DRAFT
+  CONFIRMED
+  CANCELLED
+  APPLICATION_GATHERING
+  ADMISSION_PROCESS
+  DONE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+// OpAdmissionRegister (Admission Drive/Cycle)
+model AdmissionRegister {
+  id              String    @id @default(uuid())
+  tenantId        String
+  name            String
+  startDate       DateTime
+  endDate         DateTime
+  
+  // Scoping - Relates to Course Service
+  programId       String?   // Link to OpProgram
+  courseId        String?   // Link to OpCourse
+  academicYearId  String?   // Link to Academic Year
+  academicTermId  String?   // Link to Academic Term
+  
+  minCount        Int?
+  maxCount        Int?      @default(30)
+  minAgeCriteria  Int?      @default(3)
+  
+  status          RegisterState @default(DRAFT)
+  
+  admissions      AdmissionApplication[]
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([tenantId])
+}
+
+// OpAdmission (Student Application)
+model AdmissionApplication {
+  id                String    @id @default(uuid())
+  tenantId          String
+  applicationNumber String    @unique // Sequence generated (e.g. ADM/2024/001)
+  
+  registerId        String
+  register          AdmissionRegister @relation(fields: [registerId], references: [id])
+  
+  // Applicant Details
+  firstName         String
+  middleName        String?
+  lastName          String
+  email             String
+  phone             String?
+  mobile            String?
+  birthDate         DateTime
+  gender            Gender
+  image             String?   // URL to stored image
+  
+  // Address
+  street            String?
+  street2           String?
+  city              String?
+  zip               String?
+  stateId           String?
+  countryId         String?
+  
+  // Academic Intention
+  programId         String?   // Selected Program
+  courseId          String?   // Selected Course
+  batchId           String?   // Assigned Batch
+  
+  // Previous Education
+  prevInstitute     String?
+  prevCourse        String?
+  prevResult        String?
+  
+  // Family Info
+  familyBusiness    String?
+  familyIncome      Float?
+  
+  // Fees
+  fees              Float?
+  feesTermId        String?
+  
+  // Status
+  state             AdmissionState @default(DRAFT)
+  applicationDate   DateTime       @default(now())
+  admissionDate     DateTime?
+  
+  // Linked Student (if admitted)
+  studentId         String?        // Reference to Student Service (Student.id)
+  
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  @@index([tenantId])
+  @@index([registerId])
+  @@index([email])
+  @@index([applicationNumber])
+}

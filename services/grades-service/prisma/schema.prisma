@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Exam Models
+
+enum ExamState {
+  DRAFT
+  SCHEDULED
+  HELD
+  RESULT_UPDATED
+  CANCELLED
+  DONE
+}
+
+enum ExamAttendeeStatus {
+  PRESENT
+  ABSENT
+}
+
+model ExamSession {
+  id          String   @id @default(uuid())
+  tenantId    String
+  name        String
+  
+  courseId    String
+  batchId     String
+  
+  startDate   DateTime
+  endDate     DateTime
+  
+  evaluationType String @default("NORMAL") // Reference to OpCourse.evaluation_type
+  
+  exams       Exam[]
+  results     ResultTemplate[]
+  
+  state       String   @default("draft")
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([tenantId])
+}
+
+model Exam {
+  id          String   @id @default(uuid())
+  sessionId   String
+  session     ExamSession @relation(fields: [sessionId], references: [id])
+  
+  subjectId   String
+  code        String
+  name        String
+  
+  totalMarks  Float
+  minMarks    Float    // Passing marks
+  
+  startTime   DateTime
+  endTime     DateTime
+  
+  state       ExamState @default(DRAFT)
+  
+  attendees   ExamAttendee[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sessionId])
+}
+
+model ExamAttendee {
+  id          String   @id @default(uuid())
+  examId      String
+  exam        Exam     @relation(fields: [examId], references: [id])
+  
+  studentId   String
+  marks       Float?
+  status      ExamAttendeeStatus @default(ABSENT)
+  
+  note        String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([examId])
+  @@index([studentId])
+}
+
+model ResultTemplate {
+  id          String   @id @default(uuid())
+  sessionId   String
+  session     ExamSession @relation(fields: [sessionId], references: [id])
+  
+  name        String
+  resultDate  DateTime @default(now())
+  
+  details     String? // Configuration details for GPA/CWA logic
+  
+  state       String   @default("draft")
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

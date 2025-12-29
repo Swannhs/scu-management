@@ -7,78 +7,224 @@ datasource db {
 }
 
 // Unified Academic Model
-enum ProgramType {
-  K12
-  HIGHER_ED
+// OpenEducat Aligned Academic Model
+
+enum EvaluationType {
+  NORMAL
+  GPA
+  CWA
+  CCE
+}
+
+enum SubjectType {
+  THEORY
+  PRACTICAL
+  BOTH
+  OTHER
+}
+
+enum SubjectNature {
+  COMPULSORY
+  ELECTIVE
+}
+
+model ProgramLevel {
+  id        String    @id @default(uuid())
+  tenantId  String
+  name      String
+  programs  Program[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([tenantId])
 }
 
 model Program {
-  id          String      @id @default(uuid())
-  tenantId    String
-  name        String
-  code        String
-  type        ProgramType
-  levels      Level[]
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id              String        @id @default(uuid())
+  tenantId        String
+  name            String
+  code            String        @unique
+  programLevelId  String?
+  programLevel    ProgramLevel? @relation(fields: [programLevelId], references: [id])
+  departmentId    String?       // Reference to Department/Faculty service
+  courses         Course[]
+  
+  maxUnitLoad     Float?
+  minUnitLoad     Float?
+  
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 
   @@index([tenantId])
 }
 
-model Level {
-  id          String            @id @default(uuid())
-  tenantId    String
-  programId   String
-  program     Program           @relation(fields: [programId], references: [id])
-  name        String            // e.g. "Semester 1" or "Grade 10"
-  sequence    Int
-  offerings   CourseOffering[]
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+model Course {
+  id              String          @id @default(uuid())
+  tenantId        String
+  name            String
+  code            String          @unique
+  
+  // Hierarchy
+  parentId        String?
+  parent          Course?         @relation("CourseHierarchy", fields: [parentId], references: [id])
+  children        Course[]        @relation("CourseHierarchy")
+  
+  programId       String?
+  program         Program?        @relation(fields: [programId], references: [id])
+  
+  evaluationType  EvaluationType  @default(NORMAL)
+  
+  maxUnitLoad     Float?
+  minUnitLoad     Float?
+  departmentId    String?
+  
+  subjects        CourseSubject[]
+  batches         Batch[]
+  
+  active          Boolean         @default(true)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
 
   @@index([tenantId])
+  @@index([programId])
 }
 
 model Subject {
-  id          String            @id @default(uuid())
-  tenantId    String
-  name        String
-  code        String            // e.g. "PHYS101"
-  credits     Float             @default(0)
-  offerings   CourseOffering[]
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+  id            String          @id @default(uuid())
+  tenantId      String
+  name          String
+  code          String          @unique
+  type          SubjectType     @default(THEORY)
+  nature        SubjectNature   @default(COMPULSORY)
+  gradeWeightage Float?
+  departmentId  String?
+  
+  courses       CourseSubject[]
+  
+  active        Boolean         @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
 
   @@index([tenantId])
 }
 
-model Section {
-  id          String            @id @default(uuid())
-  tenantId    String
-  name        String            // e.g. "A", "B", "Morning Batch"
-  offerings   CourseOffering[]
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
-
-  @@index([tenantId])
+model CourseSubject {
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id])
+  subjectId String
+  subject   Subject  @relation(fields: [subjectId], references: [id])
+  
+  @@id([courseId, subjectId])
 }
 
-model CourseOffering {
+model Batch {
   id          String    @id @default(uuid())
   tenantId    String
-  subjectId   String
-  subject     Subject   @relation(fields: [subjectId], references: [id])
-  levelId     String
-  level       Level     @relation(fields: [levelId], references: [id])
-  sectionId   String
-  section     Section   @relation(fields: [sectionId], references: [id])
-  facultyId   String?   // Reference to faculty in another service
-  academicYear String    // e.g. "2024-2025"
+  code        String    @unique
+  name        String
+  startDate   DateTime
+  endDate     DateTime
+  
+  courseId    String
+  course      Course    @relation(fields: [courseId], references: [id])
+  
+  active      Boolean   @default(true)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   @@index([tenantId])
-  @@index([subjectId])
-  @@index([levelId])
-  @@index([sectionId])
+
+// Timetable
+model Timing {
+  id          String   @id @default(uuid())
+  name        String   // e.g. "Hour 1", "Morning Slot"
+  startTime   String   // "09:00"
+  endTime     String   // "10:00"
+  duration    Float?
+  
+  sessions    Session[]
+}
+
+model Session {
+  id          String   @id @default(uuid())
+  tenantId    String
+  timingId    String
+  timing      Timing   @relation(fields: [timingId], references: [id])
+  
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id])
+  
+  batchId     String
+  batch       Batch    @relation(fields: [batchId], references: [id])
+  
+  subjectId   String
+  subject     Subject  @relation(fields: [subjectId], references: [id])
+  
+  facultyId   String?  // Reference to Faculty Service
+  
+  dayOfWeek   String   // MONDAY, TUESDAY, etc.
+  classroom   String?  // Room number/ID
+  
+  startDatetime DateTime? // Specific date override
+  endDatetime   DateTime?
+  
+  type        String   @default("Lecture") // Lecture, Lab, etc.
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([tenantId])
+  @@index([courseId])
+  @@index([batchId])
+}
+
+// Assignment
+model Assignment {
+  id          String   @id @default(uuid())
+  tenantId    String
+  name        String
+  description String?
+  
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id])
+  batchId     String
+  batch       Batch    @relation(fields: [batchId], references: [id])
+  subjectId   String
+  subject     Subject  @relation(fields: [subjectId], references: [id])
+  
+  facultyId   String?
+  
+  issuedDate  DateTime @default(now())
+  deadline    DateTime
+  
+  type        String   @default("assignment") // assignment, project, etc.
+  marks       Float?
+  
+  submissions AssignmentSubmission[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([tenantId])
+}
+
+model AssignmentSubmission {
+  id            String     @id @default(uuid())
+  assignmentId  String
+  assignment    Assignment @relation(fields: [assignmentId], references: [id])
+  
+  studentId     String
+  submissionDate DateTime  @default(now())
+  note          String?
+  fileUrl       String?
+  
+  marks         Float?
+  feedback      String?
+  state         String     @default("draft") // draft, submitted, graded
+  
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  
+  @@index([assignmentId])
+  @@index([studentId])
 }

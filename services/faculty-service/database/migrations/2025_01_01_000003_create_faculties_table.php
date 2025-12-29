@@ -17,9 +17,24 @@ return new class extends Migration
             $table->string('keycloak_id')->nullable()->unique();
             $table->string('employee_id')->unique(); // Institutional identifier
             $table->string('first_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
+            $table->date('birth_date')->nullable();
+            
+            $table->enum('gender', ['male', 'female', 'other'])->nullable();
+            $table->string('blood_group')->nullable();
+            $table->string('nationality')->nullable();
+            
             $table->string('email');
             $table->string('phone')->nullable();
+            
+            $table->string('visa_info')->nullable();
+            $table->string('id_number')->nullable(); // National ID
+            
+            $table->string('emergency_contact_name')->nullable();
+            $table->string('emergency_contact_phone')->nullable();
+            $table->string('emergency_contact_relation')->nullable();
+
             $table->string('designation'); // e.g. Assistant Professor, Lecturer
             $table->string('department'); // e.g. Computer Science
             $table->string('specialization')->nullable();
