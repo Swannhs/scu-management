@@ -7,101 +7,114 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Exam Models
+// ==========================================
+// EXAMS & GRADING
+// ==========================================
 
-enum ExamState {
-  DRAFT
-  SCHEDULED
-  HELD
-  RESULT_UPDATED
-  CANCELLED
-  DONE
-}
-
-enum ExamAttendeeStatus {
-  PRESENT
-  ABSENT
-}
-
-model ExamSession {
-  id          String   @id @default(uuid())
-  tenantId    String
-  name        String
-  
-  courseId    String
-  batchId     String
-  
-  startDate   DateTime
-  endDate     DateTime
-  
-  evaluationType String @default("NORMAL") // Reference to OpCourse.evaluation_type
-  
-  exams       Exam[]
-  results     ResultTemplate[]
-  
-  state       String   @default("draft")
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@index([tenantId])
+enum ExamType {
+  MIDTERM
+  FINAL
+  QUIZ
+  SUPPLEMENTARY
 }
 
 model Exam {
-  id          String   @id @default(uuid())
-  sessionId   String
-  session     ExamSession @relation(fields: [sessionId], references: [id])
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  courseOfferingId  String    @map("course_offering_id")
   
-  subjectId   String
-  code        String
-  name        String
+  name              String
+  type              ExamType
+  date              DateTime
+  durationMinutes   Int       @map("duration_minutes")
+  totalMarks        Decimal   @map("total_marks") @db.Decimal(5, 2)
+  weightagePercent  Decimal   @map("weightage_percent") @db.Decimal(5, 2) # e.g. 30% of final grade
   
-  totalMarks  Float
-  minMarks    Float    // Passing marks
+  isPublished       Boolean   @default(false) @map("is_published")
   
-  startTime   DateTime
-  endTime     DateTime
+  marks             ExamMark[]
   
-  state       ExamState @default(DRAFT)
-  
-  attendees   ExamAttendee[]
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
 
-  @@index([sessionId])
+  @@index([tenantId, courseOfferingId])
+  @@map("exams")
 }
 
-model ExamAttendee {
-  id          String   @id @default(uuid())
-  examId      String
-  exam        Exam     @relation(fields: [examId], references: [id])
+model ExamMark {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  examId            String    @map("exam_id")
+  studentId         String    @map("student_id")
   
-  studentId   String
-  marks       Float?
-  status      ExamAttendeeStatus @default(ABSENT)
+  obtainedMarks     Decimal   @map("obtained_marks") @db.Decimal(5, 2)
+  remarks           String?
   
-  note        String?
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
 
-  @@index([examId])
-  @@index([studentId])
+  exam              Exam      @relation(fields: [examId], references: [id])
+
+  @@unique([examId, studentId])
+  @@index([tenantId, studentId])
+  @@map("exam_marks")
 }
 
-model ResultTemplate {
+model GradeRule {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  programId         String?   @map("program_id") # Optional specific program override
+  
+  grade             String    # e.g. "A", "B+"
+  minPercentage     Decimal   @map("min_percentage") @db.Decimal(5, 2)
+  maxPercentage     Decimal   @map("max_percentage") @db.Decimal(5, 2)
+  gradePoint        Decimal   @map("grade_point") @db.Decimal(3, 2) # e.g. 4.0, 3.5
+  
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  @@index([tenantId])
+  @@map("grade_rules")
+}
+
+model StudentTranscript {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  studentId         String    @map("student_id")
+  termId            String    @map("term_id")
+  
+  gpa               Decimal?  @db.Decimal(3, 2)
+  cgpa              Decimal?  @db.Decimal(3, 2)
+  totalCredits      Decimal?  @map("total_credits") @db.Decimal(5, 2)
+  
+  isFinalized       Boolean   @default(false) @map("is_finalized")
+  
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  @@unique([tenantId, studentId, termId])
+  @@map("student_transcripts")
+}
+
+// ==========================================
+// EVENT OUTBOX
+// ==========================================
+
+model EventOutbox {
   id          String   @id @default(uuid())
-  sessionId   String
-  session     ExamSession @relation(fields: [sessionId], references: [id])
+  tenantId    String   @map("tenant_id")
+  eventType   String   @map("event_type")
+  payload     Json
   
-  name        String
-  resultDate  DateTime @default(now())
+  status      String   @default("PENDING") // PENDING, PUBLISHED
+  retries     Int      @default(0)
   
-  details     String? // Configuration details for GPA/CWA logic
+  createdAt   DateTime @default(now()) @map("created_at")
   
-  state       String   @default("draft")
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  @@index([tenantId, status])
+  @@map("event_outbox")
 }
