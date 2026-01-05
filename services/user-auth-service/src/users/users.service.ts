@@ -22,7 +22,7 @@ export class UsersService {
         });
 
         if (existing) {
-            throw new ConflictException('User already exists');
+            return existing;
         }
 
         const user = await this.prisma.user.create({
