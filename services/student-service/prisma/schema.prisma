@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum StudentStatus {
@@ -11,48 +12,129 @@ enum StudentStatus {
   INACTIVE
   GRADUATED
   DROPPED
-  PROBATION
+  SUSPENDED
+  ALUMNI
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }
 
 model Student {
   id              String        @id @default(uuid())
-  tenantId        String
-  keycloakId      String?       @unique // Optional if user-auth is separate but linked
+  tenantId        String        @map("tenant_id")
   
-  // Identification
-  studentId       String        @unique // Institutional identifier (e.g. ROLL NO / gr_no)
-  idNumber        String?       // National ID Card Number
-  visaInfo        String?       // Visa Information
-  
-  // Personal Info
-  firstName       String
-  middleName      String?
-  lastName        String
-  email           String
-  phone           String?
-  dateOfBirth     DateTime?
-  gender          String?       // 'm', 'f', 'o'
-  bloodGroup      String?       // e.g. A+, O-
-  nationality     String?       // Country Code or Name
-  address         String?
+  // Link to user-auth service
+  userId          String?       @unique @map("user_id") // UUID from app_users
 
-  // Admission Info
-  admissionDate   DateTime      @default(now())
+  // Institutional ID (Roll Number / Admission Number)
+  studentCode     String        @map("student_code")
+
+  firstName       String        @map("first_name")
+  middleName      String?       @map("middle_name")
+  lastName        String        @map("last_name")
+  
+  email           String        // Institutional email
+  personalEmail   String?       @map("personal_email")
+  phone           String?
+
+  dob             DateTime?     @map("date_of_birth")
+  gender          Gender?
+  bloodGroup      String?       @map("blood_group")
+  nationality     String?
+  address         Json?         // Structured address: { line1, city, state, zip, country }
+
+  admissionDate   DateTime      @map("admission_date")
+  batchYear       Int?          @map("batch_year") // e.g., 2024
+
   status          StudentStatus @default(ACTIVE)
   
-  // Emergency Contact
-  emergencyContactName  String?
-  emergencyContactPhone String?
-  emergencyContactRelation String?
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  deletedAt       DateTime?     @map("deleted_at")
+
+  // Relationships
+  guardians       Guardian[]
+  documents       StudentDocument[]
+
+  @@unique([tenantId, studentCode])
+  @@unique([tenantId, email])
+  @@index([tenantId])
+  @@index([tenantId, status])
+  @@map("students")
+}
+
+enum GuardianType {
+  FATHER
+  MOTHER
+  GUARDIAN
+  SIBLING
+  OTHER
+}
+
+model Guardian {
+  id              String       @id @default(uuid())
+  tenantId        String       @map("tenant_id")
+  studentId       String       @map("student_id")
   
-  // Parent/Guardian Info
-  parentName      String?
-  parentPhone     String?
-  parentEmail     String?
-  
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  name            String
+  relationship    GuardianType
+  occupation      String?
+  email           String?
+  phone           String?
+  address         Json?        // If different from student
+
+  isPrimary       Boolean      @default(false) @map("is_primary") // Primary contact
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+  deletedAt       DateTime?    @map("deleted_at")
+
+  student         Student      @relation(fields: [studentId], references: [id])
 
   @@index([tenantId])
-  @@index([status])
+  @@index([studentId])
+  @@map("student_guardians")
+}
+
+model StudentDocument {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  studentId   String   @map("student_id")
+
+  title       String
+  type        String?  // e.g., "Transcript", "ID Proof", "Medical"
+  fileUrl     String   @map("file_url") // Reference to document-service or S3 key
+  isVerified  Boolean  @default(false) @map("is_verified")
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  student     Student  @relation(fields: [studentId], references: [id])
+
+  @@index([tenantId])
+  @@index([studentId])
+  @@map("student_documents")
+}
+
+// ==========================================
+// EVENT OUTBOX
+// ==========================================
+
+model EventOutbox {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  eventType   String   @map("event_type")
+  payload     Json
+
+  status      String   @default("PENDING") // PENDING, PUBLISHED
+  retries     Int      @default(0)
+
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([tenantId, status])
+  @@map("event_outbox")
 }

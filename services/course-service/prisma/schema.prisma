@@ -4,227 +4,280 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-// Unified Academic Model
-// OpenEducat Aligned Academic Model
+// ==========================================
+// ACADEMIC STRUCTURE
+// ==========================================
 
-enum EvaluationType {
-  NORMAL
-  GPA
-  CWA
-  CCE
-}
+model Department {
+  id          String    @id @default(uuid())
+  tenantId    String    @map("tenant_id")
+  name        String
+  code        String
+  headId      String?   @map("head_id") // Faculty ID reference
 
-enum SubjectType {
-  THEORY
-  PRACTICAL
-  BOTH
-  OTHER
-}
+  programs    Program[]
 
-enum SubjectNature {
-  COMPULSORY
-  ELECTIVE
-}
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
 
-model ProgramLevel {
-  id        String    @id @default(uuid())
-  tenantId  String
-  name      String
-  programs  Program[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-
+  @@unique([tenantId, code])
   @@index([tenantId])
+  @@map("departments")
 }
 
 model Program {
-  id              String        @id @default(uuid())
-  tenantId        String
-  name            String
-  code            String        @unique
-  programLevelId  String?
-  programLevel    ProgramLevel? @relation(fields: [programLevelId], references: [id])
-  departmentId    String?       // Reference to Department/Faculty service
-  courses         Course[]
-  
-  maxUnitLoad     Float?
-  minUnitLoad     Float?
-  
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  id            String    @id @default(uuid())
+  tenantId      String    @map("tenant_id")
+  departmentId  String    @map("department_id")
 
+  name          String
+  code          String
+  degreeLevel   String?   @map("degree_level") // UG, PG, Diploma
+  durationMonths Int?     @map("duration_months")
+  
+  courses       Course[]
+  
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  department    Department @relation(fields: [departmentId], references: [id])
+
+  @@unique([tenantId, code])
   @@index([tenantId])
+  @@map("programs")
 }
 
 model Course {
-  id              String          @id @default(uuid())
-  tenantId        String
-  name            String
-  code            String          @unique
+  id            String    @id @default(uuid())
+  tenantId      String    @map("tenant_id")
+  programId     String?   @map("program_id") // Optional owner program
   
-  // Hierarchy
-  parentId        String?
-  parent          Course?         @relation("CourseHierarchy", fields: [parentId], references: [id])
-  children        Course[]        @relation("CourseHierarchy")
-  
-  programId       String?
-  program         Program?        @relation(fields: [programId], references: [id])
-  
-  evaluationType  EvaluationType  @default(NORMAL)
-  
-  maxUnitLoad     Float?
-  minUnitLoad     Float?
-  departmentId    String?
-  
-  subjects        CourseSubject[]
-  batches         Batch[]
-  
-  active          Boolean         @default(true)
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-
-  @@index([tenantId])
-  @@index([programId])
-}
-
-model Subject {
-  id            String          @id @default(uuid())
-  tenantId      String
   name          String
-  code          String          @unique
-  type          SubjectType     @default(THEORY)
-  nature        SubjectNature   @default(COMPULSORY)
-  gradeWeightage Float?
-  departmentId  String?
+  code          String
+  credits       Float     @default(0)
+  description   String?
   
-  courses       CourseSubject[]
+  offerings     CourseOffering[]
   
-  active        Boolean         @default(true)
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
 
+  program       Program?  @relation(fields: [programId], references: [id])
+
+  @@unique([tenantId, code])
   @@index([tenantId])
+  @@map("courses")
 }
 
-model CourseSubject {
-  courseId  String
-  course    Course   @relation(fields: [courseId], references: [id])
-  subjectId String
-  subject   Subject  @relation(fields: [subjectId], references: [id])
+model AcademicTerm {
+  id            String    @id @default(uuid())
+  tenantId      String    @map("tenant_id")
+  name          String    // e.g. "Fall 2024"
+  code          String
+  startDate     DateTime  @map("start_date")
+  endDate       DateTime  @map("end_date")
+  isActive      Boolean   @default(false) @map("is_active")
   
-  @@id([courseId, subjectId])
+  offerings     CourseOffering[]
+  
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  @@unique([tenantId, code])
+  @@index([tenantId])
+  @@map("academic_terms")
 }
 
-model Batch {
-  id          String    @id @default(uuid())
-  tenantId    String
-  code        String    @unique
-  name        String
-  startDate   DateTime
-  endDate     DateTime
-  
-  courseId    String
-  course      Course    @relation(fields: [courseId], references: [id])
-  
-  active      Boolean   @default(true)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+// ==========================================
+// SCHEDULING & OFFERINGS (The "Class")
+// ==========================================
 
-  @@index([tenantId])
+model CourseOffering {
+  id            String    @id @default(uuid())
+  tenantId      String    @map("tenant_id")
+  courseId      String    @map("course_id")
+  termId        String    @map("term_id")
 
-// Timetable
-model Timing {
-  id          String   @id @default(uuid())
-  name        String   // e.g. "Hour 1", "Morning Slot"
-  startTime   String   // "09:00"
-  endTime     String   // "10:00"
-  duration    Float?
-  
-  sessions    Session[]
-}
+  sectionName   String    @default("A") // e.g. Section A
+  facultyId     String?   @map("faculty_id") // Primary instructor
+  capacity      Int?
 
-model Session {
-  id          String   @id @default(uuid())
-  tenantId    String
-  timingId    String
-  timing      Timing   @relation(fields: [timingId], references: [id])
+  enrollments   CourseEnrollment[]
+  sessions      CourseSession[]
   
-  courseId    String
-  course      Course   @relation(fields: [courseId], references: [id])
-  
-  batchId     String
-  batch       Batch    @relation(fields: [batchId], references: [id])
-  
-  subjectId   String
-  subject     Subject  @relation(fields: [subjectId], references: [id])
-  
-  facultyId   String?  // Reference to Faculty Service
-  
-  dayOfWeek   String   // MONDAY, TUESDAY, etc.
-  classroom   String?  // Room number/ID
-  
-  startDatetime DateTime? // Specific date override
-  endDatetime   DateTime?
-  
-  type        String   @default("Lecture") // Lecture, Lab, etc.
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  // LMS Relationships
+  materials     LMSMaterial[]
+  assignments   LMSAssignment[]
 
-  @@index([tenantId])
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  course        Course    @relation(fields: [courseId], references: [id])
+  term          AcademicTerm @relation(fields: [termId], references: [id])
+
+  @@index([tenantId, termId])
   @@index([courseId])
-  @@index([batchId])
+  @@map("course_offerings")
 }
 
-// Assignment
-model Assignment {
-  id          String   @id @default(uuid())
-  tenantId    String
-  name        String
-  description String?
+model CourseEnrollment {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  courseOfferingId  String    @map("course_offering_id")
+  studentId         String    @map("student_id")
   
-  courseId    String
-  course      Course   @relation(fields: [courseId], references: [id])
-  batchId     String
-  batch       Batch    @relation(fields: [batchId], references: [id])
-  subjectId   String
-  subject     Subject  @relation(fields: [subjectId], references: [id])
+  enrolledAt        DateTime  @default(now()) @map("enrolled_at")
+  status            String    @default("ENROLLED") // ENROLLED, DROPPED, COMPLETED
   
-  facultyId   String?
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  offering          CourseOffering @relation(fields: [courseOfferingId], references: [id])
+
+  @@unique([tenantId, courseOfferingId, studentId])
+  @@index([tenantId, studentId])
+  @@map("course_enrollments")
+}
+
+model CourseSession {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  courseOfferingId  String    @map("course_offering_id")
   
-  issuedDate  DateTime @default(now())
-  deadline    DateTime
+  title             String?
+  date              DateTime? // For one-off or specific date sessions
+  dayOfWeek         String?   // MONDAY, TUESDAY (for recurring)
+  startTime         String    // 09:00
+  endTime           String    // 10:00
+  roomId            String?   // Reference to infrastructure/room
   
-  type        String   @default("assignment") // assignment, project, etc.
-  marks       Float?
-  
-  submissions AssignmentSubmission[]
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  offering          CourseOffering @relation(fields: [courseOfferingId], references: [id])
 
   @@index([tenantId])
+  @@index([courseOfferingId])
+  @@map("course_sessions")
 }
 
-model AssignmentSubmission {
-  id            String     @id @default(uuid())
-  assignmentId  String
-  assignment    Assignment @relation(fields: [assignmentId], references: [id])
+// ==========================================
+// LMS FEATURES (Content & Assignments)
+// ==========================================
+
+enum MaterialType {
+  FILE
+  LINK
+  TEXT
+  VIDEO
+}
+
+model LMSMaterial {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  courseOfferingId  String    @map("course_offering_id")
   
-  studentId     String
-  submissionDate DateTime  @default(now())
-  note          String?
-  fileUrl       String?
+  title             String
+  description       String?
+  type              MaterialType
+  contentUrl        String?   @map("content_url") // S3 URL or Link
+  textContent       String?   @map("text_content") // For rich text notes
   
-  marks         Float?
-  feedback      String?
-  state         String     @default("draft") // draft, submitted, graded
+  isVisible         Boolean   @default(true) @map("is_visible")
   
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  offering          CourseOffering @relation(fields: [courseOfferingId], references: [id])
+
+  @@index([tenantId, courseOfferingId])
+  @@map("lms_materials")
+}
+
+model LMSAssignment {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  courseOfferingId  String    @map("course_offering_id")
   
-  @@index([assignmentId])
-  @@index([studentId])
+  title             String
+  description       String?
+  dueDate           DateTime? @map("due_date")
+  maxMarks          Decimal?  @map("max_marks") @db.Decimal(5, 2)
+  
+  submissions       LMSSubmission[]
+  
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  offering          CourseOffering @relation(fields: [courseOfferingId], references: [id])
+
+  @@index([tenantId, courseOfferingId])
+  @@map("lms_assignments")
+}
+
+enum SubmissionStatus {
+  DRAFT
+  SUBMITTED
+  GRADED
+  LATE
+}
+
+model LMSSubmission {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  assignmentId      String    @map("assignment_id")
+  studentId         String    @map("student_id")
+  
+  contentUrl        String?   @map("content_url")
+  textContent       String?   @map("text_content")
+  
+  submittedAt       DateTime? @map("submitted_at")
+  status            SubmissionStatus @default(DRAFT)
+  
+  // Grading
+  obtainedMarks     Decimal?  @map("obtained_marks") @db.Decimal(5, 2)
+  feedback          String?
+  gradedById        String?   @map("graded_by_id") // Faculty ID
+  gradedAt          DateTime? @map("graded_at")
+  
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  assignment        LMSAssignment @relation(fields: [assignmentId], references: [id])
+
+  @@unique([tenantId, assignmentId, studentId])
+  @@index([tenantId, studentId])
+  @@map("lms_submissions")
+}
+
+// ==========================================
+// EVENT OUTBOX
+// ==========================================
+
+model EventOutbox {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  eventType   String   @map("event_type")
+  payload     Json
+  
+  status      String   @default("PENDING") // PENDING, PUBLISHED
+  retries     Int      @default(0)
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  @@index([tenantId, status])
+  @@map("event_outbox")
 }

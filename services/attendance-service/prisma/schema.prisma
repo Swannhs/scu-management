@@ -7,66 +7,59 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum AttendanceState {
-  DRAFT
-  START
-  DONE
-  CANCEL
+// ==========================================
+// ATTENDANCE
+// ==========================================
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  EXCUSED
 }
 
-enum SheetState {
-  DRAFT
-  DONE
-  CANCELLED
+model AttendanceSession {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  
+  // Link to Course Schedule
+  courseOfferingId  String    @map("course_offering_id")
+  sessionId         String?   @map("session_id") // Link to specific timetable slot if exists
+  
+  date              DateTime
+  startTime         DateTime? @map("start_time")
+  endTime           DateTime? @map("end_time")
+  
+  takenById         String?   @map("taken_by_id") // Faculty/User ID
+  isFinalized       Boolean   @default(false) @map("is_finalized")
+  
+  records           AttendanceRecord[]
+  
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  @@index([tenantId, courseOfferingId])
+  @@index([tenantId, date])
+  @@map("attendance_sessions")
 }
 
-model AttendanceRegister {
-  id          String   @id @default(uuid())
-  tenantId    String
-  name        String
-  courseId    String   // Reference to OpCourse
-  batchId     String   // Reference to OpBatch
+model AttendanceRecord {
+  id                String           @id @default(uuid())
+  tenantId          String           @map("tenant_id")
+  attendanceSessionId String         @map("attendance_session_id")
   
-  sheets      AttendanceSheet[]
+  studentId         String           @map("student_id")
+  status            AttendanceStatus
+  remarks           String?
   
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt         DateTime         @default(now()) @map("created_at")
+  updatedAt         DateTime         @updatedAt @map("updated_at")
+  deletedAt         DateTime?        @map("deleted_at")
 
-  @@index([tenantId])
-}
+  session           AttendanceSession @relation(fields: [attendanceSessionId], references: [id])
 
-model AttendanceSheet {
-  id              String   @id @default(uuid())
-  tenantId        String
-  registerId      String
-  register        AttendanceRegister @relation(fields: [registerId], references: [id])
-  
-  attendanceDate  DateTime @default(now())
-  sessionId       String?  // Reference to OpSession
-  facultyId       String?  // Reference to OpFaculty
-  
-  lines           AttendanceLine[]
-  
-  state           SheetState @default(DRAFT)
-  
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  @@index([tenantId])
-  @@index([registerId])
-}
-
-model AttendanceLine {
-  id          String   @id @default(uuid())
-  sheetId     String
-  sheet       AttendanceSheet @relation(fields: [sheetId], references: [id])
-  
-  studentId   String
-  present     Boolean  @default(false)
-  remark      String?
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@index([sheetId])
+  @@unique([attendanceSessionId, studentId])
+  @@index([tenantId, studentId])
+  @@map("attendance_records")
 }
