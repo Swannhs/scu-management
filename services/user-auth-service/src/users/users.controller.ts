@@ -1,19 +1,17 @@
-import { BadRequestException, Body, Controller, Get, Post, Query, Req } from '@nestjs/common';
+import { BadRequestException, Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 import { UsersService } from './users.service';
 import { Role } from '@prisma/client';
 import { OnboardUserDto } from './dto/onboard-user.dto';
-import { TenantContextFactory } from '../common/tenant-context';
-import { Request } from 'express';
 
 @Controller('users')
 export class UsersController {
     constructor(private readonly usersService: UsersService) { }
 
     @Get('me')
-    async getMe(@AuthenticatedUser() user: any, @Req() req: Request) {
-        const tenantContext = TenantContextFactory.fromRequest(user, req);
-        const localUser = await this.usersService.findByKeycloakId(user.sub, tenantContext.effectiveTenantId);
+    async getMe(@AuthenticatedUser() user: any) {
+        const tenantId = this.resolveTenant(user);
+        const localUser = await this.usersService.findByKeycloakId(user.sub, tenantId);
         return {
             ...user,
             localInfo: localUser,
@@ -22,44 +20,44 @@ export class UsersController {
 
     @Post('onboard')
     @Roles({ roles: ['realm:admin', 'realm:TENANT_ADMIN'] })
-    async onboardUser(@AuthenticatedUser() user: any, @Body() data: OnboardUserDto, @Req() req: Request) {
-        const tenantContext = TenantContextFactory.fromRequest(user, req, data.tenantId);
-        this.assertRoleAssignmentAllowed(tenantContext.isGlobalAdmin, data.role);
-
-        return this.usersService.createUser(
-            {
-                email: data.email,
-                keycloakId: data.keycloakId,
-                tenantId: tenantContext.effectiveTenantId,
-                role: data.role,
-            },
-            tenantContext.actor,
-        );
+    async onboardUser(@AuthenticatedUser() user: any, @Body() data: OnboardUserDto) {
+        // Tenant admins can only onboard into their own tenant. Global admins must specify tenantId explicitly.
+        const tenantId = this.resolveTenant(user, data.tenantId);
+        return this.usersService.createUser({
+            email: data.email,
+            keycloakId: data.keycloakId,
+            tenantId,
+            role: data.role,
+        });
     }
 
     @Get()
     @Roles({ roles: ['realm:admin', 'realm:TENANT_ADMIN'] })
-    async findAll(@AuthenticatedUser() user: any, @Query('tenantId') tenantId: string | undefined, @Req() req: Request) {
-        const tenantContext = TenantContextFactory.fromRequest(user, req, tenantId);
-        return this.usersService.findByTenant(tenantContext.effectiveTenantId);
+    async findAll(@AuthenticatedUser() user: any, @Query('tenantId') tenantId?: string) {
+        const resolvedTenantId = this.resolveTenant(user, tenantId);
+        return this.usersService.findByTenant(resolvedTenantId);
     }
 
-    private assertRoleAssignmentAllowed(isGlobalAdmin: boolean, role: Role) {
-        const tenantAssignableRoles: Role[] = [
-            Role.FACULTY,
-            Role.STUDENT,
-            Role.LIBRARIAN,
-            Role.WARDEN,
-            Role.ACCOUNTANT,
-            Role.ADMISSION_OFFICER,
-        ];
+    private resolveTenant(user: any, requestedTenant?: string): string {
+        const userTenant = user?.tenant_id;
+        const isGlobalAdmin = user?.realm_access?.roles?.includes('admin');
 
         if (isGlobalAdmin) {
-            return;
+            const targetTenant = requestedTenant ?? userTenant;
+            if (!targetTenant) {
+                throw new BadRequestException('tenantId is required for global administrators');
+            }
+            return targetTenant;
         }
 
-        if (!tenantAssignableRoles.includes(role)) {
-            throw new BadRequestException('Tenant administrators cannot assign this role');
+        if (!userTenant) {
+            throw new BadRequestException('tenant context missing from token');
         }
+
+        if (requestedTenant && requestedTenant !== userTenant) {
+            throw new BadRequestException('Tenant administrators cannot act on other tenants');
+        }
+
+        return userTenant;
     }
 }

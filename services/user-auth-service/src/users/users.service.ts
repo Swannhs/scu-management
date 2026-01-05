@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, ConflictException, Inject } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Role, User } from '@prisma/client';
 import { ClientProxy } from '@nestjs/microservices';
@@ -11,20 +11,14 @@ export class UsersService {
         @Inject('AUTH_SERVICE') private client: ClientProxy,
     ) { }
 
-    async createUser(
-        data: {
-            email: string;
-            keycloakId: string;
-            tenantId: string;
-            role: Role;
-        },
-        actor: { keycloakId?: string; roles: string[] },
-    ): Promise<User> {
+    async createUser(data: {
+        email: string;
+        keycloakId: string;
+        tenantId: string;
+        role: Role;
+    }): Promise<User> {
         const existing = await this.prisma.user.findFirst({
-            where: {
-                tenantId: data.tenantId,
-                OR: [{ email: data.email }, { keycloakId: data.keycloakId }],
-            },
+            where: { email: data.email, tenantId: data.tenantId },
         });
 
         if (existing) {
@@ -42,17 +36,13 @@ export class UsersService {
 
         this.client.emit('user.created', {
             eventId: randomUUID(),
-            eventType: 'user.created',
             occurredAt: new Date().toISOString(),
             tenantId: user.tenantId,
-            data: {
-                user: {
-                    id: user.id,
-                    email: user.email,
-                    role: user.role,
-                    keycloakId: user.keycloakId,
-                },
-                actor,
+            payload: {
+                userId: user.id,
+                email: user.email,
+                role: user.role,
+                keycloakId: user.keycloakId,
             },
         });
 
