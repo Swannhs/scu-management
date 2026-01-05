@@ -11,15 +11,12 @@ export class UsersService {
         @Inject('AUTH_SERVICE') private client: ClientProxy,
     ) { }
 
-    async createUser(
-        data: {
-            email: string;
-            keycloakId: string;
-            tenantId: string;
-            role: Role;
-        },
-        actor: { keycloakId?: string; roles: string[] },
-    ): Promise<User> {
+    async createUser(data: {
+        email: string;
+        keycloakId: string;
+        tenantId: string;
+        role: Role;
+    }): Promise<User> {
         const existing = await this.prisma.user.findFirst({
             where: { email: data.email, tenantId: data.tenantId },
         });
@@ -42,13 +39,10 @@ export class UsersService {
             occurredAt: new Date().toISOString(),
             tenantId: user.tenantId,
             payload: {
-                user: {
-                    id: user.id,
-                    email: user.email,
-                    role: user.role,
-                    keycloakId: user.keycloakId,
-                },
-                actor,
+                userId: user.id,
+                email: user.email,
+                role: user.role,
+                keycloakId: user.keycloakId,
             },
         });
 
