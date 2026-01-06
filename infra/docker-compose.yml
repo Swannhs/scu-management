@@ -61,12 +61,13 @@ services:
   # But the guide lists separate DB containers. I will follow the guide to stick to the "microservices" purity.
   # Warning: This uses a lot of memory.
 
-  student-db:
+
+  social-db:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: studentdb
-      POSTGRES_USER: studentuser
-      POSTGRES_PASSWORD: studentpass
+      POSTGRES_DB: socialdb
+      POSTGRES_USER: socialuser
+      POSTGRES_PASSWORD: socialpass
     networks:
       - ums-network
 
@@ -180,23 +181,48 @@ services:
 
   # Microservices
 
-  student-service:
-    build: ./services/student-service
+
+  social-service:
+    build: ./services/social-service
     depends_on:
-      - student-db
-      - keycloak
+      - social-db
       - rabbitmq
     networks:
       - ums-network
     ports:
-      - "3001:3000"
+      - "8011:80"
     environment:
-      - DATABASE_URL=postgresql://studentuser:studentpass@student-db:5432/studentdb
-      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
-      - KEYCLOAK_REALM=university-platform
-      - KEYCLOAK_CLIENT_ID=student-service
-      - KEYCLOAK_CLIENT_SECRET=secret
-      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+      - DB_CONNECTION=pgsql
+      - DB_HOST=social-db
+      - DB_PORT=5432
+      - DB_DATABASE=socialdb
+      - DB_USERNAME=socialuser
+      - DB_PASSWORD=socialpass
+      - RABBITMQ_HOST=rabbitmq
+      - BROADCAST_CONNECTION=reverb
+      - REVERB_APP_ID=my-app-id
+      - REVERB_APP_KEY=my-app-key
+      - REVERB_APP_SECRET=my-app-secret
+      - REVERB_HOST="0.0.0.0"
+      - REVERB_PORT=8080
+      - REVERB_SCHEME=http
+
+  social-reverb:
+    build: ./services/social-service
+    command: php artisan reverb:start
+    depends_on:
+      - social-service
+    networks:
+      - ums-network
+    ports:
+      - "8080:8080"
+    environment:
+      - REVERB_APP_ID=my-app-id
+      - REVERB_APP_KEY=my-app-key
+      - REVERB_APP_SECRET=my-app-secret
+      - REVERB_HOST="0.0.0.0"
+      - REVERB_PORT=8080
+      - REVERB_SCHEME=http
 
   grades-service:
     build: ./services/grades-service
@@ -368,8 +394,8 @@ services:
       - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
       - KEYCLOAK_REALM=university-platform
 
-  user-auth-service:
-    build: ./services/user-auth-service
+  user-service:
+    build: ./services/user-service
     depends_on:
       - user-auth-db
       - keycloak
