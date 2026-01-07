@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface InvoiceRepository extends JpaRepository<Invoice, UUID> {
-    List<Invoice> findByTenantId(String tenantId);
-
-    List<Invoice> findByTenantIdAndStudentId(String tenantId, String studentId);
+    List<Invoice> findByTenantId(UUID tenantId);
+    List<Invoice> findByTenantIdAndStudentId(UUID tenantId, UUID studentId);
 }

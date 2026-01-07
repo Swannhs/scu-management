@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum JobType {
+  FULL_TIME
+  INTERNSHIP
+  PART_TIME
+}
+
+enum ApplicationStatus {
+  APPLIED
+  SHORTLISTED
+  INTERVIEW_SCHEDULED
+  SELECTED
+  REJECTED
+}
+
+model Company {
+  id              String        @id @default(uuid())
+  tenantId        String        @map("tenant_id")
+  name            String
+  industry        String?
+  website         String?
+  contactPerson   String?       @map("contact_person")
+  contactEmail    String?       @map("contact_email")
+  contactPhone    String?       @map("contact_phone")
+
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  deletedAt       DateTime?     @map("deleted_at")
+
+  jobPosts        JobPost[]
+
+  @@index([tenantId])
+  @@map("companies")
+}
+
+model JobPost {
+  id              String        @id @default(uuid())
+  tenantId        String        @map("tenant_id")
+  companyId       String        @map("company_id")
+
+  title           String
+  description     String?
+  jobType         JobType       @default(FULL_TIME) @map("job_type")
+  location        String?
+  salaryRange     String?       @map("salary_range")
+
+  eligibilityCriteria Json?     @map("eligibility_criteria")
+  deadline        DateTime?
+  isActive        Boolean       @default(true) @map("is_active")
+
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  deletedAt       DateTime?     @map("deleted_at")
+
+  company         Company       @relation(fields: [companyId], references: [id])
+  applications    Application[]
+
+  @@index([companyId])
+  @@index([tenantId, isActive])
+  @@map("job_posts")
+}
+
+model Application {
+  id              String            @id @default(uuid())
+  tenantId        String            @map("tenant_id")
+  jobPostId       String            @map("job_post_id")
+  studentId       String            @map("student_id") // External UUID
+
+  status          ApplicationStatus @default(APPLIED)
+
+  resumeUrl       String?           @map("resume_url")
+  coverLetter     String?           @map("cover_letter")
+
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @updatedAt @map("updated_at")
+  deletedAt       DateTime?         @map("deleted_at")
+
+  jobPost         JobPost           @relation(fields: [jobPostId], references: [id])
+  offers          Offer[]
+
+  @@unique([studentId, jobPostId])
+  @@index([jobPostId, status])
+  @@map("applications")
+}
+
+model Offer {
+  id              String        @id @default(uuid())
+  tenantId        String        @map("tenant_id")
+  applicationId   String        @map("application_id")
+
+  ctc             Decimal?      @db.Decimal(12, 2)
+  currency        String        @default("USD")
+
+  offerLetterUrl  String?       @map("offer_letter_url")
+  isAccepted      Boolean?      @map("is_accepted")
+
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  deletedAt       DateTime?     @map("deleted_at")
+
+  application     Application   @relation(fields: [applicationId], references: [id])
+
+  @@map("offers")
+}
+
+model EventOutbox {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  eventType   String   @map("event_type")
+  payload     Json
+  status      String   @default("PENDING")
+  retries     Int      @default(0)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("event_outbox")
+}
