@@ -3,27 +3,49 @@ package com.university.finance.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.List;
 
+@Data
 @Entity
 @Table(name = "invoices")
-@Data
 public class Invoice {
     @Id
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    @Column(nullable = false)
-    private String tenantId;
+    @Column(name = "tenant_id", nullable = false)
+    private UUID tenantId;
 
-    @Column(nullable = false)
-    private String studentId;
+    @Column(name = "student_id", nullable = false)
+    private UUID studentId;
 
-    @Column(nullable = false)
-    private BigDecimal amount;
+    @Column(name = "invoice_number", nullable = false)
+    private String invoiceNumber;
 
-    private String description;
-    private String status; // PENDING, PAID, CANCELLED
+    @Column(name = "total_amount")
+    private BigDecimal totalAmount;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @Column(name = "paid_amount")
+    private BigDecimal paidAmount;
+
+    // Balance is generated stored, so mapped as insertable=false, updatable=false usually
+    @Column(name = "balance_amount", insertable = false, updatable = false)
+    private BigDecimal balanceAmount;
+
+    @Column(name = "due_date")
+    private LocalDate dueDate;
+
+    private String status; // PENDING, PAID, PARTIAL
+
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
+    private List<InvoiceItem> items;
+
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
+    private List<Payment> payments;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 }
