@@ -1,0 +1,261 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProfilePrivacy {
+  PUBLIC
+  FRIENDS_ONLY
+  PRIVATE
+}
+
+enum FriendshipStatus {
+  PENDING
+  ACCEPTED
+  BLOCKED
+}
+
+enum GroupType {
+  BATCH
+  DEPARTMENT
+  FACULTY
+  COURSE
+  CLUB
+}
+
+enum GroupVisibility {
+  PUBLIC
+  PRIVATE
+  SECRET
+}
+
+enum GroupMemberRole {
+  ADMIN
+  MODERATOR
+  MEMBER
+}
+
+enum PostTargetType {
+  PROFILE
+  GROUP
+}
+
+enum ReactionTargetType {
+  POST
+  COMMENT
+}
+
+enum ConversationType {
+  DIRECT
+  GROUP
+}
+
+enum CallType {
+  AUDIO
+  VIDEO
+}
+
+enum CallStatus {
+  ACTIVE
+  ENDED
+}
+
+enum OutboxStatus {
+  PENDING
+  PUBLISHED
+  FAILED
+}
+
+model ProfilePublic {
+  id           String          @id @default(uuid())
+  tenantId     String          @map("tenant_id")
+  userId       String          @map("user_id")
+  headline     String?
+  bio          String?
+  avatarFileId String?         @map("avatar_file_id")
+  coverFileId  String?         @map("cover_file_id")
+  privacy      ProfilePrivacy  @default(PUBLIC)
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
+
+  @@unique([tenantId, userId])
+  @@index([tenantId])
+  @@map("profiles_public")
+}
+
+model Friendship {
+  id          String           @id @default(uuid())
+  tenantId    String           @map("tenant_id")
+  requesterId String           @map("requester_id")
+  addresseeId String           @map("addressee_id")
+  status      FriendshipStatus @default(PENDING)
+  createdAt   DateTime         @default(now()) @map("created_at")
+  updatedAt   DateTime         @updatedAt @map("updated_at")
+
+  @@unique([tenantId, requesterId, addresseeId])
+  @@index([tenantId, addresseeId])
+  @@index([tenantId, requesterId])
+  @@map("friendships")
+}
+
+model Group {
+  id         String          @id @default(uuid())
+  tenantId   String          @map("tenant_id")
+  type       GroupType
+  name       String
+  visibility GroupVisibility @default(PUBLIC)
+  createdAt  DateTime        @default(now()) @map("created_at")
+  updatedAt  DateTime        @updatedAt @map("updated_at")
+
+  @@index([tenantId])
+  @@map("groups")
+}
+
+model GroupMember {
+  id        String           @id @default(uuid())
+  tenantId  String           @map("tenant_id")
+  groupId   String           @map("group_id")
+  userId    String           @map("user_id")
+  role      GroupMemberRole  @default(MEMBER)
+  createdAt DateTime         @default(now()) @map("created_at")
+
+  @@unique([tenantId, groupId, userId])
+  @@index([tenantId, userId])
+  @@map("group_members")
+}
+
+model Post {
+  id         String         @id @default(uuid())
+  tenantId   String         @map("tenant_id")
+  authorId   String         @map("author_id")
+  targetType PostTargetType @map("target_type")
+  targetId   String         @map("target_id")
+  text       String
+  createdAt  DateTime       @default(now()) @map("created_at")
+  updatedAt  DateTime       @updatedAt @map("updated_at")
+
+  @@index([tenantId, authorId])
+  @@index([tenantId, targetType, targetId])
+  @@map("posts")
+}
+
+model PostMedia {
+  id        String   @id @default(uuid())
+  tenantId  String   @map("tenant_id")
+  postId    String   @map("post_id")
+  fileId    String   @map("file_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([tenantId, postId])
+  @@map("post_media")
+}
+
+model Comment {
+  id              String   @id @default(uuid())
+  tenantId        String   @map("tenant_id")
+  postId          String   @map("post_id")
+  authorId        String   @map("author_id")
+  parentCommentId String?  @map("parent_comment_id")
+  text            String
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@index([tenantId, postId])
+  @@index([tenantId, authorId])
+  @@map("comments")
+}
+
+model Reaction {
+  id           String             @id @default(uuid())
+  tenantId     String             @map("tenant_id")
+  targetType   ReactionTargetType @map("target_type")
+  targetId     String             @map("target_id")
+  userId       String             @map("user_id")
+  reactionType String             @map("reaction_type")
+  createdAt    DateTime           @default(now()) @map("created_at")
+
+  @@unique([tenantId, targetType, targetId, userId])
+  @@index([tenantId, userId])
+  @@map("reactions")
+}
+
+model Conversation {
+  id        String           @id @default(uuid())
+  tenantId  String           @map("tenant_id")
+  type      ConversationType
+  groupId   String?          @map("group_id")
+  createdAt DateTime         @default(now()) @map("created_at")
+
+  @@index([tenantId])
+  @@map("conversations")
+}
+
+model ConversationMember {
+  id             String   @id @default(uuid())
+  tenantId       String   @map("tenant_id")
+  conversationId String   @map("conversation_id")
+  userId         String   @map("user_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@unique([tenantId, conversationId, userId])
+  @@index([tenantId, userId])
+  @@map("conversation_members")
+}
+
+model Message {
+  id             String   @id @default(uuid())
+  tenantId       String   @map("tenant_id")
+  conversationId String   @map("conversation_id")
+  senderId       String   @map("sender_id")
+  text           String
+  fileId         String?  @map("file_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@index([tenantId, conversationId])
+  @@map("messages")
+}
+
+model CallSession {
+  id             String   @id @default(uuid())
+  tenantId       String   @map("tenant_id")
+  conversationId String   @map("conversation_id")
+  createdBy      String   @map("created_by")
+  callType       CallType @map("call_type")
+  providerRoomId String   @map("provider_room_id")
+  status         CallStatus @default(ACTIVE)
+  createdAt      DateTime @default(now()) @map("created_at")
+  endedAt        DateTime? @map("ended_at")
+
+  @@index([tenantId, conversationId])
+  @@map("call_sessions")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  tenantId  String   @map("tenant_id")
+  userId    String   @map("user_id")
+  type      String
+  payload   Json
+  readAt    DateTime? @map("read_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([tenantId, userId])
+  @@map("notifications")
+}
+
+model EventOutbox {
+  id        String       @id @default(uuid())
+  tenantId  String       @map("tenant_id")
+  eventType String       @map("event_type")
+  payload   Json
+  status    OutboxStatus @default(PENDING)
+  retries   Int          @default(0)
+  createdAt DateTime     @default(now()) @map("created_at")
+
+  @@index([tenantId, status])
+  @@map("event_outbox")
+}
