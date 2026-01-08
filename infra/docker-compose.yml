@@ -62,6 +62,15 @@ services:
   # Warning: This uses a lot of memory.
 
 
+  campus-social-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: campus_social_db
+      POSTGRES_USER: social_user
+      POSTGRES_PASSWORD: social_password
+    networks:
+      - ums-network
+
   student-db:
     image: postgres:15-alpine
     environment:
@@ -181,6 +190,22 @@ services:
 
   # Microservices
 
+
+  campus-social-service:
+    build: ./services/campus-social-service
+    depends_on:
+      - campus-social-db
+      - keycloak
+    networks:
+      - ums-network
+    ports:
+      - "3009:3000"
+    environment:
+      - DATABASE_URL=postgresql://social_user:social_password@campus-social-db:5432/campus_social_db
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=university-platform
+      - KEYCLOAK_CLIENT_ID=campus-social-service
+      - KEYCLOAK_CLIENT_SECRET=secret
 
   student-service:
     build: ./services/student-service

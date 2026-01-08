@@ -1,0 +1,322 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------
+// CORE SOCIAL
+// ---------------------------
+
+model PublicProfile {
+  id              String   @id @default(uuid())
+  tenantId        String   @map("tenant_id")
+  userId          String   @map("user_id") // Keycloak ID
+
+  headline        String?
+  bio             String?
+  avatarFileId    String?  @map("avatar_file_id") // Reference to document-service
+  coverFileId     String?  @map("cover_file_id")  // Reference to document-service
+  privacy         String   @default("PUBLIC") // PUBLIC, FRIENDS_ONLY, PRIVATE
+
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@unique([tenantId, userId])
+  @@index([tenantId])
+  @@map("profiles_public")
+}
+
+enum FriendshipStatus {
+  PENDING
+  ACCEPTED
+  BLOCKED
+}
+
+model Friendship {
+  id              String           @id @default(uuid())
+  tenantId        String           @map("tenant_id")
+  requesterId     String           @map("requester_id")
+  addresseeId     String           @map("addressee_id")
+  status          FriendshipStatus @default(PENDING)
+
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
+
+  @@unique([tenantId, requesterId, addresseeId])
+  @@index([tenantId, requesterId])
+  @@index([tenantId, addresseeId])
+  @@map("friendships")
+}
+
+// ---------------------------
+// GROUPS
+// ---------------------------
+
+enum GroupType {
+  BATCH
+  DEPARTMENT
+  FACULTY
+  COURSE
+  CLUB
+}
+
+enum GroupVisibility {
+  PUBLIC
+  PRIVATE
+  SECRET
+}
+
+model Group {
+  id              String          @id @default(uuid())
+  tenantId        String          @map("tenant_id")
+  type            GroupType
+  name            String
+  visibility      GroupVisibility @default(PUBLIC)
+
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime        @updatedAt @map("updated_at")
+
+  members         GroupMember[]
+  posts           Post[]
+  conversations   Conversation[]
+
+  @@index([tenantId, type])
+  @@map("groups")
+}
+
+enum GroupRole {
+  ADMIN
+  MODERATOR
+  MEMBER
+}
+
+model GroupMember {
+  id              String    @id @default(uuid())
+  tenantId        String    @map("tenant_id")
+  groupId         String    @map("group_id")
+  userId          String    @map("user_id")
+  role            GroupRole @default(MEMBER)
+
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  group           Group     @relation(fields: [groupId], references: [id])
+
+  @@unique([tenantId, groupId, userId])
+  @@map("group_members")
+}
+
+// ---------------------------
+// CONTENT (Feed)
+// ---------------------------
+
+enum TargetType {
+  PROFILE
+  GROUP
+}
+
+model Post {
+  id              String     @id @default(uuid())
+  tenantId        String     @map("tenant_id")
+  authorId        String     @map("author_id")
+  targetType      TargetType @map("target_type")
+  targetId        String     @map("target_id")
+  text            String?
+
+  createdAt       DateTime   @default(now()) @map("created_at")
+  updatedAt       DateTime   @updatedAt @map("updated_at")
+
+  media           PostMedia[]
+  comments        Comment[]
+  reactions       Reaction[]
+
+  // Optional relation if targetType is GROUP
+  group           Group?     @relation(fields: [targetId], references: [id], map: "post_group_fk")
+
+  @@index([tenantId, targetType, targetId])
+  @@index([tenantId, authorId])
+  @@map("posts")
+}
+
+model PostMedia {
+  id              String   @id @default(uuid())
+  tenantId        String   @map("tenant_id")
+  postId          String   @map("post_id")
+  fileId          String   @map("file_id")
+
+  post            Post     @relation(fields: [postId], references: [id])
+
+  @@map("post_media")
+}
+
+model Comment {
+  id              String   @id @default(uuid())
+  tenantId        String   @map("tenant_id")
+  postId          String   @map("post_id")
+  authorId        String   @map("author_id")
+  parentCommentId String?  @map("parent_comment_id")
+  text            String
+
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  post            Post     @relation(fields: [postId], references: [id])
+  parent          Comment? @relation("CommentReplies", fields: [parentCommentId], references: [id])
+  replies         Comment[] @relation("CommentReplies")
+  reactions       Reaction[]
+
+  @@map("comments")
+}
+
+enum ReactionType {
+  LIKE
+  LOVE
+  LAUGH
+  WOW
+  SAD
+  ANGRY
+}
+
+enum ReactionTarget {
+  POST
+  COMMENT
+}
+
+model Reaction {
+  id              String         @id @default(uuid())
+  tenantId        String         @map("tenant_id")
+  targetType      ReactionTarget @map("target_type")
+  targetId        String         @map("target_id")
+  userId          String         @map("user_id")
+  reactionType    ReactionType   @map("reaction_type")
+
+  createdAt       DateTime       @default(now()) @map("created_at")
+
+  post            Post?          @relation(fields: [targetId], references: [id], map: "reaction_post_fk")
+  comment         Comment?       @relation(fields: [targetId], references: [id], map: "reaction_comment_fk")
+
+  @@unique([tenantId, targetType, targetId, userId])
+  @@map("reactions")
+}
+
+// ---------------------------
+// MESSAGING & CALLING
+// ---------------------------
+
+enum ConversationType {
+  DIRECT
+  GROUP
+}
+
+model Conversation {
+  id              String           @id @default(uuid())
+  tenantId        String           @map("tenant_id")
+  type            ConversationType
+  groupId         String?          @map("group_id") // Nullable
+
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
+
+  group           Group?           @relation(fields: [groupId], references: [id])
+  members         ConversationMember[]
+  messages        Message[]
+  callSessions    CallSession[]
+
+  @@map("conversations")
+}
+
+model ConversationMember {
+  id              String       @id @default(uuid())
+  tenantId        String       @map("tenant_id")
+  conversationId  String       @map("conversation_id")
+  userId          String       @map("user_id")
+
+  joinedAt        DateTime     @default(now()) @map("joined_at")
+
+  conversation    Conversation @relation(fields: [conversationId], references: [id])
+
+  @@unique([tenantId, conversationId, userId])
+  @@map("conversation_members")
+}
+
+model Message {
+  id              String       @id @default(uuid())
+  tenantId        String       @map("tenant_id")
+  conversationId  String       @map("conversation_id")
+  senderId        String       @map("sender_id")
+  text            String?
+  fileId          String?      @map("file_id")
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+
+  conversation    Conversation @relation(fields: [conversationId], references: [id])
+
+  @@index([tenantId, conversationId, createdAt])
+  @@map("messages")
+}
+
+enum CallType {
+  AUDIO
+  VIDEO
+}
+
+enum CallStatus {
+  STARTED
+  ENDED
+  MISSED
+}
+
+model CallSession {
+  id              String       @id @default(uuid())
+  tenantId        String       @map("tenant_id")
+  conversationId  String       @map("conversation_id")
+  createdBy       String       @map("created_by")
+  callType        CallType     @map("call_type")
+  providerRoomId  String?      @map("provider_room_id")
+  status          CallStatus   @default(STARTED)
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+  endedAt         DateTime?    @map("ended_at")
+
+  conversation    Conversation @relation(fields: [conversationId], references: [id])
+
+  @@map("call_sessions")
+}
+
+// ---------------------------
+// NOTIFICATIONS
+// ---------------------------
+
+model Notification {
+  id              String   @id @default(uuid())
+  tenantId        String   @map("tenant_id")
+  userId          String   @map("user_id")
+  type            String   // FRIEND_REQ, COMMENT, etc.
+  payload         Json     // { entityId, actorId, ... }
+  readAt          DateTime? @map("read_at")
+
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  @@index([tenantId, userId, readAt])
+  @@map("notifications")
+}
+
+// ---------------------------
+// EVENTS OUTBOX
+// ---------------------------
+
+model EventOutbox {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  eventType   String   @map("event_type")
+  payload     Json
+  status      String   @default("PENDING")
+  retries     Int      @default(0)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("event_outbox")
+}
