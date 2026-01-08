@@ -61,6 +61,7 @@ services:
   # But the guide lists separate DB containers. I will follow the guide to stick to the "microservices" purity.
   # Warning: This uses a lot of memory.
 
+
   student-db:
     image: postgres:15-alpine
     environment:
@@ -180,23 +181,24 @@ services:
 
   # Microservices
 
+
   student-service:
     build: ./services/student-service
     depends_on:
       - student-db
-      - keycloak
-      - rabbitmq
     networks:
       - ums-network
     ports:
       - "3001:3000"
-    environment:
-      - DATABASE_URL=postgresql://studentuser:studentpass@student-db:5432/studentdb
-      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
-      - KEYCLOAK_REALM=university-platform
-      - KEYCLOAK_CLIENT_ID=student-service
-      - KEYCLOAK_CLIENT_SECRET=secret
-      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+
+  placement-service:
+    build: ./services/placement-service
+    depends_on:
+      - keycloak
+    networks:
+      - ums-network
+    ports:
+      - "3008:3000"
 
   grades-service:
     build: ./services/grades-service
@@ -368,8 +370,8 @@ services:
       - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
       - KEYCLOAK_REALM=university-platform
 
-  user-auth-service:
-    build: ./services/user-auth-service
+  user-service:
+    build: ./services/user-service
     depends_on:
       - user-auth-db
       - keycloak

@@ -86,4 +86,6 @@ bin/
 *.key
 
 # Docker
-# .dockerignore removed
+# .dockerignore removedservices/document-service/node_modules/
+services/social-service/vendor/
+services/social-service/node_modules/
