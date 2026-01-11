@@ -1,14 +1,13 @@
-import { Injectable, ConflictException, Inject } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Role, User } from '@prisma/client';
-import { ClientProxy } from '@nestjs/microservices';
-import { randomUUID } from 'crypto';
+import { OutboxService } from '../outbox/outbox.service';
 
 @Injectable()
 export class UsersService {
     constructor(
         private prisma: PrismaService,
-        @Inject('AUTH_SERVICE') private client: ClientProxy,
+        private outboxService: OutboxService,
     ) { }
 
     async createUser(data: {
@@ -17,36 +16,38 @@ export class UsersService {
         tenantId: string;
         role: Role;
     }): Promise<User> {
-        const existing = await this.prisma.user.findFirst({
-            where: { email: data.email, tenantId: data.tenantId },
+        // We use a transaction to ensure user creation and event publishing are atomic
+        return await this.prisma.$transaction(async (tx) => {
+            const existing = await tx.user.findFirst({
+                where: { email: data.email, tenantId: data.tenantId },
+            });
+
+            if (existing) {
+                return existing;
+            }
+
+            const user = await tx.user.create({
+                data: {
+                    email: data.email,
+                    keycloakId: data.keycloakId,
+                    tenantId: data.tenantId,
+                    role: data.role,
+                },
+            });
+
+            await this.outboxService.createEvent(tx, {
+                tenantId: user.tenantId,
+                eventType: 'user.created',
+                payload: {
+                    userId: user.id,
+                    email: user.email,
+                    role: user.role,
+                    keycloakId: user.keycloakId,
+                },
+            });
+
+            return user;
         });
-
-        if (existing) {
-            return existing;
-        }
-
-        const user = await this.prisma.user.create({
-            data: {
-                email: data.email,
-                keycloakId: data.keycloakId,
-                tenantId: data.tenantId,
-                role: data.role,
-            },
-        });
-
-        this.client.emit('user.created', {
-            eventId: randomUUID(),
-            occurredAt: new Date().toISOString(),
-            tenantId: user.tenantId,
-            payload: {
-                userId: user.id,
-                email: user.email,
-                role: user.role,
-                keycloakId: user.keycloakId,
-            },
-        });
-
-        return user;
     }
 
     async findByKeycloakId(keycloakId: string, tenantId: string): Promise<User | null> {
