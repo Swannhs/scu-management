@@ -5,7 +5,8 @@ import { Request, Response, NextFunction } from 'express';
 @Injectable()
 export class ProxyService {
     private readonly routes = {
-        '/api/auth': 'http://user-auth-service:3000',
+        '/api/users': 'http://user-service:3000',
+        '/api/auth': 'http://user-service:3000', // Legacy support or alias
         '/api/students': 'http://student-service:3000',
         '/api/courses': 'http://course-service:3000',
         '/api/finance': 'http://finance-service:8080',

@@ -4,12 +4,10 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
-// Roles as an enum for simple checks, but can be expanded if needed.
-// The prompt lists: TENANT_ADMIN, ADMISSION_OFFICER, FACULTY, STUDENT, ACCOUNTANT, LIBRARIAN, WARDEN, PLACEMENT_OFFICER, SUPPORT
-enum UserRole {
+// Renamed from UserRole to Role to match code expectations
+enum Role {
   TENANT_ADMIN
   ADMISSION_OFFICER
   FACULTY
@@ -41,20 +39,11 @@ model User {
 
   status      UserStatus @default(ACTIVE)
 
-  // In a complex system, a user might have multiple roles.
-  // For MVP/Prompt alignment "app_users (..., role...)" suggests a single primary role or we stick to a simpler model first.
-  // However, "Role assignments" in prompt suggests potential for many-to-many.
-  // Given "app_users (keycloak_id, tenant_id, email, role, status)" in prompt, I will keep a primary role column but also allow for a relation if we need granular permissions later.
-  // Let's Stick to the prompt's explicit list for app_users columns first.
-  role        UserRole
+  role        Role
 
   createdAt   DateTime   @default(now()) @map("created_at")
   updatedAt   DateTime   @updatedAt @map("updated_at")
   deletedAt   DateTime?  @map("deleted_at")
-
-  // Relationships
-  // External references to other services (logical)
-  // e.g. if role is STUDENT, there might be a student_id from student-service, but we don't store it here explicitly as a FK.
 
   @@unique([tenantId, email])
   @@unique([tenantId, keycloakId])
@@ -62,4 +51,16 @@ model User {
   @@map("app_users")
 }
 
-// If we need dynamic roles later, we can add a Role table. For now, Enum is sufficient for MVP and prompt requirements.
+model EventOutbox {
+  id           String   @id @default(uuid())
+  tenantId     String   @map("tenant_id")
+  eventType    String   @map("event_type")
+  payload      Json
+  status       String   @default("PENDING") // PENDING, PUBLISHED, FAILED
+  retries      Int      @default(0)
+  createdAt    DateTime @default(now()) @map("created_at")
+  publishedAt  DateTime? @map("published_at")
+
+  @@index([status])
+  @@map("event_outbox")
+}
