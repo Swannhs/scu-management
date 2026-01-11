@@ -1,43 +1,57 @@
-const jwt = require('jsonwebtoken');
+const errorResponse = (res, status, code, message, details) =>
+  res.status(status).json({ code, message, details });
+
+const decodeJwt = (token) => {
+  try {
+    const parts = token.split('.');
+    if (parts.length < 2) return null;
+    const payload = Buffer.from(parts[1], 'base64').toString('utf8');
+    return JSON.parse(payload);
+  } catch (error) {
+    console.warn('Failed to decode token', error);
+    return null;
+  }
+};
 
 const extractTenantAndUser = (req, res, next) => {
-  // 1. Tenant Context
   const tenantId = req.headers['x-tenant-id'];
-
-  // Verify token claims if present (assuming Gateway forwards Auth header)
   const authHeader = req.headers['authorization'];
   let tokenTenant = null;
   let userId = null;
   let roles = [];
+  let groups = [];
 
   if (authHeader && authHeader.startsWith('Bearer ')) {
     const token = authHeader.split(' ')[1];
-    try {
-      // In production, verify signature. Here we decode for claims.
-      const decoded = jwt.decode(token);
-      if (decoded) {
-        tokenTenant = decoded.tenant_id;
-        userId = decoded.sub; // Keycloak ID
-        roles = decoded.realm_access?.roles || [];
-      }
-    } catch (e) {
-      console.warn('Failed to decode token', e);
+    const decoded = decodeJwt(token);
+    if (decoded) {
+      tokenTenant = decoded.tenant_id;
+      userId = decoded.sub;
+      roles = decoded.realm_access?.roles || [];
+      groups = decoded.groups || [];
     }
   }
 
-  // Reconcile Tenant
   if (!tenantId) {
-    return res.status(400).json({ error: 'X-Tenant-ID header missing' });
+    return errorResponse(res, 400, 'TENANT_HEADER_MISSING', 'X-Tenant-ID header missing');
   }
 
   if (tokenTenant && tokenTenant !== tenantId) {
-    return res.status(403).json({ error: 'TENANT_CONTEXT_MISMATCH', message: 'Token tenant does not match header' });
+    return errorResponse(res, 403, 'TENANT_CONTEXT_MISMATCH', 'Token tenant does not match header');
+  }
+
+  const headerUserId = req.headers['x-user-id'];
+  const resolvedUserId = userId || headerUserId;
+
+  if (!resolvedUserId) {
+    return errorResponse(res, 401, 'UNAUTHENTICATED', 'Authentication required');
   }
 
   req.tenantId = tenantId;
   req.user = {
-    id: userId || req.headers['x-user-id'], // Fallback to header if Gateway sets it
-    roles: roles,
+    id: resolvedUserId,
+    roles,
+    groups,
   };
 
   next();
