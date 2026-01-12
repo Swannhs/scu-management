@@ -1,6 +1,6 @@
 import os
 from jose import jwt, JWTError
-from fastapi import HTTPException, Security, Depends
+from fastapi import HTTPException, Security, Depends, Header
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel
 from typing import List, Optional
@@ -19,7 +19,10 @@ class UserContext(BaseModel):
     tenant_id: str
     roles: List[str]
 
-async def get_user_context(res: HTTPAuthorizationCredentials = Security(security)) -> UserContext:
+async def get_user_context(
+    res: HTTPAuthorizationCredentials = Security(security),
+    tenant_header: Optional[str] = Header(None, alias="X-Tenant-ID")
+) -> UserContext:
     token = res.credentials
     try:
         # Note: In a real world, verify=True with public key
@@ -31,9 +34,14 @@ async def get_user_context(res: HTTPAuthorizationCredentials = Security(security
         # Keycloak roles are usually in realm_access.roles
         roles = payload.get("realm_access", {}).get("roles", [])
 
-        if not tenant_id:
-            raise HTTPException(status_code=401, detail="Tenant ID missing in token")
+        if tenant_header and tenant_id and tenant_header != tenant_id:
+            raise HTTPException(status_code=403, detail={"code": "TENANT_CONTEXT_MISMATCH", "message": "Tenant context mismatch", "details": None})
 
-        return UserContext(user_id=user_id, tenant_id=tenant_id, roles=roles)
+        effective_tenant_id = tenant_header or tenant_id
+
+        if not effective_tenant_id:
+            raise HTTPException(status_code=401, detail={"code": "TENANT_ID_MISSING", "message": "Tenant ID missing in token", "details": None})
+
+        return UserContext(user_id=user_id, tenant_id=effective_tenant_id, roles=roles)
     except JWTError:
-        raise HTTPException(status_code=401, detail="Invalid token")
+        raise HTTPException(status_code=401, detail={"code": "INVALID_TOKEN", "message": "Invalid token", "details": None})
