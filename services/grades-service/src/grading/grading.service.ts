@@ -29,11 +29,7 @@ export class GradingService {
       where: { id: assessmentId, tenantId },
     });
     if (!assessment) {
-      throw new NotFoundException({
-        code: 'NOT_FOUND',
-        message: 'Assessment not found',
-        details: null,
-      });
+      throw new NotFoundException('NOT_FOUND');
     }
 
     const upserts = dto.scores.map((score) =>
@@ -71,11 +67,7 @@ export class GradingService {
     });
 
     if (assessments.length === 0) {
-      throw new NotFoundException({
-        code: 'NOT_FOUND',
-        message: 'No assessments found for section',
-        details: null,
-      });
+      throw new NotFoundException('NOT_FOUND');
     }
 
     const gradeRules = await this.prisma.gradeRule.findMany({

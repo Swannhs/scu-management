@@ -6,16 +6,6 @@ import { TenantContext } from '../common/tenant-context';
 import { CreateAttendanceSessionDto } from './dto/create-attendance-session.dto';
 import { MarkAttendanceDto } from './dto/mark-attendance.dto';
 
-const ensureStudentAccess = (user: any, studentId: string) => {
-  if (user?.realm_access?.roles?.includes('STUDENT') && user?.sub !== studentId) {
-    throw new ForbiddenException({
-      code: 'FORBIDDEN',
-      message: 'Not authorized',
-      details: null,
-    });
-  }
-};
-
 @Controller('v1')
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
@@ -48,7 +38,9 @@ export class AttendanceController {
     @Param('studentId') studentId: string,
     @Query('termId') termId?: string,
   ) {
-    ensureStudentAccess(user, studentId);
+    if (user?.realm_access?.roles?.includes('STUDENT') && user?.sub !== studentId) {
+      throw new ForbiddenException('FORBIDDEN');
+    }
     return this.attendanceService.getStudentAttendance(tenantContext.effectiveTenantId, studentId, termId);
   }
 

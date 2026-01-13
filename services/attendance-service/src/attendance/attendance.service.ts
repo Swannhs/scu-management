@@ -27,11 +27,7 @@ export class AttendanceService {
       where: { id: sessionId, tenantId },
     });
     if (!session) {
-      throw new NotFoundException({
-        code: 'NOT_FOUND',
-        message: 'Attendance session not found',
-        details: null,
-      });
+      throw new NotFoundException('NOT_FOUND');
     }
 
     const upserts = dto.records.map((record) =>

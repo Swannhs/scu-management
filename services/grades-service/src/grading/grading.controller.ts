@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, ForbiddenException, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, ForbiddenException, Get, Param, Post, Query } from '@nestjs/common';
 import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 import { GradingService } from './grading.service';
 import { TenantContextParam } from '../common/tenant-context.decorator';
@@ -38,13 +38,6 @@ export class GradingController {
     @Query('sectionId') sectionId: string,
     @Body() dto: ComputeFinalGradesDto,
   ) {
-    if (!sectionId) {
-      throw new BadRequestException({
-        code: 'VALIDATION_ERROR',
-        message: 'sectionId is required',
-        details: null,
-      });
-    }
     return this.gradingService.computeFinalGrades(tenantContext.effectiveTenantId, sectionId, dto);
   }
 
@@ -56,11 +49,7 @@ export class GradingController {
     @Param('studentId') studentId: string,
   ) {
     if (user?.realm_access?.roles?.includes('STUDENT') && user?.sub !== studentId) {
-      throw new ForbiddenException({
-        code: 'FORBIDDEN',
-        message: 'Not authorized',
-        details: null,
-      });
+      throw new ForbiddenException('FORBIDDEN');
     }
     return this.gradingService.getTranscript(tenantContext.effectiveTenantId, studentId);
   }
