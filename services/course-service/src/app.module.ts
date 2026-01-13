@@ -11,7 +11,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { ProgramsModule } from './programs/programs.module';
-import { OfferingsModule } from './offerings/offerings.module';
+import { DepartmentsModule } from './departments/departments.module';
+import { AcademicYearsModule } from './academic-years/academic-years.module';
+import { TermsModule } from './terms/terms.module';
+import { RoomsModule } from './rooms/rooms.module';
+import { CoursesModule } from './courses/courses.module';
+import { SectionsModule } from './sections/sections.module';
 
 @Module({
   imports: [
@@ -32,7 +37,12 @@ import { OfferingsModule } from './offerings/offerings.module';
     }),
     PrismaModule,
     ProgramsModule,
-    OfferingsModule,
+    DepartmentsModule,
+    AcademicYearsModule,
+    TermsModule,
+    RoomsModule,
+    CoursesModule,
+    SectionsModule,
   ],
   controllers: [AppController],
   providers: [

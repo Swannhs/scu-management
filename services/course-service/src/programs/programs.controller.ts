@@ -1,31 +1,32 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
-import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
+import { Roles } from 'nest-keycloak-connect';
 import { ProgramsService } from './programs.service';
-import { ProgramType } from '@prisma/client';
+import { TenantContextParam } from '../common/tenant-context.decorator';
+import { TenantContext } from '../common/tenant-context';
+import { CreateProgramDto } from './dto/create-program.dto';
 
-@Controller('programs')
+@Controller('v1/programs')
 export class ProgramsController {
     constructor(private readonly programsService: ProgramsService) { }
 
     @Post()
-    @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:ADMISSION_OFFICER'] })
+    @Roles({ roles: ['realm:TENANT_ADMIN'] })
     async create(
-        @AuthenticatedUser() user: any,
-        @Body() data: { name: string; code: string; type: ProgramType },
+        @TenantContextParam() tenantContext: TenantContext,
+        @Body() data: CreateProgramDto,
     ) {
-        const tenantId = user.tenant_id;
-        return this.programsService.create(tenantId, data);
+        return this.programsService.create(tenantContext.effectiveTenantId, data);
     }
 
     @Get()
-    async findAll(@AuthenticatedUser() user: any) {
-        const tenantId = user.tenant_id;
-        return this.programsService.findAll(tenantId);
+    @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:STAFF', 'realm:FACULTY'] })
+    async findAll(@TenantContextParam() tenantContext: TenantContext) {
+        return this.programsService.findAll(tenantContext.effectiveTenantId);
     }
 
     @Get(':id/structure')
-    async getStructure(@AuthenticatedUser() user: any, @Param('id') id: string) {
-        const tenantId = user.tenant_id;
-        return this.programsService.getStructure(tenantId, id);
+    @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:STAFF', 'realm:FACULTY'] })
+    async getStructure(@TenantContextParam() tenantContext: TenantContext, @Param('id') id: string) {
+        return this.programsService.getStructure(tenantContext.effectiveTenantId, id);
     }
 }

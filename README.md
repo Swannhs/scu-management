@@ -54,6 +54,64 @@ Each service is located in `services/<service-name>`.
 - **FastAPI**: `pip install -r requirements.txt` && `uvicorn main:app --reload`
 - **Laravel**: `composer install` && `php artisan serve`
 
+## MVP Academic Core APIs
+
+### Tenant Onboarding
+- `POST /v1/tenants`
+- `POST /v1/tenants/{tenantId}/bootstrap`
+- `GET /v1/tenants/{tenantId}`
+- `PATCH /v1/tenants/{tenantId}`
+
+### Core Setup / Master Data (Course Service)
+- `POST /v1/academic-years`, `GET /v1/academic-years`
+- `POST /v1/terms`, `GET /v1/terms?academicYearId=...`
+- `POST /v1/departments`, `GET /v1/departments`
+- `POST /v1/programs`, `GET /v1/programs`
+- `POST /v1/rooms`, `GET /v1/rooms`
+
+### Course Catalog + Sections (Course Service)
+- `POST /v1/courses`, `GET /v1/courses`
+- `POST /v1/sections`, `GET /v1/sections?termId=...`, `GET /v1/sections/{id}`
+
+### Student + Admissions (Enrollment Service)
+- `POST /v1/applications`
+- `GET /v1/applications?status=...`
+- `POST /v1/applications/{id}/approve`
+- `POST /v1/students`, `GET /v1/students/{id}`, `GET /v1/students?programId=...`
+
+### Enrollment / Registration (Enrollment Service)
+- `POST /v1/enrollments`
+- `DELETE /v1/enrollments/{id}`
+- `GET /v1/students/{id}/enrollments`
+- `GET /v1/sections/{id}/roster`
+
+### Attendance (Attendance Service)
+- `POST /v1/attendance/sessions`
+- `POST /v1/attendance/sessions/{id}/mark`
+- `GET /v1/students/{id}/attendance?termId=...`
+- `GET /v1/sections/{id}/attendance?from=...&to=...`
+
+### Grades / Transcript (Grades Service)
+- `POST /v1/assessments`
+- `POST /v1/assessments/{id}/scores`
+- `POST /v1/final-grades/compute?sectionId=...`
+- `GET /v1/students/{id}/transcript`
+
+### Example cURL (replace service host/port)
+```bash
+curl -X POST http://localhost:3000/v1/courses \
+  -H "Authorization: Bearer <token>" \
+  -H "X-Tenant-ID: <tenant-uuid>" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Intro to CS","code":"CS101","credits":3}'
+
+curl -X POST http://localhost:8000/v1/enrollments \
+  -H "Authorization: Bearer <token>" \
+  -H "X-Tenant-ID: <tenant-uuid>" \
+  -H "Content-Type: application/json" \
+  -d '{"studentId":"student-1","sectionId":"section-1"}'
+```
+
 ## Testing
 Tests can be run locally for each service:
 - **NestJS/Express**: `npm test`

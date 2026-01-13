@@ -24,6 +24,7 @@ model AttendanceSession {
   
   // Link to Course Schedule
   courseOfferingId  String    @map("course_offering_id")
+  termId            String?   @map("term_id")
   sessionId         String?   @map("session_id") // Link to specific timetable slot if exists
   
   date              DateTime

@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 
 import auth
 import database
-from models import IntakeTerm, AdmissionApplication, ApplicationDocument, Enrollment
+from models import IntakeTerm, AdmissionApplication, ApplicationDocument, Student, Enrollment
 import events
 
 app = FastAPI(title="Enrollment Service")
@@ -98,21 +98,63 @@ class ApplicationDocumentResponse(BaseModel):
 
 class EnrollmentRequest(BaseModel):
     studentId: str
-    offeringId: str
+    sectionId: str
+    capacity: Optional[int] = None
 
 class EnrollmentResponse(BaseModel):
     id: str
-    student_id: str
-    offering_id: str
+    studentId: str = Field(..., alias="student_id")
+    sectionId: str = Field(..., alias="offering_id")
     status: str
-    tenant_id: str
+    tenantId: str = Field(..., alias="tenant_id")
 
     class Config:
         orm_mode = True
+        allow_population_by_field_name = True
+
+class StudentCreateRequest(BaseModel):
+    userId: str
+    firstName: str
+    lastName: str
+    email: str
+    phone: Optional[str] = None
+    programId: str
+
+class StudentResponse(BaseModel):
+    id: str
+    tenantId: str = Field(..., alias="tenant_id")
+    userId: str = Field(..., alias="user_id")
+    firstName: str = Field(..., alias="first_name")
+    lastName: str = Field(..., alias="last_name")
+    email: str
+    phone: Optional[str]
+    programId: str = Field(..., alias="program_id")
+    status: str
+
+    class Config:
+        orm_mode = True
+        allow_population_by_field_name = True
 
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+def has_any_role(user: auth.UserContext, roles: list[str]) -> bool:
+    return any(role in user.roles for role in roles)
+
+def ensure_roles(user: auth.UserContext, roles: list[str]) -> None:
+    if not has_any_role(user, roles):
+        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+
+def get_student_for_user(db: Session, user: auth.UserContext) -> Student | None:
+    return db.query(Student).filter(
+        Student.user_id == user.user_id,
+        Student.tenant_id == user.tenant_id
+    ).first()
+
+def has_time_conflict(student_id: str, section_id: str) -> bool:
+    # TODO: integrate with scheduling/sections to detect time conflicts
+    return False
 
 @app.post("/v1/intake-terms", response_model=IntakeTermResponse, status_code=status.HTTP_201_CREATED)
 def create_intake_term(
@@ -120,8 +162,7 @@ def create_intake_term(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "TENANT_ADMIN" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["TENANT_ADMIN"])
 
     intake = IntakeTerm(
         tenant_id=user.tenant_id,
@@ -154,8 +195,7 @@ def create_application(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "STUDENT" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["STUDENT"])
 
     application = AdmissionApplication(
         tenant_id=user.tenant_id,
@@ -189,8 +229,7 @@ def list_my_applications(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "STUDENT" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["STUDENT"])
 
     query = db.query(AdmissionApplication).filter(
         AdmissionApplication.tenant_id == user.tenant_id,
@@ -209,8 +248,7 @@ def list_applications(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "ADMISSION_OFFICER" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["ADMISSION_OFFICER", "TENANT_ADMIN", "REGISTRAR"])
 
     query = db.query(AdmissionApplication).filter(AdmissionApplication.tenant_id == user.tenant_id)
     if status_filter:
@@ -228,8 +266,7 @@ def update_application_status(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "ADMISSION_OFFICER" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["ADMISSION_OFFICER", "TENANT_ADMIN", "REGISTRAR"])
 
     application = db.query(AdmissionApplication).filter(
         AdmissionApplication.id == application_id,
@@ -270,6 +307,128 @@ def update_application_status(
     db.refresh(application)
     return application
 
+@app.post("/v1/applications/{application_id}/approve", response_model=StudentResponse, status_code=status.HTTP_201_CREATED)
+def approve_application(
+    application_id: str,
+    db: Session = Depends(database.get_db),
+    user: auth.UserContext = Depends(auth.get_user_context)
+):
+    ensure_roles(user, ["TENANT_ADMIN", "REGISTRAR"])
+
+    application = db.query(AdmissionApplication).filter(
+        AdmissionApplication.id == application_id,
+        AdmissionApplication.tenant_id == user.tenant_id
+    ).first()
+    if not application:
+        raise HTTPException(status_code=404, detail={"code": "NOT_FOUND", "message": "Application not found", "details": None})
+
+    if application.status not in {"SUBMITTED", "UNDER_REVIEW"}:
+        raise HTTPException(status_code=400, detail={"code": "INVALID_STATUS", "message": "Application not in approvable state", "details": None})
+
+    existing_student = db.query(Student).filter(
+        Student.tenant_id == user.tenant_id,
+        Student.user_id == application.user_id
+    ).first()
+    if existing_student:
+        return existing_student
+
+    application.status = "ACCEPTED"
+    application.decision_at = datetime.utcnow()
+    application.decision_by = user.user_id
+    db.add(application)
+
+    student = Student(
+        tenant_id=user.tenant_id,
+        user_id=application.user_id,
+        first_name=application.first_name,
+        last_name=application.last_name,
+        email=application.email,
+        phone=application.phone,
+        program_id=application.program_id,
+        status="ACTIVE"
+    )
+    db.add(student)
+    db.flush()
+    events.enqueue_event(db, user.tenant_id, "student.created", {
+        "studentId": student.id,
+        "tenantId": user.tenant_id,
+        "userId": student.user_id,
+        "programId": student.program_id
+    })
+    db.commit()
+    db.refresh(student)
+    return student
+
+@app.post("/v1/students", response_model=StudentResponse, status_code=status.HTTP_201_CREATED)
+def create_student(
+    request: StudentCreateRequest,
+    db: Session = Depends(database.get_db),
+    user: auth.UserContext = Depends(auth.get_user_context)
+):
+    ensure_roles(user, ["TENANT_ADMIN", "REGISTRAR"])
+
+    student = Student(
+        tenant_id=user.tenant_id,
+        user_id=request.userId,
+        first_name=request.firstName,
+        last_name=request.lastName,
+        email=request.email,
+        phone=request.phone,
+        program_id=request.programId,
+        status="ACTIVE"
+    )
+    db.add(student)
+    db.commit()
+    db.refresh(student)
+    return student
+
+@app.get("/v1/students/me", response_model=StudentResponse)
+def get_my_student_profile(
+    db: Session = Depends(database.get_db),
+    user: auth.UserContext = Depends(auth.get_user_context)
+):
+    ensure_roles(user, ["STUDENT"])
+
+    student = get_student_for_user(db, user)
+    if not student:
+        raise HTTPException(status_code=404, detail={"code": "NOT_FOUND", "message": "Student not found", "details": None})
+    return student
+
+@app.get("/v1/students/{student_id}", response_model=StudentResponse)
+def get_student(
+    student_id: str,
+    db: Session = Depends(database.get_db),
+    user: auth.UserContext = Depends(auth.get_user_context)
+):
+    if "STUDENT" in user.roles:
+        student = get_student_for_user(db, user)
+        if not student or student.id != student_id:
+            raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+        return student
+
+    ensure_roles(user, ["TENANT_ADMIN", "REGISTRAR"])
+
+    student = db.query(Student).filter(
+        Student.id == student_id,
+        Student.tenant_id == user.tenant_id
+    ).first()
+    if not student:
+        raise HTTPException(status_code=404, detail={"code": "NOT_FOUND", "message": "Student not found", "details": None})
+    return student
+
+@app.get("/v1/students", response_model=List[StudentResponse])
+def list_students(
+    program_id: Optional[str] = Query(None, alias="programId"),
+    db: Session = Depends(database.get_db),
+    user: auth.UserContext = Depends(auth.get_user_context)
+):
+    ensure_roles(user, ["TENANT_ADMIN", "REGISTRAR"])
+
+    query = db.query(Student).filter(Student.tenant_id == user.tenant_id)
+    if program_id:
+        query = query.filter(Student.program_id == program_id)
+    return query.all()
+
 @app.post("/v1/applications/{application_id}/documents", response_model=ApplicationDocumentResponse, status_code=status.HTTP_201_CREATED)
 def add_application_document(
     application_id: str,
@@ -277,8 +436,7 @@ def add_application_document(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "STUDENT" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["STUDENT"])
 
     application = db.query(AdmissionApplication).filter(
         AdmissionApplication.id == application_id,
@@ -305,8 +463,7 @@ def verify_application_document(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "ADMISSION_OFFICER" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["ADMISSION_OFFICER"])
 
     document = db.query(ApplicationDocument).filter(
         ApplicationDocument.id == doc_id,
@@ -328,29 +485,40 @@ def enroll_student(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "TENANT_ADMIN" not in user.roles and "ADMISSION_OFFICER" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["TENANT_ADMIN", "REGISTRAR"])
 
     existing = db.query(Enrollment).filter(
         Enrollment.student_id == request.studentId,
-        Enrollment.offering_id == request.offeringId,
+        Enrollment.offering_id == request.sectionId,
         Enrollment.tenant_id == user.tenant_id,
         Enrollment.status == "ENROLLED"
     ).first()
     if existing:
         raise HTTPException(status_code=409, detail={"code": "ALREADY_ENROLLED", "message": "Student already enrolled", "details": None})
 
+    if request.capacity is not None:
+        current_count = db.query(Enrollment).filter(
+            Enrollment.offering_id == request.sectionId,
+            Enrollment.tenant_id == user.tenant_id,
+            Enrollment.status == "ENROLLED"
+        ).count()
+        if current_count >= request.capacity:
+            raise HTTPException(status_code=409, detail={"code": "SECTION_FULL", "message": "No seats available", "details": None})
+
+    if has_time_conflict(request.studentId, request.sectionId):
+        raise HTTPException(status_code=409, detail={"code": "TIME_CONFLICT", "message": "Schedule conflict", "details": None})
+
     new_enrollment = Enrollment(
         tenant_id=user.tenant_id,
         student_id=request.studentId,
-        offering_id=request.offeringId
+        offering_id=request.sectionId
     )
     db.add(new_enrollment)
     db.flush()
     events.enqueue_event(db, user.tenant_id, "student.enrolled", {
         "enrollmentId": new_enrollment.id,
         "studentId": new_enrollment.student_id,
-        "offeringId": new_enrollment.offering_id,
+        "sectionId": new_enrollment.offering_id,
         "tenantId": new_enrollment.tenant_id
     })
     db.commit()
@@ -363,8 +531,7 @@ def drop_enrollment(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "TENANT_ADMIN" not in user.roles and "ADMISSION_OFFICER" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["TENANT_ADMIN", "REGISTRAR"])
 
     enrollment = db.query(Enrollment).filter(
         Enrollment.id == enrollment_id,
@@ -378,7 +545,7 @@ def drop_enrollment(
     events.enqueue_event(db, user.tenant_id, "student.dropped", {
         "enrollmentId": enrollment.id,
         "studentId": enrollment.student_id,
-        "offeringId": enrollment.offering_id,
+        "sectionId": enrollment.offering_id,
         "tenantId": enrollment.tenant_id
     })
     db.commit()
@@ -391,10 +558,12 @@ def get_student_enrollments(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "STUDENT" in user.roles and student_id != user.user_id:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
-    if "STUDENT" not in user.roles and "TENANT_ADMIN" not in user.roles and "ADMISSION_OFFICER" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    if "STUDENT" in user.roles:
+        student = get_student_for_user(db, user)
+        if not student or student.id != student_id:
+            raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    else:
+        ensure_roles(user, ["TENANT_ADMIN", "REGISTRAR"])
 
     enrollments = db.query(Enrollment).filter(
         Enrollment.student_id == student_id,
@@ -402,17 +571,16 @@ def get_student_enrollments(
     ).all()
     return enrollments
 
-@app.get("/v1/offerings/{offering_id}/roster", response_model=List[EnrollmentResponse])
-def get_offering_roster(
-    offering_id: str,
+@app.get("/v1/sections/{section_id}/roster", response_model=List[EnrollmentResponse])
+def get_section_roster(
+    section_id: str,
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "FACULTY" not in user.roles and "TENANT_ADMIN" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["FACULTY", "TENANT_ADMIN", "REGISTRAR"])
 
     enrollments = db.query(Enrollment).filter(
-        Enrollment.offering_id == offering_id,
+        Enrollment.offering_id == section_id,
         Enrollment.tenant_id == user.tenant_id,
         Enrollment.status == "ENROLLED"
     ).all()

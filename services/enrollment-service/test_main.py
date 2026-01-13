@@ -107,7 +107,7 @@ def test_tenant_scoping_on_list():
 
 def test_enrollment_idempotency():
     headers = auth_headers("tenant-a", ["TENANT_ADMIN"], tenant_header="tenant-a")
-    body = {"studentId": "student-1", "offeringId": "offering-1"}
+    body = {"studentId": "student-1", "sectionId": "section-1"}
 
     first = client.post("/v1/enrollments", headers=headers, json=body)
     assert first.status_code == 201
@@ -115,3 +115,40 @@ def test_enrollment_idempotency():
     second = client.post("/v1/enrollments", headers=headers, json=body)
     assert second.status_code == 409
     assert second.json()["code"] == "ALREADY_ENROLLED"
+
+
+def test_application_approval_creates_student():
+    tenant_id = "tenant-a"
+    student_user_id = f"user-{uuid.uuid4()}"
+    student_headers = auth_headers(tenant_id, ["STUDENT"], user_id=student_user_id, tenant_header=tenant_id)
+    registrar_headers = auth_headers(tenant_id, ["REGISTRAR"], tenant_header=tenant_id)
+    admin_headers = auth_headers(tenant_id, ["TENANT_ADMIN"], tenant_header=tenant_id)
+
+    intake_response = client.post(
+        "/v1/intake-terms",
+        headers=admin_headers,
+        json={
+            "name": "Fall",
+            "code": "F24",
+            "start_date": str(date.today()),
+            "end_date": str(date.today()),
+        },
+    )
+    intake_id = intake_response.json()["id"]
+
+    application_response = client.post(
+        "/v1/applications",
+        headers=student_headers,
+        json={
+            "intake_id": intake_id,
+            "first_name": "Ada",
+            "last_name": "Lovelace",
+            "email": "ada@example.com",
+            "program_id": "program-1",
+        },
+    )
+    application_id = application_response.json()["id"]
+
+    approval_response = client.post(f"/v1/applications/{application_id}/approve", headers=registrar_headers)
+    assert approval_response.status_code == 201
+    assert approval_response.json()["userId"] == student_user_id

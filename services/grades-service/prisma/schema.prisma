@@ -100,6 +100,22 @@ model StudentTranscript {
   @@map("student_transcripts")
 }
 
+model FinalGrade {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  courseOfferingId  String    @map("course_offering_id")
+  termId            String?   @map("term_id")
+  studentId         String    @map("student_id")
+  percentage        Decimal   @db.Decimal(5, 2)
+  grade             String
+  gradePoint        Decimal?  @map("grade_point") @db.Decimal(3, 2)
+  computedAt        DateTime  @default(now()) @map("computed_at")
+
+  @@unique([tenantId, courseOfferingId, studentId])
+  @@index([tenantId, studentId])
+  @@map("final_grades")
+}
+
 // ==========================================
 // EVENT OUTBOX
 // ==========================================

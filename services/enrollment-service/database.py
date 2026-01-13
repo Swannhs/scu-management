@@ -21,5 +21,5 @@ def get_db():
 def init_db():
     # In production, use Alembic. For MVP startup, this creates tables.
     # Import models here to ensure they are registered with Base
-    from models import IntakeTerm, AdmissionApplication, ApplicationDocument, Enrollment, EventOutbox
+    from models import IntakeTerm, AdmissionApplication, ApplicationDocument, Student, Enrollment, EventOutbox
     Base.metadata.create_all(bind=engine)

@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { Program, ProgramType } from '@prisma/client';
+import { Program } from '@prisma/client';
+import { CreateProgramDto } from './dto/create-program.dto';
 
 @Injectable()
 export class ProgramsService {
     constructor(private prisma: PrismaService) { }
 
-    async create(tenantId: string, data: { name: string; code: string; type: ProgramType }): Promise<Program> {
+    async create(tenantId: string, data: CreateProgramDto): Promise<Program> {
         return this.prisma.program.create({
             data: {
                 ...data,
@@ -18,7 +19,7 @@ export class ProgramsService {
     async findAll(tenantId: string): Promise<Program[]> {
         return this.prisma.program.findMany({
             where: { tenantId },
-            include: { levels: true },
+            include: { department: true, courses: true },
         });
     }
 
@@ -26,16 +27,8 @@ export class ProgramsService {
         return this.prisma.program.findFirst({
             where: { id: programId, tenantId },
             include: {
-                levels: {
-                    include: {
-                        offerings: {
-                            include: {
-                                subject: true,
-                                section: true,
-                            },
-                        },
-                    },
-                },
+                department: true,
+                courses: true,
             },
         });
     }
