@@ -149,8 +149,7 @@ def create_intake_term(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "TENANT_ADMIN" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["TENANT_ADMIN"])
 
     intake = IntakeTerm(
         tenant_id=user.tenant_id,
@@ -183,8 +182,7 @@ def create_application(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "STUDENT" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["STUDENT"])
 
     application = AdmissionApplication(
         tenant_id=user.tenant_id,
@@ -218,8 +216,7 @@ def list_my_applications(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "STUDENT" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["STUDENT"])
 
     query = db.query(AdmissionApplication).filter(
         AdmissionApplication.tenant_id == user.tenant_id,
@@ -440,8 +437,7 @@ def add_application_document(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "STUDENT" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["STUDENT"])
 
     application = db.query(AdmissionApplication).filter(
         AdmissionApplication.id == application_id,
@@ -468,8 +464,7 @@ def verify_application_document(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "ADMISSION_OFFICER" not in user.roles:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+    ensure_roles(user, ["ADMISSION_OFFICER"])
 
     document = db.query(ApplicationDocument).filter(
         ApplicationDocument.id == doc_id,
