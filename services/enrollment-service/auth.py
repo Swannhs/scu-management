@@ -34,10 +34,15 @@ async def get_user_context(
         # Keycloak roles are usually in realm_access.roles
         roles = payload.get("realm_access", {}).get("roles", [])
 
+        is_global_admin = "admin" in roles
+
         if tenant_header and tenant_id and tenant_header != tenant_id:
             raise HTTPException(status_code=403, detail={"code": "TENANT_CONTEXT_MISMATCH", "message": "Tenant context mismatch", "details": None})
 
         effective_tenant_id = tenant_header or tenant_id
+
+        if is_global_admin and not effective_tenant_id:
+            raise HTTPException(status_code=400, detail={"code": "TENANT_ID_REQUIRED", "message": "Tenant ID required for global admin", "details": None})
 
         if not effective_tenant_id:
             raise HTTPException(status_code=401, detail={"code": "TENANT_ID_MISSING", "message": "Tenant ID missing in token", "details": None})

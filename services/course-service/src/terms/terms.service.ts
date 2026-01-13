@@ -1,0 +1,32 @@
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
+import { CreateTermDto } from './dto/create-term.dto';
+
+@Injectable()
+export class TermsService {
+  constructor(private prisma: PrismaService) {}
+
+  create(tenantId: string, data: CreateTermDto) {
+    return this.prisma.academicTerm.create({
+      data: {
+        tenantId,
+        academicYearId: data.academicYearId,
+        name: data.name,
+        code: data.code,
+        startDate: new Date(data.startDate),
+        endDate: new Date(data.endDate),
+        isActive: data.isActive ?? false,
+      },
+    });
+  }
+
+  findAll(tenantId: string, academicYearId?: string) {
+    return this.prisma.academicTerm.findMany({
+      where: {
+        tenantId,
+        ...(academicYearId ? { academicYearId } : {}),
+      },
+      include: { academicYear: true },
+    });
+  }
+}

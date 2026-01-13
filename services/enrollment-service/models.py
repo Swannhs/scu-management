@@ -85,6 +85,34 @@ class ApplicationDocument(Base):
     application = relationship("AdmissionApplication")
 
 # ==========================================
+# STUDENTS
+# ==========================================
+
+class Student(Base):
+    __tablename__ = "students"
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    tenant_id = Column(String, nullable=False, index=True)
+    user_id = Column(String, nullable=False, index=True)
+
+    first_name = Column(String, nullable=False)
+    last_name = Column(String, nullable=False)
+    email = Column(String, nullable=False)
+    phone = Column(String, nullable=True)
+    program_id = Column(String, nullable=False)
+    status = Column(String, default="ACTIVE")
+
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    deleted_at = Column(DateTime, nullable=True)
+
+    __table_args__ = (
+        UniqueConstraint('tenant_id', 'user_id', name='uq_student_user'),
+        UniqueConstraint('tenant_id', 'email', name='uq_student_email'),
+        Index('idx_student_tenant_program', 'tenant_id', 'program_id'),
+    )
+
+# ==========================================
 # ENROLLMENT
 # ==========================================
 
