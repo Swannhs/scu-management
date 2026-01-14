@@ -1,0 +1,58 @@
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import {
+  AuthGuard,
+  KeycloakConnectModule,
+  ResourceGuard,
+  RoleGuard,
+} from 'nest-keycloak-connect';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { PrismaModule } from './prisma/prisma.module';
+import { OutboxModule } from './outbox/outbox.module';
+import { QuestionsModule } from './questions/questions.module';
+import { ExamsModule } from './exams/exams.module';
+import { SubmissionsModule } from './submissions/submissions.module';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    KeycloakConnectModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        authServerUrl: config.get<string>('KEYCLOAK_AUTH_SERVER_URL')!,
+        realm: config.get<string>('KEYCLOAK_REALM')!,
+        clientId: config.get<string>('KEYCLOAK_CLIENT_ID')!,
+        secret: config.get<string>('KEYCLOAK_CLIENT_SECRET')!,
+        cookieKey: 'KEYCLOAK_JWT',
+        logLevels: ['verbose'],
+        useNestLogger: true,
+      }),
+    }),
+    PrismaModule,
+    OutboxModule,
+    QuestionsModule,
+    ExamsModule,
+    SubmissionsModule,
+  ],
+  controllers: [AppController],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ResourceGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RoleGuard,
+    },
+  ],
+})
+export class AppModule {}
