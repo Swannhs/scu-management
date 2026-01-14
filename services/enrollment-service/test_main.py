@@ -5,26 +5,45 @@ from datetime import date
 import pytest
 from fastapi.testclient import TestClient
 from jose import jwt
+from jose.utils import base64url_encode
 
 os.environ["DATABASE_URL"] = "sqlite:///./test_enrollment.db"
+os.environ["KEYCLOAK_JWKS_URL"] = "https://keycloak.test/realms/university-platform/protocol/openid-connect/certs"
+os.environ["KEYCLOAK_ISSUER"] = "https://keycloak.test/realms/university-platform"
+os.environ["KEYCLOAK_AUDIENCE"] = "enrollment-service"
 
 from main import app  # noqa: E402
 
 client = TestClient(app)
 
-SECRET = "test-secret"
+
+def _build_hmac_key():
+    secret = os.urandom(32)
+    return secret, {
+        "kty": "oct",
+        "kid": f"kid-{uuid.uuid4()}",
+        "use": "sig",
+        "alg": "HS256",
+        "k": base64url_encode(secret).decode(),
+    }
 
 
-def make_token(tenant_id: str, roles: list[str], user_id: str | None = None) -> str:
+HMAC_SECRET, PUBLIC_JWK = _build_hmac_key()
+
+
+def make_token(tenant_id: str | None, roles: list[str], user_id: str | None = None, kid: str | None = None) -> str:
     payload = {
-        "tenant_id": tenant_id,
         "sub": user_id or f"user-{uuid.uuid4()}",
         "realm_access": {"roles": roles},
+        "aud": os.environ["KEYCLOAK_AUDIENCE"],
+        "iss": os.environ["KEYCLOAK_ISSUER"],
     }
-    return jwt.encode(payload, SECRET, algorithm="HS256")
+    if tenant_id is not None:
+        payload["tenant_id"] = tenant_id
+    return jwt.encode(payload, HMAC_SECRET, algorithm="HS256", headers={"kid": kid or PUBLIC_JWK["kid"]})
 
 
-def auth_headers(tenant_id: str, roles: list[str], user_id: str | None = None, tenant_header: str | None = None) -> dict:
+def auth_headers(tenant_id: str | None, roles: list[str], user_id: str | None = None, tenant_header: str | None = None) -> dict:
     token = make_token(tenant_id, roles, user_id)
     headers = {"Authorization": f"Bearer {token}"}
     if tenant_header:
@@ -33,7 +52,22 @@ def auth_headers(tenant_id: str, roles: list[str], user_id: str | None = None, t
 
 
 @pytest.fixture(autouse=True)
-def _reset_db():
+def _reset_db(monkeypatch):
+    import auth
+
+    auth._JWKS_CACHE = None
+
+    def _fake_get(url, timeout=5):
+        class _Response:
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return {"keys": [PUBLIC_JWK]}
+
+        return _Response()
+
+    monkeypatch.setattr(auth.requests, "get", _fake_get)
     if os.path.exists("test_enrollment.db"):
         os.remove("test_enrollment.db")
     yield
@@ -55,6 +89,50 @@ def test_tenant_mismatch_rejected():
     )
     assert response.status_code == 403
     assert response.json()["code"] == "TENANT_CONTEXT_MISMATCH"
+
+
+def test_missing_tenant_claim_rejected():
+    headers = auth_headers(None, ["TENANT_ADMIN"], tenant_header=None)
+    response = client.post(
+        "/v1/intake-terms",
+        headers=headers,
+        json={
+            "name": "Fall",
+            "code": "F24",
+            "start_date": str(date.today()),
+            "end_date": str(date.today()),
+        },
+    )
+    assert response.status_code == 401
+    assert response.json()["code"] == "TENANT_ID_MISSING"
+
+
+def test_invalid_signature_rejected():
+    other_secret, _ = _build_hmac_key()
+    token = jwt.encode(
+        {
+            "tenant_id": "tenant-a",
+            "sub": f"user-{uuid.uuid4()}",
+            "realm_access": {"roles": ["TENANT_ADMIN"]},
+            "aud": os.environ["KEYCLOAK_AUDIENCE"],
+            "iss": os.environ["KEYCLOAK_ISSUER"],
+        },
+        other_secret,
+        algorithm="HS256",
+        headers={"kid": PUBLIC_JWK["kid"]},
+    )
+    response = client.post(
+        "/v1/intake-terms",
+        headers={"Authorization": f"Bearer {token}", "X-Tenant-ID": "tenant-a"},
+        json={
+            "name": "Fall",
+            "code": "F24",
+            "start_date": str(date.today()),
+            "end_date": str(date.today()),
+        },
+    )
+    assert response.status_code == 401
+    assert response.json()["code"] == "INVALID_TOKEN"
 
 
 def test_rbac_forbidden():
