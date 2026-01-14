@@ -10,7 +10,7 @@ export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
 
   @Post()
-  @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:REGISTRAR'] })
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR'] })
   create(
     @TenantContextParam() tenantContext: TenantContext,
     @Body() dto: CreateCourseDto,
@@ -19,7 +19,7 @@ export class CoursesController {
   }
 
   @Get()
-  @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:FACULTY', 'realm:REGISTRAR', 'realm:STAFF'] })
+  @Roles({ roles: ['TENANT_ADMIN', 'FACULTY', 'REGISTRAR', 'STAFF'] })
   findAll(@TenantContextParam() tenantContext: TenantContext) {
     return this.coursesService.findAll(tenantContext.effectiveTenantId);
   }

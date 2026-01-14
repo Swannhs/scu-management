@@ -10,7 +10,7 @@ export class AcademicYearsController {
   constructor(private readonly academicYearsService: AcademicYearsService) {}
 
   @Post()
-  @Roles({ roles: ['realm:TENANT_ADMIN'] })
+  @Roles({ roles: ['TENANT_ADMIN'] })
   create(
     @TenantContextParam() tenantContext: TenantContext,
     @Body() dto: CreateAcademicYearDto,
@@ -19,7 +19,7 @@ export class AcademicYearsController {
   }
 
   @Get()
-  @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:STAFF', 'realm:FACULTY'] })
+  @Roles({ roles: ['TENANT_ADMIN', 'STAFF', 'FACULTY'] })
   findAll(@TenantContextParam() tenantContext: TenantContext) {
     return this.academicYearsService.findAll(tenantContext.effectiveTenantId);
   }

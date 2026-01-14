@@ -11,7 +11,7 @@ export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
   @Post('attendance/sessions')
-  @Roles({ roles: ['realm:FACULTY'] })
+  @Roles({ roles: ['FACULTY'] })
   createSession(
     @TenantContextParam() tenantContext: TenantContext,
     @AuthenticatedUser() user: any,
@@ -21,7 +21,7 @@ export class AttendanceController {
   }
 
   @Post('attendance/sessions/:id/mark')
-  @Roles({ roles: ['realm:FACULTY'] })
+  @Roles({ roles: ['FACULTY'] })
   markAttendance(
     @TenantContextParam() tenantContext: TenantContext,
     @Body() dto: MarkAttendanceDto,
@@ -31,7 +31,7 @@ export class AttendanceController {
   }
 
   @Get('students/:studentId/attendance')
-  @Roles({ roles: ['realm:STUDENT', 'realm:TENANT_ADMIN', 'realm:REGISTRAR', 'realm:FACULTY'] })
+  @Roles({ roles: ['STUDENT', 'TENANT_ADMIN', 'REGISTRAR', 'FACULTY'] })
   getStudentAttendance(
     @TenantContextParam() tenantContext: TenantContext,
     @AuthenticatedUser() user: any,
@@ -45,7 +45,7 @@ export class AttendanceController {
   }
 
   @Get('sections/:sectionId/attendance')
-  @Roles({ roles: ['realm:FACULTY', 'realm:TENANT_ADMIN', 'realm:REGISTRAR'] })
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
   getSectionAttendance(
     @TenantContextParam() tenantContext: TenantContext,
     @Param('sectionId') sectionId: string,

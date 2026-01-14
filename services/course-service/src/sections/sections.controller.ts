@@ -10,7 +10,7 @@ export class SectionsController {
   constructor(private readonly sectionsService: SectionsService) {}
 
   @Post()
-  @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:REGISTRAR'] })
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR'] })
   create(
     @TenantContextParam() tenantContext: TenantContext,
     @Body() dto: CreateSectionDto,
@@ -19,7 +19,7 @@ export class SectionsController {
   }
 
   @Get()
-  @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:FACULTY', 'realm:REGISTRAR', 'realm:STAFF'] })
+  @Roles({ roles: ['TENANT_ADMIN', 'FACULTY', 'REGISTRAR', 'STAFF'] })
   findAll(
     @TenantContextParam() tenantContext: TenantContext,
     @Query('termId') termId?: string,
@@ -28,7 +28,7 @@ export class SectionsController {
   }
 
   @Get(':id')
-  @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:FACULTY', 'realm:REGISTRAR', 'realm:STAFF'] })
+  @Roles({ roles: ['TENANT_ADMIN', 'FACULTY', 'REGISTRAR', 'STAFF'] })
   findOne(
     @TenantContextParam() tenantContext: TenantContext,
     @Param('id') sectionId: string,

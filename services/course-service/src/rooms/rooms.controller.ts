@@ -10,7 +10,7 @@ export class RoomsController {
   constructor(private readonly roomsService: RoomsService) {}
 
   @Post()
-  @Roles({ roles: ['realm:TENANT_ADMIN'] })
+  @Roles({ roles: ['TENANT_ADMIN'] })
   create(
     @TenantContextParam() tenantContext: TenantContext,
     @Body() dto: CreateRoomDto,
@@ -19,7 +19,7 @@ export class RoomsController {
   }
 
   @Get()
-  @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:STAFF', 'realm:FACULTY'] })
+  @Roles({ roles: ['TENANT_ADMIN', 'STAFF', 'FACULTY'] })
   findAll(@TenantContextParam() tenantContext: TenantContext) {
     return this.roomsService.findAll(tenantContext.effectiveTenantId);
   }
