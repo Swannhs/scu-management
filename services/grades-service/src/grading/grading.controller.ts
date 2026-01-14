@@ -12,7 +12,7 @@ export class GradingController {
   constructor(private readonly gradingService: GradingService) {}
 
   @Post('assessments')
-  @Roles({ roles: ['realm:FACULTY'] })
+  @Roles({ roles: ['FACULTY'] })
   createAssessment(
     @TenantContextParam() tenantContext: TenantContext,
     @AuthenticatedUser() user: any,
@@ -22,7 +22,7 @@ export class GradingController {
   }
 
   @Post('assessments/:id/scores')
-  @Roles({ roles: ['realm:FACULTY'] })
+  @Roles({ roles: ['FACULTY'] })
   recordScores(
     @TenantContextParam() tenantContext: TenantContext,
     @Body() dto: BulkScoreDto,
@@ -32,7 +32,7 @@ export class GradingController {
   }
 
   @Post('final-grades/compute')
-  @Roles({ roles: ['realm:REGISTRAR'] })
+  @Roles({ roles: ['REGISTRAR'] })
   computeFinalGrades(
     @TenantContextParam() tenantContext: TenantContext,
     @Query('sectionId') sectionId: string,
@@ -42,7 +42,7 @@ export class GradingController {
   }
 
   @Get('students/:studentId/transcript')
-  @Roles({ roles: ['realm:STUDENT', 'realm:REGISTRAR', 'realm:TENANT_ADMIN'] })
+  @Roles({ roles: ['STUDENT', 'REGISTRAR', 'TENANT_ADMIN'] })
   getTranscript(
     @TenantContextParam() tenantContext: TenantContext,
     @AuthenticatedUser() user: any,

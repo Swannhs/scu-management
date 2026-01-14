@@ -21,7 +21,7 @@ export class UsersController {
     }
 
     @Post('onboard')
-    @Roles({ roles: ['realm:admin', 'realm:TENANT_ADMIN'] })
+    @Roles({ roles: ['admin', 'TENANT_ADMIN'] })
     async onboardUser(@Req() req: Request, @AuthenticatedUser() user: any, @Body() data: OnboardUserDto) {
         const tenantId = this.checkTenantContext(req, user, data.tenantId);
         return this.usersService.createUser({
@@ -33,7 +33,7 @@ export class UsersController {
     }
 
     @Get()
-    @Roles({ roles: ['realm:admin', 'realm:TENANT_ADMIN'] })
+    @Roles({ roles: ['admin', 'TENANT_ADMIN'] })
     async findAll(@Req() req: Request, @AuthenticatedUser() user: any, @Query('tenantId') queryTenantId?: string) {
         const tenantId = this.checkTenantContext(req, user, queryTenantId);
         return this.usersService.findByTenant(tenantId);

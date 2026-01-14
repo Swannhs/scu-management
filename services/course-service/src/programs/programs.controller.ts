@@ -10,7 +10,7 @@ export class ProgramsController {
     constructor(private readonly programsService: ProgramsService) { }
 
     @Post()
-    @Roles({ roles: ['realm:TENANT_ADMIN'] })
+    @Roles({ roles: ['TENANT_ADMIN'] })
     async create(
         @TenantContextParam() tenantContext: TenantContext,
         @Body() data: CreateProgramDto,
@@ -19,13 +19,13 @@ export class ProgramsController {
     }
 
     @Get()
-    @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:STAFF', 'realm:FACULTY'] })
+    @Roles({ roles: ['TENANT_ADMIN', 'STAFF', 'FACULTY'] })
     async findAll(@TenantContextParam() tenantContext: TenantContext) {
         return this.programsService.findAll(tenantContext.effectiveTenantId);
     }
 
     @Get(':id/structure')
-    @Roles({ roles: ['realm:TENANT_ADMIN', 'realm:STAFF', 'realm:FACULTY'] })
+    @Roles({ roles: ['TENANT_ADMIN', 'STAFF', 'FACULTY'] })
     async getStructure(@TenantContextParam() tenantContext: TenantContext, @Param('id') id: string) {
         return this.programsService.getStructure(tenantContext.effectiveTenantId, id);
     }

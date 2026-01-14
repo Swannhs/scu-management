@@ -139,6 +139,13 @@ class StudentResponse(BaseModel):
 def health():
     return {"status": "ok"}
 
+def ensure_roles(user: auth.UserContext, required_roles: List[str]):
+    if not any(role in user.roles for role in required_roles):
+        raise HTTPException(
+            status_code=403,
+            detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None}
+        )
+
 def has_time_conflict(student_id: str, section_id: str) -> bool:
     # TODO: integrate with scheduling/sections to detect time conflicts
     return False

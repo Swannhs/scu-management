@@ -87,3 +87,6 @@ bin/
 
 # Docker
 # .dockerignore removed
+
+# Database
+*.db

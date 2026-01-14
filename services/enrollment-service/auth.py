@@ -70,6 +70,12 @@ def _verify_and_decode(token: str) -> dict:
             algorithms=[key_data.get("alg", "RS256")],
             audience=AUDIENCE,
             issuer=ISSUER,
+            options={
+                "verify_signature": True,
+                "verify_aud": True,
+                "verify_iss": True,
+                "verify_exp": True,
+            },
         )
     except JWTError as exc:
         raise HTTPException(
