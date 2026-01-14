@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum QuestionType {
+  MCQ
+  ESSAY
+  TRUE_FALSE
+}
+
+enum DifficultyLevel {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model Question {
+  id              String    @id @default(uuid())
+  tenantId        String    @map("tenant_id")
+
+  text            String
+  type            QuestionType
+  options         Json?     // For MCQ: ["Option A", "Option B", ...]
+  correctAnswer   String?   @map("correct_answer") // For MCQ: index or text. For T/F: "true"/"false"
+
+  subject         String?
+  difficulty      DifficultyLevel
+
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+
+  examQuestions   ExamQuestion[]
+  examAnswers     ExamAnswer[]
+
+  @@index([tenantId, subject])
+  @@map("questions")
+}
+
+model Exam {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  courseOfferingId  String    @map("course_offering_id") // Links to Course Service
+
+  title             String
+  description       String?
+
+  startTime         DateTime  @map("start_time")
+  endTime           DateTime  @map("end_time")
+  durationMinutes   Int       @map("duration_minutes")
+
+  totalMarks        Decimal   @map("total_marks") @db.Decimal(5, 2)
+  passingMarks      Decimal?  @map("passing_marks") @db.Decimal(5, 2)
+
+  isPublished       Boolean   @default(false) @map("is_published")
+
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  questions         ExamQuestion[]
+  submissions       StudentExam[]
+
+  @@index([tenantId, courseOfferingId])
+  @@map("exams")
+}
+
+model ExamQuestion {
+  id            String    @id @default(uuid())
+  tenantId      String    @map("tenant_id")
+  examId        String    @map("exam_id")
+  questionId    String    @map("question_id")
+
+  marks         Decimal   @db.Decimal(5, 2)
+  sequenceOrder Int       @default(0) @map("sequence_order")
+
+  createdAt     DateTime  @default(now()) @map("created_at")
+
+  exam          Exam      @relation(fields: [examId], references: [id])
+  question      Question  @relation(fields: [questionId], references: [id])
+
+  @@unique([examId, questionId])
+  @@map("exam_questions")
+}
+
+enum ExamStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  SUBMITTED
+  GRADED
+}
+
+model StudentExam {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  examId            String    @map("exam_id")
+  studentId         String    @map("student_id")
+
+  status            ExamStatus @default(NOT_STARTED)
+
+  startedAt         DateTime? @map("started_at")
+  submittedAt       DateTime? @map("submitted_at")
+
+  obtainedMarks     Decimal?  @map("obtained_marks") @db.Decimal(5, 2)
+
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  exam              Exam      @relation(fields: [examId], references: [id])
+  answers           ExamAnswer[]
+
+  @@unique([examId, studentId])
+  @@index([tenantId, studentId])
+  @@map("student_exams")
+}
+
+model ExamAnswer {
+  id                String    @id @default(uuid())
+  tenantId          String    @map("tenant_id")
+  submissionId      String    @map("submission_id")
+  questionId        String    @map("question_id")
+
+  answerText        String?   @map("answer_text") // Student's answer
+
+  isCorrect         Boolean?  @map("is_correct")
+  obtainedMarks     Decimal?  @map("obtained_marks") @db.Decimal(5, 2)
+
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+
+  submission        StudentExam @relation(fields: [submissionId], references: [id])
+  question          Question  @relation(fields: [questionId], references: [id])
+
+  @@unique([submissionId, questionId])
+  @@map("exam_answers")
+}
+
+model EventOutbox {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  eventType   String   @map("event_type")
+  payload     Json
+
+  status      String   @default("PENDING") // PENDING, PUBLISHED
+  retries     Int      @default(0)
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  publishedAt DateTime? @map("published_at")
+
+  @@index([tenantId, status])
+  @@map("event_outbox")
+}

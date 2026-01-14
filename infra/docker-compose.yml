@@ -179,6 +179,15 @@ services:
     networks:
       - ums-network
 
+  assessment-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: assessmentdb
+      POSTGRES_USER: assessmentuser
+      POSTGRES_PASSWORD: assessmentpass
+    networks:
+      - ums-network
+
   # Microservices
 
 
@@ -403,6 +412,22 @@ services:
       - ums-network
     ports:
       - "3005:3000"
+
+  assessment-service:
+    build: ./services/assessment-service
+    depends_on:
+      - assessment-db
+      - keycloak
+    networks:
+      - ums-network
+    ports:
+      - "3008:3000"
+    environment:
+      - DATABASE_URL=postgresql://assessmentuser:assessmentpass@assessment-db:5432/assessmentdb
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=university-platform
+      - KEYCLOAK_CLIENT_ID=assessment-service
+      - KEYCLOAK_CLIENT_SECRET=secret
 
   document-service:
     build: ./services/document-service
