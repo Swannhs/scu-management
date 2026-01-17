@@ -1,6 +1,7 @@
 import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { CreateDirectConversationDto } from '../dto/create-direct-conversation.dto';
+import { CreateGroupConversationDto } from '../dto/create-group-conversation.dto';
 import { CreateMessageDto } from '../dto/create-message.dto';
 import { OutboxService } from './outbox.service';
 
@@ -49,6 +50,32 @@ export class ConversationsService {
           { tenantId, conversationId: conversation.id, userId: actorId },
           { tenantId, conversationId: conversation.id, userId: dto.recipientId },
         ],
+      });
+
+      return conversation;
+    });
+  }
+
+  async createGroupConversation(tenantId: string, actorId: string, dto: CreateGroupConversationDto) {
+    // For group chats, we always create a new conversation (simplification)
+    // In a real app, we might check if exact same members exist
+    return this.prisma.$transaction(async (tx) => {
+      const conversation = await tx.conversation.create({
+        data: {
+          tenantId,
+          type: 'GROUP',
+        },
+      });
+
+      const members = [actorId, ...dto.recipientIds].map((userId) => ({
+        tenantId,
+        conversationId: conversation.id,
+        userId,
+      }));
+
+      await tx.conversationMember.createMany({
+        data: members,
+        skipDuplicates: true, // Avoid dupes if actorId is in recipients
       });
 
       return conversation;
