@@ -41,4 +41,25 @@ export class SectionsService {
       },
     });
   }
+
+  getSessionsForFaculty(tenantId: string, facultyId: string) {
+    return this.prisma.courseSession.findMany({
+      where: {
+        tenantId,
+        offering: {
+          facultyId,
+        },
+      },
+      include: {
+        offering: {
+          include: {
+            course: true,
+          },
+        },
+      },
+      orderBy: {
+        dayOfWeek: 'asc', // Simple ordering
+      },
+    });
+  }
 }

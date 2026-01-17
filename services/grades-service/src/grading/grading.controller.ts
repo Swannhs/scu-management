@@ -53,4 +53,13 @@ export class GradingController {
     }
     return this.gradingService.getTranscript(tenantContext.effectiveTenantId, studentId);
   }
+
+  @Get('students/:studentId/performance')
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
+  getStudentPerformance(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Param('studentId') studentId: string,
+  ) {
+    return this.gradingService.getTranscript(tenantContext.effectiveTenantId, studentId);
+  }
 }

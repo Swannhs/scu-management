@@ -13,8 +13,24 @@ class FacultyController extends Controller
         return $request->header('X-Tenant-ID');
     }
 
+    private function authorizeRole(Request $request, array $allowedRoles)
+    {
+        // In a real environment, this would validate the JWT token or check specific headers injected by the gateway
+        // For this implementation, we check the X-Realm-Access-Roles header
+        $rolesHeader = $request->header('X-Realm-Access-Roles') ?? '';
+        $userRoles = explode(',', $rolesHeader);
+
+        foreach ($allowedRoles as $role) {
+            if (in_array($role, $userRoles)) {
+                return true;
+            }
+        }
+        abort(403, 'Forbidden');
+    }
+
     public function index(Request $request)
     {
+        $this->authorizeRole($request, ['TENANT_ADMIN', 'FACULTY', 'STUDENT']);
         $tenantId = $this->getTenantId($request);
         if (!$tenantId) {
             return response()->json(['error' => 'Tenant context missing'], 400);
@@ -25,6 +41,7 @@ class FacultyController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorizeRole($request, ['TENANT_ADMIN']);
         $tenantId = $this->getTenantId($request);
         if (!$tenantId) {
             return response()->json(['error' => 'Tenant context missing'], 400);
@@ -54,6 +71,7 @@ class FacultyController extends Controller
 
     public function show(Request $request, $id)
     {
+        $this->authorizeRole($request, ['TENANT_ADMIN', 'FACULTY', 'STUDENT']);
         $tenantId = $this->getTenantId($request);
         $faculty = Faculty::where('id', $id)->where('tenant_id', $tenantId)->firstOrFail();
         return response()->json($faculty);
@@ -61,6 +79,7 @@ class FacultyController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorizeRole($request, ['TENANT_ADMIN']);
         $tenantId = $this->getTenantId($request);
         $faculty = Faculty::where('id', $id)->where('tenant_id', $tenantId)->firstOrFail();
 

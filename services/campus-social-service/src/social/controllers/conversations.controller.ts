@@ -4,6 +4,7 @@ import { Request } from 'express';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
 import { TenantContext } from '../../common/tenant-context';
 import { CreateDirectConversationDto } from '../dto/create-direct-conversation.dto';
+import { CreateGroupConversationDto } from '../dto/create-group-conversation.dto';
 import { CreateMessageDto } from '../dto/create-message.dto';
 import { ConversationsService } from '../services/conversations.service';
 
@@ -18,8 +19,19 @@ export class ConversationsController {
     @Req() req: Request,
     @Body() dto: CreateDirectConversationDto,
   ) {
-    const userId = req.user?.sub as string;
+    const userId = (req as any).user?.sub as string;
     return this.conversationsService.createDirectConversation(tenantContext.effectiveTenantId, userId, dto);
+  }
+
+  @Post('group')
+  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
+  async createGroup(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Req() req: Request,
+    @Body() dto: CreateGroupConversationDto,
+  ) {
+    const userId = (req as any).user?.sub as string;
+    return this.conversationsService.createGroupConversation(tenantContext.effectiveTenantId, userId, dto);
   }
 
   @Get()
@@ -28,7 +40,7 @@ export class ConversationsController {
     @TenantContextParam() tenantContext: TenantContext,
     @Req() req: Request,
   ) {
-    const userId = req.user?.sub as string;
+    const userId = (req as any).user?.sub as string;
     return this.conversationsService.listConversations(tenantContext.effectiveTenantId, userId);
   }
 
@@ -39,7 +51,7 @@ export class ConversationsController {
     @Req() req: Request,
     @Param('id') conversationId: string,
   ) {
-    const userId = req.user?.sub as string;
+    const userId = (req as any).user?.sub as string;
     return this.conversationsService.listMessages(tenantContext.effectiveTenantId, userId, conversationId);
   }
 
@@ -51,7 +63,7 @@ export class ConversationsController {
     @Param('id') conversationId: string,
     @Body() dto: CreateMessageDto,
   ) {
-    const userId = req.user?.sub as string;
+    const userId = (req as any).user?.sub as string;
     return this.conversationsService.sendMessage(tenantContext.effectiveTenantId, userId, conversationId, dto);
   }
 }
