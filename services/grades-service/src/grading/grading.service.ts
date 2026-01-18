@@ -245,4 +245,65 @@ export class GradingService {
       flags,
     };
   }
+
+  async getTermGrades(tenantId: string, studentId: string, termId: string) {
+    return this.prisma.finalGrade.findMany({
+      where: { tenantId, studentId, termId },
+    });
+  }
+
+  async getGradebook(tenantId: string, sectionId: string) {
+    const exams = await this.prisma.exam.findMany({
+      where: { tenantId, courseOfferingId: sectionId },
+      include: { marks: true },
+      orderBy: { date: 'asc' },
+    });
+
+    return {
+      sectionId,
+      assessments: exams.map((e) => ({
+        id: e.id,
+        name: e.name,
+        total: e.totalMarks.toNumber(),
+        date: e.date,
+        weight: e.weightagePercent.toNumber(),
+      })),
+      studentScores: exams.flatMap((e) =>
+        e.marks.map((m) => ({
+          studentId: m.studentId,
+          assessmentId: e.id,
+          obtained: m.obtainedMarks.toNumber(),
+          remarks: m.remarks,
+        })),
+      ),
+    };
+  }
+
+  async publishGrades(tenantId: string, sectionId: string) {
+    const finalGrades = await this.prisma.finalGrade.findMany({
+      where: { tenantId, courseOfferingId: sectionId },
+    });
+
+    if (finalGrades.length === 0) {
+      throw new NotFoundException('No final grades found. Compute them first.');
+    }
+
+    await this.prisma.eventOutbox.create({
+      data: {
+        tenantId,
+        eventType: 'GradesPublished',
+        payload: {
+          sectionId,
+          count: finalGrades.length,
+          grades: finalGrades.map((g) => ({
+            studentId: g.studentId,
+            grade: g.grade,
+            percentage: g.percentage.toNumber(),
+          })),
+        },
+      },
+    });
+
+    return { success: true, count: finalGrades.length };
+  }
 }

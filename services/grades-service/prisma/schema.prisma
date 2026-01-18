@@ -28,7 +28,7 @@ model Exam {
   date              DateTime
   durationMinutes   Int       @map("duration_minutes")
   totalMarks        Decimal   @map("total_marks") @db.Decimal(5, 2)
-  weightagePercent  Decimal   @map("weightage_percent") @db.Decimal(5, 2) # e.g. 30% of final grade
+  weightagePercent  Decimal   @map("weightage_percent") @db.Decimal(5, 2) // e.g. 30% of final grade
   
   isPublished       Boolean   @default(false) @map("is_published")
   
@@ -65,12 +65,12 @@ model ExamMark {
 model GradeRule {
   id                String    @id @default(uuid())
   tenantId          String    @map("tenant_id")
-  programId         String?   @map("program_id") # Optional specific program override
+  programId         String?   @map("program_id") // Optional specific program override
   
-  grade             String    # e.g. "A", "B+"
+  grade             String    // e.g. "A", "B+"
   minPercentage     Decimal   @map("min_percentage") @db.Decimal(5, 2)
   maxPercentage     Decimal   @map("max_percentage") @db.Decimal(5, 2)
-  gradePoint        Decimal   @map("grade_point") @db.Decimal(3, 2) # e.g. 4.0, 3.5
+  gradePoint        Decimal   @map("grade_point") @db.Decimal(3, 2) // e.g. 4.0, 3.5
   
   createdAt         DateTime  @default(now()) @map("created_at")
   updatedAt         DateTime  @updatedAt @map("updated_at")

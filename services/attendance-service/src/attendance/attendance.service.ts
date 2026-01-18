@@ -58,12 +58,15 @@ export class AttendanceService {
     });
   }
 
-  getStudentAttendance(tenantId: string, studentId: string, termId?: string) {
+  getStudentAttendance(tenantId: string, studentId: string, termId?: string, courseId?: string) {
     return this.prisma.attendanceRecord.findMany({
       where: {
         tenantId,
         studentId,
-        ...(termId ? { session: { termId } } : {}),
+        session: {
+          ...(termId ? { termId } : {}),
+          ...(courseId ? { courseOfferingId: courseId } : {}),
+        },
       },
       include: { session: true },
     });

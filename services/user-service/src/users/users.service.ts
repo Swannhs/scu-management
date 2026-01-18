@@ -61,4 +61,26 @@ export class UsersService {
             where: { tenantId },
         });
     }
+
+    async updateProfile(keycloakId: string, tenantId: string, data: { firstName?: string; lastName?: string; phone?: string; }) {
+        const user = await this.prisma.user.findFirst({
+            where: { keycloakId, tenantId }
+        });
+
+        if (!user) {
+            // If user doesn't exist in local DB, we can't update.
+            // In a real scenario, we might auto-create, but we need email/role which might be in token.
+            // For now, assume user exists (created via onboard or webhook).
+            throw new Error('User record not found');
+        }
+
+        return this.prisma.user.update({
+            where: { id: user.id },
+            data: {
+                ...(data.firstName ? { firstName: data.firstName } : {}),
+                ...(data.lastName ? { lastName: data.lastName } : {}),
+                ...(data.phone ? { phone: data.phone } : {}),
+            }
+        });
+    }
 }
