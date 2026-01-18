@@ -53,6 +53,11 @@ enum ConversationType {
   GROUP
 }
 
+enum ConversationMemberRole {
+  ADMIN
+  MEMBER
+}
+
 enum CallType {
   AUDIO
   VIDEO
@@ -186,19 +191,22 @@ model Conversation {
   id        String           @id @default(uuid())
   tenantId  String           @map("tenant_id")
   type      ConversationType
+  name      String?
   groupId   String?          @map("group_id")
   createdAt DateTime         @default(now()) @map("created_at")
+  updatedAt DateTime         @updatedAt @map("updated_at")
 
   @@index([tenantId])
   @@map("conversations")
 }
 
 model ConversationMember {
-  id             String   @id @default(uuid())
-  tenantId       String   @map("tenant_id")
-  conversationId String   @map("conversation_id")
-  userId         String   @map("user_id")
-  createdAt      DateTime @default(now()) @map("created_at")
+  id             String                 @id @default(uuid())
+  tenantId       String                 @map("tenant_id")
+  conversationId String                 @map("conversation_id")
+  userId         String                 @map("user_id")
+  role           ConversationMemberRole @default(MEMBER)
+  createdAt      DateTime               @default(now()) @map("created_at")
 
   @@unique([tenantId, conversationId, userId])
   @@index([tenantId, userId])
@@ -215,32 +223,33 @@ model Message {
   createdAt      DateTime @default(now()) @map("created_at")
 
   @@index([tenantId, conversationId])
+  @@index([tenantId, senderId])
   @@map("messages")
 }
 
 model CallSession {
-  id             String   @id @default(uuid())
-  tenantId       String   @map("tenant_id")
-  conversationId String   @map("conversation_id")
-  createdBy      String   @map("created_by")
-  callType       CallType @map("call_type")
-  providerRoomId String   @map("provider_room_id")
+  id             String     @id @default(uuid())
+  tenantId       String     @map("tenant_id")
+  conversationId String     @map("conversation_id")
+  createdBy      String     @map("created_by")
+  callType       CallType   @map("call_type")
+  providerRoomId String     @map("provider_room_id")
   status         CallStatus @default(ACTIVE)
-  createdAt      DateTime @default(now()) @map("created_at")
-  endedAt        DateTime? @map("ended_at")
+  createdAt      DateTime   @default(now()) @map("created_at")
+  endedAt        DateTime?  @map("ended_at")
 
   @@index([tenantId, conversationId])
   @@map("call_sessions")
 }
 
 model Notification {
-  id        String   @id @default(uuid())
-  tenantId  String   @map("tenant_id")
-  userId    String   @map("user_id")
+  id        String    @id @default(uuid())
+  tenantId  String    @map("tenant_id")
+  userId    String    @map("user_id")
   type      String
   payload   Json
   readAt    DateTime? @map("read_at")
-  createdAt DateTime @default(now()) @map("created_at")
+  createdAt DateTime  @default(now()) @map("created_at")
 
   @@index([tenantId, userId])
   @@map("notifications")
