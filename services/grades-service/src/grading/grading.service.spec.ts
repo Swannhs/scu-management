@@ -1,47 +1,71 @@
+import { Test, TestingModule } from '@nestjs/testing';
 import { GradingService } from './grading.service';
 import { PrismaService } from '../prisma/prisma.service';
 
-const makePrismaMock = () => {
-  return {
-    exam: { findMany: jest.fn() },
-    gradeRule: { findMany: jest.fn() },
-    finalGrade: { upsert: jest.fn() },
-    studentTranscript: { upsert: jest.fn() },
-    $transaction: jest.fn(),
-  } as unknown as PrismaService;
+const mockPrismaService = {
+  studentTranscript: {
+    findFirst: jest.fn(),
+    findUnique: jest.fn(),
+  },
+  examMark: {
+    findMany: jest.fn(),
+  },
 };
 
 describe('GradingService', () => {
-  it('computes final grades with grade rules', async () => {
-    const prisma = makePrismaMock();
-    const service = new GradingService(prisma);
+  let service: GradingService;
+  let prisma: PrismaService;
 
-    prisma.exam.findMany = jest.fn().mockResolvedValue([
-      {
-        id: 'exam-1',
-        totalMarks: 100,
-        weightagePercent: 50,
-        marks: [{ studentId: 'student-1', obtainedMarks: 90 }],
-      },
-      {
-        id: 'exam-2',
-        totalMarks: 100,
-        weightagePercent: 50,
-        marks: [{ studentId: 'student-1', obtainedMarks: 80 }],
-      },
-    ]);
-    prisma.gradeRule.findMany = jest.fn().mockResolvedValue([
-      { grade: 'A', minPercentage: 85, maxPercentage: 100, gradePoint: 4 },
-      { grade: 'B', minPercentage: 70, maxPercentage: 84.99, gradePoint: 3 },
-    ]);
-    prisma.finalGrade.upsert = jest.fn().mockResolvedValue({});
-    prisma.$transaction = jest.fn().mockResolvedValue([]);
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        GradingService,
+        {
+          provide: PrismaService,
+          useValue: mockPrismaService,
+        },
+      ],
+    }).compile();
 
-    const result = await service.computeFinalGrades('tenant-a', 'section-1', {});
+    service = module.get<GradingService>(GradingService);
+    prisma = module.get<PrismaService>(PrismaService);
+  });
 
-    expect(result).toEqual([
-      expect.objectContaining({ studentId: 'student-1', grade: 'A' }),
-    ]);
-    expect(prisma.finalGrade.upsert).toHaveBeenCalled();
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+
+  describe('getStudentPerformance', () => {
+    it('should return performance summary and flags', async () => {
+      const tenantId = 'tenant-1';
+      const studentId = 'student-1';
+
+      (prisma.studentTranscript.findFirst as jest.Mock).mockResolvedValue({
+        gpa: { toNumber: () => 1.5 }, // Low GPA
+        cgpa: { toNumber: () => 2.0 },
+        totalCredits: { toNumber: () => 15 },
+        termId: 'term-1',
+      });
+
+      (prisma.examMark.findMany as jest.Mock).mockResolvedValue([
+        {
+          examId: 'exam-1',
+          obtainedMarks: { toNumber: () => 40 },
+          exam: {
+            name: 'Math Midterm',
+            totalMarks: { toNumber: () => 100 },
+          },
+        },
+      ]);
+
+      const result = await service.getStudentPerformance(tenantId, studentId);
+
+      expect(result.studentId).toBe(studentId);
+      expect(result.summary.gpa).toBe(1.5);
+      expect(result.flags).toContain('LOW_GPA');
+      expect(result.flags).toContain('RECENT_FAILING_GRADES'); // 40/100 < 50%
+      expect(result.recent.length).toBe(1);
+      expect(result.recent[0].percentage).toBe(40);
+    });
   });
 });

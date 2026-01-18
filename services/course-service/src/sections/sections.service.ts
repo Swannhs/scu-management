@@ -62,4 +62,45 @@ export class SectionsService {
       },
     });
   }
+
+  getFacultySections(tenantId: string, facultyId: string, termId?: string) {
+    return this.prisma.courseOffering.findMany({
+      where: {
+        tenantId,
+        facultyId,
+        ...(termId ? { termId } : {}),
+      },
+      include: {
+        course: true,
+        term: true,
+      },
+    });
+  }
+
+  getSectionRoster(tenantId: string, sectionId: string) {
+    return this.prisma.courseEnrollment.findMany({
+      where: {
+        tenantId,
+        courseOfferingId: sectionId,
+      },
+      include: {
+        // In a real app we might fetch student details from student-service via HTTP if not cached/replicated.
+        // But enrollment table usually has basic info or we just return studentId and status.
+        // Prompt says: "student list + enrollment status".
+        // We will return what we have.
+      },
+    });
+  }
+
+  getSectionSchedule(tenantId: string, sectionId: string) {
+    return this.prisma.courseSession.findMany({
+      where: {
+        tenantId,
+        courseOfferingId: sectionId,
+      },
+      orderBy: {
+        date: 'asc',
+      },
+    });
+  }
 }

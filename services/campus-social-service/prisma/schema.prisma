@@ -192,6 +192,7 @@ model Conversation {
   tenantId  String           @map("tenant_id")
   type      ConversationType
   name      String?
+  avatarFileId String?         @map("avatar_file_id")
   groupId   String?          @map("group_id")
   createdAt DateTime         @default(now()) @map("created_at")
   updatedAt DateTime         @updatedAt @map("updated_at")
