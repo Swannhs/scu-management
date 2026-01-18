@@ -28,11 +28,13 @@ public class EnrollmentEventListener {
             String courseId = (String) data.get("course_offering_id");
 
             Invoice invoice = new Invoice();
-            invoice.setStudentId(studentId);
-            invoice.setTenantId(tenantId);
-            invoice.setAmount(new BigDecimal("500.00")); // Base fee example
-            invoice.setDescription("Semester Fee for Course: " + courseId);
+            invoice.setStudentId(java.util.UUID.fromString(studentId));
+            invoice.setTenantId(java.util.UUID.fromString(tenantId));
+            invoice.setTotalAmount(new BigDecimal("500.00")); // Base fee example
+            invoice.setInvoiceNumber("INV-" + System.currentTimeMillis());
+            // invoice.setDescription("Semester Fee for Course: " + courseId); // Description belongs to items
             invoice.setStatus("PENDING");
+            invoice.setCreatedAt(java.time.LocalDateTime.now());
 
             invoiceRepository.save(invoice);
             System.out.println("Generated auto-invoice for student: " + studentId);
