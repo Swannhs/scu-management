@@ -3,9 +3,15 @@ import { AuthenticatedUser as CurrentUser, Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { UsersService } from './users.service';
 import { AuthenticatedUser } from './interfaces/authenticated-user.interface';
-import { UpdateProfileDto } from './dto/update-profile.dto';
+import { UpdateMeProfileDto } from './dto/update-me-profile.dto';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
+
+interface AggregationResponse<T> {
+  partial: boolean;
+  errors: Array<{ service: string; reason: string }>;
+  data: T;
+}
 
 @Controller('v1/me')
 export class MeController {
@@ -43,161 +49,22 @@ export class MeController {
       phone: localUser?.phone,
       address: localUser?.address,
       avatarUrl: localUser?.avatarUrl,
+      avatarRef: localUser?.avatarUrl,
       emergencyContact: localUser?.emergencyContact,
     };
-  }
-
-  @Get('schedule')
-  async getSchedule(
-      @Req() req: Request,
-      @CurrentUser() user: AuthenticatedUser,
-      @Query('from') from?: string,
-      @Query('to') to?: string
-  ) {
-      const tenantId = this.checkTenantContext(req, user);
-      const localUser = await this.usersService.findByKeycloakId(user.sub, tenantId);
-
-      const roles = user.realm_access?.roles || user.roles || [];
-      const token = req.headers['authorization'];
-      const headers = {
-          'Authorization': token,
-          'X-Tenant-ID': tenantId
-      };
-
-      if (roles.includes('STUDENT')) {
-          const studentId = localUser?.studentId;
-          if (!studentId) {
-             // Fallback: Check if student exists in enrollment service? No, rely on linked ID.
-             return [];
-          }
-
-          try {
-              // 1. Get Enrollments
-              const enrollResponse = await firstValueFrom(
-                  this.httpService.get(`http://enrollment-service:8000/v1/students/${studentId}/enrollments`, { headers })
-              );
-              const enrollments = enrollResponse.data;
-              const sectionIds = enrollments.map((e: any) => e.offering_id || e.sectionId).filter(Boolean).join(',');
-
-              if (!sectionIds) return [];
-
-              // 2. Get Sessions
-              const sessionsResponse = await firstValueFrom(
-                  this.httpService.get(`http://course-service:3000/v1/sessions/list?sectionIds=${sectionIds}`, { headers })
-              );
-              return sessionsResponse.data;
-
-          } catch (e) {
-              console.error('Error fetching student schedule:', e.message);
-              // Graceful degradation or error?
-              // Instruction says: "Response errors: { code, message, details? }"
-              throw new BadRequestException('Failed to fetch schedule');
-          }
-      } else if (roles.includes('FACULTY')) {
-          // Faculty logic
-          // Call course-service:3000/v1/sessions which returns sessions for the faculty user (from token)
-           try {
-              const sessionsResponse = await firstValueFrom(
-                  this.httpService.get(`http://course-service:3000/v1/sessions`, { headers })
-              );
-              return sessionsResponse.data;
-          } catch (e) {
-               console.error('Error fetching faculty schedule:', e.message);
-               throw new BadRequestException('Failed to fetch schedule');
-          }
-      } else if (roles.includes('PARENT')) {
-           throw new ForbiddenException('Parents must use /parents/children/:id/updates');
-      }
-
-      return [];
-  }
-
-  @Get('grades')
-  async getGrades(
-      @Req() req: Request,
-      @CurrentUser() user: AuthenticatedUser,
-      @Query('termId') termId?: string,
-  ) {
-      const tenantId = this.checkTenantContext(req, user);
-      const localUser = await this.usersService.findByKeycloakId(user.sub, tenantId);
-
-      const roles = user.realm_access?.roles || user.roles || [];
-      const token = req.headers['authorization'];
-      const headers = {
-          'Authorization': token,
-          'X-Tenant-ID': tenantId
-      };
-
-      if (roles.includes('STUDENT')) {
-           const studentId = localUser?.studentId;
-           if (!studentId) return [];
-
-           let url = `http://grades-service:3000/v1/students/${studentId}`;
-           if (termId) {
-               // Use term-grades for specific term details
-               url += `/term-grades?termId=${termId}`;
-           } else {
-               // Use performance for overall summary
-               url += `/performance`;
-           }
-
-           try {
-               const response = await firstValueFrom(this.httpService.get(url, { headers }));
-               return response.data;
-           } catch (e) {
-               console.error('Error fetching grades:', e.message);
-               throw new BadRequestException('Failed to fetch grades');
-           }
-      }
-      return [];
-  }
-
-  @Get('attendance')
-  async getAttendance(
-      @Req() req: Request,
-      @CurrentUser() user: AuthenticatedUser,
-      @Query('termId') termId?: string,
-      @Query('courseId') courseId?: string
-  ) {
-      const tenantId = this.checkTenantContext(req, user);
-      const localUser = await this.usersService.findByKeycloakId(user.sub, tenantId);
-
-      const roles = user.realm_access?.roles || user.roles || [];
-      const token = req.headers['authorization'];
-      const headers = {
-          'Authorization': token,
-          'X-Tenant-ID': tenantId
-      };
-
-      if (roles.includes('STUDENT')) {
-           const studentId = localUser?.studentId;
-           if (!studentId) return [];
-
-           let url = `http://attendance-service:3000/v1/students/${studentId}/attendance`;
-           const params = new URLSearchParams();
-           if (termId) params.append('termId', termId);
-           if (courseId) params.append('courseId', courseId);
-           if ([...params].length > 0) url += `?${params.toString()}`;
-
-           try {
-               const response = await firstValueFrom(this.httpService.get(url, { headers }));
-               return response.data;
-           } catch (e) {
-               console.error('Error fetching attendance:', e.message);
-               throw new BadRequestException('Failed to fetch attendance');
-           }
-      }
-
-      return [];
   }
 
   @Patch('profile')
   async updateProfile(
       @Req() req: Request,
       @CurrentUser() user: AuthenticatedUser,
-      @Body() data: UpdateProfileDto
+      @Body() data: UpdateMeProfileDto
   ) {
       const tenantId = this.checkTenantContext(req, user);
+
+      if (data.avatarRef) {
+          data.avatarUrl = data.avatarRef;
+      }
 
       try {
           const updatedUser = await this.usersService.updateProfile(user.sub, tenantId, data);
@@ -208,6 +75,161 @@ export class MeController {
           }
           throw e;
       }
+  }
+
+  @Get('schedule')
+  async getSchedule(
+      @Req() req: Request,
+      @CurrentUser() user: AuthenticatedUser,
+      @Query('from') from?: string,
+      @Query('to') to?: string
+  ): Promise<AggregationResponse<any[]>> {
+      const tenantId = this.checkTenantContext(req, user);
+      const localUser = await this.usersService.findByKeycloakId(user.sub, tenantId);
+
+      const roles = user.realm_access?.roles || user.roles || [];
+      const token = req.headers['authorization'];
+      const headers = {
+          'Authorization': token,
+          'X-Tenant-ID': tenantId
+      };
+
+      const errors = [];
+      let data = [];
+      let partial = false;
+
+      if (roles.includes('STUDENT')) {
+          const studentId = localUser?.studentId;
+          if (!studentId) {
+             return { partial: false, errors: [], data: [] };
+          }
+
+          try {
+              // 1. Get Enrollments
+              const enrollResponse = await firstValueFrom(
+                  this.httpService.get(`http://enrollment-service:8000/v1/students/${studentId}/enrollments`, { headers })
+              );
+              const enrollments = enrollResponse.data;
+              const sectionIds = enrollments.map((e: any) => e.offering_id || e.sectionId).filter(Boolean).join(',');
+
+              if (!sectionIds) {
+                  return { partial: false, errors: [], data: [] };
+              }
+
+              // 2. Get Sessions
+              const sessionsResponse = await firstValueFrom(
+                  this.httpService.get(`http://course-service:3000/v1/sessions/list?sectionIds=${sectionIds}`, { headers })
+              );
+              data = sessionsResponse.data;
+
+          } catch (e) {
+              console.error('Error fetching student schedule:', e.message);
+              errors.push({ service: 'course/enrollment', reason: e.message || 'Failed to fetch schedule' });
+              partial = true;
+          }
+      } else if (roles.includes('FACULTY')) {
+           try {
+              const sessionsResponse = await firstValueFrom(
+                  this.httpService.get(`http://course-service:3000/v1/sessions`, { headers })
+              );
+              data = sessionsResponse.data;
+          } catch (e) {
+               console.error('Error fetching faculty schedule:', e.message);
+               errors.push({ service: 'course', reason: e.message || 'Failed to fetch schedule' });
+               partial = true;
+          }
+      } else if (roles.includes('PARENT')) {
+           throw new ForbiddenException('Parents must use /parents/children/:id/updates');
+      }
+
+      return { partial, errors, data };
+  }
+
+  @Get('grades')
+  async getGrades(
+      @Req() req: Request,
+      @CurrentUser() user: AuthenticatedUser,
+      @Query('termId') termId?: string,
+  ): Promise<AggregationResponse<any>> {
+      const tenantId = this.checkTenantContext(req, user);
+      const localUser = await this.usersService.findByKeycloakId(user.sub, tenantId);
+
+      const roles = user.realm_access?.roles || user.roles || [];
+      const token = req.headers['authorization'];
+      const headers = {
+          'Authorization': token,
+          'X-Tenant-ID': tenantId
+      };
+
+      const errors = [];
+      let data = null;
+      let partial = false;
+
+      if (roles.includes('STUDENT')) {
+           const studentId = localUser?.studentId;
+           if (!studentId) return { partial: false, errors: [], data: null };
+
+           let url = `http://grades-service:3000/v1/students/${studentId}`;
+           if (termId) {
+               url += `/term-grades?termId=${termId}`;
+           } else {
+               url += `/performance`;
+           }
+
+           try {
+               const response = await firstValueFrom(this.httpService.get(url, { headers }));
+               data = response.data;
+           } catch (e) {
+               console.error('Error fetching grades:', e.message);
+               errors.push({ service: 'grades', reason: e.message || 'Failed to fetch grades' });
+               partial = true;
+           }
+      }
+      return { partial, errors, data };
+  }
+
+  @Get('attendance')
+  async getAttendance(
+      @Req() req: Request,
+      @CurrentUser() user: AuthenticatedUser,
+      @Query('termId') termId?: string,
+      @Query('courseId') courseId?: string
+  ): Promise<AggregationResponse<any>> {
+      const tenantId = this.checkTenantContext(req, user);
+      const localUser = await this.usersService.findByKeycloakId(user.sub, tenantId);
+
+      const roles = user.realm_access?.roles || user.roles || [];
+      const token = req.headers['authorization'];
+      const headers = {
+          'Authorization': token,
+          'X-Tenant-ID': tenantId
+      };
+
+      const errors = [];
+      let data = null;
+      let partial = false;
+
+      if (roles.includes('STUDENT')) {
+           const studentId = localUser?.studentId;
+           if (!studentId) return { partial: false, errors: [], data: null };
+
+           let url = `http://attendance-service:3000/v1/students/${studentId}/attendance`;
+           const params = new URLSearchParams();
+           if (termId) params.append('termId', termId);
+           if (courseId) params.append('courseId', courseId);
+           if ([...params].length > 0) url += `?${params.toString()}`;
+
+           try {
+               const response = await firstValueFrom(this.httpService.get(url, { headers }));
+               data = response.data;
+           } catch (e) {
+               console.error('Error fetching attendance:', e.message);
+               errors.push({ service: 'attendance', reason: e.message || 'Failed to fetch attendance' });
+               partial = true;
+           }
+      }
+
+      return { partial, errors, data };
   }
 
   private checkTenantContext(req: Request, user: AuthenticatedUser, requestedTenant?: string): string {

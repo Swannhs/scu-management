@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { MeController } from './me.controller';
 import { UsersService } from './users.service';
 import { HttpService } from '@nestjs/axios';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { ForbiddenException, BadRequestException } from '@nestjs/common';
 import { AuthenticatedUser } from './interfaces/authenticated-user.interface';
 
@@ -87,6 +87,7 @@ describe('MeController', () => {
         phone: '123',
         address: '123 St',
         avatarUrl: 'http://avatar',
+        avatarRef: 'http://avatar',
         emergencyContact: { name: 'Mom' }
       });
     });
@@ -108,6 +109,7 @@ describe('MeController', () => {
         phone: undefined,
         address: undefined,
         avatarUrl: undefined,
+        avatarRef: undefined,
         emergencyContact: undefined
       });
     });
@@ -141,8 +143,63 @@ describe('MeController', () => {
             .mockReturnValueOnce(of({ data: sessions }));
 
           const result = await controller.getSchedule({ headers: { 'x-tenant-id': 't1' } } as any, user);
-          expect(result).toEqual(sessions);
+          expect(result).toEqual({
+              partial: false,
+              errors: [],
+              data: sessions
+          });
           expect(httpService.get).toHaveBeenCalledTimes(2);
+      });
+
+      it('should return partial error if downstream service fails', async () => {
+          const user: AuthenticatedUser = { sub: 'u1', realm_access: { roles: ['STUDENT'] }, tenant_id: 't1' };
+          const localUser = { studentId: 's1' } as any;
+          (usersService.findByKeycloakId as jest.Mock).mockResolvedValue(localUser);
+
+          (httpService.get as jest.Mock).mockReturnValue(throwError(() => new Error('Service down')));
+
+          const result = await controller.getSchedule({ headers: { 'x-tenant-id': 't1' } } as any, user);
+          expect(result).toEqual({
+              partial: true,
+              errors: [{ service: 'course/enrollment', reason: 'Service down' }],
+              data: []
+          });
+      });
+  });
+
+  describe('getGrades', () => {
+      it('should fetch grades for student', async () => {
+          const user: AuthenticatedUser = { sub: 'u1', realm_access: { roles: ['STUDENT'] }, tenant_id: 't1' };
+          const localUser = { studentId: 's1' } as any;
+          (usersService.findByKeycloakId as jest.Mock).mockResolvedValue(localUser);
+
+          const grades = { gpa: 4.0 };
+          (httpService.get as jest.Mock).mockReturnValue(of({ data: grades }));
+
+          const result = await controller.getGrades({ headers: { 'x-tenant-id': 't1' } } as any, user);
+          expect(result).toEqual({
+              partial: false,
+              errors: [],
+              data: grades
+          });
+      });
+  });
+
+  describe('getAttendance', () => {
+      it('should fetch attendance for student', async () => {
+          const user: AuthenticatedUser = { sub: 'u1', realm_access: { roles: ['STUDENT'] }, tenant_id: 't1' };
+          const localUser = { studentId: 's1' } as any;
+          (usersService.findByKeycloakId as jest.Mock).mockResolvedValue(localUser);
+
+          const attendance = { percentage: 95 };
+          (httpService.get as jest.Mock).mockReturnValue(of({ data: attendance }));
+
+          const result = await controller.getAttendance({ headers: { 'x-tenant-id': 't1' } } as any, user);
+          expect(result).toEqual({
+              partial: false,
+              errors: [],
+              data: attendance
+          });
       });
   });
 });
