@@ -37,6 +37,9 @@ model User {
   firstName   String?    @map("first_name")
   lastName    String?    @map("last_name")
   phone       String?
+  address     String?
+  avatarUrl   String?    @map("avatar_url")
+  emergencyContact Json? @map("emergency_contact")
 
   // Linked Profile IDs (Self-contained in User Service for quick access)
   studentId   String?    @map("student_id")
