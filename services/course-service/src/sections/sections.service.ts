@@ -103,4 +103,24 @@ export class SectionsService {
       },
     });
   }
+
+  getSessionsBySectionIds(tenantId: string, sectionIds: string[]) {
+    return this.prisma.courseSession.findMany({
+      where: {
+        tenantId,
+        courseOfferingId: { in: sectionIds },
+      },
+      include: {
+        offering: {
+          include: {
+            course: true,
+            term: true,
+          },
+        },
+      },
+      orderBy: {
+        date: 'asc',
+      },
+    });
+  }
 }

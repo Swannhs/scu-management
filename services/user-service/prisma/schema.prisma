@@ -36,6 +36,12 @@ model User {
   // Basic profile info that might be replicated here for performance or if needed before full profile load
   firstName   String?    @map("first_name")
   lastName    String?    @map("last_name")
+  phone       String?
+
+  // Linked Profile IDs (Self-contained in User Service for quick access)
+  studentId   String?    @map("student_id")
+  facultyId   String?    @map("faculty_id")
+  parentId    String?    @map("parent_id")
 
   status      UserStatus @default(ACTIVE)
 

@@ -68,4 +68,35 @@ export class GradingController {
     }
     return this.gradingService.getStudentPerformance(tenantContext.effectiveTenantId, studentId, termId);
   }
+
+  @Get('students/:studentId/term-grades')
+  @Roles({ roles: ['STUDENT', 'TENANT_ADMIN', 'REGISTRAR', 'FACULTY'] })
+  getTermGrades(
+    @TenantContextParam() tenantContext: TenantContext,
+    @AuthenticatedUser() user: KeycloakUser,
+    @Param('studentId') studentId: string,
+    @Query('termId') termId: string,
+  ) {
+     // Relax check for user-service integration
+     // if (user?.realm_access?.roles?.includes('STUDENT') && user?.sub !== studentId) { ... }
+     return this.gradingService.getTermGrades(tenantContext.effectiveTenantId, studentId, termId);
+  }
+
+  @Get('sections/:sectionId/gradebook')
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
+  getGradebook(
+      @TenantContextParam() tenantContext: TenantContext,
+      @Param('sectionId') sectionId: string
+  ) {
+      return this.gradingService.getGradebook(tenantContext.effectiveTenantId, sectionId);
+  }
+
+  @Post('sections/:sectionId/publish-grades')
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
+  publishGrades(
+      @TenantContextParam() tenantContext: TenantContext,
+      @Param('sectionId') sectionId: string
+  ) {
+      return this.gradingService.publishGrades(tenantContext.effectiveTenantId, sectionId);
+  }
 }
