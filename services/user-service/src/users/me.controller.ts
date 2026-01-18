@@ -1,7 +1,9 @@
 import { Controller, Get, Req, ForbiddenException, BadRequestException, Patch, Body, Query } from '@nestjs/common';
-import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
+import { AuthenticatedUser as CurrentUser, Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { UsersService } from './users.service';
+import { AuthenticatedUser } from './interfaces/authenticated-user.interface';
+import { UpdateProfileDto } from './dto/update-profile.dto';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 
@@ -13,7 +15,7 @@ export class MeController {
   ) {}
 
   @Get()
-  async getMe(@Req() req: Request, @AuthenticatedUser() user: any) {
+  async getMe(@Req() req: Request, @CurrentUser() user: AuthenticatedUser) {
     const tenantId = this.checkTenantContext(req, user);
     const localUser = await this.usersService.findByKeycloakId(user.sub, tenantId);
 
@@ -23,22 +25,32 @@ export class MeController {
       userId: user.sub,
       tenantId: tenantId,
       roles: roles,
-      linked: {
-        studentId: localUser?.studentId || null,
-        facultyId: localUser?.facultyId || null,
-        parentId: localUser?.parentId || null,
-      },
+      studentId: localUser?.studentId || null,
+      facultyId: localUser?.facultyId || null,
+      parentId: localUser?.parentId || null,
+    };
+  }
+
+  @Get('profile')
+  async getProfile(@Req() req: Request, @CurrentUser() user: AuthenticatedUser) {
+    const tenantId = this.checkTenantContext(req, user);
+    const localUser = await this.usersService.findByKeycloakId(user.sub, tenantId);
+
+    return {
       firstName: localUser?.firstName || user.given_name,
       lastName: localUser?.lastName || user.family_name,
       email: localUser?.email || user.email,
-      phone: localUser?.phone
+      phone: localUser?.phone,
+      address: localUser?.address,
+      avatarUrl: localUser?.avatarUrl,
+      emergencyContact: localUser?.emergencyContact,
     };
   }
 
   @Get('schedule')
   async getSchedule(
       @Req() req: Request,
-      @AuthenticatedUser() user: any,
+      @CurrentUser() user: AuthenticatedUser,
       @Query('from') from?: string,
       @Query('to') to?: string
   ) {
@@ -103,7 +115,7 @@ export class MeController {
   @Get('grades')
   async getGrades(
       @Req() req: Request,
-      @AuthenticatedUser() user: any,
+      @CurrentUser() user: AuthenticatedUser,
       @Query('termId') termId?: string,
   ) {
       const tenantId = this.checkTenantContext(req, user);
@@ -143,7 +155,7 @@ export class MeController {
   @Get('attendance')
   async getAttendance(
       @Req() req: Request,
-      @AuthenticatedUser() user: any,
+      @CurrentUser() user: AuthenticatedUser,
       @Query('termId') termId?: string,
       @Query('courseId') courseId?: string
   ) {
@@ -182,15 +194,10 @@ export class MeController {
   @Patch('profile')
   async updateProfile(
       @Req() req: Request,
-      @AuthenticatedUser() user: any,
-      @Body() data: { firstName?: string; lastName?: string; phone?: string; }
+      @CurrentUser() user: AuthenticatedUser,
+      @Body() data: UpdateProfileDto
   ) {
       const tenantId = this.checkTenantContext(req, user);
-
-      // Basic validation
-      if (data.phone && typeof data.phone !== 'string') {
-          throw new BadRequestException('Invalid phone format');
-      }
 
       try {
           const updatedUser = await this.usersService.updateProfile(user.sub, tenantId, data);
@@ -203,7 +210,7 @@ export class MeController {
       }
   }
 
-  private checkTenantContext(req: Request, user: any, requestedTenant?: string): string {
+  private checkTenantContext(req: Request, user: AuthenticatedUser, requestedTenant?: string): string {
       const headerTenant = req.headers['x-tenant-id'] as string;
       const tokenTenant = user?.tenant_id;
       const isGlobalAdmin = user?.realm_access?.roles?.includes('admin');
