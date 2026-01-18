@@ -89,4 +89,91 @@ export class AttendanceService {
       include: { records: true },
     });
   }
+
+  async getStudentSummary(tenantId: string, studentId: string) {
+    const records = await this.prisma.attendanceRecord.findMany({
+      where: {
+        tenantId,
+        studentId,
+        session: { deletedAt: null },
+      },
+      include: {
+        session: {
+          select: { courseOfferingId: true, deletedAt: true },
+        },
+      },
+    });
+
+    const overall = {
+      present: 0,
+      absent: 0,
+      late: 0,
+      excused: 0,
+      total: 0,
+      percentage: 0,
+    };
+
+    const byCourseMap = new Map<string, typeof overall>();
+
+    for (const r of records) {
+      if (!r.session) continue;
+
+      const status = r.status;
+      const courseId = r.session.courseOfferingId;
+
+      if (!byCourseMap.has(courseId)) {
+        byCourseMap.set(courseId, { present: 0, absent: 0, late: 0, excused: 0, total: 0, percentage: 0 });
+      }
+      const courseStats = byCourseMap.get(courseId)!;
+
+      // Update counts
+      if (status === 'PRESENT') {
+        overall.present++;
+        courseStats.present++;
+      } else if (status === 'ABSENT') {
+        overall.absent++;
+        courseStats.absent++;
+      } else if (status === 'LATE') {
+        overall.late++;
+        courseStats.late++;
+      } else if (status === 'EXCUSED') {
+        overall.excused++;
+        courseStats.excused++;
+      }
+
+      if (['PRESENT', 'ABSENT', 'LATE'].includes(status)) {
+        overall.total++;
+        courseStats.total++;
+      }
+    }
+
+    const calculatePercentage = (stats: typeof overall) => {
+       if (stats.total === 0) return 0;
+       return ((stats.present + stats.late) / stats.total) * 100;
+    };
+
+    overall.percentage = calculatePercentage(overall);
+
+    const byCourse = Array.from(byCourseMap.entries()).map(([courseId, stats]) => ({
+      courseId,
+      courseCode: courseId, // Placeholder as we don't have course-service access here
+      present: stats.present,
+      absent: stats.absent,
+      late: stats.late,
+      percentage: calculatePercentage(stats)
+    }));
+
+    return {
+      studentId,
+      overall: {
+        present: overall.present,
+        absent: overall.absent,
+        late: overall.late,
+        excused: overall.excused,
+        total: overall.total,
+        percentage: overall.percentage
+      },
+      byCourse
+    };
+  }
 }

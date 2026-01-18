@@ -106,6 +106,30 @@ export class ConversationsService {
     });
   }
 
+  async updateGroup(tenantId: string, actorId: string, conversationId: string, dto: UpdateGroupDto) {
+    const conversation = await this.ensureConversationExists(tenantId, conversationId);
+
+    if (conversation.type !== 'GROUP') {
+      throw new BadRequestException('Cannot update a direct conversation');
+    }
+
+    const membership = await this.prisma.conversationMember.findFirst({
+      where: { tenantId, conversationId, userId: actorId },
+    });
+
+    if (!membership || membership.role !== ConversationMemberRole.ADMIN) {
+      throw new ForbiddenException('Only admins can update group details');
+    }
+
+    return this.prisma.conversation.update({
+      where: { id: conversationId },
+      data: {
+        name: dto.name,
+        avatarFileId: dto.avatarFileId,
+      },
+    });
+  }
+
   async addMembers(tenantId: string, actorId: string, conversationId: string, dto: AddMembersDto) {
     const conversation = await this.ensureConversationExists(tenantId, conversationId);
 

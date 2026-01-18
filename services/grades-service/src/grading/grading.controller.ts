@@ -6,6 +6,7 @@ import { TenantContext } from '../common/tenant-context';
 import { CreateAssessmentDto } from './dto/create-assessment.dto';
 import { BulkScoreDto } from './dto/bulk-score.dto';
 import { ComputeFinalGradesDto } from './dto/compute-final-grades.dto';
+import { KeycloakUser } from '../common/keycloak-user.interface';
 
 @Controller('v1')
 export class GradingController {
@@ -15,7 +16,7 @@ export class GradingController {
   @Roles({ roles: ['FACULTY'] })
   createAssessment(
     @TenantContextParam() tenantContext: TenantContext,
-    @AuthenticatedUser() user: any,
+    @AuthenticatedUser() user: KeycloakUser,
     @Body() dto: CreateAssessmentDto,
   ) {
     return this.gradingService.createAssessment(tenantContext.effectiveTenantId, dto);
@@ -42,10 +43,10 @@ export class GradingController {
   }
 
   @Get('students/:studentId/transcript')
-  @Roles({ roles: ['STUDENT', 'REGISTRAR', 'TENANT_ADMIN'] })
+  @Roles({ roles: ['STUDENT', 'REGISTRAR', 'TENANT_ADMIN', 'FACULTY'] })
   getTranscript(
     @TenantContextParam() tenantContext: TenantContext,
-    @AuthenticatedUser() user: any,
+    @AuthenticatedUser() user: KeycloakUser,
     @Param('studentId') studentId: string,
   ) {
     if (user?.realm_access?.roles?.includes('STUDENT') && user?.sub !== studentId) {
@@ -55,11 +56,16 @@ export class GradingController {
   }
 
   @Get('students/:studentId/performance')
-  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
+  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
   getStudentPerformance(
     @TenantContextParam() tenantContext: TenantContext,
+    @AuthenticatedUser() user: KeycloakUser,
     @Param('studentId') studentId: string,
+    @Query('termId') termId?: string,
   ) {
-    return this.gradingService.getTranscript(tenantContext.effectiveTenantId, studentId);
+    if (user?.realm_access?.roles?.includes('STUDENT') && user?.sub !== studentId) {
+      throw new ForbiddenException('FORBIDDEN');
+    }
+    return this.gradingService.getStudentPerformance(tenantContext.effectiveTenantId, studentId, termId);
   }
 }

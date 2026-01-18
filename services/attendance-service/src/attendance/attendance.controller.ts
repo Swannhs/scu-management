@@ -5,6 +5,7 @@ import { TenantContextParam } from '../common/tenant-context.decorator';
 import { TenantContext } from '../common/tenant-context';
 import { CreateAttendanceSessionDto } from './dto/create-attendance-session.dto';
 import { MarkAttendanceDto } from './dto/mark-attendance.dto';
+import { KeycloakUser } from '../common/keycloak-user.interface';
 
 @Controller('v1')
 export class AttendanceController {
@@ -14,7 +15,7 @@ export class AttendanceController {
   @Roles({ roles: ['FACULTY'] })
   createSession(
     @TenantContextParam() tenantContext: TenantContext,
-    @AuthenticatedUser() user: any,
+    @AuthenticatedUser() user: KeycloakUser,
     @Body() dto: CreateAttendanceSessionDto,
   ) {
     return this.attendanceService.createSession(tenantContext.effectiveTenantId, user?.sub, dto);
@@ -34,7 +35,7 @@ export class AttendanceController {
   @Roles({ roles: ['STUDENT', 'TENANT_ADMIN', 'REGISTRAR', 'FACULTY'] })
   getStudentAttendance(
     @TenantContextParam() tenantContext: TenantContext,
-    @AuthenticatedUser() user: any,
+    @AuthenticatedUser() user: KeycloakUser,
     @Param('studentId') studentId: string,
     @Query('termId') termId?: string,
   ) {
@@ -42,6 +43,19 @@ export class AttendanceController {
       throw new ForbiddenException('FORBIDDEN');
     }
     return this.attendanceService.getStudentAttendance(tenantContext.effectiveTenantId, studentId, termId);
+  }
+
+  @Get('students/:studentId/summary')
+  @Roles({ roles: ['STUDENT', 'TENANT_ADMIN', 'REGISTRAR', 'FACULTY'] })
+  getStudentSummary(
+    @TenantContextParam() tenantContext: TenantContext,
+    @AuthenticatedUser() user: KeycloakUser,
+    @Param('studentId') studentId: string,
+  ) {
+    if (user?.realm_access?.roles?.includes('STUDENT') && user?.sub !== studentId) {
+      throw new ForbiddenException('FORBIDDEN');
+    }
+    return this.attendanceService.getStudentSummary(tenantContext.effectiveTenantId, studentId);
   }
 
   @Get('sections/:sectionId/attendance')

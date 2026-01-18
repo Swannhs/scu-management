@@ -175,4 +175,74 @@ export class GradingService {
       transcripts,
     };
   }
+
+  async getStudentPerformance(tenantId: string, studentId: string, termId?: string) {
+    let transcript;
+    if (termId) {
+      transcript = await this.prisma.studentTranscript.findUnique({
+        where: {
+          tenantId_studentId_termId: {
+            tenantId,
+            studentId,
+            termId,
+          },
+        },
+      });
+    } else {
+      transcript = await this.prisma.studentTranscript.findFirst({
+        where: { tenantId, studentId },
+        orderBy: { updatedAt: 'desc' },
+      });
+    }
+
+    const recentMarks = await this.prisma.examMark.findMany({
+      where: {
+        tenantId,
+        studentId,
+      },
+      take: 5,
+      orderBy: { createdAt: 'desc' },
+      include: {
+        exam: true,
+      },
+    });
+
+    const flags: string[] = [];
+    if (transcript && transcript.gpa && transcript.gpa.toNumber() < 2.0) {
+      flags.push('LOW_GPA');
+    }
+
+    const recentFailing = recentMarks.some((m) => {
+      const obtained = m.obtainedMarks.toNumber();
+      const total = m.exam.totalMarks.toNumber();
+      if (total === 0) return false;
+      const percentage = (obtained / total) * 100;
+      return percentage < 50;
+    });
+
+    if (recentFailing) {
+      flags.push('RECENT_FAILING_GRADES');
+    }
+
+    return {
+      studentId,
+      termId: transcript?.termId || termId || null,
+      summary: {
+        gpa: transcript?.gpa ? transcript.gpa.toNumber() : null,
+        creditsCompleted: transcript?.totalCredits ? transcript.totalCredits.toNumber() : 0,
+        cgpa: transcript?.cgpa ? transcript.cgpa.toNumber() : null,
+      },
+      recent: recentMarks.map((m) => ({
+        assessmentId: m.examId,
+        title: m.exam.name,
+        score: m.obtainedMarks.toNumber(),
+        total: m.exam.totalMarks.toNumber(),
+        percentage:
+          m.exam.totalMarks.toNumber() > 0
+            ? (m.obtainedMarks.toNumber() / m.exam.totalMarks.toNumber()) * 100
+            : 0,
+      })),
+      flags,
+    };
+  }
 }
