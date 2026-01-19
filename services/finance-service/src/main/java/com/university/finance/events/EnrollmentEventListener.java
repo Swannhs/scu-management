@@ -7,7 +7,9 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class EnrollmentEventListener {
@@ -25,15 +27,17 @@ public class EnrollmentEventListener {
 
             String studentId = (String) data.get("student_id");
             String tenantId = (String) data.get("tenant_id");
-            String courseId = (String) data.get("course_offering_id");
+            // String courseId = (String) data.get("course_offering_id");
 
             Invoice invoice = new Invoice();
-            invoice.setStudentId(java.util.UUID.fromString(studentId));
-            invoice.setTenantId(java.util.UUID.fromString(tenantId));
+            invoice.setStudentId(UUID.fromString(studentId));
+            invoice.setTenantId(UUID.fromString(tenantId));
             invoice.setTotalAmount(new BigDecimal("500.00")); // Base fee example
+            invoice.setPaidAmount(BigDecimal.ZERO);
             invoice.setInvoiceNumber("INV-" + System.currentTimeMillis());
             // invoice.setDescription("Semester Fee for Course: " + courseId); // Description belongs to items
             invoice.setStatus("PENDING");
+            invoice.setDueDate(LocalDate.now().plusDays(30));
             invoice.setCreatedAt(java.time.LocalDateTime.now());
 
             invoiceRepository.save(invoice);
