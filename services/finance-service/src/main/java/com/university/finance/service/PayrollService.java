@@ -31,6 +31,9 @@ public class PayrollService {
     @Autowired
     private PayslipRepository payslipRepository;
 
+    @Autowired
+    private PostingService postingService;
+
     @Transactional
     public StaffProfile createStaffProfile(StaffProfile profile) {
         profile.setTenantId(TenantContext.getCurrentTenant());
@@ -107,7 +110,9 @@ public class PayrollService {
             throw new IllegalStateException("Only CALCULATED runs can be approved");
         }
         run.setStatus("APPROVED");
-        return payrollRunRepository.save(run);
+        PayrollRun saved = payrollRunRepository.save(run);
+        postingService.postPayrollAccrual(saved);
+        return saved;
     }
 
     @Transactional
@@ -127,7 +132,9 @@ public class PayrollService {
             payslipRepository.save(p);
         }
 
-        return payrollRunRepository.save(run);
+        PayrollRun saved = payrollRunRepository.save(run);
+        postingService.postPayrollPay(saved);
+        return saved;
     }
 
     public List<Payslip> getPayslips(UUID runId) {

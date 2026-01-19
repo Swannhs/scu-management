@@ -1,9 +1,11 @@
 package com.university.finance.controller;
 
-import com.university.finance.config.TenantContext;
+import com.university.finance.dto.FeeHeadDto;
+import com.university.finance.model.FeeHead;
 import com.university.finance.model.FeeStructure;
-import com.university.finance.repository.FeeStructureRepository;
+import com.university.finance.service.FeeStructureService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
@@ -13,16 +15,36 @@ import java.util.UUID;
 public class FeeStructureController {
 
     @Autowired
-    private FeeStructureRepository repository;
+    private FeeStructureService service;
 
     @PostMapping
     public FeeStructure create(@RequestBody FeeStructure feeStructure) {
-        feeStructure.setTenantId(TenantContext.getCurrentTenant());
-        return repository.save(feeStructure);
+        return service.createStructure(feeStructure);
     }
 
     @GetMapping
     public List<FeeStructure> getAll() {
-        return repository.findByTenantId(TenantContext.getCurrentTenant());
+        return service.getAllStructures();
+    }
+
+    @PostMapping("/{id}/heads")
+    public ResponseEntity<FeeHead> addHead(@PathVariable UUID id, @RequestBody FeeHeadDto dto) {
+        return ResponseEntity.ok(service.addHead(id, dto));
+    }
+
+    @GetMapping("/{id}/heads")
+    public List<FeeHead> getHeads(@PathVariable UUID id) {
+        return service.getHeads(id);
+    }
+
+    @PatchMapping("/{id}/heads/{headId}")
+    public ResponseEntity<FeeHead> updateHead(@PathVariable UUID id, @PathVariable UUID headId, @RequestBody FeeHeadDto dto) {
+        return ResponseEntity.ok(service.updateHead(id, headId, dto));
+    }
+
+    @DeleteMapping("/{id}/heads/{headId}")
+    public ResponseEntity<Void> deleteHead(@PathVariable UUID id, @PathVariable UUID headId) {
+        service.deleteHead(id, headId);
+        return ResponseEntity.noContent().build();
     }
 }

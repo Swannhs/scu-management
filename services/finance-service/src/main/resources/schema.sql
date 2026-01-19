@@ -113,3 +113,16 @@ CREATE TABLE event_outbox (
     retries INT DEFAULT 0,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+-- Idempotency Keys
+CREATE TABLE idempotency_keys (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    tenant_id UUID NOT NULL,
+    key VARCHAR(255) NOT NULL,
+    endpoint VARCHAR(255) NOT NULL,
+    request_hash VARCHAR(255),
+    response_json TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+
+    UNIQUE(tenant_id, key, endpoint)
+);

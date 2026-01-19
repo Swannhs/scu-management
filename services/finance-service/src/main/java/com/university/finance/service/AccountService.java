@@ -77,4 +77,34 @@ public class AccountService {
         account.setDeletedAt(LocalDateTime.now());
         accountRepository.save(account);
     }
+
+    @Transactional
+    public void seedDefaultAccounts() {
+        UUID tenantId = TenantContext.getCurrentTenant();
+        if (accountRepository.findByTenantId(tenantId).isEmpty()) {
+            createAccountInternal(tenantId, "1000", "Cash", com.university.finance.model.AccountType.ASSET);
+            createAccountInternal(tenantId, "1001", "Bank", com.university.finance.model.AccountType.ASSET);
+            createAccountInternal(tenantId, "1200", "Accounts Receivable", com.university.finance.model.AccountType.ASSET);
+            createAccountInternal(tenantId, "2000", "Accounts Payable", com.university.finance.model.AccountType.LIABILITY);
+            createAccountInternal(tenantId, "2100", "Student Wallet Liability", com.university.finance.model.AccountType.LIABILITY);
+            createAccountInternal(tenantId, "2200", "Salary Payable", com.university.finance.model.AccountType.LIABILITY);
+            createAccountInternal(tenantId, "4000", "Tuition Income", com.university.finance.model.AccountType.INCOME);
+            createAccountInternal(tenantId, "4001", "Hostel Income", com.university.finance.model.AccountType.INCOME);
+            createAccountInternal(tenantId, "4002", "Transport Income", com.university.finance.model.AccountType.INCOME);
+            createAccountInternal(tenantId, "4100", "Waivers/Discounts", com.university.finance.model.AccountType.INCOME); // Contra income
+            createAccountInternal(tenantId, "5000", "Salary Expense", com.university.finance.model.AccountType.EXPENSE);
+            createAccountInternal(tenantId, "5100", "General Expense", com.university.finance.model.AccountType.EXPENSE);
+        }
+    }
+
+    private void createAccountInternal(UUID tenantId, String code, String name, com.university.finance.model.AccountType type) {
+        Account account = new Account();
+        account.setTenantId(tenantId);
+        account.setCode(code);
+        account.setName(name);
+        account.setType(type);
+        account.setPosting(true);
+        account.setActive(true);
+        accountRepository.save(account);
+    }
 }

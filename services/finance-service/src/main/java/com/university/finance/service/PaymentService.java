@@ -25,11 +25,18 @@ public class PaymentService {
     @Autowired
     private InvoiceRepository invoiceRepository;
 
+    @Autowired
+    private PostingService postingService;
+
     @Transactional
     public Payment processPayment(PaymentRequestDto request) {
         UUID tenantId = TenantContext.getCurrentTenant();
         if (tenantId == null) {
             throw new IllegalStateException("Tenant context is missing");
+        }
+
+        if (request.getAmount() == null || request.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Amount must be greater than zero");
         }
 
         Invoice invoice = invoiceRepository.findById(request.getInvoiceId())
@@ -69,6 +76,8 @@ public class PaymentService {
         }
 
         invoiceRepository.save(invoice);
+
+        postingService.postPaymentReceipt(payment);
 
         return payment;
     }

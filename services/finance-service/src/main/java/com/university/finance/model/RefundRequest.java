@@ -26,6 +26,7 @@ public class RefundRequest {
     private BigDecimal amount;
     private String reason;
     private String status; // REQUESTED, APPROVED, REJECTED, EXECUTED
+    private String method; // WALLET, CASH, BANK
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

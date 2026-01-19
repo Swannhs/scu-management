@@ -24,6 +24,9 @@ public class VendorService {
     @Autowired
     private VendorBillRepository vendorBillRepository;
 
+    @Autowired
+    private PostingService postingService;
+
     @Transactional
     public Vendor createVendor(Vendor vendor) {
         vendor.setTenantId(TenantContext.getCurrentTenant());
@@ -73,7 +76,9 @@ public class VendorService {
              throw new EntityNotFoundException("Access Denied");
         }
         bill.setStatus("APPROVED");
-        return vendorBillRepository.save(bill);
+        VendorBill saved = vendorBillRepository.save(bill);
+        postingService.postVendorBillApprove(saved);
+        return saved;
     }
 
     @Transactional
@@ -87,7 +92,8 @@ public class VendorService {
             throw new IllegalStateException("Bill must be APPROVED before payment");
         }
         bill.setStatus("PAID");
-        // Here we would create a Journal Entry or Outgoing Payment record in a real system.
-        return vendorBillRepository.save(bill);
+        VendorBill saved = vendorBillRepository.save(bill);
+        postingService.postVendorBillPay(saved);
+        return saved;
     }
 }

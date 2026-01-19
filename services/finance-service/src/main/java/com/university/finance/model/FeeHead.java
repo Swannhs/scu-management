@@ -23,6 +23,18 @@ public class FeeHead {
     private String name;
     private BigDecimal amount;
 
+    @Column(name = "type")
+    private String type; // TUITION, HOSTEL, TRANSPORT, EXAM, LIBRARY_FINE, MISC
+
+    @Column(name = "income_account_id")
+    private UUID incomeAccountId;
+
+    @Column(name = "is_recurring")
+    private Boolean isRecurring;
+
+    @Column(name = "frequency")
+    private String frequency; // MONTHLY, TERM, ONE_TIME
+
     @Column(name = "is_optional")
     private Boolean isOptional;
 }

@@ -29,6 +29,12 @@ public class RefundService {
     @Autowired
     private InvoiceRepository invoiceRepository;
 
+    @Autowired
+    private StudentWalletService studentWalletService;
+
+    @Autowired
+    private PostingService postingService;
+
     @Transactional
     public RefundRequest createRefundRequest(RefundRequest request) {
         request.setTenantId(TenantContext.getCurrentTenant());
@@ -99,16 +105,31 @@ public class RefundService {
         // Let's store amount as positive, type REFUND.
         payment.setAmount(request.getAmount());
         payment.setType("REFUND");
-        payment.setMethod("BANK_TRANSFER"); // Default or from request?
+        payment.setMethod(request.getMethod() != null ? request.getMethod() : "BANK_TRANSFER");
         payment.setPaymentDate(LocalDateTime.now());
         payment.setNotes("Refund execution for Request " + id);
 
-        paymentRepository.save(payment);
+        Payment savedPayment = paymentRepository.save(payment);
+
+        if ("WALLET".equals(request.getMethod())) {
+            // Credit Student Wallet
+            // Using DTO for credit? No, service method takes DTO. I should create DTO or overload.
+            // StudentWalletService.credit takes UUID, WalletTransactionDto.
+            com.university.finance.dto.WalletTransactionDto walletDto = new com.university.finance.dto.WalletTransactionDto();
+            walletDto.setAmount(request.getAmount());
+            walletDto.setDescription("Refund for Invoice " + (invoice != null ? invoice.getInvoiceNumber() : ""));
+            studentWalletService.credit(request.getStudentId(), walletDto);
+
+            postingService.postWalletCredit(request.getTenantId(), request.getStudentId(), request.getAmount());
+        } else {
+            // Cash/Bank Refund
+            postingService.postRefund(request, savedPayment);
+        }
 
         request.setStatus("EXECUTED");
         request.setUpdatedAt(LocalDateTime.now());
         refundRequestRepository.save(request);
 
-        return payment;
+        return savedPayment;
     }
 }

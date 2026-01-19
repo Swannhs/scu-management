@@ -39,4 +39,9 @@ public class AccountController {
     public void archiveAccount(@PathVariable UUID id) {
         service.archiveAccount(id);
     }
+
+    @PostMapping("/seed")
+    public void seedDefaultAccounts() {
+        service.seedDefaultAccounts();
+    }
 }

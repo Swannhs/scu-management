@@ -5,6 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -27,7 +28,10 @@ public class VendorBill {
 
     private BigDecimal amount;
     private LocalDate dueDate;
-    private String status; // PENDING, APPROVED, PAID
+    private String status; // PENDING, APPROVED, PAID, VOID
+
+    @OneToMany(mappedBy = "vendorBill", cascade = CascadeType.ALL)
+    private List<VendorBillItem> items;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

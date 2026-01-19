@@ -31,6 +31,9 @@ public class InvoiceService {
     @Autowired
     private PaymentRepository paymentRepository;
 
+    @Autowired
+    private PostingService postingService;
+
     @Transactional(readOnly = true)
     public List<Invoice> getAllInvoices() {
         return invoiceRepository.findByTenantId(TenantContext.getCurrentTenant());
@@ -68,7 +71,9 @@ public class InvoiceService {
             throw new IllegalStateException("Invoice is not in DRAFT status");
         }
         invoice.setStatus("ISSUED");
-        return invoiceRepository.save(invoice);
+        Invoice saved = invoiceRepository.save(invoice);
+        postingService.postInvoiceIssue(saved);
+        return saved;
     }
 
     @Transactional
