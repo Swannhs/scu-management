@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
 const { v4: uuidv4 } = require('uuid');
 const { extractTenantAndUser } = require('./middleware/auth');
 const { isAccessAllowed } = require('./access');
@@ -11,6 +13,31 @@ const errorResponse = (res, status, code, message, details) =>
 
 const createApp = ({ pool }) => {
   const app = express();
+
+  const swaggerOptions = {
+    definition: {
+      openapi: '3.0.0',
+      info: {
+        title: 'Document Service API',
+        version: '1.0.0',
+        description: 'API for managing files and document access grants',
+      },
+      components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: 'http',
+            scheme: 'bearer',
+            bearerFormat: 'JWT',
+          },
+        },
+      },
+      security: [{ bearerAuth: [] }],
+    },
+    apis: ['./src/app.js'],
+  };
+
+  const swaggerSpec = swaggerJsdoc(swaggerOptions);
+  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   app.use(cors());
   app.use(bodyParser.json());
@@ -50,6 +77,37 @@ const createApp = ({ pool }) => {
     return grantRes.rows.length > 0;
   };
 
+  /**
+   * @openapi
+   * /v1/files/initiate-upload:
+   *   post:
+   *     summary: Initiate a file upload
+   *     tags: [Files]
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             required: [filename, ownerService, ownerEntityId]
+   *             properties:
+   *               filename:
+   *                 type: string
+   *               contentType:
+   *                 type: string
+   *               sizeBytes:
+   *                 type: integer
+   *               ownerService:
+   *                 type: string
+   *               ownerEntityId:
+   *                 type: string
+   *               accessPolicy:
+   *                 type: string
+   *                 enum: [PRIVATE, TENANT_PUBLIC, SHARED]
+   *     responses:
+   *       200:
+   *         description: Upload initiated successfully
+   */
   app.post('/v1/files/initiate-upload', async (req, res) => {
     const {
       filename,
@@ -173,6 +231,24 @@ const createApp = ({ pool }) => {
     }
   });
 
+  /**
+   * @openapi
+   * /v1/files/{fileId}:
+   *   get:
+   *     summary: Get file metadata
+   *     tags: [Files]
+   *     parameters:
+   *       - in: path
+   *         name: fileId
+   *         required: true
+   *         schema:
+   *           type: string
+   *     responses:
+   *       200:
+   *         description: File metadata
+   *       404:
+   *         description: File not found
+   */
   app.get('/v1/files/:fileId', async (req, res) => {
     const { fileId } = req.params;
 
