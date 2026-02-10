@@ -1,0 +1,7 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Admin Config Service API", "version": "1.0.0" },
+  "paths": {
+    "/admin/settings": { "get": { "tags": ["admin-config-service"], "summary": "List platform settings", "responses": { "200": { "description": "Settings retrieved" } } } }
+  }
+}
