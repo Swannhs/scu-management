@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Req } from '@nestjs/common';
+import { Controller, Get, Param, Post, Query, Req } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
@@ -14,9 +14,16 @@ export class NotificationsController {
   async listNotifications(
     @TenantContextParam() tenantContext: TenantContext,
     @Req() req: Request,
+    @Query('unread') unread?: string,
+    @Query('limit') limit?: string,
   ) {
     const userId = req.user?.sub as string;
-    return this.notificationsService.listNotifications(tenantContext.effectiveTenantId, userId);
+    return this.notificationsService.listNotifications(
+      tenantContext.effectiveTenantId,
+      userId,
+      unread === 'true',
+      limit ? Number(limit) : undefined,
+    );
   }
 
   @Post(':id/read')

@@ -5,10 +5,11 @@ import { PrismaService } from '../../prisma/prisma.service';
 export class NotificationsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async listNotifications(tenantId: string, userId: string) {
+  async listNotifications(tenantId: string, userId: string, unread = false, limit = 50) {
     return this.prisma.notification.findMany({
-      where: { tenantId, userId },
+      where: { tenantId, userId, ...(unread ? { readAt: null } : {}) },
       orderBy: { createdAt: 'desc' },
+      take: limit,
     });
   }
 

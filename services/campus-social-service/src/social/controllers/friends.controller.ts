@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Req } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
@@ -21,6 +21,17 @@ export class FriendsController {
     return this.friendsService.requestFriend(tenantContext.effectiveTenantId, userId, dto);
   }
 
+  @Get('requests')
+  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
+  async listRequests(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Req() req: Request,
+    @Query('status') status = 'all',
+  ) {
+    const userId = req.user?.sub as string;
+    return this.friendsService.listRequests(tenantContext.effectiveTenantId, userId, status);
+  }
+
   @Post('requests/:id/accept')
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
   async acceptRequest(
@@ -41,6 +52,17 @@ export class FriendsController {
   ) {
     const userId = req.user?.sub as string;
     return this.friendsService.rejectRequest(tenantContext.effectiveTenantId, userId, requestId);
+  }
+
+  @Post('requests/:id/cancel')
+  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
+  async cancelRequest(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Req() req: Request,
+    @Param('id') requestId: string,
+  ) {
+    const userId = req.user?.sub as string;
+    return this.friendsService.cancelRequest(tenantContext.effectiveTenantId, userId, requestId);
   }
 
   @Get()

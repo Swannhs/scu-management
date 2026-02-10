@@ -138,3 +138,24 @@ Response:
 - Outbox events written for friend requests, posts, comments, messages, and calls.
 - Conversation membership enforced for messages and calls.
 - Course group created from `course.created` and auto-joined on `student.enrolled`.
+
+## Tenant-aware API and docs
+
+### Security and tenant enforcement
+- Required header: `X-Tenant-ID`
+- Required token claim: `tenant_id`
+- Mismatch (unless global admin role): `403`
+- Standardized response envelope enabled globally for success and errors.
+
+### Unified docs endpoints
+- `GET /openapi.json`
+- `GET /api-docs`
+
+### MVP social routes
+- Profiles: `/v1/profiles/*`
+- Friends: `/v1/friends/*`
+- Groups: `/v1/groups/*`
+- Chats: `/v1/chats/*`
+- Posts: `/v1/posts/*`
+- Notifications: `/v1/notifications/*`
+- Calls skeleton: `/v1/calls/rooms/*`
