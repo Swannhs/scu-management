@@ -5,6 +5,7 @@ import { OutboxService } from './outbox.service';
 
 @Injectable()
 export class CallsService {
+  private readonly callRooms = new Map<string, { tenantId: string; roomId: string; type: string; targetId: string; members: Set<string> }>();
   constructor(
     private readonly prisma: PrismaService,
     private readonly outbox: OutboxService,
@@ -82,4 +83,36 @@ export class CallsService {
       data: { status: 'ENDED', endedAt: new Date() },
     });
   }
+
+  createRoom(tenantId: string, actorId: string, type: string, targetId: string) {
+    const roomId = `${type.toLowerCase()}-${targetId}`;
+    const existing = this.callRooms.get(roomId);
+    if (existing) {
+      existing.members.add(actorId);
+      return existing;
+    }
+
+    const room = { tenantId, roomId, type, targetId, members: new Set([actorId]) };
+    this.callRooms.set(roomId, room);
+    return room;
+  }
+
+  joinRoom(tenantId: string, actorId: string, roomId: string) {
+    const room = this.callRooms.get(roomId);
+    if (!room || room.tenantId !== tenantId) {
+      throw new NotFoundException('Room not found');
+    }
+    room.members.add(actorId);
+    return room;
+  }
+
+  leaveRoom(tenantId: string, actorId: string, roomId: string) {
+    const room = this.callRooms.get(roomId);
+    if (!room || room.tenantId !== tenantId) {
+      throw new NotFoundException('Room not found');
+    }
+    room.members.delete(actorId);
+    return room;
+  }
+
 }

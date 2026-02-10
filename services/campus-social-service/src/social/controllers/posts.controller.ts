@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Req } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
@@ -30,6 +30,13 @@ export class PostsController {
     return this.postsService.getFeed(tenantContext.effectiveTenantId, userId);
   }
 
+  @Get('posts')
+  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
+  async getPosts(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request, @Query('scope') _scope?: string) {
+    const userId = req.user?.sub as string;
+    return this.postsService.getFeed(tenantContext.effectiveTenantId, userId);
+  }
+
   @Post('posts/:id/comments')
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
   async addComment(
@@ -43,6 +50,7 @@ export class PostsController {
   }
 
   @Post('posts/:id/react')
+  @Post('posts/:id/reactions')
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
   async reactToPost(
     @TenantContextParam() tenantContext: TenantContext,

@@ -118,4 +118,20 @@ export class GroupsService {
       },
     });
   }
+
+  async getGroup(tenantId: string, groupId: string) {
+    return this.prisma.group.findFirst({ where: { tenantId, id: groupId } });
+  }
+
+  async listMembers(tenantId: string, groupId: string) {
+    return this.prisma.groupMember.findMany({ where: { tenantId, groupId } });
+  }
+
+  async updateMember(tenantId: string, groupId: string, userId: string, data: { role?: string }) {
+    return this.prisma.groupMember.update({
+      where: { tenantId_groupId_userId: { tenantId, groupId, userId } },
+      data: { ...(data.role ? { role: data.role as any } : {}) },
+    });
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Put, Req } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Put, Req } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
@@ -20,6 +20,18 @@ export class ProfilesController {
   @Put('me')
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
   async updateMe(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Req() req: Request,
+    @Body() dto: UpdateProfileDto,
+  ) {
+    const userId = req.user?.sub as string;
+    return this.profilesService.upsertMyProfile(tenantContext.effectiveTenantId, userId, dto);
+  }
+
+
+  @Patch('me')
+  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
+  async patchMe(
     @TenantContextParam() tenantContext: TenantContext,
     @Req() req: Request,
     @Body() dto: UpdateProfileDto,

@@ -1,0 +1,7 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Course Service API", "version": "1.0.0" },
+  "paths": {
+    "/courses": { "get": { "tags": ["course-service"], "summary": "List courses", "responses": { "200": { "description": "Courses retrieved" } } } }
+  }
+}

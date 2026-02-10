@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import {
   AuthGuard,
   KeycloakConnectModule,
@@ -9,6 +9,10 @@ import {
 } from 'nest-keycloak-connect';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { HttpExceptionEnvelopeFilter } from './common/filters/http-exception.filter';
+import { TenantAuthGuard } from './common/guards/tenant-auth.guard';
+import { ResponseEnvelopeInterceptor } from './common/interceptors/response-envelope.interceptor';
+import { RequestContextMiddleware } from './common/middleware/request-context.middleware';
 import { PrismaModule } from './prisma/prisma.module';
 import { SocialModule } from './social/social.module';
 
@@ -47,6 +51,22 @@ import { SocialModule } from './social/social.module';
       provide: APP_GUARD,
       useClass: RoleGuard,
     },
+    {
+      provide: APP_GUARD,
+      useClass: TenantAuthGuard,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionEnvelopeFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ResponseEnvelopeInterceptor,
+    },
   ],
 })
-export class AppModule { }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(RequestContextMiddleware).forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}
