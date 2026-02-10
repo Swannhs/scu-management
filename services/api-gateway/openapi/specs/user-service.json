@@ -1,0 +1,8 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "User Service API", "version": "1.0.0" },
+  "paths": {
+    "/auth/login": { "post": { "tags": ["user-service"], "summary": "Authenticate user", "responses": { "200": { "description": "Login successful" } } } },
+    "/users": { "get": { "tags": ["user-service"], "summary": "List users", "responses": { "200": { "description": "Users retrieved" } } } }
+  }
+}

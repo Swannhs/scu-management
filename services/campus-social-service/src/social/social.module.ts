@@ -5,6 +5,7 @@ import { FriendsController } from './controllers/friends.controller';
 import { GroupsController } from './controllers/groups.controller';
 import { PostsController } from './controllers/posts.controller';
 import { ConversationsController } from './controllers/conversations.controller';
+import { ChatsController } from './controllers/chats.controller';
 import { CallsController } from './controllers/calls.controller';
 import { NotificationsController } from './controllers/notifications.controller';
 import { EventsController } from './controllers/events.controller';
@@ -26,6 +27,7 @@ import { OutboxService } from './services/outbox.service';
     GroupsController,
     PostsController,
     ConversationsController,
+    ChatsController,
     CallsController,
     NotificationsController,
     EventsController,

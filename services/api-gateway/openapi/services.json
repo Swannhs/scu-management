@@ -1,0 +1,40 @@
+{
+  "services": [
+    {
+      "name": "user-service",
+      "version": "1.0.0",
+      "url": "http://user-service:3000/openapi.json",
+      "fallbackFile": "openapi/specs/user-service.json"
+    },
+    {
+      "name": "student-service",
+      "version": "1.0.0",
+      "url": "http://student-service:3000/openapi.json",
+      "fallbackFile": "openapi/specs/student-service.json"
+    },
+    {
+      "name": "course-service",
+      "version": "1.0.0",
+      "url": "http://course-service:3000/openapi.json",
+      "fallbackFile": "openapi/specs/course-service.json"
+    },
+    {
+      "name": "campus-social-service",
+      "version": "1.0.0",
+      "url": "http://campus-social-service:3000/openapi.json",
+      "fallbackFile": "openapi/specs/campus-social-service.json"
+    },
+    {
+      "name": "finance-service",
+      "version": "1.0.0",
+      "url": "http://finance-service:8080/v3/api-docs",
+      "fallbackFile": "openapi/specs/finance-service.json"
+    },
+    {
+      "name": "admin-config-service",
+      "version": "1.0.0",
+      "url": "http://admin-config-service:80/openapi.json",
+      "fallbackFile": "openapi/specs/admin-config-service.json"
+    }
+  ]
+}

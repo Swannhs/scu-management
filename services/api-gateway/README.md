@@ -96,3 +96,37 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+## Unified OpenAPI Documentation
+
+The API gateway now exposes a merged OpenAPI document for the core routed microservices.
+
+### Service specs
+- Source registry: `openapi/services.json`
+- Per-service fallback specs (versioned in git): `openapi/specs/*.json`
+- Generated combined document: `openapi/combined.openapi.json`
+
+### Commands
+```bash
+npm run openapi:merge
+npm run openapi:merge:check
+```
+
+### Endpoints
+- `GET /api-docs` - unified docs UI (ReDoc)
+- `GET /api-docs/openapi.json` - merged OpenAPI JSON
+- `POST /api-docs/rebuild` - manual rebuild trigger
+
+### Automation
+A CI workflow (`.github/workflows/openapi-merge.yml`) regenerates and validates the combined document on spec changes and on manual workflow dispatch.
+
+## Unified Swagger endpoints
+- `GET /api-docs` - merged ReDoc UI
+- `GET /openapi.json` - merged OpenAPI JSON
+- `POST /api-docs/rebuild` - refresh in-memory merged spec
+
+## Merge command
+```bash
+npm run openapi:merge
+```
+Generates: `openapi/combined.openapi.json`

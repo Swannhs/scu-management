@@ -1,0 +1,7 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Finance Service API", "version": "1.0.0" },
+  "paths": {
+    "/finance/invoices": { "get": { "tags": ["finance-service"], "summary": "List invoices", "responses": { "200": { "description": "Invoices retrieved" } } } }
+  }
+}

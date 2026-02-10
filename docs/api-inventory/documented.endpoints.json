@@ -1,0 +1,282 @@
+[
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/admin/settings",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/admin/settings",
+    "sourceFile": "services/api-gateway/openapi/specs/admin-config-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/auth/login",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/auth/login",
+    "sourceFile": "services/api-gateway/openapi/specs/user-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/finance/invoices",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/finance/invoices",
+    "sourceFile": "services/api-gateway/openapi/specs/finance-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/students",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/students",
+    "sourceFile": "services/api-gateway/openapi/specs/student-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/users",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/users",
+    "sourceFile": "services/api-gateway/openapi/specs/user-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/academic-years",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/academic-years",
+    "sourceFile": "services/api-gateway/openapi/specs/course-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/academic-years",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/academic-years",
+    "sourceFile": "services/api-gateway/openapi/specs/course-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/calls/rooms",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/calls/rooms",
+    "sourceFile": "services/api-gateway/openapi/specs/campus-social-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/chats",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/chats",
+    "sourceFile": "services/api-gateway/openapi/specs/campus-social-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/courses",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/courses",
+    "sourceFile": "services/api-gateway/openapi/specs/course-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/courses",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/courses",
+    "sourceFile": "services/api-gateway/openapi/specs/course-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/friends/requests",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/friends/requests",
+    "sourceFile": "services/api-gateway/openapi/specs/campus-social-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/friends/requests",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/friends/requests",
+    "sourceFile": "services/api-gateway/openapi/specs/campus-social-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/groups",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/groups",
+    "sourceFile": "services/api-gateway/openapi/specs/campus-social-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/groups",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/groups",
+    "sourceFile": "services/api-gateway/openapi/specs/campus-social-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/notifications",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/notifications",
+    "sourceFile": "services/api-gateway/openapi/specs/campus-social-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/posts",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/posts",
+    "sourceFile": "services/api-gateway/openapi/specs/campus-social-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/posts",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "POST",
+    "path": "/v1/posts",
+    "sourceFile": "services/api-gateway/openapi/specs/campus-social-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/profiles/me",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/v1/profiles/me",
+    "sourceFile": "services/api-gateway/openapi/specs/campus-social-service.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "PATCH",
+    "path": "/v1/profiles/me",
+    "sourceFile": "services/api-gateway/openapi/combined.openapi.json",
+    "handler": ""
+  },
+  {
+    "service": "api-gateway",
+    "method": "PATCH",
+    "path": "/v1/profiles/me",
+    "sourceFile": "services/api-gateway/openapi/specs/campus-social-service.json",
+    "handler": ""
+  }
+]

@@ -11,7 +11,7 @@ export class FriendsService {
   ) {}
 
   async requestFriend(tenantId: string, requesterId: string, dto: FriendRequestDto) {
-    if (requesterId === dto.addresseeId) {
+    if (requesterId === dto.targetUserId) {
       throw new BadRequestException('Cannot friend yourself');
     }
 
@@ -20,7 +20,7 @@ export class FriendsService {
         tenantId_requesterId_addresseeId: {
           tenantId,
           requesterId,
-          addresseeId: dto.addresseeId,
+          addresseeId: dto.targetUserId,
         },
       },
     });
@@ -34,7 +34,7 @@ export class FriendsService {
         tenantId_requesterId_addresseeId: {
           tenantId,
           requesterId,
-          addresseeId: dto.addresseeId,
+          addresseeId: dto.targetUserId,
         },
       },
       update: {
@@ -43,7 +43,7 @@ export class FriendsService {
       create: {
         tenantId,
         requesterId,
-        addresseeId: dto.addresseeId,
+        addresseeId: dto.targetUserId,
         status: 'PENDING',
       },
     });
@@ -51,7 +51,7 @@ export class FriendsService {
     await this.outbox.publishEvent(tenantId, 'social.friend_request.sent', {
       friendshipId: friendship.id,
       requesterId,
-      addresseeId: dto.addresseeId,
+      addresseeId: dto.targetUserId,
     });
 
     return friendship;
@@ -119,4 +119,33 @@ export class FriendsService {
       },
     });
   }
+
+  async listRequests(tenantId: string, actorId: string, status: string = 'all') {
+    const where: any = { tenantId };
+    if (status === 'pending') {
+      where.addresseeId = actorId;
+      where.status = 'PENDING';
+    } else if (status === 'sent') {
+      where.requesterId = actorId;
+      where.status = 'PENDING';
+    } else {
+      where.OR = [{ requesterId: actorId }, { addresseeId: actorId }];
+    }
+
+    return this.prisma.friendship.findMany({ where, orderBy: { createdAt: 'desc' } });
+  }
+
+  async cancelRequest(tenantId: string, actorId: string, requestId: string) {
+    const friendship = await this.prisma.friendship.findFirst({ where: { tenantId, id: requestId } });
+    if (!friendship) {
+      throw new NotFoundException('Friend request not found');
+    }
+    if (friendship.requesterId !== actorId) {
+      throw new ForbiddenException('Not allowed to cancel this request');
+    }
+
+    await this.prisma.friendship.delete({ where: { id: requestId } });
+    return { status: 'cancelled' };
+  }
+
 }

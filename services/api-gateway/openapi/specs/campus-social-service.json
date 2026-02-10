@@ -1,0 +1,40 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Campus Social Service API", "version": "1.0.0" },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": { "type": "http", "scheme": "bearer", "bearerFormat": "JWT" }
+    },
+    "parameters": {
+      "TenantHeader": { "name": "X-Tenant-ID", "in": "header", "required": true, "schema": { "type": "string" } }
+    }
+  },
+  "security": [{ "bearerAuth": [] }],
+  "paths": {
+    "/v1/profiles/me": {
+      "get": { "summary": "Get my profile", "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }] },
+      "patch": { "summary": "Update my profile", "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }] }
+    },
+    "/v1/friends/requests": {
+      "post": { "summary": "Send friend request", "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }] },
+      "get": { "summary": "List friend requests", "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }] }
+    },
+    "/v1/groups": {
+      "get": { "summary": "List groups", "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }] },
+      "post": { "summary": "Create group", "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }] }
+    },
+    "/v1/chats": {
+      "get": { "summary": "List chats", "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }] }
+    },
+    "/v1/posts": {
+      "get": { "summary": "List posts", "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }] },
+      "post": { "summary": "Create post", "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }] }
+    },
+    "/v1/notifications": {
+      "get": { "summary": "List notifications", "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }] }
+    },
+    "/v1/calls/rooms": {
+      "post": { "summary": "Create call room", "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }] }
+    }
+  }
+}

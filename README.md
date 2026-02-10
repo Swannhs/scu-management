@@ -128,3 +128,16 @@ for d in services/*-service; do [ -f "$d/test_main.py" ] && (cd "$d" && pytest);
 # PHP
 for d in services/*-service; do [ -f "$d/test_stub.php" ] && (php "$d/test_stub.php"); done
 ```
+
+## API inventory and unified docs
+- Generate implementation/documentation inventory:
+  ```bash
+  python scripts/generate-api-inventory.py
+  ```
+- Merge gateway OpenAPI specs:
+  ```bash
+  (cd services/api-gateway && npm run openapi:merge)
+  ```
+- Unified gateway docs:
+  - `GET /api-docs`
+  - `GET /openapi.json`

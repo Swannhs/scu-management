@@ -1,0 +1,1325 @@
+[
+  {
+    "service": "admin-config-service",
+    "method": "GET",
+    "path": "/",
+    "sourceFile": "services/admin-config-service/routes/web.php",
+    "handler": ""
+  },
+  {
+    "service": "admin-config-service",
+    "method": "GET",
+    "path": "departments",
+    "sourceFile": "services/admin-config-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "admin-config-service",
+    "method": "POST",
+    "path": "departments",
+    "sourceFile": "services/admin-config-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "admin-config-service",
+    "method": "PATCH",
+    "path": "departments/{id}",
+    "sourceFile": "services/admin-config-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "admin-config-service",
+    "method": "GET",
+    "path": "programs",
+    "sourceFile": "services/admin-config-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "admin-config-service",
+    "method": "POST",
+    "path": "programs",
+    "sourceFile": "services/admin-config-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "admin-config-service",
+    "method": "PATCH",
+    "path": "programs/{id}",
+    "sourceFile": "services/admin-config-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "admin-config-service",
+    "method": "GET",
+    "path": "resolve-domain",
+    "sourceFile": "services/admin-config-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "admin-config-service",
+    "method": "GET",
+    "path": "terms",
+    "sourceFile": "services/admin-config-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "admin-config-service",
+    "method": "POST",
+    "path": "terms",
+    "sourceFile": "services/admin-config-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "admin-config-service",
+    "method": "PATCH",
+    "path": "terms/{id}",
+    "sourceFile": "services/admin-config-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "admin-config-service",
+    "method": "POST",
+    "path": "users/{userId}/roles",
+    "sourceFile": "services/admin-config-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "analytics-service",
+    "method": "GET",
+    "path": "/",
+    "sourceFile": "services/analytics-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "analytics-service",
+    "method": "GET",
+    "path": "/health",
+    "sourceFile": "services/analytics-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "audit-logging-service",
+    "method": "GET",
+    "path": "/",
+    "sourceFile": "services/audit-logging-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "audit-logging-service",
+    "method": "GET",
+    "path": "/health",
+    "sourceFile": "services/audit-logging-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/calls/:id/end",
+    "sourceFile": "services/campus-social-service/src/social/controllers/calls.controller.ts",
+    "handler": "endCall"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/calls/:id/join",
+    "sourceFile": "services/campus-social-service/src/social/controllers/calls.controller.ts",
+    "handler": "joinCall"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/calls/rooms",
+    "sourceFile": "services/campus-social-service/src/social/controllers/calls.controller.ts",
+    "handler": "createCallRoom"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/calls/rooms/:roomId/end",
+    "sourceFile": "services/campus-social-service/src/social/controllers/calls.controller.ts",
+    "handler": "endRoom"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/calls/rooms/:roomId/join",
+    "sourceFile": "services/campus-social-service/src/social/controllers/calls.controller.ts",
+    "handler": "joinRoom"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/calls/rooms/:roomId/leave",
+    "sourceFile": "services/campus-social-service/src/social/controllers/calls.controller.ts",
+    "handler": "leaveRoom"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/calls/rooms/:roomId/participants",
+    "sourceFile": "services/campus-social-service/src/social/controllers/calls.controller.ts",
+    "handler": "listParticipants"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/chats",
+    "sourceFile": "services/campus-social-service/src/social/controllers/chats.controller.ts",
+    "handler": "listChats"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/chats/:chatId/messages",
+    "sourceFile": "services/campus-social-service/src/social/controllers/chats.controller.ts",
+    "handler": "listMessages"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/chats/:chatId/messages",
+    "sourceFile": "services/campus-social-service/src/social/controllers/chats.controller.ts",
+    "handler": "sendMessage"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/chats/dm",
+    "sourceFile": "services/campus-social-service/src/social/controllers/chats.controller.ts",
+    "handler": "createDm"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/conversations",
+    "sourceFile": "services/campus-social-service/src/social/controllers/conversations.controller.ts",
+    "handler": "listConversations"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "PATCH",
+    "path": "/v1/conversations/:id",
+    "sourceFile": "services/campus-social-service/src/social/controllers/conversations.controller.ts",
+    "handler": "updateGroup"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/conversations/:id/calls",
+    "sourceFile": "services/campus-social-service/src/social/controllers/calls.controller.ts",
+    "handler": "startCall"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/conversations/:id/members",
+    "sourceFile": "services/campus-social-service/src/social/controllers/conversations.controller.ts",
+    "handler": "addMembers"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "DELETE",
+    "path": "/v1/conversations/:id/members/:userId",
+    "sourceFile": "services/campus-social-service/src/social/controllers/conversations.controller.ts",
+    "handler": "removeMember"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/conversations/:id/messages",
+    "sourceFile": "services/campus-social-service/src/social/controllers/conversations.controller.ts",
+    "handler": "listMessages"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/conversations/:id/messages",
+    "sourceFile": "services/campus-social-service/src/social/controllers/conversations.controller.ts",
+    "handler": "sendMessage"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/conversations/direct",
+    "sourceFile": "services/campus-social-service/src/social/controllers/conversations.controller.ts",
+    "handler": "createDirect"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/conversations/group",
+    "sourceFile": "services/campus-social-service/src/social/controllers/conversations.controller.ts",
+    "handler": "createGroup"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/events",
+    "sourceFile": "services/campus-social-service/src/social/controllers/events.controller.ts",
+    "handler": "ingestEvent"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/feed",
+    "sourceFile": "services/campus-social-service/src/social/controllers/posts.controller.ts",
+    "handler": "getFeed"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/friends",
+    "sourceFile": "services/campus-social-service/src/social/controllers/friends.controller.ts",
+    "handler": "listFriends"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/friends/requests",
+    "sourceFile": "services/campus-social-service/src/social/controllers/friends.controller.ts",
+    "handler": "listRequests"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/friends/requests",
+    "sourceFile": "services/campus-social-service/src/social/controllers/friends.controller.ts",
+    "handler": "sendRequest"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/friends/requests/:id/accept",
+    "sourceFile": "services/campus-social-service/src/social/controllers/friends.controller.ts",
+    "handler": "acceptRequest"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/friends/requests/:id/cancel",
+    "sourceFile": "services/campus-social-service/src/social/controllers/friends.controller.ts",
+    "handler": "cancelRequest"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/friends/requests/:id/reject",
+    "sourceFile": "services/campus-social-service/src/social/controllers/friends.controller.ts",
+    "handler": "rejectRequest"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/groups",
+    "sourceFile": "services/campus-social-service/src/social/controllers/groups.controller.ts",
+    "handler": "listGroups"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/groups",
+    "sourceFile": "services/campus-social-service/src/social/controllers/groups.controller.ts",
+    "handler": "createGroup"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/groups/:groupId/chat",
+    "sourceFile": "services/campus-social-service/src/social/controllers/chats.controller.ts",
+    "handler": "createGroupChat"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/groups/:id",
+    "sourceFile": "services/campus-social-service/src/social/controllers/groups.controller.ts",
+    "handler": "getGroup"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/groups/:id/join",
+    "sourceFile": "services/campus-social-service/src/social/controllers/groups.controller.ts",
+    "handler": "joinGroup"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/groups/:id/leave",
+    "sourceFile": "services/campus-social-service/src/social/controllers/groups.controller.ts",
+    "handler": "leaveGroup"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/groups/:id/members",
+    "sourceFile": "services/campus-social-service/src/social/controllers/groups.controller.ts",
+    "handler": "listMembers"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "PATCH",
+    "path": "/v1/groups/:id/members/:userId",
+    "sourceFile": "services/campus-social-service/src/social/controllers/groups.controller.ts",
+    "handler": "patchMember"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/groups/:id/posts",
+    "sourceFile": "services/campus-social-service/src/social/controllers/groups.controller.ts",
+    "handler": "listGroupPosts"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/groups/:id/requests/:userId/approve",
+    "sourceFile": "services/campus-social-service/src/social/controllers/groups.controller.ts",
+    "handler": "approveRequest"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/groups/:id/requests/:userId/reject",
+    "sourceFile": "services/campus-social-service/src/social/controllers/groups.controller.ts",
+    "handler": "rejectRequest"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/notifications",
+    "sourceFile": "services/campus-social-service/src/social/controllers/notifications.controller.ts",
+    "handler": "listNotifications"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/notifications/:id/read",
+    "sourceFile": "services/campus-social-service/src/social/controllers/notifications.controller.ts",
+    "handler": "markRead"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/posts",
+    "sourceFile": "services/campus-social-service/src/social/controllers/posts.controller.ts",
+    "handler": "getPosts"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/posts",
+    "sourceFile": "services/campus-social-service/src/social/controllers/posts.controller.ts",
+    "handler": "createPost"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/posts/:id",
+    "sourceFile": "services/campus-social-service/src/social/controllers/posts.controller.ts",
+    "handler": "getPost"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/posts/:id/comments",
+    "sourceFile": "services/campus-social-service/src/social/controllers/posts.controller.ts",
+    "handler": "listComments"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/posts/:id/comments",
+    "sourceFile": "services/campus-social-service/src/social/controllers/posts.controller.ts",
+    "handler": "addComment"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "DELETE",
+    "path": "/v1/posts/:id/comments/:commentId",
+    "sourceFile": "services/campus-social-service/src/social/controllers/posts.controller.ts",
+    "handler": "deleteComment"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/posts/:id/react",
+    "sourceFile": "services/campus-social-service/src/social/controllers/posts.controller.ts",
+    "handler": "reactToPost"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "POST",
+    "path": "/v1/posts/:id/report",
+    "sourceFile": "services/campus-social-service/src/social/controllers/posts.controller.ts",
+    "handler": "reportPost"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/profiles/:userId",
+    "sourceFile": "services/campus-social-service/src/social/controllers/profiles.controller.ts",
+    "handler": "getByUser"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/v1/profiles/me",
+    "sourceFile": "services/campus-social-service/src/social/controllers/profiles.controller.ts",
+    "handler": "getMe"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "PATCH",
+    "path": "/v1/profiles/me",
+    "sourceFile": "services/campus-social-service/src/social/controllers/profiles.controller.ts",
+    "handler": "patchMe"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "PUT",
+    "path": "/v1/profiles/me",
+    "sourceFile": "services/campus-social-service/src/social/controllers/profiles.controller.ts",
+    "handler": "updateMe"
+  },
+  {
+    "service": "course-service",
+    "method": "GET",
+    "path": "/v1/programs",
+    "sourceFile": "services/course-service/src/programs/programs.controller.ts",
+    "handler": "findAll"
+  },
+  {
+    "service": "course-service",
+    "method": "POST",
+    "path": "/v1/programs",
+    "sourceFile": "services/course-service/src/programs/programs.controller.ts",
+    "handler": "create"
+  },
+  {
+    "service": "course-service",
+    "method": "GET",
+    "path": "/v1/programs/:id/structure",
+    "sourceFile": "services/course-service/src/programs/programs.controller.ts",
+    "handler": "getStructure"
+  },
+  {
+    "service": "course-service",
+    "method": "POST",
+    "path": "/v1/sections",
+    "sourceFile": "services/course-service/src/sections/sections.controller.ts",
+    "handler": "getRoster"
+  },
+  {
+    "service": "course-service",
+    "method": "GET",
+    "path": "/v1/sessions",
+    "sourceFile": "services/course-service/src/sections/sessions.controller.ts",
+    "handler": "getMySessions"
+  },
+  {
+    "service": "course-service",
+    "method": "GET",
+    "path": "/v1/sessions/list",
+    "sourceFile": "services/course-service/src/sections/sessions.controller.ts",
+    "handler": "getSessionsBySectionIds"
+  },
+  {
+    "service": "document-service",
+    "method": "GET",
+    "path": "/user/:uid/photos/:file",
+    "sourceFile": "services/document-service/node_modules/express/lib/response.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "DELETE",
+    "path": "/v1/files/:fileId",
+    "sourceFile": "services/document-service/src/app.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "GET",
+    "path": "/v1/files/:fileId",
+    "sourceFile": "services/document-service/src/app.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "GET",
+    "path": "/v1/files/:fileId/download-url",
+    "sourceFile": "services/document-service/src/app.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "POST",
+    "path": "/v1/files/:fileId/share",
+    "sourceFile": "services/document-service/src/app.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "POST",
+    "path": "/v1/files/complete-upload",
+    "sourceFile": "services/document-service/src/app.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "POST",
+    "path": "/v1/files/initiate-upload",
+    "sourceFile": "services/document-service/src/app.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "GET",
+    "path": "etag fn",
+    "sourceFile": "services/document-service/node_modules/express/lib/response.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "GET",
+    "path": "json escape",
+    "sourceFile": "services/document-service/node_modules/express/lib/response.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "GET",
+    "path": "json replacer",
+    "sourceFile": "services/document-service/node_modules/express/lib/response.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "GET",
+    "path": "json spaces",
+    "sourceFile": "services/document-service/node_modules/express/lib/response.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "GET",
+    "path": "jsonp callback name",
+    "sourceFile": "services/document-service/node_modules/express/lib/response.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "GET",
+    "path": "query parser fn",
+    "sourceFile": "services/document-service/node_modules/express/lib/request.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "GET",
+    "path": "subdomain offset",
+    "sourceFile": "services/document-service/node_modules/express/lib/request.js",
+    "handler": ""
+  },
+  {
+    "service": "document-service",
+    "method": "GET",
+    "path": "trust proxy fn",
+    "sourceFile": "services/document-service/node_modules/express/lib/request.js",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/health",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/applications",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/applications",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/applications/me",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/applications/{application_id}/approve",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/applications/{application_id}/documents",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "PATCH",
+    "path": "/v1/applications/{application_id}/documents/{doc_id}/verify",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "PATCH",
+    "path": "/v1/applications/{application_id}/status",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/enrollments",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "DELETE",
+    "path": "/v1/enrollments/{enrollment_id}",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/intake-terms",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/intake-terms",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/sections/{section_id}/roster",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/students",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/students",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/students/me",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/students/{student_id}",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/students/{student_id}/enrollments",
+    "sourceFile": "services/enrollment-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "faculty-service",
+    "method": "GET",
+    "path": "/",
+    "sourceFile": "services/faculty-service/routes/web.php",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/api/v1/finance/student-fees/generate",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/FeeController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/api/v1/finance/student-fees/{studentId}",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/FeeController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/api/v1/finance/terms",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/FeeController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/api/v1/finance/terms",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/FeeController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/finance/accounts/{id}",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/AccountController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "PATCH",
+    "path": "/v1/finance/accounts/{id}",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/AccountController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/finance/accounts/{id}/archive",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/AccountController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/finance/journals/{id}",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/JournalEntryController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/finance/journals/{id}/reverse",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/JournalEntryController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/finance/periods/{id}/close",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/AccountingPeriodController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/finance/periods/{id}/reopen",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/AccountingPeriodController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/invoices/my",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/invoices/{id}",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/invoices/{id}/issue",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/invoices/{id}/items",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "DELETE",
+    "path": "/v1/invoices/{id}/items/{itemId}",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/invoices/{id}/void",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/invoices/{id}/waivers",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/payments/{id}",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/PaymentController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/payroll/runs",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/payroll/runs/{id}/approve",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/payroll/runs/{id}/calculate",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/payroll/runs/{id}/pay",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/payroll/runs/{id}/payslips",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/payroll/staff-profiles",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/payroll/staff-profiles",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/refunds/{id}/approve",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/RefundController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/refunds/{id}/execute",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/RefundController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/students/{studentId}/wallet/credit",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/StudentWalletController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/students/{studentId}/wallet/debit",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/StudentWalletController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/vendor-bills/{id}/approve",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/VendorBillController.java",
+    "handler": ""
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/vendor-bills/{id}/pay",
+    "sourceFile": "services/finance-service/src/main/java/com/university/finance/controller/VendorBillController.java",
+    "handler": ""
+  },
+  {
+    "service": "hostel-service",
+    "method": "GET",
+    "path": "/",
+    "sourceFile": "services/hostel-service/routes/web.php",
+    "handler": ""
+  },
+  {
+    "service": "hostel-service",
+    "method": "POST",
+    "path": "/allotments",
+    "sourceFile": "services/hostel-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "hostel-service",
+    "method": "GET",
+    "path": "/hostels",
+    "sourceFile": "services/hostel-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "hostel-service",
+    "method": "POST",
+    "path": "/hostels",
+    "sourceFile": "services/hostel-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "maintenance-service",
+    "method": "GET",
+    "path": "/",
+    "sourceFile": "services/maintenance-service/index.js",
+    "handler": ""
+  },
+  {
+    "service": "maintenance-service",
+    "method": "GET",
+    "path": "/health",
+    "sourceFile": "services/maintenance-service/index.js",
+    "handler": ""
+  },
+  {
+    "service": "notifications-service",
+    "method": "GET",
+    "path": "/",
+    "sourceFile": "services/notifications-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "notifications-service",
+    "method": "GET",
+    "path": "/health",
+    "sourceFile": "services/notifications-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "GET",
+    "path": "/",
+    "sourceFile": "services/parent-portal-service/routes/web.php",
+    "handler": ""
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "POST",
+    "path": "/parents",
+    "sourceFile": "services/parent-portal-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "GET",
+    "path": "/parents/children",
+    "sourceFile": "services/parent-portal-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "GET",
+    "path": "/parents/children/{childId}/updates",
+    "sourceFile": "services/parent-portal-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "POST",
+    "path": "/parents/links",
+    "sourceFile": "services/parent-portal-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "POST",
+    "path": "/parents/links/{id}/approve",
+    "sourceFile": "services/parent-portal-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "GET",
+    "path": "/parents/me",
+    "sourceFile": "services/parent-portal-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/applications",
+    "sourceFile": "services/placement-service/src/applications/applications.controller.ts",
+    "handler": "findAll"
+  },
+  {
+    "service": "placement-service",
+    "method": "POST",
+    "path": "/v1/applications/:id/offer",
+    "sourceFile": "services/placement-service/src/applications/applications.controller.ts",
+    "handler": "createOffer"
+  },
+  {
+    "service": "placement-service",
+    "method": "PATCH",
+    "path": "/v1/applications/:id/status",
+    "sourceFile": "services/placement-service/src/applications/applications.controller.ts",
+    "handler": "updateStatus"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/applications/my",
+    "sourceFile": "services/placement-service/src/applications/applications.controller.ts",
+    "handler": "findMyApplications"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/companies",
+    "sourceFile": "services/placement-service/src/companies/companies.controller.ts",
+    "handler": "findAll"
+  },
+  {
+    "service": "placement-service",
+    "method": "POST",
+    "path": "/v1/companies",
+    "sourceFile": "services/placement-service/src/companies/companies.controller.ts",
+    "handler": "create"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/companies/:id",
+    "sourceFile": "services/placement-service/src/companies/companies.controller.ts",
+    "handler": "findOne"
+  },
+  {
+    "service": "placement-service",
+    "method": "PUT",
+    "path": "/v1/companies/:id",
+    "sourceFile": "services/placement-service/src/companies/companies.controller.ts",
+    "handler": "update"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/job-posts",
+    "sourceFile": "services/placement-service/src/job-posts/job-posts.controller.ts",
+    "handler": "findAll"
+  },
+  {
+    "service": "placement-service",
+    "method": "POST",
+    "path": "/v1/job-posts",
+    "sourceFile": "services/placement-service/src/job-posts/job-posts.controller.ts",
+    "handler": "create"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/job-posts/:id",
+    "sourceFile": "services/placement-service/src/job-posts/job-posts.controller.ts",
+    "handler": "findOne"
+  },
+  {
+    "service": "placement-service",
+    "method": "POST",
+    "path": "/v1/job-posts/:id/apply",
+    "sourceFile": "services/placement-service/src/job-posts/job-posts.controller.ts",
+    "handler": "apply"
+  },
+  {
+    "service": "placement-service",
+    "method": "PATCH",
+    "path": "/v1/offers/:id/accept",
+    "sourceFile": "services/placement-service/src/offers/offers.controller.ts",
+    "handler": "acceptOffer"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/offers/my",
+    "sourceFile": "services/placement-service/src/offers/offers.controller.ts",
+    "handler": "findMyOffers"
+  },
+  {
+    "service": "social-service",
+    "method": "GET",
+    "path": "/",
+    "sourceFile": "services/social-service/routes/web.php",
+    "handler": ""
+  },
+  {
+    "service": "social-service",
+    "method": "GET",
+    "path": "/conversations/{id}/messages",
+    "sourceFile": "services/social-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "social-service",
+    "method": "POST",
+    "path": "/conversations/{id}/messages",
+    "sourceFile": "services/social-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "social-service",
+    "method": "POST",
+    "path": "/friend-request",
+    "sourceFile": "services/social-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "social-service",
+    "method": "PUT",
+    "path": "/friendships/{id}/accept",
+    "sourceFile": "services/social-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "social-service",
+    "method": "GET",
+    "path": "/posts",
+    "sourceFile": "services/social-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "social-service",
+    "method": "POST",
+    "path": "/posts",
+    "sourceFile": "services/social-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "social-service",
+    "method": "GET",
+    "path": "/posts/{id}",
+    "sourceFile": "services/social-service/routes/api.php",
+    "handler": ""
+  },
+  {
+    "service": "transport-service",
+    "method": "GET",
+    "path": "/",
+    "sourceFile": "services/transport-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "transport-service",
+    "method": "GET",
+    "path": "/health",
+    "sourceFile": "services/transport-service/main.py",
+    "handler": ""
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/users",
+    "sourceFile": "services/user-service/src/users/users.controller.ts",
+    "handler": "findAll"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/users/me",
+    "sourceFile": "services/user-service/src/users/users.controller.ts",
+    "handler": "getMe"
+  },
+  {
+    "service": "user-service",
+    "method": "POST",
+    "path": "/users/onboard",
+    "sourceFile": "services/user-service/src/users/users.controller.ts",
+    "handler": "onboardUser"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/v1/me",
+    "sourceFile": "services/user-service/src/users/me.controller.ts",
+    "handler": "getMe"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/v1/me/attendance",
+    "sourceFile": "services/user-service/src/users/me.controller.ts",
+    "handler": "getAttendance"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/v1/me/grades",
+    "sourceFile": "services/user-service/src/users/me.controller.ts",
+    "handler": "getGrades"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/v1/me/profile",
+    "sourceFile": "services/user-service/src/users/me.controller.ts",
+    "handler": "getProfile"
+  },
+  {
+    "service": "user-service",
+    "method": "PATCH",
+    "path": "/v1/me/profile",
+    "sourceFile": "services/user-service/src/users/me.controller.ts",
+    "handler": "updateProfile"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/v1/me/schedule",
+    "sourceFile": "services/user-service/src/users/me.controller.ts",
+    "handler": "getSchedule"
+  }
+]

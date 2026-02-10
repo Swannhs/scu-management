@@ -1,0 +1,7 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Student Service API", "version": "1.0.0" },
+  "paths": {
+    "/students": { "get": { "tags": ["student-service"], "summary": "List students", "responses": { "200": { "description": "Students retrieved" } } } }
+  }
+}
