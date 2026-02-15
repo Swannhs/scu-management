@@ -1,0 +1,1241 @@
+[
+  {
+    "service": "admin-config-service",
+    "method": "GET",
+    "path": "/v1/admindepartments",
+    "file": "services/admin-config-service/routes/api.php",
+    "handler": "AdminConfigController::departments"
+  },
+  {
+    "service": "admin-config-service",
+    "method": "POST",
+    "path": "/v1/admindepartments",
+    "file": "services/admin-config-service/routes/api.php",
+    "handler": "AdminConfigController::departments"
+  },
+  {
+    "service": "admin-config-service",
+    "method": "PATCH",
+    "path": "/v1/admindepartments/{id}",
+    "file": "services/admin-config-service/routes/api.php",
+    "handler": "AdminConfigController::departments"
+  },
+  {
+    "service": "admin-config-service",
+    "method": "GET",
+    "path": "/v1/adminprograms",
+    "file": "services/admin-config-service/routes/api.php",
+    "handler": "AdminConfigController::programs"
+  },
+  {
+    "service": "admin-config-service",
+    "method": "POST",
+    "path": "/v1/adminprograms",
+    "file": "services/admin-config-service/routes/api.php",
+    "handler": "AdminConfigController::programs"
+  },
+  {
+    "service": "admin-config-service",
+    "method": "PATCH",
+    "path": "/v1/adminprograms/{id}",
+    "file": "services/admin-config-service/routes/api.php",
+    "handler": "AdminConfigController::programs"
+  },
+  {
+    "service": "admin-config-service",
+    "method": "GET",
+    "path": "/v1/adminresolve-domain",
+    "file": "services/admin-config-service/routes/api.php",
+    "handler": "TenantController::resolveDomain"
+  },
+  {
+    "service": "admin-config-service",
+    "method": "GET",
+    "path": "/v1/adminterms",
+    "file": "services/admin-config-service/routes/api.php",
+    "handler": "AdminConfigController::terms"
+  },
+  {
+    "service": "admin-config-service",
+    "method": "POST",
+    "path": "/v1/adminterms",
+    "file": "services/admin-config-service/routes/api.php",
+    "handler": "AdminConfigController::terms"
+  },
+  {
+    "service": "admin-config-service",
+    "method": "PATCH",
+    "path": "/v1/adminterms/{id}",
+    "file": "services/admin-config-service/routes/api.php",
+    "handler": "AdminConfigController::terms"
+  },
+  {
+    "service": "admin-config-service",
+    "method": "POST",
+    "path": "/v1/adminusers/{userId}/roles",
+    "file": "services/admin-config-service/routes/api.php",
+    "handler": "AdminConfigController::userRoles"
+  },
+  {
+    "service": "analytics-service",
+    "method": "GET",
+    "path": "/",
+    "file": "services/analytics-service/main.py",
+    "handler": "read_root"
+  },
+  {
+    "service": "analytics-service",
+    "method": "GET",
+    "path": "/health",
+    "file": "services/analytics-service/main.py",
+    "handler": "health_check"
+  },
+  {
+    "service": "api-gateway",
+    "method": "GET",
+    "path": "/",
+    "file": "services/api-gateway/src/app.controller.ts",
+    "handler": "getHello"
+  },
+  {
+    "service": "attendance-service",
+    "method": "GET",
+    "path": "/",
+    "file": "services/attendance-service/src/app.controller.ts",
+    "handler": "getHello"
+  },
+  {
+    "service": "audit-logging-service",
+    "method": "GET",
+    "path": "/",
+    "file": "services/audit-logging-service/main.py",
+    "handler": "read_root"
+  },
+  {
+    "service": "audit-logging-service",
+    "method": "GET",
+    "path": "/health",
+    "file": "services/audit-logging-service/main.py",
+    "handler": "health_check"
+  },
+  {
+    "service": "awards-service",
+    "method": "GET",
+    "path": "/v1/awards",
+    "file": "services/awards-service/main.py",
+    "handler": "list"
+  },
+  {
+    "service": "awards-service",
+    "method": "POST",
+    "path": "/v1/awards",
+    "file": "services/awards-service/main.py",
+    "handler": "create"
+  },
+  {
+    "service": "awards-service",
+    "method": "POST",
+    "path": "/v1/awards/{award_id}/approve",
+    "file": "services/awards-service/main.py",
+    "handler": "approve"
+  },
+  {
+    "service": "awards-service",
+    "method": "POST",
+    "path": "/v1/awards/{award_id}/issue-certificate",
+    "file": "services/awards-service/main.py",
+    "handler": "issue"
+  },
+  {
+    "service": "awards-service",
+    "method": "POST",
+    "path": "/v1/awards/{award_id}/nominate",
+    "file": "services/awards-service/main.py",
+    "handler": "nominate"
+  },
+  {
+    "service": "awards-service",
+    "method": "GET",
+    "path": "/v1/certificates/{certificate_id}",
+    "file": "services/awards-service/main.py",
+    "handler": "cert"
+  },
+  {
+    "service": "awards-service",
+    "method": "GET",
+    "path": "/v1/students/{student_id}/achievements",
+    "file": "services/awards-service/main.py",
+    "handler": "ach"
+  },
+  {
+    "service": "campus-social-service",
+    "method": "GET",
+    "path": "/",
+    "file": "services/campus-social-service/src/app.controller.ts",
+    "handler": "getHello"
+  },
+  {
+    "service": "clubs-service",
+    "method": "GET",
+    "path": "/v1/clubs",
+    "file": "services/clubs-service/main.py",
+    "handler": "list"
+  },
+  {
+    "service": "clubs-service",
+    "method": "POST",
+    "path": "/v1/clubs",
+    "file": "services/clubs-service/main.py",
+    "handler": "create"
+  },
+  {
+    "service": "clubs-service",
+    "method": "GET",
+    "path": "/v1/clubs/{club_id}",
+    "file": "services/clubs-service/main.py",
+    "handler": "get"
+  },
+  {
+    "service": "clubs-service",
+    "method": "PATCH",
+    "path": "/v1/clubs/{club_id}",
+    "file": "services/clubs-service/main.py",
+    "handler": "patch"
+  },
+  {
+    "service": "clubs-service",
+    "method": "POST",
+    "path": "/v1/clubs/{club_id}/events",
+    "file": "services/clubs-service/main.py",
+    "handler": "event"
+  },
+  {
+    "service": "clubs-service",
+    "method": "POST",
+    "path": "/v1/clubs/{club_id}/join",
+    "file": "services/clubs-service/main.py",
+    "handler": "join"
+  },
+  {
+    "service": "clubs-service",
+    "method": "POST",
+    "path": "/v1/clubs/{club_id}/leave",
+    "file": "services/clubs-service/main.py",
+    "handler": "leave"
+  },
+  {
+    "service": "clubs-service",
+    "method": "GET",
+    "path": "/v1/clubs/{club_id}/members",
+    "file": "services/clubs-service/main.py",
+    "handler": "members"
+  },
+  {
+    "service": "clubs-service",
+    "method": "PATCH",
+    "path": "/v1/clubs/{club_id}/members/{user_id}",
+    "file": "services/clubs-service/main.py",
+    "handler": "role"
+  },
+  {
+    "service": "course-service",
+    "method": "GET",
+    "path": "/",
+    "file": "services/course-service/src/app.controller.ts",
+    "handler": "getHello"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/health",
+    "file": "services/enrollment-service/main.py",
+    "handler": "health"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/applications",
+    "file": "services/enrollment-service/main.py",
+    "handler": "list_applications"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/applications",
+    "file": "services/enrollment-service/main.py",
+    "handler": "create_application"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/applications/me",
+    "file": "services/enrollment-service/main.py",
+    "handler": "list_my_applications"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/applications/{application_id}/approve",
+    "file": "services/enrollment-service/main.py",
+    "handler": "approve_application"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/applications/{application_id}/documents",
+    "file": "services/enrollment-service/main.py",
+    "handler": "add_application_document"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "PATCH",
+    "path": "/v1/applications/{application_id}/documents/{doc_id}/verify",
+    "file": "services/enrollment-service/main.py",
+    "handler": "verify_application_document"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "PATCH",
+    "path": "/v1/applications/{application_id}/status",
+    "file": "services/enrollment-service/main.py",
+    "handler": "update_application_status"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/enrollments",
+    "file": "services/enrollment-service/main.py",
+    "handler": "enroll_student"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "DELETE",
+    "path": "/v1/enrollments/{enrollment_id}",
+    "file": "services/enrollment-service/main.py",
+    "handler": "drop_enrollment"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/intake-terms",
+    "file": "services/enrollment-service/main.py",
+    "handler": "list_intake_terms"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/intake-terms",
+    "file": "services/enrollment-service/main.py",
+    "handler": "create_intake_term"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/sections/{section_id}/roster",
+    "file": "services/enrollment-service/main.py",
+    "handler": "get_section_roster"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/students",
+    "file": "services/enrollment-service/main.py",
+    "handler": "list_students"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "POST",
+    "path": "/v1/students",
+    "file": "services/enrollment-service/main.py",
+    "handler": "create_student"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/students/me",
+    "file": "services/enrollment-service/main.py",
+    "handler": "get_my_student_profile"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/students/{student_id}",
+    "file": "services/enrollment-service/main.py",
+    "handler": "get_student"
+  },
+  {
+    "service": "enrollment-service",
+    "method": "GET",
+    "path": "/v1/students/{student_id}/enrollments",
+    "file": "services/enrollment-service/main.py",
+    "handler": "get_student_enrollments"
+  },
+  {
+    "service": "events-service",
+    "method": "GET",
+    "path": "/health",
+    "file": "services/events-service/main.py",
+    "handler": "health"
+  },
+  {
+    "service": "events-service",
+    "method": "GET",
+    "path": "/v1/activities/me",
+    "file": "services/events-service/main.py",
+    "handler": "my_activities"
+  },
+  {
+    "service": "events-service",
+    "method": "GET",
+    "path": "/v1/calendar",
+    "file": "services/events-service/main.py",
+    "handler": "calendar"
+  },
+  {
+    "service": "events-service",
+    "method": "GET",
+    "path": "/v1/events",
+    "file": "services/events-service/main.py",
+    "handler": "list_events"
+  },
+  {
+    "service": "events-service",
+    "method": "POST",
+    "path": "/v1/events",
+    "file": "services/events-service/main.py",
+    "handler": "create_event"
+  },
+  {
+    "service": "events-service",
+    "method": "DELETE",
+    "path": "/v1/events/{event_id}",
+    "file": "services/events-service/main.py",
+    "handler": "delete_event"
+  },
+  {
+    "service": "events-service",
+    "method": "GET",
+    "path": "/v1/events/{event_id}",
+    "file": "services/events-service/main.py",
+    "handler": "get_event"
+  },
+  {
+    "service": "events-service",
+    "method": "PATCH",
+    "path": "/v1/events/{event_id}",
+    "file": "services/events-service/main.py",
+    "handler": "patch_event"
+  },
+  {
+    "service": "events-service",
+    "method": "POST",
+    "path": "/v1/events/{event_id}/check-in",
+    "file": "services/events-service/main.py",
+    "handler": "checkin"
+  },
+  {
+    "service": "events-service",
+    "method": "GET",
+    "path": "/v1/events/{event_id}/participants",
+    "file": "services/events-service/main.py",
+    "handler": "participants"
+  },
+  {
+    "service": "events-service",
+    "method": "POST",
+    "path": "/v1/events/{event_id}/publish",
+    "file": "services/events-service/main.py",
+    "handler": "publish_event"
+  },
+  {
+    "service": "events-service",
+    "method": "POST",
+    "path": "/v1/events/{event_id}/register",
+    "file": "services/events-service/main.py",
+    "handler": "register"
+  },
+  {
+    "service": "events-service",
+    "method": "POST",
+    "path": "/v1/events/{event_id}/unregister",
+    "file": "services/events-service/main.py",
+    "handler": "unregister"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/api/v1/finance/student-fees/generate",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/FeeController.java",
+    "handler": "generateStudentFees"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/api/v1/finance/student-fees/{studentId}",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/FeeController.java",
+    "handler": "getStudentFees"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/api/v1/finance/terms",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/FeeController.java",
+    "handler": "getAllFeeTerms"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/api/v1/finance/terms",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/FeeController.java",
+    "handler": "createFeeTerm"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/fee-structures",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/FeeStructureController.java",
+    "handler": "getAll"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/fee-structures",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/FeeStructureController.java",
+    "handler": "create"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/finance/accounts",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/AccountController.java",
+    "handler": "getAccounts"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/finance/accounts",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/AccountController.java",
+    "handler": "createAccount"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/finance/accounts/{id}",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/AccountController.java",
+    "handler": "getAccount"
+  },
+  {
+    "service": "finance-service",
+    "method": "PATCH",
+    "path": "/v1/finance/accounts/{id}",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/AccountController.java",
+    "handler": "updateAccount"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/finance/accounts/{id}/archive",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/AccountController.java",
+    "handler": "archiveAccount"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/finance/journals",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/JournalEntryController.java",
+    "handler": "getJournalEntries"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/finance/journals",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/JournalEntryController.java",
+    "handler": "createJournalEntry"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/finance/journals/{id}",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/JournalEntryController.java",
+    "handler": "getJournalEntry"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/finance/journals/{id}/reverse",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/JournalEntryController.java",
+    "handler": "reverseJournalEntry"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/finance/periods",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/AccountingPeriodController.java",
+    "handler": "getPeriods"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/finance/periods",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/AccountingPeriodController.java",
+    "handler": "createPeriod"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/finance/periods/{id}/close",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/AccountingPeriodController.java",
+    "handler": "closePeriod"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/finance/periods/{id}/reopen",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/AccountingPeriodController.java",
+    "handler": "reopenPeriod"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/invoices",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": "getInvoices"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/invoices",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": "createInvoice"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/invoices/my",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": "getMyInvoices"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/invoices/{id}",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": "getInvoice"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/invoices/{id}/issue",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": "issueInvoice"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/invoices/{id}/items",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": "addItem"
+  },
+  {
+    "service": "finance-service",
+    "method": "DELETE",
+    "path": "/v1/invoices/{id}/items/{itemId}",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": "removeItem"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/invoices/{id}/void",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": "voidInvoice"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/invoices/{id}/waivers",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/InvoiceController.java",
+    "handler": "applyWaiver"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/payments",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/PaymentController.java",
+    "handler": "getAll"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/payments",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/PaymentController.java",
+    "handler": "createPayment"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/payments/{id}",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/PaymentController.java",
+    "handler": "getById"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/payroll/runs",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": "createPayrollRun"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/payroll/runs/{id}/approve",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": "approvePayrollRun"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/payroll/runs/{id}/calculate",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": "calculatePayrollRun"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/payroll/runs/{id}/pay",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": "payPayrollRun"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/payroll/runs/{id}/payslips",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": "getPayslips"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/payroll/staff-profiles",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": "getStaffProfiles"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/payroll/staff-profiles",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/PayrollController.java",
+    "handler": "createStaffProfile"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/refunds",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/RefundController.java",
+    "handler": "getAll"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/refunds",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/RefundController.java",
+    "handler": "createRefundRequest"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/refunds/{id}/approve",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/RefundController.java",
+    "handler": "approveRefund"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/refunds/{id}/execute",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/RefundController.java",
+    "handler": "executeRefund"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/students/{studentId}/fines",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/FineController.java",
+    "handler": "createFine"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/students/{studentId}/wallet",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/StudentWalletController.java",
+    "handler": "getWallet"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/students/{studentId}/wallet/credit",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/StudentWalletController.java",
+    "handler": "credit"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/students/{studentId}/wallet/debit",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/StudentWalletController.java",
+    "handler": "debit"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/vendor-bills",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/VendorBillController.java",
+    "handler": "getBills"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/vendor-bills",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/VendorBillController.java",
+    "handler": "createBill"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/vendor-bills/{id}/approve",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/VendorBillController.java",
+    "handler": "approveBill"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/vendor-bills/{id}/pay",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/VendorBillController.java",
+    "handler": "payBill"
+  },
+  {
+    "service": "finance-service",
+    "method": "GET",
+    "path": "/v1/vendors",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/VendorController.java",
+    "handler": "getVendors"
+  },
+  {
+    "service": "finance-service",
+    "method": "POST",
+    "path": "/v1/vendors",
+    "file": "services/finance-service/src/main/java/com/university/finance/controller/VendorController.java",
+    "handler": "createVendor"
+  },
+  {
+    "service": "grades-service",
+    "method": "GET",
+    "path": "/",
+    "file": "services/grades-service/src/app.controller.ts",
+    "handler": "getHello"
+  },
+  {
+    "service": "hostel-service",
+    "method": "POST",
+    "path": "/allotments",
+    "file": "services/hostel-service/routes/api.php",
+    "handler": "HostelController::allotRoom"
+  },
+  {
+    "service": "hostel-service",
+    "method": "GET",
+    "path": "/hostels",
+    "file": "services/hostel-service/routes/api.php",
+    "handler": "HostelController::listHostels"
+  },
+  {
+    "service": "hostel-service",
+    "method": "POST",
+    "path": "/hostels",
+    "file": "services/hostel-service/routes/api.php",
+    "handler": "HostelController::storeHostel"
+  },
+  {
+    "service": "notifications-service",
+    "method": "GET",
+    "path": "/",
+    "file": "services/notifications-service/main.py",
+    "handler": "read_root"
+  },
+  {
+    "service": "notifications-service",
+    "method": "GET",
+    "path": "/health",
+    "file": "services/notifications-service/main.py",
+    "handler": "health_check"
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "POST",
+    "path": "/v1/parents",
+    "file": "services/parent-portal-service/routes/api.php",
+    "handler": "ParentController::store"
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "GET",
+    "path": "/v1/parents/children",
+    "file": "services/parent-portal-service/routes/api.php",
+    "handler": "ParentChildController::index"
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "GET",
+    "path": "/v1/parents/children/{childId}/updates",
+    "file": "services/parent-portal-service/routes/api.php",
+    "handler": "ParentChildController::show"
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "POST",
+    "path": "/v1/parents/links",
+    "file": "services/parent-portal-service/routes/api.php",
+    "handler": "ParentChildController::requestLink"
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "POST",
+    "path": "/v1/parents/links/{id}/approve",
+    "file": "services/parent-portal-service/routes/api.php",
+    "handler": "ParentChildController::approveLink"
+  },
+  {
+    "service": "parent-portal-service",
+    "method": "GET",
+    "path": "/v1/parents/me",
+    "file": "services/parent-portal-service/routes/api.php",
+    "handler": "ParentController::getProfile"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/applications",
+    "file": "services/placement-service/src/applications/applications.controller.ts",
+    "handler": "findAll"
+  },
+  {
+    "service": "placement-service",
+    "method": "POST",
+    "path": "/v1/applications/:id/offer",
+    "file": "services/placement-service/src/applications/applications.controller.ts",
+    "handler": "createOffer"
+  },
+  {
+    "service": "placement-service",
+    "method": "PATCH",
+    "path": "/v1/applications/:id/status",
+    "file": "services/placement-service/src/applications/applications.controller.ts",
+    "handler": "updateStatus"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/applications/my",
+    "file": "services/placement-service/src/applications/applications.controller.ts",
+    "handler": "findMyApplications"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/companies",
+    "file": "services/placement-service/src/companies/companies.controller.ts",
+    "handler": "findAll"
+  },
+  {
+    "service": "placement-service",
+    "method": "POST",
+    "path": "/v1/companies",
+    "file": "services/placement-service/src/companies/companies.controller.ts",
+    "handler": "create"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/companies/:id",
+    "file": "services/placement-service/src/companies/companies.controller.ts",
+    "handler": "findOne"
+  },
+  {
+    "service": "placement-service",
+    "method": "PUT",
+    "path": "/v1/companies/:id",
+    "file": "services/placement-service/src/companies/companies.controller.ts",
+    "handler": "update"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/job-posts",
+    "file": "services/placement-service/src/job-posts/job-posts.controller.ts",
+    "handler": "findAll"
+  },
+  {
+    "service": "placement-service",
+    "method": "POST",
+    "path": "/v1/job-posts",
+    "file": "services/placement-service/src/job-posts/job-posts.controller.ts",
+    "handler": "create"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/job-posts/:id",
+    "file": "services/placement-service/src/job-posts/job-posts.controller.ts",
+    "handler": "findOne"
+  },
+  {
+    "service": "placement-service",
+    "method": "POST",
+    "path": "/v1/job-posts/:id/apply",
+    "file": "services/placement-service/src/job-posts/job-posts.controller.ts",
+    "handler": "apply"
+  },
+  {
+    "service": "placement-service",
+    "method": "PATCH",
+    "path": "/v1/offers/:id/accept",
+    "file": "services/placement-service/src/offers/offers.controller.ts",
+    "handler": "acceptOffer"
+  },
+  {
+    "service": "placement-service",
+    "method": "GET",
+    "path": "/v1/offers/my",
+    "file": "services/placement-service/src/offers/offers.controller.ts",
+    "handler": "findMyOffers"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "GET",
+    "path": "/v1/health/services",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "hs"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "GET",
+    "path": "/v1/metrics/summary",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "ms"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "GET",
+    "path": "/v1/plans",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "plist"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "POST",
+    "path": "/v1/plans",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "pcreate"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "GET",
+    "path": "/v1/tenants",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "tlist"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "POST",
+    "path": "/v1/tenants",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "tcreate"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "GET",
+    "path": "/v1/tenants/{tenant_id}",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "tget"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "PATCH",
+    "path": "/v1/tenants/{tenant_id}",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "tpatch"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "GET",
+    "path": "/v1/tenants/{tenant_id}/features",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "fg"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "PATCH",
+    "path": "/v1/tenants/{tenant_id}/features",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "fp"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "GET",
+    "path": "/v1/tenants/{tenant_id}/invoices",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "invl"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "POST",
+    "path": "/v1/tenants/{tenant_id}/invoices",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "inv"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "GET",
+    "path": "/v1/tenants/{tenant_id}/subscription",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "sget"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "POST",
+    "path": "/v1/tenants/{tenant_id}/subscription",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "sset"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "POST",
+    "path": "/v1/tenants/{tenant_id}/suspend",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "ts"
+  },
+  {
+    "service": "platform-admin-service",
+    "method": "POST",
+    "path": "/v1/tenants/{tenant_id}/unsuspend",
+    "file": "services/platform-admin-service/main.py",
+    "handler": "tu"
+  },
+  {
+    "service": "social-service",
+    "method": "GET",
+    "path": "/v1/conversations/{id}/messages",
+    "file": "services/social-service/routes/api.php",
+    "handler": "MessageController::index"
+  },
+  {
+    "service": "social-service",
+    "method": "POST",
+    "path": "/v1/conversations/{id}/messages",
+    "file": "services/social-service/routes/api.php",
+    "handler": "MessageController::store"
+  },
+  {
+    "service": "social-service",
+    "method": "POST",
+    "path": "/v1/friend-request",
+    "file": "services/social-service/routes/api.php",
+    "handler": "FriendshipController::store"
+  },
+  {
+    "service": "social-service",
+    "method": "PUT",
+    "path": "/v1/friendships/{id}/accept",
+    "file": "services/social-service/routes/api.php",
+    "handler": "FriendshipController::accept"
+  },
+  {
+    "service": "social-service",
+    "method": "GET",
+    "path": "/v1/posts",
+    "file": "services/social-service/routes/api.php",
+    "handler": "PostController::index"
+  },
+  {
+    "service": "social-service",
+    "method": "POST",
+    "path": "/v1/posts",
+    "file": "services/social-service/routes/api.php",
+    "handler": "PostController::store"
+  },
+  {
+    "service": "social-service",
+    "method": "GET",
+    "path": "/v1/posts/{id}",
+    "file": "services/social-service/routes/api.php",
+    "handler": "PostController::show"
+  },
+  {
+    "service": "transport-service",
+    "method": "GET",
+    "path": "/",
+    "file": "services/transport-service/main.py",
+    "handler": "read_root"
+  },
+  {
+    "service": "transport-service",
+    "method": "GET",
+    "path": "/health",
+    "file": "services/transport-service/main.py",
+    "handler": "health_check"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/",
+    "file": "services/user-service/src/app.controller.ts",
+    "handler": "getHello"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/users/me",
+    "file": "services/user-service/src/users/users.controller.ts",
+    "handler": "getMe"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/v1/me",
+    "file": "services/user-service/src/users/me.controller.ts",
+    "handler": "getMe"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/v1/me/attendance",
+    "file": "services/user-service/src/users/me.controller.ts",
+    "handler": "getAttendance"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/v1/me/grades",
+    "file": "services/user-service/src/users/me.controller.ts",
+    "handler": "getGrades"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/v1/me/profile",
+    "file": "services/user-service/src/users/me.controller.ts",
+    "handler": "getProfile"
+  },
+  {
+    "service": "user-service",
+    "method": "PATCH",
+    "path": "/v1/me/profile",
+    "file": "services/user-service/src/users/me.controller.ts",
+    "handler": "updateProfile"
+  },
+  {
+    "service": "user-service",
+    "method": "GET",
+    "path": "/v1/me/schedule",
+    "file": "services/user-service/src/users/me.controller.ts",
+    "handler": "getSchedule"
+  }
+]
