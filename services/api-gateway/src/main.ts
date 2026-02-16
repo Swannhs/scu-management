@@ -20,12 +20,10 @@ async function bootstrap() {
 <html>
   <head>
     <title>Unified API Docs</title>
-    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css" />
+    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"></script>
   </head>
   <body>
-    <div id='swagger-ui'></div>
-    <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
-    <script>window.ui = SwaggerUIBundle({ url: '/api-docs/openapi.json', dom_id: '#swagger-ui' });</script>
+    <redoc spec-url='/api-docs/openapi.json'></redoc>
   </body>
 </html>`;
     res.type('html').send(html);
