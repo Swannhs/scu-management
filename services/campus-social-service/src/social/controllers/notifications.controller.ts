@@ -11,29 +11,19 @@ export class NotificationsController {
 
   @Get()
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
-  async listNotifications(
-    @TenantContextParam() tenantContext: TenantContext,
-    @Req() req: Request,
-    @Query('unread') unread?: string,
-    @Query('limit') limit?: string,
-  ) {
-    const userId = req.user?.sub as string;
-    return this.notificationsService.listNotifications(
-      tenantContext.effectiveTenantId,
-      userId,
-      unread === 'true',
-      limit ? Number(limit) : undefined,
-    );
+  async listNotifications(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request, @Query('unread') unread?: string, @Query('limit') limit?: string, @Query('cursor') cursor?: string) {
+    return this.notificationsService.listNotifications(tenantContext.effectiveTenantId, req.user?.sub as string, unread === 'true', limit ? Number(limit) : undefined, cursor);
+  }
+
+  @Get('unread-count')
+  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
+  async unreadCount(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request) {
+    return this.notificationsService.unreadCount(tenantContext.effectiveTenantId, req.user?.sub as string);
   }
 
   @Post(':id/read')
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
-  async markRead(
-    @TenantContextParam() tenantContext: TenantContext,
-    @Req() req: Request,
-    @Param('id') notificationId: string,
-  ) {
-    const userId = req.user?.sub as string;
-    return this.notificationsService.markRead(tenantContext.effectiveTenantId, userId, notificationId);
+  async markRead(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request, @Param('id') notificationId: string) {
+    return this.notificationsService.markRead(tenantContext.effectiveTenantId, req.user?.sub as string, notificationId);
   }
 }

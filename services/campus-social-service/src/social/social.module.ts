@@ -9,6 +9,8 @@ import { ChatsController } from './controllers/chats.controller';
 import { CallsController } from './controllers/calls.controller';
 import { NotificationsController } from './controllers/notifications.controller';
 import { EventsController } from './controllers/events.controller';
+import { MediaController } from './controllers/media.controller';
+import { DirectoryController } from './controllers/directory.controller';
 import { ProfilesService } from './services/profiles.service';
 import { FriendsService } from './services/friends.service';
 import { GroupsService } from './services/groups.service';
@@ -18,6 +20,8 @@ import { CallsService } from './services/calls.service';
 import { NotificationsService } from './services/notifications.service';
 import { EventsService } from './services/events.service';
 import { OutboxService } from './services/outbox.service';
+import { MediaService } from './services/media.service';
+import { RealtimeGateway } from './gateways/realtime.gateway';
 
 @Module({
   imports: [PrismaModule],
@@ -31,6 +35,8 @@ import { OutboxService } from './services/outbox.service';
     CallsController,
     NotificationsController,
     EventsController,
+    MediaController,
+    DirectoryController,
   ],
   providers: [
     ProfilesService,
@@ -42,6 +48,8 @@ import { OutboxService } from './services/outbox.service';
     NotificationsService,
     EventsService,
     OutboxService,
+    MediaService,
+    RealtimeGateway,
   ],
 })
 export class SocialModule {}

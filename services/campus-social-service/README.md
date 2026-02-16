@@ -159,3 +159,110 @@ Response:
 - Posts: `/v1/posts/*`
 - Notifications: `/v1/notifications/*`
 - Calls skeleton: `/v1/calls/rooms/*`
+
+## MVP+ additions (Students + Faculty + Tenant Admin)
+
+### Group workflows
+- Private/secret join requests now create `PENDING` membership.
+- Moderation endpoints:
+  - `GET /v1/groups/:id/requests`
+  - `POST /v1/groups/:id/requests/:userId/approve`
+  - `POST /v1/groups/:id/requests/:userId/reject`
+- Invitations:
+  - `POST /v1/groups/:id/invite`
+  - `GET /v1/groups/:id/invites`
+  - `POST /v1/groups/:id/invites/:inviteId/accept`
+  - `POST /v1/groups/:id/invites/:inviteId/reject`
+- Group create policy: `STUDENT`, `FACULTY`, `TENANT_ADMIN`.
+
+### Posts & moderation
+- Added post/detail/comment pagination APIs and moderation/reporting:
+  - `GET /v1/posts/:id`
+  - `GET /v1/posts/:id/comments?cursor=&limit=`
+  - `PATCH /v1/posts/:id`, `DELETE /v1/posts/:id` (soft delete)
+  - `PATCH /v1/comments/:id`, `DELETE /v1/comments/:id`
+  - `POST /v1/reports`
+  - `GET /v1/moderation/reports?status=`
+  - `POST /v1/moderation/reports/:id/close`
+- Media stub:
+  - `POST /v1/media/upload` (base64 payload -> local file URL)
+
+### Friends
+- Block system:
+  - `POST /v1/friends/block`
+  - `POST /v1/friends/unblock`
+  - `GET /v1/friends/blocked`
+- Mutual friends:
+  - `GET /v1/friends/:userId/mutual`
+- Blocked users cannot send friend requests or start DMs.
+
+### Conversations / chat
+- Message edit/delete:
+  - `PATCH /v1/conversations/:id/messages/:messageId`
+  - `DELETE /v1/conversations/:id/messages/:messageId`
+- Read receipts:
+  - `POST /v1/conversations/:id/read`
+  - `GET /v1/conversations/:id/read-state`
+- Message attachments accepted in send-message DTO.
+
+### Calls
+- Added room participant tracking and invite notifications:
+  - `GET /v1/calls/rooms/:roomId/participants`
+  - `POST /v1/calls/rooms/:roomId/invite`
+
+### Notifications
+- Cursor pagination + unread count:
+  - `GET /v1/notifications?cursor=&limit=&unread=`
+  - `GET /v1/notifications/unread-count`
+
+### Directory search
+- `GET /v1/directory/users?query=`
+
+### Event ingest hardening
+- `POST /v1/events` now supports optional shared secret header `X-Social-Event-Secret` via `SOCIAL_EVENT_INGEST_SECRET`.
+
+### OpenAPI / docs endpoints
+- `GET /openapi.json`
+- `GET /api-docs-json`
+- `GET /api-docs`
+
+### WebSocket usage
+- WebSocket gateway is not introduced in this patch; HTTP APIs include read receipts and call participant/invite primitives for UI integration.
+
+
+## Realtime WebSocket (/ws)
+
+Connection URL:
+- `ws://<host>/ws`
+
+Auth during handshake (either style):
+1) Headers (preferred)
+   - `Authorization: Bearer <token>`
+   - `X-Tenant-ID: <tenant-id>`
+2) Query fallback
+   - `token=<bearer-token-without-prefix>`
+   - `tenantId=<tenant-id>`
+
+Tenant enforcement:
+- handshake tenant must match token `tenant_id` unless global admin.
+- socket joins personal room `user:{userId}` automatically.
+
+Rooms:
+- conversation room: `conv:{conversationId}`
+- call room: `call:{roomId}`
+
+Client -> Server events:
+- `join_conversation { conversationId }`
+- `leave_conversation { conversationId }`
+- `typing { conversationId, isTyping }`
+- `call_join { roomId }`
+- `call_leave { roomId }`
+- `call_offer { roomId, toUserId, sdp }`
+- `call_answer { roomId, toUserId, sdp }`
+- `call_ice { roomId, toUserId, candidate }`
+
+Server -> Client events:
+- `message_created { conversationId, message }`
+- `typing { conversationId, userId, isTyping }`
+- `call_participant_joined { userId }`
+- `call_offer`, `call_answer`, `call_ice` (routed to `user:{toUserId}` only when both users are active in same tenant/call room)

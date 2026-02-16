@@ -54,6 +54,14 @@ export class ProfilesService {
     });
   }
 
+  async searchUsers(tenantId: string, query: string) {
+    return this.prisma.profilePublic.findMany({
+      where: { tenantId, OR: [{ userId: { contains: query, mode: "insensitive" } }, { headline: { contains: query, mode: "insensitive" } }] },
+      take: 20,
+      orderBy: { updatedAt: "desc" },
+    });
+  }
+
   async createDefaultProfile(tenantId: string, userId: string) {
     return this.prisma.profilePublic.upsert({
       where: {
