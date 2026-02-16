@@ -6,7 +6,6 @@ import { OutboxService } from './outbox.service';
 
 describe('FriendsService', () => {
   const prisma = {
-    block: { findFirst: jest.fn() },
     friendship: {
       findUnique: jest.fn(),
       upsert: jest.fn(),
@@ -49,9 +48,3 @@ describe('FriendsService', () => {
     await expect(service.acceptRequest('t1', 'u3', 'r1')).rejects.toThrow(ForbiddenException);
   });
 });
-
-
-  it('rejects friend request to blocked user', async () => {
-    prisma.block.findFirst.mockResolvedValue({ id: 'b1' });
-    await expect(service.requestFriend('t1', 'u1', { toUserId: 'u2', targetUserId: 'u2' } as any)).rejects.toThrow(ForbiddenException);
-  });

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Put, Query, Req } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Put, Req } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
@@ -38,15 +38,6 @@ export class ProfilesController {
   ) {
     const userId = req.user?.sub as string;
     return this.profilesService.upsertMyProfile(tenantContext.effectiveTenantId, userId, dto);
-  }
-
-  @Get('/directory/users')
-  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
-  async directoryUsers(
-    @TenantContextParam() tenantContext: TenantContext,
-    @Query('query') query = '',
-  ) {
-    return this.profilesService.searchUsers(tenantContext.effectiveTenantId, query);
   }
 
   @Get(':userId')
