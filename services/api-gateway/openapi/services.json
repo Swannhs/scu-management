@@ -7,16 +7,100 @@
       "fallbackFile": "openapi/specs/user-service.json"
     },
     {
-      "name": "student-service",
-      "version": "1.0.0",
-      "url": "http://student-service:3000/api-docs-json",
-      "fallbackFile": "openapi/specs/student-service.json"
-    },
-    {
       "name": "course-service",
       "version": "1.0.0",
       "url": "http://course-service:3000/api-docs-json",
       "fallbackFile": "openapi/specs/course-service.json"
+    },
+    {
+      "name": "assessment-service",
+      "version": "1.0.0",
+      "url": "http://assessment-service:3000/api-docs-json",
+      "fallbackFile": "openapi/specs/assessment-service.json"
+    },
+    {
+      "name": "attendance-service",
+      "version": "1.0.0",
+      "url": "http://attendance-service:3000/api-docs-json",
+      "fallbackFile": "openapi/specs/attendance-service.json"
+    },
+    {
+      "name": "campus-social-service",
+      "version": "1.0.0",
+      "url": "http://campus-social-service:3000/api-docs-json",
+      "fallbackFile": "openapi/specs/campus-social-service.json"
+    },
+    {
+      "name": "placement-service",
+      "version": "1.0.0",
+      "url": "http://placement-service:3000/api-docs-json",
+      "fallbackFile": "openapi/specs/placement-service.json"
+    },
+    {
+      "name": "grades-service",
+      "version": "1.0.0",
+      "url": "http://grades-service:3000/api-docs-json",
+      "fallbackFile": "openapi/specs/grades-service.json"
+    },
+    {
+      "name": "api-gateway",
+      "version": "1.0.0",
+      "url": "http://api-gateway:3000/api-docs/openapi.json",
+      "fallbackFile": "openapi/specs/api-gateway.json"
+    },
+    {
+      "name": "enrollment-service",
+      "version": "1.0.0",
+      "url": "http://enrollment-service:8000/openapi.json",
+      "fallbackFile": "openapi/specs/enrollment-service.json"
+    },
+    {
+      "name": "notifications-service",
+      "version": "1.0.0",
+      "url": "http://notifications-service:8000/openapi.json",
+      "fallbackFile": "openapi/specs/notifications-service.json"
+    },
+    {
+      "name": "transport-service",
+      "version": "1.0.0",
+      "url": "http://transport-service:8000/openapi.json",
+      "fallbackFile": "openapi/specs/transport-service.json"
+    },
+    {
+      "name": "analytics-service",
+      "version": "1.0.0",
+      "url": "http://analytics-service:8000/openapi.json",
+      "fallbackFile": "openapi/specs/analytics-service.json"
+    },
+    {
+      "name": "audit-logging-service",
+      "version": "1.0.0",
+      "url": "http://audit-logging-service:8000/openapi.json",
+      "fallbackFile": "openapi/specs/audit-logging-service.json"
+    },
+    {
+      "name": "events-service",
+      "version": "1.0.0",
+      "url": "http://events-service:8000/openapi.json",
+      "fallbackFile": "openapi/specs/events-service.json"
+    },
+    {
+      "name": "clubs-service",
+      "version": "1.0.0",
+      "url": "http://clubs-service:8000/openapi.json",
+      "fallbackFile": "openapi/specs/clubs-service.json"
+    },
+    {
+      "name": "awards-service",
+      "version": "1.0.0",
+      "url": "http://awards-service:8000/openapi.json",
+      "fallbackFile": "openapi/specs/awards-service.json"
+    },
+    {
+      "name": "platform-admin-service",
+      "version": "1.0.0",
+      "url": "http://platform-admin-service:8000/openapi.json",
+      "fallbackFile": "openapi/specs/platform-admin-service.json"
     },
     {
       "name": "finance-service",
@@ -25,10 +109,52 @@
       "fallbackFile": "openapi/specs/finance-service.json"
     },
     {
+      "name": "library-service",
+      "version": "1.0.0",
+      "url": "http://library-service:8080/v3/api-docs",
+      "fallbackFile": "openapi/specs/library-service.json"
+    },
+    {
+      "name": "social-service",
+      "version": "1.0.0",
+      "url": "",
+      "fallbackFile": "openapi/specs/social-service.json"
+    },
+    {
+      "name": "faculty-service",
+      "version": "1.0.0",
+      "url": "",
+      "fallbackFile": "openapi/specs/faculty-service.json"
+    },
+    {
+      "name": "hostel-service",
+      "version": "1.0.0",
+      "url": "",
+      "fallbackFile": "openapi/specs/hostel-service.json"
+    },
+    {
+      "name": "parent-portal-service",
+      "version": "1.0.0",
+      "url": "",
+      "fallbackFile": "openapi/specs/parent-portal-service.json"
+    },
+    {
       "name": "admin-config-service",
       "version": "1.0.0",
-      "url": "http://admin-config-service:80/api-docs-json",
+      "url": "",
       "fallbackFile": "openapi/specs/admin-config-service.json"
+    },
+    {
+      "name": "maintenance-service",
+      "version": "1.0.0",
+      "url": "http://maintenance-service:3000/openapi.json",
+      "fallbackFile": "openapi/specs/maintenance-service.json"
+    },
+    {
+      "name": "document-service",
+      "version": "1.0.0",
+      "url": "http://document-service:3000/openapi.json",
+      "fallbackFile": "openapi/specs/document-service.json"
     }
   ]
 }

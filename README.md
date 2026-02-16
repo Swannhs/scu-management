@@ -128,3 +128,15 @@ for d in services/*-service; do [ -f "$d/test_main.py" ] && (cd "$d" && pytest);
 # PHP
 for d in services/*-service; do [ -f "$d/test_stub.php" ] && (php "$d/test_stub.php"); done
 ```
+
+## MVP+ Product Modules (new)
+- **Events Service** (`services/events-service`): events CRUD, publish/register/check-in, calendar, and participation history.
+- **Clubs Service** (`services/clubs-service`): clubs CRUD, membership and role management, club-event linking.
+- **Awards Service** (`services/awards-service`): award programs, nominations, approvals, certificate issuance, achievements.
+- **Platform Admin Service** (`services/platform-admin-service`): super-admin tenant, subscription, feature toggle, and monitoring endpoints.
+
+## Unified OpenAPI
+- Gateway merged spec: `GET /api-docs/openapi.json`
+- Gateway docs UI: `GET /api-docs`
+- Service registry: `services/api-gateway/openapi/services.json`
+- Fallback specs (for resilience when a service is down): `services/api-gateway/openapi/specs/*.json`

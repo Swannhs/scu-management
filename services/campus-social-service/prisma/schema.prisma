@@ -38,6 +38,11 @@ enum GroupMemberRole {
   MEMBER
 }
 
+enum GroupMemberStatus {
+  ACTIVE
+  PENDING
+}
+
 enum PostTargetType {
   PROFILE
   GROUP
@@ -75,16 +80,16 @@ enum OutboxStatus {
 }
 
 model ProfilePublic {
-  id           String          @id @default(uuid())
-  tenantId     String          @map("tenant_id")
-  userId       String          @map("user_id")
+  id           String         @id @default(uuid())
+  tenantId     String         @map("tenant_id")
+  userId       String         @map("user_id")
   headline     String?
   bio          String?
-  avatarFileId String?         @map("avatar_file_id")
-  coverFileId  String?         @map("cover_file_id")
-  privacy      ProfilePrivacy  @default(PUBLIC)
-  createdAt    DateTime        @default(now()) @map("created_at")
-  updatedAt    DateTime        @updatedAt @map("updated_at")
+  avatarFileId String?        @map("avatar_file_id")
+  coverFileId  String?        @map("cover_file_id")
+  privacy      ProfilePrivacy @default(PUBLIC)
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
 
   @@unique([tenantId, userId])
   @@index([tenantId])
@@ -106,6 +111,18 @@ model Friendship {
   @@map("friendships")
 }
 
+model Block {
+  id            String   @id @default(uuid())
+  tenantId      String   @map("tenant_id")
+  blockerUserId String   @map("blocker_user_id")
+  blockedUserId String   @map("blocked_user_id")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@unique([tenantId, blockerUserId, blockedUserId])
+  @@index([tenantId, blockedUserId])
+  @@map("blocks")
+}
+
 model Group {
   id         String          @id @default(uuid())
   tenantId   String          @map("tenant_id")
@@ -120,16 +137,31 @@ model Group {
 }
 
 model GroupMember {
-  id        String           @id @default(uuid())
-  tenantId  String           @map("tenant_id")
-  groupId   String           @map("group_id")
-  userId    String           @map("user_id")
-  role      GroupMemberRole  @default(MEMBER)
-  createdAt DateTime         @default(now()) @map("created_at")
+  id        String            @id @default(uuid())
+  tenantId  String            @map("tenant_id")
+  groupId   String            @map("group_id")
+  userId    String            @map("user_id")
+  role      GroupMemberRole   @default(MEMBER)
+  status    GroupMemberStatus @default(ACTIVE)
+  createdAt DateTime          @default(now()) @map("created_at")
 
   @@unique([tenantId, groupId, userId])
   @@index([tenantId, userId])
   @@map("group_members")
+}
+
+model GroupInvite {
+  id        String   @id @default(uuid())
+  tenantId  String   @map("tenant_id")
+  groupId   String   @map("group_id")
+  userId    String   @map("user_id")
+  inviterId String   @map("inviter_id")
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([tenantId, groupId, userId])
+  @@map("group_invites")
 }
 
 model Post {
@@ -139,6 +171,7 @@ model Post {
   targetType PostTargetType @map("target_type")
   targetId   String         @map("target_id")
   text       String
+  deletedAt  DateTime?      @map("deleted_at")
   createdAt  DateTime       @default(now()) @map("created_at")
   updatedAt  DateTime       @updatedAt @map("updated_at")
 
@@ -165,6 +198,7 @@ model Comment {
   authorId        String   @map("author_id")
   parentCommentId String?  @map("parent_comment_id")
   text            String
+  deletedAt       DateTime? @map("deleted_at")
   createdAt       DateTime @default(now()) @map("created_at")
   updatedAt       DateTime @updatedAt @map("updated_at")
 
@@ -187,15 +221,32 @@ model Reaction {
   @@map("reactions")
 }
 
+model Report {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+  type        String
+  targetId    String   @map("target_id")
+  reporterId  String   @map("reporter_id")
+  reason      String
+  details     String?
+  status      String   @default("open")
+  actionTaken String?  @map("action_taken")
+  createdAt   DateTime @default(now()) @map("created_at")
+  closedAt    DateTime? @map("closed_at")
+
+  @@index([tenantId, status])
+  @@map("reports")
+}
+
 model Conversation {
-  id        String           @id @default(uuid())
-  tenantId  String           @map("tenant_id")
-  type      ConversationType
-  name      String?
-  avatarFileId String?         @map("avatar_file_id")
-  groupId   String?          @map("group_id")
-  createdAt DateTime         @default(now()) @map("created_at")
-  updatedAt DateTime         @updatedAt @map("updated_at")
+  id           String           @id @default(uuid())
+  tenantId     String           @map("tenant_id")
+  type         ConversationType
+  name         String?
+  avatarFileId String?          @map("avatar_file_id")
+  groupId      String?          @map("group_id")
+  createdAt    DateTime         @default(now()) @map("created_at")
+  updatedAt    DateTime         @updatedAt @map("updated_at")
 
   @@index([tenantId])
   @@map("conversations")
@@ -221,11 +272,38 @@ model Message {
   senderId       String   @map("sender_id")
   text           String
   fileId         String?  @map("file_id")
+  editedAt       DateTime? @map("edited_at")
+  deletedAt      DateTime? @map("deleted_at")
   createdAt      DateTime @default(now()) @map("created_at")
 
   @@index([tenantId, conversationId])
   @@index([tenantId, senderId])
   @@map("messages")
+}
+
+model MessageAttachment {
+  id        String   @id @default(uuid())
+  tenantId  String   @map("tenant_id")
+  messageId String   @map("message_id")
+  url       String
+  type      String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([tenantId, messageId])
+  @@map("message_attachments")
+}
+
+model ConversationRead {
+  id                String   @id @default(uuid())
+  tenantId          String   @map("tenant_id")
+  conversationId    String   @map("conversation_id")
+  userId            String   @map("user_id")
+  lastReadMessageId String?  @map("last_read_message_id")
+  lastReadAt        DateTime @default(now()) @map("last_read_at")
+
+  @@unique([tenantId, conversationId, userId])
+  @@index([tenantId, userId])
+  @@map("conversation_reads")
 }
 
 model CallSession {
@@ -241,6 +319,19 @@ model CallSession {
 
   @@index([tenantId, conversationId])
   @@map("call_sessions")
+}
+
+model CallParticipant {
+  id        String   @id @default(uuid())
+  tenantId  String   @map("tenant_id")
+  roomId    String   @map("room_id")
+  userId    String   @map("user_id")
+  joinedAt  DateTime @default(now()) @map("joined_at")
+  leftAt    DateTime? @map("left_at")
+
+  @@index([tenantId, roomId])
+  @@unique([tenantId, roomId, userId])
+  @@map("call_participants")
 }
 
 model Notification {

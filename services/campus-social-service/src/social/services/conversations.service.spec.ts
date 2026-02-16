@@ -26,6 +26,9 @@ const mockPrismaService = {
     create: jest.fn(),
     findMany: jest.fn(),
   },
+  conversationRead: {
+    upsert: jest.fn(),
+  },
   $transaction: jest.fn((cb) => cb(mockPrismaService)),
 };
 
@@ -148,3 +151,15 @@ describe('ConversationsService', () => {
       });
   });
 });
+
+
+  describe('read receipts', () => {
+    it('updates read state after send message', async () => {
+      (prisma.conversationMember.findFirst as jest.Mock).mockResolvedValue({ userId: 'user-1' });
+      (prisma.message.create as jest.Mock).mockResolvedValue({ id: 'msg-1', text: 'Hello' });
+      (prisma.conversationRead.upsert as jest.Mock).mockResolvedValue({ conversationId: 'conv-1', userId: 'user-1' });
+      await service.sendMessage('tenant-1', 'user-1', 'conv-1', { text: 'Hello' });
+      const state = await service.markRead('tenant-1', 'user-1', 'conv-1', { lastReadMessageId: 'msg-1' });
+      expect(state.userId).toBe('user-1');
+    });
+  });
