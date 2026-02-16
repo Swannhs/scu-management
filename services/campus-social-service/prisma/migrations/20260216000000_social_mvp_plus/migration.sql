@@ -69,3 +69,15 @@ CREATE TABLE IF NOT EXISTS "call_participants" (
   "left_at" TIMESTAMP
 );
 CREATE UNIQUE INDEX IF NOT EXISTS "call_participants_tenant_id_room_id_user_id_key" ON "call_participants" ("tenant_id", "room_id", "user_id");
+
+
+CREATE TABLE IF NOT EXISTS "media_files" (
+  "id" TEXT PRIMARY KEY,
+  "tenant_id" TEXT NOT NULL,
+  "uploaded_by" TEXT NOT NULL,
+  "url" TEXT NOT NULL,
+  "mime_type" TEXT NOT NULL,
+  "size" INTEGER NOT NULL,
+  "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS "media_files_tenant_id_uploaded_by_idx" ON "media_files" ("tenant_id", "uploaded_by");

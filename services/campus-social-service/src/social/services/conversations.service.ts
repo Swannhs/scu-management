@@ -8,6 +8,7 @@ import { GetMessagesDto } from '../dto/get-messages.dto';
 import { OutboxService } from './outbox.service';
 import { ConversationMemberRole } from '@prisma/client';
 import { UpdateGroupDto } from '../dto/update-group.dto';
+import { RealtimeGateway } from '../gateways/realtime.gateway';
 
 @Injectable()
 export class ConversationsService {
@@ -112,6 +113,7 @@ export class ConversationsService {
     }
 
     await this.outbox.publishEvent(tenantId, 'social.message.sent', { messageId: message.id, conversationId, senderId: actorId });
+    RealtimeGateway.notifyMessageCreated(conversationId, message);
     return message;
   }
 
@@ -130,6 +132,7 @@ export class ConversationsService {
   }
 
   async markRead(tenantId: string, actorId: string, conversationId: string, payload: { lastReadMessageId?: string; lastReadAt?: string }) {
+    await this.ensureMember(tenantId, conversationId, actorId);
     await this.ensureConversationMember(tenantId, conversationId, actorId);
     return (this.prisma as any).conversationRead.upsert({
       where: { tenantId_conversationId_userId: { tenantId, conversationId, userId: actorId } },
@@ -142,6 +145,7 @@ export class ConversationsService {
     return (this.prisma as any).conversationRead.findMany({ where: { tenantId, conversationId } });
   }
 
+  async ensureMember(tenantId: string, conversationId: string, actorId: string) {
   private async ensureConversationMember(tenantId: string, conversationId: string, actorId: string) {
     const membership = await this.prisma.conversationMember.findFirst({ where: { tenantId, conversationId, userId: actorId } });
     if (!membership) throw new ForbiddenException('Not a conversation member');

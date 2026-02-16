@@ -74,4 +74,20 @@ export class CallsService {
     await Promise.all(userIds.map((userId) => this.prisma.notification.create({ data: { tenantId, userId, type: 'CALL_INVITE', payload: { roomId, invitedBy: actorId } } })));
     return { invited: userIds.length };
   }
+
+  async isActiveParticipant(tenantId: string, roomId: string, userId: string) {
+    const participant = await (this.prisma as any).callParticipant.findFirst({
+      where: { tenantId, roomId, userId, leftAt: null },
+    });
+    return !!participant;
+  }
+
+  async ensureCanJoinRoom(tenantId: string, roomId: string, userId: string) {
+    const allowed = await this.isActiveParticipant(tenantId, roomId, userId);
+    if (!allowed) {
+      throw new ForbiddenException('Not allowed to join call room');
+    }
+    return true;
+  }
+
 }

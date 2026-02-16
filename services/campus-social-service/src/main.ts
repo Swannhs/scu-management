@@ -25,6 +25,27 @@ const OPENAPI_SPEC = {
         schema: { type: 'string' },
       },
     },
+    schemas: {
+      UploadMediaRequest: {
+        type: 'object',
+        required: ['fileName', 'mimeType', 'contentBase64'],
+        properties: {
+          fileName: { type: 'string' },
+          mimeType: { type: 'string', enum: ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'] },
+          contentBase64: { type: 'string' },
+        },
+      },
+      UploadMediaResponse: {
+        type: 'object',
+        properties: {
+          fileId: { type: 'string' },
+          url: { type: 'string' },
+          mimeType: { type: 'string' },
+          size: { type: 'number' },
+          tenantId: { type: 'string' },
+        },
+      },
+    },
   },
   security: [{ bearerAuth: [] }],
 
@@ -42,6 +63,24 @@ const OPENAPI_SPEC = {
     '/v1/calls/rooms/{roomId}/participants': { get: { summary: 'List call participants' } },
     '/v1/notifications': { get: { summary: 'List notifications' } },
     '/v1/notifications/unread-count': { get: { summary: 'Unread count' } },
+    '/v1/media/upload': {
+      post: {
+        summary: 'Upload media',
+        parameters: [{ $ref: '#/components/parameters/TenantIdHeader' }],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': { schema: { $ref: '#/components/schemas/UploadMediaRequest' } },
+          },
+        },
+        responses: {
+          '201': {
+            description: 'Created',
+            content: { 'application/json': { schema: { $ref: '#/components/schemas/UploadMediaResponse' } } },
+          },
+        },
+      },
+    },
     '/v1/media/upload': { post: { summary: 'Upload media' } },
     '/v1/reports': { post: { summary: 'Create report' } },
     '/v1/moderation/reports': { get: { summary: 'List moderation reports' } },

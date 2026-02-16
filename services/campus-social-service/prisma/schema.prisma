@@ -359,3 +359,17 @@ model EventOutbox {
   @@index([tenantId, status])
   @@map("event_outbox")
 }
+
+
+model MediaFile {
+  id         String   @id @default(uuid())
+  tenantId   String   @map("tenant_id")
+  uploadedBy String   @map("uploaded_by")
+  url        String
+  mimeType   String   @map("mime_type")
+  size       Int
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([tenantId, uploadedBy])
+  @@map("media_files")
+}

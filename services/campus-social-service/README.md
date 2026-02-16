@@ -228,3 +228,41 @@ Response:
 
 ### WebSocket usage
 - WebSocket gateway is not introduced in this patch; HTTP APIs include read receipts and call participant/invite primitives for UI integration.
+
+
+## Realtime WebSocket (/ws)
+
+Connection URL:
+- `ws://<host>/ws`
+
+Auth during handshake (either style):
+1) Headers (preferred)
+   - `Authorization: Bearer <token>`
+   - `X-Tenant-ID: <tenant-id>`
+2) Query fallback
+   - `token=<bearer-token-without-prefix>`
+   - `tenantId=<tenant-id>`
+
+Tenant enforcement:
+- handshake tenant must match token `tenant_id` unless global admin.
+- socket joins personal room `user:{userId}` automatically.
+
+Rooms:
+- conversation room: `conv:{conversationId}`
+- call room: `call:{roomId}`
+
+Client -> Server events:
+- `join_conversation { conversationId }`
+- `leave_conversation { conversationId }`
+- `typing { conversationId, isTyping }`
+- `call_join { roomId }`
+- `call_leave { roomId }`
+- `call_offer { roomId, toUserId, sdp }`
+- `call_answer { roomId, toUserId, sdp }`
+- `call_ice { roomId, toUserId, candidate }`
+
+Server -> Client events:
+- `message_created { conversationId, message }`
+- `typing { conversationId, userId, isTyping }`
+- `call_participant_joined { userId }`
+- `call_offer`, `call_answer`, `call_ice` (routed to `user:{toUserId}` only when both users are active in same tenant/call room)

@@ -21,6 +21,7 @@ import { NotificationsService } from './services/notifications.service';
 import { EventsService } from './services/events.service';
 import { OutboxService } from './services/outbox.service';
 import { MediaService } from './services/media.service';
+import { RealtimeGateway } from './gateways/realtime.gateway';
 
 @Module({
   imports: [PrismaModule],
@@ -48,6 +49,7 @@ import { MediaService } from './services/media.service';
     EventsService,
     OutboxService,
     MediaService,
+    RealtimeGateway,
   ],
 })
 export class SocialModule {}
