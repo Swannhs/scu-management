@@ -6,8 +6,8 @@ import { GroupsService } from './groups.service';
 
 describe('GroupsService', () => {
   const prisma = {
-    group: { create: jest.fn(), findMany: jest.fn() },
-    groupMember: { create: jest.fn(), upsert: jest.fn() },
+    group: { create: jest.fn(), findMany: jest.fn(), findFirst: jest.fn() },
+    groupMember: { create: jest.fn(), upsert: jest.fn(), update: jest.fn() },
   } as any;
 
   let service: GroupsService;
@@ -32,3 +32,15 @@ describe('GroupsService', () => {
     expect(result.id).toBe('m1');
   });
 });
+
+
+  it('private group join -> pending -> approve -> active', async () => {
+    prisma.group.findFirst.mockResolvedValue({ id: 'g1', visibility: 'PRIVATE' });
+    prisma.groupMember.upsert.mockResolvedValue({ id: 'm1', status: 'PENDING' });
+    prisma.groupMember.update.mockResolvedValue({ id: 'm1', status: 'ACTIVE' });
+
+    const pending = await service.joinGroup('t1', 'g1', 'u1');
+    expect(pending.status).toBe('PENDING');
+    const active = await service.approveJoinRequest('t1', 'g1', 'u1');
+    expect(active.status).toBe('ACTIVE');
+  });

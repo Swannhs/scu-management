@@ -1,137 +1,110 @@
-import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
-import { GroupType } from '@prisma/client';
+import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import { GroupMemberRole, GroupType } from '@prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
 import { CreateGroupDto } from '../dto/create-group.dto';
+import { InviteUserDto } from '../dto/invite-user.dto';
 
 @Injectable()
 export class GroupsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async listGroups(tenantId: string) {
-    return this.prisma.group.findMany({
-      where: { tenantId },
-    });
+    return this.prisma.group.findMany({ where: { tenantId } });
   }
 
   async createGroup(tenantId: string, actorId: string, dto: CreateGroupDto, roles: string[]) {
-    if (dto.type !== GroupType.CLUB) {
-      throw new BadRequestException('Only CLUB groups can be created manually');
+    if (dto.type !== GroupType.CLUB) throw new BadRequestException('Only CLUB groups can be created manually');
+    if (!roles.some((r) => ['STUDENT', 'FACULTY', 'TENANT_ADMIN'].includes(r))) {
+      throw new ForbiddenException('Only student/faculty/admin can create club groups');
     }
 
-    if (!roles.includes('STUDENT')) {
-      throw new ForbiddenException('Only students can create club groups');
-    }
-
-    const group = await this.prisma.group.create({
-      data: {
-        tenantId,
-        type: dto.type,
-        name: dto.name,
-        visibility: dto.visibility,
-      },
-    });
-
-    await this.prisma.groupMember.create({
-      data: {
-        tenantId,
-        groupId: group.id,
-        userId: actorId,
-        role: 'ADMIN',
-      },
-    });
-
+    const group = await this.prisma.group.create({ data: { tenantId, type: dto.type, name: dto.name, visibility: dto.visibility } });
+    await this.prisma.groupMember.create({ data: { tenantId, groupId: group.id, userId: actorId, role: 'ADMIN', status: 'ACTIVE' } });
     return group;
   }
 
   async joinGroup(tenantId: string, groupId: string, actorId: string) {
+    const group = await this.getGroup(tenantId, groupId);
+    const status = group.visibility === 'PUBLIC' ? 'ACTIVE' : 'PENDING';
     return this.prisma.groupMember.upsert({
-      where: {
-        tenantId_groupId_userId: {
-          tenantId,
-          groupId,
-          userId: actorId,
-        },
-      },
-      update: {},
-      create: {
-        tenantId,
-        groupId,
-        userId: actorId,
-      },
+      where: { tenantId_groupId_userId: { tenantId, groupId, userId: actorId } },
+      update: { status },
+      create: { tenantId, groupId, userId: actorId, status },
     });
+  }
+
+  async listJoinRequests(tenantId: string, groupId: string) {
+    return this.prisma.groupMember.findMany({ where: { tenantId, groupId, status: 'PENDING' } });
+  }
+
+  async approveJoinRequest(tenantId: string, groupId: string, userId: string) {
+    return this.prisma.groupMember.update({ where: { tenantId_groupId_userId: { tenantId, groupId, userId } }, data: { status: 'ACTIVE' } });
+  }
+
+  async rejectJoinRequest(tenantId: string, groupId: string, userId: string) {
+    return this.prisma.groupMember.deleteMany({ where: { tenantId, groupId, userId, status: 'PENDING' } });
+  }
+
+  async inviteUser(tenantId: string, groupId: string, inviterId: string, dto: InviteUserDto) {
+    const invite = await (this.prisma as any).groupInvite.create({ data: { tenantId, groupId, inviterId, userId: dto.userId, status: 'PENDING' } });
+    await this.prisma.notification.create({ data: { tenantId, userId: dto.userId, type: 'GROUP_INVITE', payload: { groupId, inviteId: invite.id } } });
+    return invite;
+  }
+
+  async listInvites(tenantId: string, groupId: string) {
+    return (this.prisma as any).groupInvite.findMany({ where: { tenantId, groupId }, orderBy: { createdAt: 'desc' } });
+  }
+
+  async acceptInvite(tenantId: string, actorId: string, inviteId: string) {
+    const invite = await (this.prisma as any).groupInvite.findFirst({ where: { tenantId, id: inviteId, userId: actorId } });
+    if (!invite) throw new NotFoundException('Invite not found');
+    await (this.prisma as any).groupInvite.update({ where: { id: inviteId }, data: { status: 'ACCEPTED' } });
+    await this.prisma.groupMember.upsert({ where: { tenantId_groupId_userId: { tenantId, groupId: invite.groupId, userId: actorId } }, update: { status: 'ACTIVE' }, create: { tenantId, groupId: invite.groupId, userId: actorId, status: 'ACTIVE' } });
+    return { status: 'accepted' };
+  }
+
+  async rejectInvite(tenantId: string, actorId: string, inviteId: string) {
+    const invite = await (this.prisma as any).groupInvite.findFirst({ where: { tenantId, id: inviteId, userId: actorId } });
+    if (!invite) throw new NotFoundException('Invite not found');
+    await (this.prisma as any).groupInvite.update({ where: { id: inviteId }, data: { status: 'REJECTED' } });
+    return { status: 'rejected' };
   }
 
   async leaveGroup(tenantId: string, groupId: string, actorId: string) {
-    return this.prisma.groupMember.deleteMany({
-      where: {
-        tenantId,
-        groupId,
-        userId: actorId,
-      },
-    });
+    return this.prisma.groupMember.deleteMany({ where: { tenantId, groupId, userId: actorId } });
   }
 
   async listGroupPosts(tenantId: string, groupId: string) {
-    return this.prisma.post.findMany({
-      where: {
-        tenantId,
-        targetType: 'GROUP',
-        targetId: groupId,
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
+    return this.prisma.post.findMany({ where: { tenantId, targetType: 'GROUP', targetId: groupId }, orderBy: { createdAt: 'desc' } });
   }
 
   async ensureCourseGroup(tenantId: string, courseOfferingId: string, name: string) {
     return this.prisma.group.upsert({
       where: { id: courseOfferingId },
-      update: {
-        name,
-        type: GroupType.COURSE,
-      },
-      create: {
-        id: courseOfferingId,
-        tenantId,
-        type: GroupType.COURSE,
-        name,
-        visibility: 'PRIVATE',
-      },
+      update: { name, type: GroupType.COURSE },
+      create: { id: courseOfferingId, tenantId, type: GroupType.COURSE, name, visibility: 'PRIVATE' },
     });
   }
 
-  async autoJoinCourseGroup(tenantId: string, courseOfferingId: string, userId: string) {
-    return this.prisma.groupMember.upsert({
-      where: {
-        tenantId_groupId_userId: {
-          tenantId,
-          groupId: courseOfferingId,
-          userId,
-        },
-      },
-      update: {},
-      create: {
-        tenantId,
-        groupId: courseOfferingId,
-        userId,
-      },
+  async autoJoinCourseGroup(tenantId: string, courseOfferingId: string, studentId: string) {
+    await this.prisma.groupMember.upsert({
+      where: { tenantId_groupId_userId: { tenantId, groupId: courseOfferingId, userId: studentId } },
+      update: { status: 'ACTIVE' },
+      create: { tenantId, groupId: courseOfferingId, userId: studentId, role: GroupMemberRole.MEMBER, status: 'ACTIVE' },
     });
   }
 
   async getGroup(tenantId: string, groupId: string) {
-    return this.prisma.group.findFirst({ where: { tenantId, id: groupId } });
+    const group = await this.prisma.group.findFirst({ where: { tenantId, id: groupId } });
+    if (!group) throw new NotFoundException('Group not found');
+    return group;
   }
 
   async listMembers(tenantId: string, groupId: string) {
     return this.prisma.groupMember.findMany({ where: { tenantId, groupId } });
   }
 
-  async updateMember(tenantId: string, groupId: string, userId: string, data: { role?: string }) {
-    return this.prisma.groupMember.update({
-      where: { tenantId_groupId_userId: { tenantId, groupId, userId } },
-      data: { ...(data.role ? { role: data.role as any } : {}) },
-    });
+  async updateMember(tenantId: string, groupId: string, userId: string, dto: { role?: GroupMemberRole }) {
+    return this.prisma.groupMember.update({ where: { tenantId_groupId_userId: { tenantId, groupId, userId } }, data: { role: dto.role } });
   }
-
 }

@@ -12,63 +12,61 @@ export class FriendsController {
 
   @Post('requests')
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
-  async sendRequest(
-    @TenantContextParam() tenantContext: TenantContext,
-    @Req() req: Request,
-    @Body() dto: FriendRequestDto,
-  ) {
-    const userId = req.user?.sub as string;
-    return this.friendsService.requestFriend(tenantContext.effectiveTenantId, userId, dto);
+  async requestFriend(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request, @Body() dto: FriendRequestDto) {
+    return this.friendsService.requestFriend(tenantContext.effectiveTenantId, req.user?.sub as string, dto);
   }
 
   @Get('requests')
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
-  async listRequests(
-    @TenantContextParam() tenantContext: TenantContext,
-    @Req() req: Request,
-    @Query('status') status = 'all',
-  ) {
-    const userId = req.user?.sub as string;
-    return this.friendsService.listRequests(tenantContext.effectiveTenantId, userId, status);
+  async listRequests(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request, @Query('status') status = 'all') {
+    return this.friendsService.listRequests(tenantContext.effectiveTenantId, req.user?.sub as string, status);
   }
 
   @Post('requests/:id/accept')
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
-  async acceptRequest(
-    @TenantContextParam() tenantContext: TenantContext,
-    @Req() req: Request,
-    @Param('id') requestId: string,
-  ) {
-    const userId = req.user?.sub as string;
-    return this.friendsService.acceptRequest(tenantContext.effectiveTenantId, userId, requestId);
+  async acceptRequest(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request, @Param('id') requestId: string) {
+    return this.friendsService.acceptRequest(tenantContext.effectiveTenantId, req.user?.sub as string, requestId);
   }
 
   @Post('requests/:id/reject')
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
-  async rejectRequest(
-    @TenantContextParam() tenantContext: TenantContext,
-    @Req() req: Request,
-    @Param('id') requestId: string,
-  ) {
-    const userId = req.user?.sub as string;
-    return this.friendsService.rejectRequest(tenantContext.effectiveTenantId, userId, requestId);
+  async rejectRequest(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request, @Param('id') requestId: string) {
+    return this.friendsService.rejectRequest(tenantContext.effectiveTenantId, req.user?.sub as string, requestId);
   }
 
   @Post('requests/:id/cancel')
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
-  async cancelRequest(
-    @TenantContextParam() tenantContext: TenantContext,
-    @Req() req: Request,
-    @Param('id') requestId: string,
-  ) {
-    const userId = req.user?.sub as string;
-    return this.friendsService.cancelRequest(tenantContext.effectiveTenantId, userId, requestId);
+  async cancelRequest(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request, @Param('id') requestId: string) {
+    return this.friendsService.cancelRequest(tenantContext.effectiveTenantId, req.user?.sub as string, requestId);
   }
 
   @Get()
   @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
   async listFriends(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request) {
-    const userId = req.user?.sub as string;
-    return this.friendsService.listFriends(tenantContext.effectiveTenantId, userId);
+    return this.friendsService.listFriends(tenantContext.effectiveTenantId, req.user?.sub as string);
+  }
+
+  @Post('block')
+  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
+  async block(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request, @Body() dto: { userId: string }) {
+    return this.friendsService.blockUser(tenantContext.effectiveTenantId, req.user?.sub as string, dto.userId);
+  }
+
+  @Post('unblock')
+  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
+  async unblock(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request, @Body() dto: { userId: string }) {
+    return this.friendsService.unblockUser(tenantContext.effectiveTenantId, req.user?.sub as string, dto.userId);
+  }
+
+  @Get('blocked')
+  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
+  async listBlocked(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request) {
+    return this.friendsService.listBlocked(tenantContext.effectiveTenantId, req.user?.sub as string);
+  }
+
+  @Get(':userId/mutual')
+  @Roles({ roles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN'] })
+  async mutual(@TenantContextParam() tenantContext: TenantContext, @Req() req: Request, @Param('userId') userId: string) {
+    return this.friendsService.mutualFriends(tenantContext.effectiveTenantId, req.user?.sub as string, userId);
   }
 }

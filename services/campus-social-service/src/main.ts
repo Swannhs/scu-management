@@ -81,6 +81,7 @@ const OPENAPI_SPEC = {
         },
       },
     },
+    '/v1/media/upload': { post: { summary: 'Upload media' } },
     '/v1/reports': { post: { summary: 'Create report' } },
     '/v1/moderation/reports': { get: { summary: 'List moderation reports' } },
     '/v1/directory/users': { get: { summary: 'Directory search' } },

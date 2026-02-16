@@ -133,6 +133,7 @@ export class ConversationsService {
 
   async markRead(tenantId: string, actorId: string, conversationId: string, payload: { lastReadMessageId?: string; lastReadAt?: string }) {
     await this.ensureMember(tenantId, conversationId, actorId);
+    await this.ensureConversationMember(tenantId, conversationId, actorId);
     return (this.prisma as any).conversationRead.upsert({
       where: { tenantId_conversationId_userId: { tenantId, conversationId, userId: actorId } },
       update: { lastReadMessageId: payload.lastReadMessageId, lastReadAt: payload.lastReadAt ? new Date(payload.lastReadAt) : new Date() },
@@ -145,6 +146,7 @@ export class ConversationsService {
   }
 
   async ensureMember(tenantId: string, conversationId: string, actorId: string) {
+  private async ensureConversationMember(tenantId: string, conversationId: string, actorId: string) {
     const membership = await this.prisma.conversationMember.findFirst({ where: { tenantId, conversationId, userId: actorId } });
     if (!membership) throw new ForbiddenException('Not a conversation member');
     return membership;

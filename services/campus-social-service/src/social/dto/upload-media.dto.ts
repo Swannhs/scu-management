@@ -1,4 +1,5 @@
 import { IsBase64, IsIn, IsString, MaxLength } from 'class-validator';
+import { IsString, MaxLength } from 'class-validator';
 
 export class UploadMediaDto {
   @IsString()
@@ -12,5 +13,9 @@ export class UploadMediaDto {
   @IsString()
   @IsBase64()
   @MaxLength(10_000_000)
+  @MaxLength(100)
+  mimeType!: string;
+
+  @IsString()
   contentBase64!: string;
 }
