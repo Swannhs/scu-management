@@ -1,9 +1,14 @@
-import { IsObject, IsString, MaxLength } from 'class-validator';
+import { IsEnum, IsObject } from 'class-validator';
+
+export enum SocialEventType {
+  STUDENT_CREATED = 'student.created',
+  STUDENT_ENROLLED = 'student.enrolled',
+  COURSE_CREATED = 'course.created',
+}
 
 export class EventIngestDto {
-  @IsString()
-  @MaxLength(200)
-  eventType!: string;
+  @IsEnum(SocialEventType)
+  eventType!: SocialEventType;
 
   @IsObject()
   payload!: Record<string, unknown>;
