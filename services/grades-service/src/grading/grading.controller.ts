@@ -2,11 +2,11 @@ import { Body, Controller, ForbiddenException, Get, Param, Post, Query } from '@
 import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 import { GradingService } from './grading.service';
 import { TenantContextParam } from '../common/tenant-context.decorator';
-import { TenantContext } from '../common/tenant-context';
+import type { TenantContext } from '../common/tenant-context';
 import { CreateAssessmentDto } from './dto/create-assessment.dto';
 import { BulkScoreDto } from './dto/bulk-score.dto';
 import { ComputeFinalGradesDto } from './dto/compute-final-grades.dto';
-import { KeycloakUser } from '../common/keycloak-user.interface';
+import type { KeycloakUser } from '../common/keycloak-user.interface';
 
 @Controller('v1')
 export class GradingController {

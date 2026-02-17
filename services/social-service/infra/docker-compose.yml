@@ -1,0 +1,6 @@
+version: "3.8"
+
+# Per-service override file (stub) — intentionally empty to satisfy tools that look for
+# infra/docker-compose.yml under each service directory. Remove if not needed.
+
+services: {}

@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Patch, Post, Query, Req } from '@nestjs/c
 import { Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
-import { TenantContext } from '../../common/tenant-context';
+import type { TenantContext } from '../../common/tenant-context';
 import { CreateGroupDto } from '../dto/create-group.dto';
 import { UpdateGroupMemberDto } from '../dto/update-group-member.dto';
 import { InviteUserDto } from '../dto/invite-user.dto';

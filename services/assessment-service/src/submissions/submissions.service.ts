@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException, BadRequestException, ForbiddenException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import type { Prisma } from '@prisma/client';
 import { SubmitExamDto } from './dto/submit-exam.dto';
-import { TenantContext } from '../common/tenant-context';
+import type { TenantContext } from '../common/tenant-context';
 import { OutboxService } from '../outbox/outbox.service';
 
 @Injectable()
@@ -50,7 +51,7 @@ export class SubmissionsService {
       let totalObtainedMarks = 0;
       let isFullyGraded = true;
 
-      const answersData = [];
+      const answersData: Array<Omit<Prisma.ExamAnswerCreateManyInput, 'submissionId'>> = [];
 
       for (const answerDto of submitExamDto.answers) {
         const examQuestion = exam.questions.find(eq => eq.questionId === answerDto.questionId);

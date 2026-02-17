@@ -2,7 +2,7 @@ import { Body, Controller, Post, Req } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
-import { TenantContext } from '../../common/tenant-context';
+import type { TenantContext } from '../../common/tenant-context';
 import { Body, Controller, Post } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { UploadMediaDto } from '../dto/upload-media.dto';

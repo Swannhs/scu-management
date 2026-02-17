@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { RoomsService } from './rooms.service';
 import { TenantContextParam } from '../common/tenant-context.decorator';
-import { TenantContext } from '../common/tenant-context';
+import type { TenantContext } from '../common/tenant-context';
 import { CreateRoomDto } from './dto/create-room.dto';
 
 @Controller('v1/rooms')

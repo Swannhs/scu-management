@@ -1,14 +1,14 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req } from '@nestjs/common';
 import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
-import { TenantContext } from '../../common/tenant-context';
+import type { TenantContext } from '../../common/tenant-context';
 import { CreateDirectConversationDto } from '../dto/create-direct-conversation.dto';
 import { CreateGroupConversationDto } from '../dto/create-group-conversation.dto';
 import { CreateMessageDto } from '../dto/create-message.dto';
 import { AddMembersDto } from '../dto/add-members.dto';
 import { GetMessagesDto } from '../dto/get-messages.dto';
 import { UpdateGroupDto } from '../dto/update-group.dto';
-import { KeycloakUser } from '../../common/keycloak-user.interface';
+import type { KeycloakUser } from '../../common/keycloak-user.interface';
 import { ConversationsService } from '../services/conversations.service';
 import { UpdateMessageDto } from '../dto/update-message.dto';
 import { ReadConversationDto } from '../dto/read-conversation.dto';

@@ -1,7 +1,7 @@
 import { Body, Controller, Headers, Post, UnauthorizedException } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
-import { TenantContext } from '../../common/tenant-context';
+import type { TenantContext } from '../../common/tenant-context';
 import { EventIngestDto } from '../dto/event-ingest.dto';
 import { EventsService } from '../services/events.service';
 

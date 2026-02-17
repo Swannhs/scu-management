@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { TermsService } from './terms.service';
 import { TenantContextParam } from '../common/tenant-context.decorator';
-import { TenantContext } from '../common/tenant-context';
+import type { TenantContext } from '../common/tenant-context';
 import { CreateTermDto } from './dto/create-term.dto';
 
 @Controller('v1/terms')

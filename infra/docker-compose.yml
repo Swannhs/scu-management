@@ -192,7 +192,7 @@ services:
 
 
   social-service:
-    build: ./services/social-service
+    build: ../services/social-service
     depends_on:
       - social-db
       - rabbitmq
@@ -217,7 +217,7 @@ services:
       - REVERB_SCHEME=http
 
   social-reverb:
-    build: ./services/social-service
+    build: ../services/social-service
     command: php artisan reverb:start
     depends_on:
       - social-service
@@ -234,7 +234,7 @@ services:
       - REVERB_SCHEME=http
 
   grades-service:
-    build: ./services/grades-service
+    build: ../services/grades-service
     depends_on:
       - grades-db
       - keycloak
@@ -244,7 +244,7 @@ services:
       - "3002:3000"
 
   attendance-service:
-    build: ./services/attendance-service
+    build: ../services/attendance-service
     depends_on:
       - attendance-db
     networks:
@@ -253,7 +253,7 @@ services:
       - "3003:3000"
 
   course-service:
-    build: ./services/course-service
+    build: ../services/course-service
     depends_on:
       - course-db
       - keycloak
@@ -269,7 +269,7 @@ services:
       - KEYCLOAK_CLIENT_SECRET=secret
 
   finance-service:
-    build: ./services/finance-service
+    build: ../services/finance-service
     depends_on:
       - finance-db
       - keycloak
@@ -286,7 +286,7 @@ services:
       - SPRING_RABBITMQ_HOST=rabbitmq
 
   library-service:
-    build: ./services/library-service
+    build: ../services/library-service
     depends_on:
       - library-db
     networks:
@@ -299,7 +299,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=librarypass
 
   notifications-service:
-    build: ./services/notifications-service
+    build: ../services/notifications-service
     depends_on:
       - rabbitmq
     networks:
@@ -308,7 +308,7 @@ services:
       - "8001:8000"
 
   transport-service:
-    build: ./services/transport-service
+    build: ../services/transport-service
     depends_on:
       - transport-db
     networks:
@@ -317,7 +317,7 @@ services:
       - "8002:8000"
 
   analytics-service:
-    build: ./services/analytics-service
+    build: ../services/analytics-service
     depends_on:
       - mongo
     networks:
@@ -328,7 +328,7 @@ services:
       - MONGO_URI=mongodb://mongo:27017/university_analytics
 
   faculty-service:
-    build: ./services/faculty-service
+    build: ../services/faculty-service
     depends_on:
       - faculty-db
     networks:
@@ -344,7 +344,7 @@ services:
       - DB_PASSWORD=facultypass
 
   hostel-service:
-    build: ./services/hostel-service
+    build: ../services/hostel-service
     depends_on:
       - hostel-db
     networks:
@@ -360,7 +360,7 @@ services:
       - DB_PASSWORD=hostelpass
 
   parent-portal-service:
-    build: ./services/parent-portal-service
+    build: ../services/parent-portal-service
     depends_on:
       - parent-db
     networks:
@@ -376,7 +376,7 @@ services:
       - DB_PASSWORD=parentpass
 
   admin-config-service:
-    build: ./services/admin-config-service
+    build: ../services/admin-config-service
     depends_on:
       - admin-db
     networks:
@@ -390,7 +390,7 @@ services:
       - DB_PASSWORD=adminpass
 
   enrollment-service:
-    build: ./services/enrollment-service
+    build: ../services/enrollment-service
     depends_on:
       - enrollment-db
       - keycloak
@@ -404,7 +404,7 @@ services:
       - KEYCLOAK_REALM=university-platform
 
   user-service:
-    build: ./services/user-service
+    build: ../services/user-service
     depends_on:
       - user-auth-db
       - keycloak
@@ -414,7 +414,7 @@ services:
       - "3005:3000"
 
   assessment-service:
-    build: ./services/assessment-service
+    build: ../services/assessment-service
     depends_on:
       - assessment-db
       - keycloak
@@ -430,21 +430,21 @@ services:
       - KEYCLOAK_CLIENT_SECRET=secret
 
   document-service:
-    build: ./services/document-service
+    build: ../services/document-service
     networks:
       - ums-network
     ports:
       - "3006:3000"
 
   maintenance-service:
-    build: ./services/maintenance-service
+    build: ../services/maintenance-service
     networks:
       - ums-network
     ports:
       - "3007:3000"
 
   audit-logging-service:
-    build: ./services/audit-logging-service
+    build: ../services/audit-logging-service
     networks:
       - ums-network
     ports:
@@ -453,7 +453,7 @@ services:
 
 
   events-service:
-    build: ./services/events-service
+    build: ../services/events-service
     depends_on:
       - rabbitmq
     networks:
@@ -462,7 +462,7 @@ services:
       - "8012:8000"
 
   clubs-service:
-    build: ./services/clubs-service
+    build: ../services/clubs-service
     depends_on:
       - events-service
     networks:
@@ -471,21 +471,21 @@ services:
       - "8013:8000"
 
   awards-service:
-    build: ./services/awards-service
+    build: ../services/awards-service
     networks:
       - ums-network
     ports:
       - "8014:8000"
 
   platform-admin-service:
-    build: ./services/platform-admin-service
+    build: ../services/platform-admin-service
     networks:
       - ums-network
     ports:
       - "8015:8000"
 
   api-gateway:
-    build: ./services/api-gateway
+    build: ../services/api-gateway
     depends_on:
       - admin-config-service
       - redis
@@ -505,7 +505,7 @@ services:
       - ADMIN_CONFIG_SERVICE_URL=http://admin-config-service
 
   dashboard-ui:
-    build: ./services/dashboard-ui
+    build: ../services/dashboard-ui
     depends_on:
       - api-gateway
     networks:

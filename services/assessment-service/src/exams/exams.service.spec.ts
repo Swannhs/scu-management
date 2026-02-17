@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ExamsService } from './exams.service';
 import { PrismaService } from '../prisma/prisma.service';
-import { TenantContext } from '../common/tenant-context';
+import type { TenantContext } from '../common/tenant-context';
 import { ConflictException } from '@nestjs/common';
 
 describe('ExamsService', () => {

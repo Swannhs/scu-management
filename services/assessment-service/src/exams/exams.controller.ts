@@ -3,7 +3,7 @@ import { ExamsService } from './exams.service';
 import { CreateExamDto } from './dto/create-exam.dto';
 import { AddQuestionDto } from './dto/add-question.dto';
 import { Tenant } from '../common/tenant.decorator';
-import { TenantContext } from '../common/tenant-context';
+import type { TenantContext } from '../common/tenant-context';
 import { Roles } from 'nest-keycloak-connect';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 

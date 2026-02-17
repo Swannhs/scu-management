@@ -1,12 +1,14 @@
-FROM node:18-alpine
+FROM node:20-alpine
 WORKDIR /app
 
 # Install dependencies
 COPY package*.json ./
-RUN npm install
+COPY prisma ./prisma/
+RUN npm install --legacy-peer-deps
 
 # Copy source code and build
 COPY . .
+RUN npx prisma generate
 RUN npm run build
 
 # Set environment (if any) and expose port

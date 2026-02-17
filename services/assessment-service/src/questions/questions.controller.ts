@@ -3,7 +3,7 @@ import { QuestionsService } from './questions.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { Tenant } from '../common/tenant.decorator';
-import { TenantContext } from '../common/tenant-context';
+import type { TenantContext } from '../common/tenant-context';
 import { Roles } from 'nest-keycloak-connect';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 

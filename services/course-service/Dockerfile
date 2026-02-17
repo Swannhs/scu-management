@@ -1,17 +1,30 @@
-FROM node:18-alpine
+FROM node:20-alpine AS builder
+
 WORKDIR /app
 
-# Install dependencies
 COPY package*.json ./
-RUN npm install
+COPY prisma ./prisma/
 
-# Copy source code and build
+RUN npm install --legacy-peer-deps
+
 COPY . .
+
+RUN npx prisma generate
 RUN npm run build
 
-# Set environment (if any) and expose port
-ENV NODE_ENV=production
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY prisma ./prisma/
+
+RUN npm install --only=production --legacy-peer-deps
+
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /app/node_modules/@prisma/client ./node_modules/@prisma/client
+
 EXPOSE 3000
 
-# Start the app
 CMD ["node", "dist/main.js"]

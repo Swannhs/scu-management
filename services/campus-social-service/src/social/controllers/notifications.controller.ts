@@ -2,7 +2,7 @@ import { Controller, Get, Param, Post, Query, Req } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
-import { TenantContext } from '../../common/tenant-context';
+import type { TenantContext } from '../../common/tenant-context';
 import { NotificationsService } from '../services/notifications.service';
 
 @Controller('v1/notifications')

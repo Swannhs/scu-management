@@ -1,8 +1,9 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.4-fpm-alpine
 
 # Install system dependencies
 RUN apk add --no-cache \
     curl \
+    git \
     libpng-dev \
     libxml2-dev \
     zip \
@@ -24,7 +25,7 @@ COPY . /var/www
 
 # Install dependencies if composer.json exists
 RUN if [ -f "composer.json" ]; then \
-    composer install --no-interaction --no-plugins --no-scripts --prefer-dist; \
+    composer install --no-interaction --no-plugins --no-scripts --prefer-dist --ignore-platform-reqs; \
     fi
 
 # Set permissions

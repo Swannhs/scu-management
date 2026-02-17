@@ -2,7 +2,7 @@ import { Controller, Post, Body, Param } from '@nestjs/common';
 import { SubmissionsService } from './submissions.service';
 import { SubmitExamDto } from './dto/submit-exam.dto';
 import { Tenant } from '../common/tenant.decorator';
-import { TenantContext } from '../common/tenant-context';
+import type { TenantContext } from '../common/tenant-context';
 import { Roles } from 'nest-keycloak-connect';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 

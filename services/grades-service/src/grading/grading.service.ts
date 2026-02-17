@@ -3,7 +3,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { BulkScoreDto } from './dto/bulk-score.dto';
 import { CreateAssessmentDto } from './dto/create-assessment.dto';
 import { ComputeFinalGradesDto } from './dto/compute-final-grades.dto';
-import { ExamType } from '@prisma/client';
+import type { ExamType } from '@prisma/client';
 
 @Injectable()
 export class GradingService {
@@ -132,6 +132,7 @@ export class GradingService {
     await this.prisma.$transaction(upserts);
 
     if (dto.termId) {
+      const termId = dto.termId;
       const transcriptUpserts = finalGrades.map((grade) => {
         const gpa = grade.gradePoint ?? 0;
         return this.prisma.studentTranscript.upsert({
@@ -139,7 +140,7 @@ export class GradingService {
             tenantId_studentId_termId: {
               tenantId,
               studentId: grade.studentId,
-              termId: dto.termId,
+              termId,
             },
           },
           update: {
@@ -149,7 +150,7 @@ export class GradingService {
           create: {
             tenantId,
             studentId: grade.studentId,
-            termId: dto.termId,
+            termId,
             gpa,
             isFinalized: true,
           },

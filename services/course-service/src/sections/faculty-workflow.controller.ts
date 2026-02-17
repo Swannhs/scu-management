@@ -2,8 +2,8 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 import { SectionsService } from './sections.service';
 import { TenantContextParam } from '../common/tenant-context.decorator';
-import { TenantContext } from '../common/tenant-context';
-import { KeycloakUser } from '../common/keycloak-user.interface';
+import type { TenantContext } from '../common/tenant-context';
+import type { KeycloakUser } from '../common/keycloak-user.interface';
 
 @Controller('v1/faculty')
 export class FacultyWorkflowController {

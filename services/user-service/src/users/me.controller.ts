@@ -1,8 +1,8 @@
 import { Controller, Get, Req, ForbiddenException, BadRequestException, Patch, Body, Query } from '@nestjs/common';
 import { AuthenticatedUser as CurrentUser, Roles } from 'nest-keycloak-connect';
-import { Request } from 'express';
+import type { Request } from 'express';
 import { UsersService } from './users.service';
-import { AuthenticatedUser } from './interfaces/authenticated-user.interface';
+import type { AuthenticatedUser } from './interfaces/authenticated-user.interface';
 import { UpdateMeProfileDto } from './dto/update-me-profile.dto';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
@@ -94,8 +94,8 @@ export class MeController {
           'X-Tenant-ID': tenantId
       };
 
-      const errors = [];
-      let data = [];
+      const errors: Array<{ service: string; reason: any }> = [];
+      let data: any[] = [];
       let partial = false;
 
       if (roles.includes('STUDENT')) {
@@ -161,8 +161,8 @@ export class MeController {
           'X-Tenant-ID': tenantId
       };
 
-      const errors = [];
-      let data = null;
+      const errors: Array<{ service: string; reason: any }> = [];
+      let data: any = null;
       let partial = false;
 
       if (roles.includes('STUDENT')) {
@@ -205,8 +205,8 @@ export class MeController {
           'X-Tenant-ID': tenantId
       };
 
-      const errors = [];
-      let data = null;
+      const errors: Array<{ service: string; reason: any }> = [];
+      let data: any = null;
       let partial = false;
 
       if (roles.includes('STUDENT')) {

@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Patch, Put, Query, Req } from '@nestjs/co
 import { Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
-import { TenantContext } from '../../common/tenant-context';
+import type { TenantContext } from '../../common/tenant-context';
 import { UpdateProfileDto } from '../dto/update-profile.dto';
 import { ProfilesService } from '../services/profiles.service';
 

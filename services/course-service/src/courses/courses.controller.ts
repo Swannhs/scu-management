@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { CoursesService } from './courses.service';
 import { TenantContextParam } from '../common/tenant-context.decorator';
-import { TenantContext } from '../common/tenant-context';
+import type { TenantContext } from '../common/tenant-context';
 import { CreateCourseDto } from './dto/create-course.dto';
 
 @Controller('v1/courses')

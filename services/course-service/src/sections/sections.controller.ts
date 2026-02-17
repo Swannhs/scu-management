@@ -2,9 +2,9 @@ import { Body, Controller, ForbiddenException, Get, Param, Post, Query } from '@
 import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 import { SectionsService } from './sections.service';
 import { TenantContextParam } from '../common/tenant-context.decorator';
-import { TenantContext } from '../common/tenant-context';
+import type { TenantContext } from '../common/tenant-context';
 import { CreateSectionDto } from './dto/create-section.dto';
-import { KeycloakUser } from '../common/keycloak-user.interface';
+import type { KeycloakUser } from '../common/keycloak-user.interface';
 
 @Controller('v1/sections')
 export class SectionsController {

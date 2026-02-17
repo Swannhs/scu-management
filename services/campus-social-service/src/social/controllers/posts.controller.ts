@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req } from '@
 import { Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
-import { TenantContext } from '../../common/tenant-context';
+import type { TenantContext } from '../../common/tenant-context';
 import { CreateCommentDto } from '../dto/create-comment.dto';
 import { CreatePostDto } from '../dto/create-post.dto';
 import { CreateReactionDto } from '../dto/create-reaction.dto';

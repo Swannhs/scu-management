@@ -2,10 +2,10 @@ import { Body, Controller, ForbiddenException, Get, Param, Post, Query } from '@
 import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 import { AttendanceService } from './attendance.service';
 import { TenantContextParam } from '../common/tenant-context.decorator';
-import { TenantContext } from '../common/tenant-context';
+import type { TenantContext } from '../common/tenant-context';
 import { CreateAttendanceSessionDto } from './dto/create-attendance-session.dto';
 import { MarkAttendanceDto } from './dto/mark-attendance.dto';
-import { KeycloakUser } from '../common/keycloak-user.interface';
+import type { KeycloakUser } from '../common/keycloak-user.interface';
 
 @Controller('v1')
 export class AttendanceController {
