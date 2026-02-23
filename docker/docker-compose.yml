@@ -522,19 +522,6 @@ services:
       - KEYCLOAK_CLIENT_SECRET=secret
       - ADMIN_CONFIG_SERVICE_URL=http://admin-config-service
 
-  dashboard-ui:
-    build: ../services/dashboard-ui
-    depends_on:
-      - api-gateway
-    networks:
-      - ums-network
-    ports:
-      - "8010:3000"
-    environment:
-      - NEXT_PUBLIC_API_URL=http://localhost/api
-      - NEXT_PUBLIC_KEYCLOAK_URL=http://localhost/auth
-      - NEXT_PUBLIC_KEYCLOAK_REALM=university-platform
-      - NEXT_PUBLIC_KEYCLOAK_CLIENT_ID=dashboard-ui
 
 networks:
   ums-network:
@@ -543,3 +530,4 @@ networks:
 volumes:
   keycloak_db_data:
   mongo_data:
+
