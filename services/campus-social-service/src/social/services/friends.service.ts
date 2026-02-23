@@ -19,10 +19,11 @@ export class FriendsService {
     if (requesterId === dto.targetUserId) throw new BadRequestException('Cannot friend yourself');
     await this.ensureNotBlocked(tenantId, requesterId, dto.targetUserId);
 
+    const pairKey = [requesterId, dto.targetUserId].sort().join(':');
     const friendship = await this.prisma.friendship.upsert({
-      where: { tenantId_requesterId_addresseeId: { tenantId, requesterId, addresseeId: dto.targetUserId } },
-      update: { status: 'PENDING' },
-      create: { tenantId, requesterId, addresseeId: dto.targetUserId, status: 'PENDING' },
+      where: { tenantId_pairKey: { tenantId, pairKey } },
+      update: { requesterId, addresseeId: dto.targetUserId, status: 'PENDING' },
+      create: { tenantId, requesterId, addresseeId: dto.targetUserId, pairKey, status: 'PENDING' },
     });
 
     await this.outbox.publishEvent(tenantId, 'social.friend_request.sent', { friendshipId: friendship.id, requesterId, addresseeId: dto.targetUserId });
@@ -33,7 +34,9 @@ export class FriendsService {
     const friendship = await this.prisma.friendship.findFirst({ where: { tenantId, id: requestId } });
     if (!friendship) throw new NotFoundException('Friend request not found');
     if (friendship.addresseeId !== actorId) throw new ForbiddenException('Not allowed to accept this request');
-    const updated = await this.prisma.friendship.update({ where: { id: friendship.id }, data: { status: 'ACCEPTED' } });
+    await this.prisma.friendship.updateMany({ where: { tenantId, id: friendship.id }, data: { status: 'ACCEPTED' } });
+    const updated = await this.prisma.friendship.findFirst({ where: { tenantId, id: friendship.id } });
+    if (!updated) throw new NotFoundException('Friend request not found');
     await this.outbox.publishEvent(tenantId, 'social.friend_request.accepted', { friendshipId: updated.id, requesterId: updated.requesterId, addresseeId: updated.addresseeId });
     return updated;
   }
@@ -42,7 +45,7 @@ export class FriendsService {
     const friendship = await this.prisma.friendship.findFirst({ where: { tenantId, id: requestId } });
     if (!friendship) throw new NotFoundException('Friend request not found');
     if (friendship.addresseeId !== actorId) throw new ForbiddenException('Not allowed to reject this request');
-    await this.prisma.friendship.delete({ where: { id: friendship.id } });
+    await this.prisma.friendship.deleteMany({ where: { tenantId, id: friendship.id } });
     return { status: 'rejected' };
   }
 
@@ -68,7 +71,7 @@ export class FriendsService {
     const friendship = await this.prisma.friendship.findFirst({ where: { tenantId, id: requestId } });
     if (!friendship) throw new NotFoundException('Friend request not found');
     if (friendship.requesterId !== actorId) throw new ForbiddenException('Not allowed to cancel this request');
-    await this.prisma.friendship.delete({ where: { id: requestId } });
+    await this.prisma.friendship.deleteMany({ where: { tenantId, id: requestId } });
     return { status: 'cancelled' };
   }
 

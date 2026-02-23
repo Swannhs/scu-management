@@ -58,7 +58,7 @@ export class GroupsService {
   async acceptInvite(tenantId: string, actorId: string, inviteId: string) {
     const invite = await (this.prisma as any).groupInvite.findFirst({ where: { tenantId, id: inviteId, userId: actorId } });
     if (!invite) throw new NotFoundException('Invite not found');
-    await (this.prisma as any).groupInvite.update({ where: { id: inviteId }, data: { status: 'ACCEPTED' } });
+    await (this.prisma as any).groupInvite.updateMany({ where: { tenantId, id: inviteId }, data: { status: 'ACCEPTED' } });
     await this.prisma.groupMember.upsert({ where: { tenantId_groupId_userId: { tenantId, groupId: invite.groupId, userId: actorId } }, update: { status: 'ACTIVE' }, create: { tenantId, groupId: invite.groupId, userId: actorId, status: 'ACTIVE' } });
     return { status: 'accepted' };
   }
@@ -66,7 +66,7 @@ export class GroupsService {
   async rejectInvite(tenantId: string, actorId: string, inviteId: string) {
     const invite = await (this.prisma as any).groupInvite.findFirst({ where: { tenantId, id: inviteId, userId: actorId } });
     if (!invite) throw new NotFoundException('Invite not found');
-    await (this.prisma as any).groupInvite.update({ where: { id: inviteId }, data: { status: 'REJECTED' } });
+    await (this.prisma as any).groupInvite.updateMany({ where: { tenantId, id: inviteId }, data: { status: 'REJECTED' } });
     return { status: 'rejected' };
   }
 
@@ -80,17 +80,19 @@ export class GroupsService {
 
   async ensureCourseGroup(tenantId: string, courseOfferingId: string, name: string) {
     return this.prisma.group.upsert({
-      where: { id: courseOfferingId },
+      where: { tenantId_externalRefId: { tenantId, externalRefId: courseOfferingId } },
       update: { name, type: GroupType.COURSE },
-      create: { id: courseOfferingId, tenantId, type: GroupType.COURSE, name, visibility: 'PRIVATE' },
+      create: { tenantId, externalRefId: courseOfferingId, type: GroupType.COURSE, name, visibility: 'PRIVATE' },
     });
   }
 
   async autoJoinCourseGroup(tenantId: string, courseOfferingId: string, studentId: string) {
+    const courseGroup = await this.prisma.group.findFirst({ where: { tenantId, externalRefId: courseOfferingId } });
+    if (!courseGroup) throw new NotFoundException('Course group not found');
     await this.prisma.groupMember.upsert({
-      where: { tenantId_groupId_userId: { tenantId, groupId: courseOfferingId, userId: studentId } },
+      where: { tenantId_groupId_userId: { tenantId, groupId: courseGroup.id, userId: studentId } },
       update: { status: 'ACTIVE' },
-      create: { tenantId, groupId: courseOfferingId, userId: studentId, role: GroupMemberRole.MEMBER, status: 'ACTIVE' },
+      create: { tenantId, groupId: courseGroup.id, userId: studentId, role: GroupMemberRole.MEMBER, status: 'ACTIVE' },
     });
   }
 

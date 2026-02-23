@@ -216,6 +216,24 @@ services:
       - REVERB_PORT=8080
       - REVERB_SCHEME=http
 
+
+  campus-social-service:
+    build: ../services/campus-social-service
+    depends_on:
+      - mongo
+      - rabbitmq
+      - keycloak
+    networks:
+      - ums-network
+    ports:
+      - "3015:3000"
+    environment:
+      - DATABASE_URL=mongodb://mongo:27017/campus_social
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=scu
+      - KEYCLOAK_CLIENT_ID=campus-social-service
+      - KEYCLOAK_CLIENT_SECRET=change-me
+
   social-reverb:
     build: ../services/social-service
     command: php artisan reverb:start
