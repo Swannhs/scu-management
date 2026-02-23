@@ -33,7 +33,8 @@ export class CallsService {
     if (!session) throw new NotFoundException('Call not found');
     const membership = await this.prisma.conversationMember.findFirst({ where: { tenantId, conversationId: session.conversationId, userId: actorId } });
     if (!membership) throw new ForbiddenException('Not a conversation member');
-    return this.prisma.callSession.update({ where: { id: session.id }, data: { status: 'ENDED', endedAt: new Date() } });
+    await this.prisma.callSession.updateMany({ where: { tenantId, id: session.id }, data: { status: 'ENDED', endedAt: new Date() } });
+    return this.prisma.callSession.findFirst({ where: { tenantId, id: session.id } });
   }
 
   async createRoom(tenantId: string, actorId: string, type: string, targetId: string) {

@@ -1,14 +1,14 @@
 import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConversationMemberRole } from '@prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
+import { AddMembersDto } from '../dto/add-members.dto';
 import { CreateDirectConversationDto } from '../dto/create-direct-conversation.dto';
 import { CreateGroupConversationDto } from '../dto/create-group-conversation.dto';
 import { CreateMessageDto } from '../dto/create-message.dto';
-import { AddMembersDto } from '../dto/add-members.dto';
 import { GetMessagesDto } from '../dto/get-messages.dto';
-import { OutboxService } from './outbox.service';
-import { ConversationMemberRole } from '@prisma/client';
 import { UpdateGroupDto } from '../dto/update-group.dto';
 import { RealtimeGateway } from '../gateways/realtime.gateway';
+import { OutboxService } from './outbox.service';
 
 @Injectable()
 export class ConversationsService {
@@ -23,21 +23,18 @@ export class ConversationsService {
     if (blocked) throw new ForbiddenException('Cannot DM blocked user');
     await this.validateUsersExistInTenant(tenantId, [dto.recipientId]);
 
-    const actorMemberships = await this.prisma.conversationMember.findMany({ where: { tenantId, userId: actorId }, select: { conversationId: true } });
-    const recipientMemberships = await this.prisma.conversationMember.findMany({ where: { tenantId, userId: dto.recipientId }, select: { conversationId: true } });
-    const actorConversationIds = new Set(actorMemberships.map((membership) => membership.conversationId));
-    const sharedConversationId = recipientMemberships.map((membership) => membership.conversationId).find((id) => actorConversationIds.has(id));
-    if (sharedConversationId) {
-      const existing = await this.prisma.conversation.findFirst({ where: { tenantId, id: sharedConversationId, type: 'DIRECT' } });
-      if (existing) return existing;
-    }
+    const directKey = [actorId, dto.recipientId].sort().join(':');
+    const existing = await this.prisma.conversation.findFirst({ where: { tenantId, type: 'DIRECT', directKey } });
+    if (existing) return existing;
 
     return this.prisma.$transaction(async (tx) => {
-      const conversation = await tx.conversation.create({ data: { tenantId, type: 'DIRECT' } });
-      await tx.conversationMember.createMany({ data: [
-        { tenantId, conversationId: conversation.id, userId: actorId, role: ConversationMemberRole.ADMIN },
-        { tenantId, conversationId: conversation.id, userId: dto.recipientId, role: ConversationMemberRole.ADMIN },
-      ]});
+      const conversation = await tx.conversation.create({ data: { tenantId, type: 'DIRECT', directKey } });
+      await tx.conversationMember.createMany({
+        data: [
+          { tenantId, conversationId: conversation.id, userId: actorId, role: ConversationMemberRole.ADMIN },
+          { tenantId, conversationId: conversation.id, userId: dto.recipientId, role: ConversationMemberRole.ADMIN },
+        ],
+      });
       return conversation;
     });
   }
@@ -48,7 +45,7 @@ export class ConversationsService {
     await this.validateUsersExistInTenant(tenantId, uniqueRecipients);
 
     return this.prisma.$transaction(async (tx) => {
-      const conversation = await tx.conversation.create({ data: { tenantId, type: 'GROUP', name: dto.name } });
+      const conversation = await tx.conversation.create({ data: { tenantId, type: 'GROUP', name: dto.name, directKey: `group:${Date.now()}:${actorId}` } });
       await tx.conversationMember.create({ data: { tenantId, conversationId: conversation.id, userId: actorId, role: ConversationMemberRole.ADMIN } });
       await tx.conversationMember.createMany({ data: uniqueRecipients.map((userId) => ({ tenantId, conversationId: conversation.id, userId, role: ConversationMemberRole.MEMBER })) });
       return conversation;
@@ -58,16 +55,18 @@ export class ConversationsService {
   async updateGroup(tenantId: string, actorId: string, conversationId: string, dto: UpdateGroupDto) {
     const conversation = await this.ensureConversationExists(tenantId, conversationId);
     if (conversation.type !== 'GROUP') throw new BadRequestException('Cannot update a direct conversation');
-    const membership = await this.prisma.conversationMember.findFirst({ where: { tenantId, conversationId, userId: actorId } });
-    if (!membership || membership.role !== ConversationMemberRole.ADMIN) throw new ForbiddenException('Only admins can update group details');
-    return this.prisma.conversation.update({ where: { id: conversationId }, data: { name: dto.name, avatarFileId: dto.avatarFileId } });
+    const membership = await this.ensureConversationMember(tenantId, conversationId, actorId);
+    if (membership.role !== ConversationMemberRole.ADMIN) throw new ForbiddenException('Only admins can update group details');
+
+    await this.prisma.conversation.updateMany({ where: { tenantId, id: conversationId }, data: { name: dto.name, avatarFileId: dto.avatarFileId } });
+    return this.ensureConversationExists(tenantId, conversationId);
   }
 
   async addMembers(tenantId: string, actorId: string, conversationId: string, dto: AddMembersDto) {
     const conversation = await this.ensureConversationExists(tenantId, conversationId);
     if (conversation.type !== 'GROUP') throw new BadRequestException('Cannot add members to a direct conversation');
-    const membership = await this.prisma.conversationMember.findFirst({ where: { tenantId, conversationId, userId: actorId } });
-    if (!membership || membership.role !== ConversationMemberRole.ADMIN) throw new ForbiddenException('Only admins can add members');
+    const membership = await this.ensureConversationMember(tenantId, conversationId, actorId);
+    if (membership.role !== ConversationMemberRole.ADMIN) throw new ForbiddenException('Only admins can add members');
 
     const existingMembers = await this.prisma.conversationMember.findMany({ where: { tenantId, conversationId, userId: { in: dto.userIds } }, select: { userId: true } });
     const existingMemberIds = new Set(existingMembers.map((m) => m.userId));
@@ -81,12 +80,11 @@ export class ConversationsService {
   async removeMember(tenantId: string, actorId: string, conversationId: string, userIdToRemove: string) {
     const conversation = await this.ensureConversationExists(tenantId, conversationId);
     if (conversation.type !== 'GROUP') throw new BadRequestException('Cannot remove members from a direct conversation');
-    const actorMembership = await this.prisma.conversationMember.findFirst({ where: { tenantId, conversationId, userId: actorId } });
-    if (!actorMembership) throw new ForbiddenException('Not a conversation member');
+    const actorMembership = await this.ensureConversationMember(tenantId, conversationId, actorId);
     if (actorId !== userIdToRemove && actorMembership.role !== ConversationMemberRole.ADMIN) throw new ForbiddenException('Only admins can remove other members');
-    const targetMembership = await this.prisma.conversationMember.findFirst({ where: { tenantId, conversationId, userId: userIdToRemove } });
-    if (!targetMembership) throw new NotFoundException('User is not a member of this conversation');
-    await this.prisma.conversationMember.delete({ where: { tenantId_conversationId_userId: { tenantId, conversationId, userId: userIdToRemove } } });
+
+    const deleted = await this.prisma.conversationMember.deleteMany({ where: { tenantId, conversationId, userId: userIdToRemove } });
+    if (!deleted.count) throw new NotFoundException('User is not a member of this conversation');
     return { removed: true };
   }
 
@@ -96,16 +94,14 @@ export class ConversationsService {
   }
 
   async listMessages(tenantId: string, actorId: string, conversationId: string, query?: GetMessagesDto) {
-    const membership = await this.prisma.conversationMember.findFirst({ where: { tenantId, conversationId, userId: actorId } });
-    if (!membership) throw new ForbiddenException('Not a conversation member');
+    await this.ensureConversationMember(tenantId, conversationId, actorId);
     const limit = query?.limit || 50;
     const cursor = query?.cursor;
-    return this.prisma.message.findMany({ where: { tenantId, conversationId }, orderBy: { createdAt: 'desc' }, take: limit, skip: cursor ? 1 : 0, cursor: cursor ? { id: cursor } : undefined });
+    return this.prisma.message.findMany({ where: { tenantId, conversationId }, orderBy: [{ createdAt: 'desc' }, { id: 'desc' }], take: limit, skip: cursor ? 1 : 0, cursor: cursor ? { id: cursor } : undefined });
   }
 
   async sendMessage(tenantId: string, actorId: string, conversationId: string, dto: CreateMessageDto) {
-    const membership = await this.prisma.conversationMember.findFirst({ where: { tenantId, conversationId, userId: actorId } });
-    if (!membership) throw new ForbiddenException('Not a conversation member');
+    await this.ensureConversationMember(tenantId, conversationId, actorId);
 
     const message = await this.prisma.message.create({ data: { tenantId, conversationId, senderId: actorId, text: dto.text, fileId: dto.fileId } });
     if (dto.attachments?.length) {
@@ -121,18 +117,19 @@ export class ConversationsService {
     const msg = await this.prisma.message.findFirst({ where: { tenantId, id: messageId, conversationId } });
     if (!msg) throw new NotFoundException('Message not found');
     if (msg.senderId !== actorId) throw new ForbiddenException('Only author can edit');
-    return this.prisma.message.update({ where: { id: messageId }, data: { text, editedAt: new Date() } });
+    await this.prisma.message.updateMany({ where: { tenantId, id: messageId, conversationId }, data: { text, editedAt: new Date() } });
+    return this.prisma.message.findFirst({ where: { tenantId, id: messageId, conversationId } });
   }
 
   async deleteMessage(tenantId: string, actorId: string, conversationId: string, messageId: string, roles: string[]) {
     const msg = await this.prisma.message.findFirst({ where: { tenantId, id: messageId, conversationId } });
     if (!msg) throw new NotFoundException('Message not found');
     if (msg.senderId !== actorId && !roles.includes('TENANT_ADMIN')) throw new ForbiddenException('Not allowed');
-    return this.prisma.message.update({ where: { id: messageId }, data: { text: '[deleted]', deletedAt: new Date() } });
+    await this.prisma.message.updateMany({ where: { tenantId, id: messageId, conversationId }, data: { text: '[deleted]', deletedAt: new Date() } });
+    return this.prisma.message.findFirst({ where: { tenantId, id: messageId, conversationId } });
   }
 
   async markRead(tenantId: string, actorId: string, conversationId: string, payload: { lastReadMessageId?: string; lastReadAt?: string }) {
-    await this.ensureMember(tenantId, conversationId, actorId);
     await this.ensureConversationMember(tenantId, conversationId, actorId);
     return (this.prisma as any).conversationRead.upsert({
       where: { tenantId_conversationId_userId: { tenantId, conversationId, userId: actorId } },
@@ -145,14 +142,13 @@ export class ConversationsService {
     return (this.prisma as any).conversationRead.findMany({ where: { tenantId, conversationId } });
   }
 
-  async ensureMember(tenantId: string, conversationId: string, actorId: string) {
   private async ensureConversationMember(tenantId: string, conversationId: string, actorId: string) {
     const membership = await this.prisma.conversationMember.findFirst({ where: { tenantId, conversationId, userId: actorId } });
     if (!membership) throw new ForbiddenException('Not a conversation member');
     return membership;
   }
 
-  async ensureConversationExists(tenantId: string, conversationId: string) {
+  private async ensureConversationExists(tenantId: string, conversationId: string) {
     const conversation = await this.prisma.conversation.findFirst({ where: { tenantId, id: conversationId } });
     if (!conversation) throw new NotFoundException('Conversation not found');
     return conversation;

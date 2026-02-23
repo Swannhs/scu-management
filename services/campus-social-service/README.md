@@ -12,7 +12,7 @@ Production-grade social + communication service for campus tenants. This service
 ## Environment
 
 ```
-DATABASE_URL=postgresql://.../campus_social
+DATABASE_URL=mongodb://mongo:27017/campus_social
 KEYCLOAK_AUTH_SERVER_URL=https://...
 KEYCLOAK_REALM=scu
 KEYCLOAK_CLIENT_ID=campus-social-service
@@ -20,9 +20,16 @@ KEYCLOAK_CLIENT_SECRET=...
 PORT=3000
 ```
 
-## Database (Prisma)
+## Database (Prisma + MongoDB)
 
-Schema is in `prisma/schema.prisma`. All tables include `tenant_id` plus tenant-scoped indexes.
+Schema is in `prisma/schema.prisma` using `provider = "mongodb"`. All collections include `tenant_id` and tenant-scoped indexes.
+
+Initialize Prisma for Mongo:
+
+```bash
+npm run prisma:generate
+npm run prisma:push
+```
 
 ## API Summary
 

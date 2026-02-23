@@ -107,28 +107,32 @@ export class PostsService {
     const post = await this.prisma.post.findFirst({ where: { tenantId, id: postId } });
     if (!post) throw new NotFoundException('Post not found');
     if (post.authorId !== actorId && !roles.includes('TENANT_ADMIN')) throw new ForbiddenException('Not allowed');
-    return this.prisma.post.update({ where: { id: postId }, data: { text: dto.text } });
+    await this.prisma.post.updateMany({ where: { tenantId, id: postId }, data: { text: dto.text } });
+    return this.prisma.post.findFirst({ where: { tenantId, id: postId } });
   }
 
   async deletePost(tenantId: string, actorId: string, postId: string, roles: string[]) {
     const post = await this.prisma.post.findFirst({ where: { tenantId, id: postId } });
     if (!post) throw new NotFoundException('Post not found');
     if (post.authorId !== actorId && !roles.includes('TENANT_ADMIN')) throw new ForbiddenException('Not allowed');
-    return this.prisma.post.update({ where: { id: postId }, data: { deletedAt: new Date(), text: '[deleted]' } });
+    await this.prisma.post.updateMany({ where: { tenantId, id: postId }, data: { deletedAt: new Date(), text: '[deleted]' } });
+    return this.prisma.post.findFirst({ where: { tenantId, id: postId } });
   }
 
   async updateComment(tenantId: string, actorId: string, commentId: string, dto: UpdateCommentDto) {
     const comment = await this.prisma.comment.findFirst({ where: { tenantId, id: commentId } });
     if (!comment) throw new NotFoundException('Comment not found');
     if (comment.authorId !== actorId) throw new ForbiddenException('Not allowed');
-    return this.prisma.comment.update({ where: { id: commentId }, data: { text: dto.text } });
+    await this.prisma.comment.updateMany({ where: { tenantId, id: commentId }, data: { text: dto.text } });
+    return this.prisma.comment.findFirst({ where: { tenantId, id: commentId } });
   }
 
   async deleteComment(tenantId: string, actorId: string, commentId: string, roles: string[]) {
     const comment = await this.prisma.comment.findFirst({ where: { tenantId, id: commentId } });
     if (!comment) throw new NotFoundException('Comment not found');
     if (comment.authorId !== actorId && !roles.includes('TENANT_ADMIN')) throw new ForbiddenException('Not allowed');
-    return this.prisma.comment.update({ where: { id: commentId }, data: { deletedAt: new Date(), text: '[deleted]' } });
+    await this.prisma.comment.updateMany({ where: { tenantId, id: commentId }, data: { deletedAt: new Date(), text: '[deleted]' } });
+    return this.prisma.comment.findFirst({ where: { tenantId, id: commentId } });
   }
 
   async createReport(tenantId: string, reporterId: string, dto: CreateReportDto) {
@@ -140,6 +144,7 @@ export class PostsService {
   }
 
   async closeReport(tenantId: string, reportId: string, actionTaken: string) {
-    return (this.prisma as any).report.update({ where: { id: reportId }, data: { status: 'closed', actionTaken, closedAt: new Date() } });
+    await (this.prisma as any).report.updateMany({ where: { tenantId, id: reportId }, data: { status: 'closed', actionTaken, closedAt: new Date() } });
+    return (this.prisma as any).report.findFirst({ where: { tenantId, id: reportId } });
   }
 }

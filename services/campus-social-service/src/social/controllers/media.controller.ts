@@ -1,10 +1,8 @@
 import { Body, Controller, Post, Req } from '@nestjs/common';
-import { Roles } from 'nest-keycloak-connect';
 import { Request } from 'express';
+import { Roles } from 'nest-keycloak-connect';
 import { TenantContextParam } from '../../common/tenant-context.decorator';
 import type { TenantContext } from '../../common/tenant-context';
-import { Body, Controller, Post } from '@nestjs/common';
-import { Roles } from 'nest-keycloak-connect';
 import { UploadMediaDto } from '../dto/upload-media.dto';
 import { MediaService } from '../services/media.service';
 
@@ -20,7 +18,5 @@ export class MediaController {
     @Body() dto: UploadMediaDto,
   ) {
     return this.mediaService.upload(tenantContext.effectiveTenantId, req.user?.sub as string, dto);
-  upload(@Body() dto: UploadMediaDto) {
-    return this.mediaService.upload(dto);
   }
 }
