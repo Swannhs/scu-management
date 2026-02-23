@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
 class Group extends Model
 {
@@ -11,6 +11,6 @@ class Group extends Model
     public function members()
     {
         return $this->belongsToMany(SocialProfile::class, 'group_members', 'group_id', 'user_id')
-                    ->withPivot('role');
+            ->withPivot('role');
     }
 }

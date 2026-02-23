@@ -3,55 +3,74 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Friendship;
-use App\Services\NotificationService;
+use App\Http\Requests\Friendship\StoreFriendRequest;
+use App\Http\Resources\Friendship\FriendshipResource;
+use App\Services\FriendshipService;
 use Illuminate\Http\Request;
 
 class FriendshipController extends Controller
 {
-    protected $notificationService;
+    protected $friendshipService;
 
-    public function __construct(NotificationService $notificationService)
+    public function __construct(FriendshipService $friendshipService)
     {
-        $this->notificationService = $notificationService;
+        $this->friendshipService = $friendshipService;
     }
 
-    public function store(Request $request)
+    public function store(StoreFriendRequest $request)
     {
         $userId = $request->header('X-User-Id');
 
-        $validated = $request->validate([
-            'friend_id' => 'required|exists:social_profiles,id'
-        ]);
+        $friendship = $this->friendshipService->sendRequest(
+            $userId,
+            $request->validated('friend_id')
+        );
 
-        $friendship = Friendship::firstOrCreate([
-            'user_id' => $userId,
-            'friend_id' => $validated['friend_id']
-        ], ['status' => 'pending']);
-
-        // Notify friend
-        if ($friendship->wasRecentlyCreated) {
-            $this->notificationService->sendNotification([
-                'type' => 'friend_request',
-                'from_user_id' => $userId,
-                'to_user_id' => $validated['friend_id']
-            ]);
-        }
-
-        return response()->json($friendship);
+        return new FriendshipResource($friendship);
     }
 
-    public function accept($id)
+    public function accept(Request $request, $id)
     {
-        $friendship = Friendship::findOrFail($id);
-        $friendship->update(['status' => 'accepted']);
+        $userId = $request->header('X-User-Id');
 
-        // Create reverse record for 2-way
-        Friendship::firstOrCreate([
-            'user_id' => $friendship->friend_id,
-            'friend_id' => $friendship->user_id
-        ], ['status' => 'accepted']);
+        $this->friendshipService->acceptRequest($userId, $id);
 
         return response()->json(['message' => 'Friendship accepted']);
+    }
+
+    public function pending(Request $request)
+    {
+        $userId = $request->header('X-User-Id');
+
+        $requests = $this->friendshipService->getPendingRequests($userId);
+
+        return FriendshipResource::collection($requests);
+    }
+
+    public function decline(Request $request, $id)
+    {
+        $userId = $request->header('X-User-Id');
+
+        $this->friendshipService->declineRequest($userId, $id);
+
+        return response()->json(['message' => 'Request declined']);
+    }
+
+    public function destroy(Request $request, $friendId)
+    {
+        $userId = $request->header('X-User-Id');
+
+        $this->friendshipService->unfriend($userId, $friendId);
+
+        return response()->json(['message' => 'Friendship removed']);
+    }
+
+    public function block(Request $request, $userIdToBlock)
+    {
+        $userId = $request->header('X-User-Id');
+
+        $this->friendshipService->blockUser($userId, $userIdToBlock);
+
+        return response()->json(['message' => 'User blocked successfully']);
     }
 }

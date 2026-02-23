@@ -3,18 +3,26 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\StorePostRequest;
+use App\Http\Requests\Post\UpdatePostRequest;
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Models\SocialProfile;
 use App\Services\NotificationService;
+use App\Services\PostService;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     protected $notificationService;
+    protected $postService;
 
-    public function __construct(NotificationService $notificationService)
-    {
+    public function __construct(
+        NotificationService $notificationService,
+        PostService $postService
+    ) {
         $this->notificationService = $notificationService;
+        $this->postService = $postService;
     }
 
     public function index(Request $request)
@@ -26,40 +34,12 @@ class PostController extends Controller
             return response()->json(['error' => 'User profile not found'], 404);
         }
 
-        // Get IDs for feed construction
-        $friendIds = $user->friends()->pluck('social_profiles.id')->toArray();
-        $groupIds = $user->groups()->pluck('groups.id')->toArray();
+        $posts = $this->postService->getFeedForUser($user);
 
-        $posts = Post::with(['author', 'comments', 'likes'])
-            ->where('tenant_id', $user->tenant_id) // Strict Multi-tenancy
-            ->where(function($query) use ($userId, $friendIds, $groupIds) {
-                // 1. My posts
-                $query->where('user_id', $userId)
-
-                // 2. Public posts in my tenant
-                ->orWhere(function($q) {
-                    $q->where('visibility', 'public')
-                      ->whereNull('group_id'); // Public timeline posts
-                })
-
-                // 3. Friend posts (friends visibility)
-                ->orWhere(function($q) use ($friendIds) {
-                    $q->whereIn('user_id', $friendIds)
-                      ->where('visibility', 'friends');
-                })
-
-                // 4. Group posts (from my groups)
-                ->orWhere(function($q) use ($groupIds) {
-                    $q->whereIn('group_id', $groupIds);
-                });
-            })
-            ->latest()
-            ->paginate(20);
-
-        return response()->json($posts);
+        return PostResource::collection($posts);
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         $userId = $request->header('X-User-Id');
 
@@ -68,24 +48,7 @@ class PostController extends Controller
             return response()->json(['error' => 'User profile not found'], 404);
         }
 
-        $validated = $request->validate([
-            'content' => 'required|string',
-            'group_id' => 'nullable|exists:groups,id',
-            'media_urls' => 'nullable|array',
-            'visibility' => 'in:public,friends,group'
-        ]);
-
-        // If posting to a group, ensure user is a member
-        if (!empty($validated['group_id'])) {
-             // Logic to check membership could be added here
-             $validated['visibility'] = 'group'; // Force visibility
-        }
-
-        $post = Post::create([
-            'user_id' => $userId,
-            'tenant_id' => $user->tenant_id,
-            ...$validated
-        ]);
+        $post = $this->postService->createPost($user, $request->validated());
 
         // Dispatch Event for Notification
         $this->notificationService->sendNotification([
@@ -95,12 +58,49 @@ class PostController extends Controller
             'tenant_id' => $user->tenant_id
         ]);
 
-        return response()->json($post, 201);
+        return new PostResource($post);
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        // Should also check tenant_id matches current user
-        return Post::with(['comments.author', 'likes'])->findOrFail($id);
+        $tenantId = $request->header('X-Tenant-Id');
+
+        $post = Post::with(['author'])->findOrFail($id);
+
+        if ($post->tenant_id !== $tenantId) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+        return new PostResource($post);
+    }
+
+    public function update(UpdatePostRequest $request, $id)
+    {
+        $userId = $request->header('X-User-Id');
+
+        $post = Post::findOrFail($id);
+
+        if ($post->user_id !== $userId) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $post->update($request->validated());
+
+        return new PostResource($post);
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $userId = $request->header('X-User-Id');
+
+        $post = Post::findOrFail($id);
+
+        if ($post->user_id !== $userId) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $post->delete();
+
+        return response()->json(['message' => 'Post deleted successfully']);
     }
 }

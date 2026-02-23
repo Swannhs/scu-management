@@ -10,6 +10,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "laravel/reverb": "@beta",
+        "mongodb/laravel-mongodb": "^4.0",
         "php-amqplib/php-amqplib": "^3.0"
     },
     "require-dev": {

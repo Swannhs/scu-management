@@ -9,10 +9,14 @@ RUN apk add --no-cache \
     zip \
     unzip \
     linux-headers \
-    libpq-dev
+    libpq-dev \
+    openssl-dev \
+    $PHPIZE_DEPS
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_pgsql bcmath gd sockets
+RUN docker-php-ext-install pdo_pgsql bcmath gd sockets \
+    && pecl install mongodb \
+    && docker-php-ext-enable mongodb
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
