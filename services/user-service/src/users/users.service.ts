@@ -1,102 +1,157 @@
-import { Injectable, ConflictException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { Role, User } from '@prisma/client';
-import { OutboxService } from '../outbox/outbox.service';
-import { UpdateProfileDto } from './dto/update-profile.dto';
+import { UserRole } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
-    constructor(
-        private prisma: PrismaService,
-        private outboxService: OutboxService,
-    ) { }
+  constructor(private prisma: PrismaService) {}
 
-    async createUser(data: {
-        email: string;
-        keycloakId: string;
-        tenantId: string;
-        role: Role;
-    }): Promise<User> {
-        // We use a transaction to ensure user creation and event publishing are atomic
-        return await this.prisma.$transaction(async (tx) => {
-            const existing = await tx.user.findFirst({
-                where: { email: data.email, tenantId: data.tenantId },
-            });
+  async findAll(tenantId: string, page: number = 1, limit: number = 20) {
+    const skip = (page - 1) * limit;
 
-            if (existing) {
-                return existing;
-            }
+    const [users, total] = await Promise.all([
+      this.prisma.user.findMany({
+        where: { tenantId, isActive: true },
+        skip,
+        take: limit,
+        orderBy: { createdAt: 'desc' },
+        select: {
+          id: true,
+          email: true,
+          firstName: true,
+          lastName: true,
+          role: true,
+          isActive: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+      }),
+      this.prisma.user.count({
+        where: { tenantId, isActive: true },
+      }),
+    ]);
 
-            const user = await tx.user.create({
-                data: {
-                    email: data.email,
-                    keycloakId: data.keycloakId,
-                    tenantId: data.tenantId,
-                    role: data.role,
-                },
-            });
+    return {
+      data: users,
+      meta: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
+  }
 
-            await this.outboxService.createEvent(tx, {
-                tenantId: user.tenantId,
-                eventType: 'user.created',
-                payload: {
-                    userId: user.id,
-                    email: user.email,
-                    role: user.role,
-                    keycloakId: user.keycloakId,
-                },
-            });
+  async findOne(id: string, tenantId: string) {
+    const user = await this.prisma.user.findFirst({
+      where: { id, tenantId },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        role: true,
+        isActive: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
 
-            return user;
-        });
+    if (!user) {
+      throw new NotFoundException('User not found');
     }
 
-    async findByKeycloakId(keycloakId: string, tenantId: string): Promise<User | null> {
-        return this.prisma.user.findFirst({
-            where: { keycloakId, tenantId },
-        });
+    return user;
+  }
+
+  async findByEmail(email: string, tenantId: string) {
+    return this.prisma.user.findUnique({
+      where: {
+        tenantId_email: {
+          tenantId,
+          email,
+        },
+      },
+    });
+  }
+
+  async update(
+    id: string,
+    tenantId: string,
+    data: {
+      firstName?: string;
+      lastName?: string;
+      role?: UserRole;
+      isActive?: boolean;
+    },
+  ) {
+    const user = await this.prisma.user.findFirst({
+      where: { id, tenantId },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
     }
 
-    async findByTenant(tenantId: string): Promise<User[]> {
-        return this.prisma.user.findMany({
-            where: { tenantId },
-        });
+    return this.prisma.user.update({
+      where: { id },
+      data,
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        role: true,
+        isActive: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+  }
+
+  async remove(id: string, tenantId: string) {
+    const user = await this.prisma.user.findFirst({
+      where: { id, tenantId },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
     }
 
-    async updateProfile(keycloakId: string, tenantId: string, data: UpdateProfileDto) {
-        return await this.prisma.$transaction(async (tx) => {
-            const user = await tx.user.findFirst({
-                where: { keycloakId, tenantId }
-            });
+    // Soft delete
+    return this.prisma.user.update({
+      where: { id },
+      data: { isActive: false },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        role: true,
+        isActive: true,
+      },
+    });
+  }
 
-            if (!user) {
-                // If user doesn't exist in local DB, we can't update.
-                throw new Error('User record not found');
-            }
+  async getMe(userId: string, tenantId: string) {
+    const user = await this.prisma.user.findFirst({
+      where: { id: userId, tenantId },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        role: true,
+        isActive: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
 
-            const updatedUser = await tx.user.update({
-                where: { id: user.id },
-                data: {
-                    ...(data.firstName ? { firstName: data.firstName } : {}),
-                    ...(data.lastName ? { lastName: data.lastName } : {}),
-                    ...(data.phone ? { phone: data.phone } : {}),
-                    ...(data.address ? { address: data.address } : {}),
-                    ...(data.avatarUrl ? { avatarUrl: data.avatarUrl } : {}),
-                    ...(data.emergencyContact ? { emergencyContact: data.emergencyContact } : {}),
-                }
-            });
-
-            await this.outboxService.createEvent(tx, {
-                tenantId: user.tenantId,
-                eventType: 'ProfileUpdated',
-                payload: {
-                    userId: user.id,
-                    keycloakId: user.keycloakId,
-                    updatedFields: Object.keys(data),
-                },
-            });
-
-            return updatedUser;
-        });
+    if (!user) {
+      throw new NotFoundException('User not found');
     }
+
+    return user;
+  }
 }

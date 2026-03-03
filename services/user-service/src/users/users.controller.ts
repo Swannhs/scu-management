@@ -1,99 +1,79 @@
-import { BadRequestException, ForbiddenException, Controller, Get, Post, Body, Query, Req, Injectable } from '@nestjs/common';
-import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
+import {
+  Controller,
+  Get,
+  Post,
+  Patch,
+  Delete,
+  Body,
+  Param,
+  Query,
+  Headers,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { UsersService } from './users.service';
-import { Role } from '@prisma/client';
-import { OnboardUserDto } from './dto/onboard-user.dto';
-import type { Request } from 'express';
+import { UpdateUserDto, ListUsersDto } from './dto/user.dto';
+import { ApiResponse as ApiResponseType } from '@university/shared';
 
-@Controller('users')
+@ApiTags('Users')
+@Controller('v1/users')
 export class UsersController {
-    constructor(private readonly usersService: UsersService) { }
+  constructor(private usersService: UsersService) {}
 
-    @Get('me')
-    async getMe(@Req() req: Request, @AuthenticatedUser() user: any) {
-        const tenantId = this.checkTenantContext(req, user);
-        // "sub" is keycloak ID
-        const localUser = await this.usersService.findByKeycloakId(user.sub, tenantId);
-        return {
-            ...user,
-            localInfo: localUser,
-        };
-    }
+  @Get()
+  @ApiOperation({ summary: 'List all users' })
+  async findAll(
+    @Headers('x-tenant-id') tenantId: string,
+    @Query() query: ListUsersDto,
+  ) {
+    const result = await this.usersService.findAll(
+      tenantId,
+      query.page,
+      query.limit,
+    );
+    return ApiResponseType.success(result.data, result.meta);
+  }
 
-    @Post('onboard')
-    @Roles({ roles: ['admin', 'TENANT_ADMIN'] })
-    async onboardUser(@Req() req: Request, @AuthenticatedUser() user: any, @Body() data: OnboardUserDto) {
-        const tenantId = this.checkTenantContext(req, user, data.tenantId);
-        return this.usersService.createUser({
-            email: data.email,
-            keycloakId: data.keycloakId,
-            tenantId,
-            role: data.role,
-        });
-    }
+  @Get('me')
+  @ApiOperation({ summary: 'Get current user profile' })
+  async getMe(
+    @Headers('x-user-id') userId: string,
+    @Headers('x-tenant-id') tenantId: string,
+  ) {
+    const user = await this.usersService.getMe(userId, tenantId);
+    return ApiResponseType.success(user);
+  }
 
-    @Get()
-    @Roles({ roles: ['admin', 'TENANT_ADMIN'] })
-    async findAll(@Req() req: Request, @AuthenticatedUser() user: any, @Query('tenantId') queryTenantId?: string) {
-        const tenantId = this.checkTenantContext(req, user, queryTenantId);
-        return this.usersService.findByTenant(tenantId);
-    }
+  @Get(':id')
+  @ApiOperation({ summary: 'Get user by ID' })
+  async findOne(
+    @Param('id') id: string,
+    @Headers('x-tenant-id') tenantId: string,
+  ) {
+    const user = await this.usersService.findOne(id, tenantId);
+    return ApiResponseType.success(user);
+  }
 
-    /**
-     * Enforces strict tenant context checks.
-     * 1. Extracts X-Tenant-ID header.
-     * 2. Extracts user.tenant_id from token (if available).
-     * 3. Validates they match.
-     * 4. Allows GLOBAL ADMIN override if needed (optional, but strict for now).
-     */
-    private checkTenantContext(req: Request, user: any, requestedTenant?: string): string {
-        const headerTenant = req.headers['x-tenant-id'] as string;
-        const tokenTenant = user?.tenant_id;
-        const isGlobalAdmin = user?.realm_access?.roles?.includes('admin'); // 'admin' in realm_access
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update user' })
+  async update(
+    @Param('id') id: string,
+    @Headers('x-tenant-id') tenantId: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    const user = await this.usersService.update(id, tenantId, updateUserDto);
+    return ApiResponseType.success(user);
+  }
 
-        // 1. If header and token both exist, they MUST match.
-        if (headerTenant && tokenTenant && headerTenant !== tokenTenant) {
-             throw new ForbiddenException('TENANT_CONTEXT_MISMATCH');
-        }
-
-        // 2. Determine effective tenant
-        // If regular user, tokenTenant is authority.
-        // If no token tenant (e.g. global admin or service account), fall back to header or requested.
-        let effectiveTenant = tokenTenant || headerTenant || requestedTenant;
-
-        // 3. Logic for Global Admin
-        if (isGlobalAdmin) {
-            // Global admin can impersonate/act on any tenant provided in header or body
-            // If requestedTenant is provided (e.g. body/query), it takes precedence over header if logical
-            effectiveTenant = requestedTenant || headerTenant || tokenTenant;
-
-            if (!effectiveTenant) {
-                 throw new BadRequestException('tenantId is required for global administrators');
-            }
-
-            // Note: If header is present, we enforce it matches requestedTenant for consistency,
-            // or we allow global admin to just use one.
-            // Let's enforce consistency if both present to avoid confusion.
-            if (headerTenant && requestedTenant && headerTenant !== requestedTenant) {
-                 throw new BadRequestException('Header X-Tenant-ID and requested tenantId mismatch');
-            }
-
-            return effectiveTenant;
-        }
-
-        // 4. Logic for Regular User / Tenant Admin
-        if (!effectiveTenant) {
-             throw new BadRequestException('Tenant context is missing');
-        }
-
-        // If user is bound to a tenant (tokenTenant), they cannot act on another.
-        if (tokenTenant && requestedTenant && tokenTenant !== requestedTenant) {
-             throw new ForbiddenException('You cannot perform actions on another tenant');
-        }
-
-        // Final check: header vs effective (if header was missing but token present, we are good)
-        // If header was present, we already checked mismatch above.
-
-        return effectiveTenant;
-    }
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Deactivate user' })
+  async remove(
+    @Param('id') id: string,
+    @Headers('x-tenant-id') tenantId: string,
+  ) {
+    const user = await this.usersService.remove(id, tenantId);
+    return ApiResponseType.success(user);
+  }
 }

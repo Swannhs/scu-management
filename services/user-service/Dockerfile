@@ -1,30 +1,25 @@
-FROM node:20-alpine AS builder
+FROM node:18-alpine
 
 WORKDIR /app
 
+# Copy package files
 COPY package*.json ./
 COPY prisma ./prisma/
 
-RUN npm install --legacy-peer-deps
+# Install dependencies
+RUN npm install
 
+# Generate Prisma client
+RUN npx prisma generate
+
+# Copy source code
 COPY . .
 
-RUN npx prisma generate
+# Build TypeScript
 RUN npm run build
 
-FROM node:20-alpine
+# Expose port
+EXPOSE 3001
 
-WORKDIR /app
-
-COPY package*.json ./
-COPY prisma ./prisma/
-
-RUN npm install --only=production --legacy-peer-deps
-
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/node_modules/@prisma/client ./node_modules/@prisma/client
-
-EXPOSE 3000
-
+# Start the application
 CMD ["node", "dist/main.js"]
