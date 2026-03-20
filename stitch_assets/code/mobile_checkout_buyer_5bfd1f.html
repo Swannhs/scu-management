@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | Campus Social</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+<!-- Header -->
+<div class="flex items-center px-4 py-4 sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10 border-b border-primary/10">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-start cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Checkout</h2>
+</div>
+<div class="flex flex-col gap-6 p-4">
+<!-- Order Summary Section -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="text-slate-900 dark:text-slate-100 text-base font-bold">Order Summary</h3>
+<span class="text-primary text-sm font-medium">1 Item</span>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800/50 p-3 rounded-xl border border-primary/5">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16" data-alt="Green campus hoodie with vintage logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDhflrpa86bbZi_GuclEpryCHZ3GK8FSra2q_6cI6R-qQcQkBW3FDDbOmfgxjjWsrLDg6UCyyzz_p6ZLVm63dJY1Fy5eS7pyuWZEcxIZ2dPWGal-lMQK2UypQk-9wCZOQX8HXdjv-5cvuNDLBrajiNBQ3wH8llkfprYfwsXR9NnetiSqUYQkYBoj_pJBphX6RYgEl04j-vFdDHzbYzcCEi6P-l4TYqriNMdxThykYEsI8peh3_dtn4e4OAx1dCHAB9SAWFIesIsZ0qg");'></div>
+<div class="flex flex-col flex-1">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold leading-tight">Vintage Campus Hoodie</p>
+<p class="text-primary/70 text-sm font-normal">Size: M | Color: Forest Green</p>
+</div>
+<div class="shrink-0">
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold">$45.00</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 px-1">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500 dark:text-slate-400">Subtotal</span>
+<span class="text-slate-900 dark:text-slate-100">$45.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500 dark:text-slate-400">Service Fee</span>
+<span class="text-slate-900 dark:text-slate-100">$1.50</span>
+</div>
+<div class="h-px bg-primary/10 my-1"></div>
+<div class="flex justify-between text-base font-bold">
+<span class="text-slate-900 dark:text-slate-100">Total</span>
+<span class="text-primary">$46.50</span>
+</div>
+</div>
+</section>
+<!-- Pickup Location Section -->
+<section class="flex flex-col gap-3">
+<h3 class="text-slate-900 dark:text-slate-100 text-base font-bold px-1">Pickup Location</h3>
+<div class="grid grid-cols-1 gap-2">
+<label class="relative flex items-center p-4 bg-white dark:bg-slate-800/50 rounded-xl border-2 border-primary cursor-pointer">
+<input checked="" class="hidden" name="location" type="radio"/>
+<span class="material-symbols-outlined text-primary mr-3">school</span>
+<div class="flex-1">
+<p class="text-slate-900 dark:text-slate-100 font-semibold text-sm">Student Union</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Main Entrance, North Wing</p>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</label>
+<label class="relative flex items-center p-4 bg-white dark:bg-slate-800/50 rounded-xl border border-primary/10 cursor-pointer">
+<input class="hidden" name="location" type="radio"/>
+<span class="material-symbols-outlined text-slate-400 mr-3">menu_book</span>
+<div class="flex-1">
+<p class="text-slate-900 dark:text-slate-100 font-semibold text-sm">Main Library</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Information Desk</p>
+</div>
+<span class="material-symbols-outlined text-slate-200 dark:text-slate-700">radio_button_unchecked</span>
+</label>
+</div>
+</section>
+<!-- Payment Method Section -->
+<section class="flex flex-col gap-3">
+<h3 class="text-slate-900 dark:text-slate-100 text-base font-bold px-1">Payment Method</h3>
+<div class="flex flex-col gap-2">
+<!-- Campus Points -->
+<div class="flex items-center p-4 bg-primary/10 rounded-xl border border-primary/20">
+<span class="material-symbols-outlined text-primary mr-3">token</span>
+<div class="flex-1">
+<p class="text-slate-900 dark:text-slate-100 font-semibold text-sm">Campus Points</p>
+<p class="text-primary text-xs font-medium">Balance: 124.50 pts</p>
+</div>
+<div class="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+</div>
+</div>
+<!-- Other Payment Options -->
+<div class="flex gap-2">
+<div class="flex-1 flex flex-col items-center justify-center p-3 bg-white dark:bg-slate-800/50 rounded-xl border border-primary/10">
+<span class="material-symbols-outlined text-slate-500 mb-1">credit_card</span>
+<span class="text-[10px] font-medium uppercase tracking-wider text-slate-500">Credit Card</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center p-3 bg-white dark:bg-slate-800/50 rounded-xl border border-primary/10">
+<span class="material-symbols-outlined text-slate-500 mb-1">brand_family</span>
+<span class="text-[10px] font-medium uppercase tracking-wider text-slate-500">Apple Pay</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Security Badges -->
+<div class="flex items-center justify-center gap-4 py-2 opacity-60">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">verified_user</span>
+<span class="text-[10px] font-semibold uppercase tracking-widest">Secure SSL</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">shield</span>
+<span class="text-[10px] font-semibold uppercase tracking-widest">Encrypted</span>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-auto pt-4 pb-8">
+<button class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">shopping_bag</span>
+                    Complete Purchase • $46.50
+                </button>
+<p class="text-center text-slate-400 text-[10px] mt-4 px-8 leading-relaxed">
+                    By clicking "Complete Purchase", you agree to the Campus Social Marketplace terms of service and seller policies.
+                </p>
+</div>
+</div>
+</div>
+</body></html>

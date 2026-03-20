@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>Reservation Success</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden shadow-2xl">
+<!-- Top App Bar -->
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">close</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Reservation</h2>
+<div class="flex size-10 items-center justify-center">
+<button class="flex cursor-pointer items-center justify-center rounded-full text-slate-900 dark:text-slate-100 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Success Header -->
+<div class="flex flex-col px-6 py-8">
+<div class="flex flex-col items-center gap-6">
+<!-- Success Illustration/Icon -->
+<div class="relative flex items-center justify-center">
+<div class="absolute w-32 h-32 bg-primary/10 rounded-full animate-pulse"></div>
+<div class="bg-primary text-white p-4 rounded-full z-10">
+<span class="material-symbols-outlined !text-5xl">check_circle</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<h1 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight tracking-tight text-center">Book Reserved!</h1>
+<p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-normal max-w-[280px] text-center">
+                        'The Psychology of Money' has been held for you at the library.
+                    </p>
+</div>
+</div>
+</div>
+<!-- QR Code Section -->
+<div class="px-6 pb-6">
+<div class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col items-center gap-4">
+<div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-lg">
+<div class="w-48 h-48 bg-white p-2 rounded-md">
+<img alt="QR Code" class="w-full h-full object-contain" data-alt="A clean minimalist QR code for library pickup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtgozyzHqfoqpS1JjwQPs0HFlJBb-rX_2QU-ifp2qpjF5uhDVURTVPZZf5_ki9nmkyHb7S8U9lu2AT2WCmMLNoo_A4j5cgCC68JhaI4kH5jmw14Jv2Opv7J8du1R18FgIbYIASuVKKp4oRr4obOHMW_5LRhPkJhVbAD9MsblZwmo1OTmoBJZc239FcYNE58JmR_G6ZPPJVwMGqVpNKjl3BeZwdEN0le5nMcK8gGOHE9IW9Jksbpf-FyJWKpE6DAJxqzfrmfb5YcQgS"/>
+</div>
+</div>
+<div class="text-center">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Pickup ID</p>
+<p class="text-slate-900 dark:text-slate-100 font-mono text-lg font-bold">#LIB-8829-X</p>
+</div>
+</div>
+</div>
+<!-- Pickup Details -->
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold px-6 pb-3">Pickup Information</h3>
+<div class="px-6 space-y-4">
+<!-- Location Card -->
+<div class="flex items-center justify-between gap-4 rounded-xl bg-white dark:bg-slate-900 p-4 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex flex-col gap-3 flex-1">
+<div class="flex flex-col gap-1">
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold leading-tight">Central Campus Library</p>
+<p class="text-primary text-sm font-medium leading-normal">Level 2, Service Desk A</p>
+</div>
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-primary/10 text-primary gap-2 text-sm font-bold w-fit hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined !text-lg">directions</span>
+<span>Get Directions</span>
+</button>
+</div>
+<div class="w-24 h-24 bg-slate-200 dark:bg-slate-800 rounded-lg overflow-hidden shrink-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="Minimalist map showing library location" data-location="Stanford University Library" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDNz6GG2avnBqdHmX1wpUj08OxohnYwL0anfjyZd_lkHc5d-xRLITgRUqMO0GKw1mMhAXhknG4ZWV8wfx0bXTkZ9JsKyncUpTw7osqlqu10ZOh4-ZC5cVALgZ_iezZ5uDafmjcuvNWVYyjOw-xn1o8Mz-dK4_47Fr2zwoN1uWRLQu3AdzKryucb5t78tOySVcMFsuqTYhwg3Hjw8vu1nTmiI4b-m-q3vYp7w5GgRPYv9qIJ6ZRkucs3LCu9qzzIYZKfPrAk_gGjwG8w');"></div>
+</div>
+</div>
+<!-- Date & Time Card -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 justify-between">
+<div class="flex items-center gap-3">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-11">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase">Availability Date</p>
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold">Oct 24, 2023 • 10:30 AM</p>
+</div>
+</div>
+<button class="flex items-center justify-center rounded-lg h-9 px-3 bg-primary/10 text-primary text-sm font-bold hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined !text-lg">event_available</span>
+</button>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-auto p-6 space-y-3">
+<button class="w-full flex items-center justify-center gap-2 rounded-xl h-14 bg-primary text-white text-base font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">calendar_add_on</span>
+<span>Add to Calendar</span>
+</button>
+<button class="w-full flex items-center justify-center rounded-xl h-14 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-base font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                View My Reservations
+            </button>
+</div>
+<div class="h-8"></div>
+</div>
+</body></html>

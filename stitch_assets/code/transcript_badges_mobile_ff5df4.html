@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campus Social - Academic Records</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab {
+            border-bottom: 3px solid #00a870;
+            color: #00a870;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center p-4 justify-between">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Academic Records</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-24">
+<div class="p-6">
+<div class="flex flex-col items-center text-center gap-4">
+<div class="relative">
+<div class="bg-primary/10 p-1 rounded-full border-2 border-primary">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-24 w-24" data-alt="Professional portrait of a male university student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDIRQ4CoTxbCzrb-umirQFqPGsvC-EYdHl9hlT7RcETp0-zH0EHYCjPTau8cn0CX_0BxfJllwzK0GgbKfySDNGgus5F87A4M20bLyNhOTeHBorDDvl_d-P1iGOXQh27gQ9NWPgs_DSMsljvr7MO1quGj4cg1h7ecufyRetz1dadWY4nLEY51rvGdt_XTafSEv6g1hBVtM_fnjA4nelIRHhv3v6DQreo0P6SvsIK5GKUL_bnVv7dd0fbAfySTos2sV7bMX9BBdE4NPHW");'>
+</div>
+</div>
+<div class="absolute bottom-0 right-0 bg-primary text-white p-1 rounded-full border-2 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-sm block">verified</span>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-2xl font-bold tracking-tight">Alex Rivers</p>
+<p class="text-primary font-medium text-sm">B.Sc. Computer Science • Year 4</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1">Student ID: #882910</p>
+</div>
+</div>
+</div>
+<div class="sticky top-[72px] z-40 bg-background-light dark:bg-background-dark px-4">
+<div class="flex border-b border-primary/10">
+<a class="flex flex-col items-center justify-center active-tab pb-3 pt-2 flex-1 font-bold text-sm tracking-wide" href="#">
+                    Transcript
+                </a>
+<a class="flex flex-col items-center justify-center text-slate-400 pb-3 pt-2 flex-1 font-bold text-sm tracking-wide" href="#">
+                    Certificates
+                </a>
+</div>
+</div>
+<div class="px-4 py-6 space-y-6">
+<section>
+<div class="flex items-center justify-between mb-4 px-2">
+<h3 class="text-lg font-bold tracking-tight">Digital Badges</h3>
+<span class="text-xs font-bold text-primary px-2 py-1 bg-primary/10 rounded-full">3 Verified</span>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-2 no-scrollbar">
+<div class="flex-shrink-0 flex flex-col items-center gap-2 bg-white dark:bg-slate-800/50 p-4 rounded-xl border border-primary/10 w-28">
+<div class="size-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600">
+<span class="material-symbols-outlined text-3xl">military_tech</span>
+</div>
+<p class="text-[10px] font-bold text-center leading-tight uppercase tracking-wider">Dean's List</p>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-2 bg-white dark:bg-slate-800/50 p-4 rounded-xl border border-primary/10 w-28">
+<div class="size-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined text-3xl">workspace_premium</span>
+</div>
+<p class="text-[10px] font-bold text-center leading-tight uppercase tracking-wider">Honors</p>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-2 bg-white dark:bg-slate-800/50 p-4 rounded-xl border border-primary/10 w-28">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">star</span>
+</div>
+<p class="text-[10px] font-bold text-center leading-tight uppercase tracking-wider">Top 1%</p>
+</div>
+</div>
+</section>
+<section class="space-y-4">
+<h3 class="text-lg font-bold tracking-tight px-2">Academic Performance</h3>
+<div class="bg-white dark:bg-slate-800/40 border border-primary/10 rounded-xl p-4 flex items-center justify-between transition-all hover:border-primary/30">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<p class="font-bold">Year 3 - Semester 2</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">GPA: 3.92 • 15 Credits</p>
+</div>
+</div>
+<button class="size-10 rounded-full flex items-center justify-center hover:bg-primary/10 text-primary">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800/40 border border-primary/10 rounded-xl p-4 flex items-center justify-between transition-all hover:border-primary/30">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<p class="font-bold">Year 3 - Semester 1</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">GPA: 3.88 • 18 Credits</p>
+</div>
+</div>
+<button class="size-10 rounded-full flex items-center justify-center hover:bg-primary/10 text-primary">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800/40 border border-primary/10 rounded-xl p-4 flex items-center justify-between transition-all hover:border-primary/30 opacity-75">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-500">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<p class="font-bold">Year 2 - Full Year</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">GPA: 3.75 • 32 Credits</p>
+</div>
+</div>
+<button class="size-10 rounded-full flex items-center justify-center hover:bg-primary/10 text-primary">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800/40 border border-primary/10 rounded-xl p-4 flex items-center justify-between transition-all hover:border-primary/30 opacity-75">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-500">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<p class="font-bold">Year 1 - Full Year</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">GPA: 3.60 • 30 Credits</p>
+</div>
+</div>
+<button class="size-10 rounded-full flex items-center justify-center hover:bg-primary/10 text-primary">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-background-light dark:bg-background-dark border-t border-primary/10 px-4 pb-6 pt-2 flex justify-around items-center z-50 backdrop-blur-lg">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium uppercase tracking-widest">Home</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">school</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Academic</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-[10px] font-medium uppercase tracking-widest">Social</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<p class="text-[10px] font-medium uppercase tracking-widest">Profile</p>
+</a>
+</nav>
+</body></html>

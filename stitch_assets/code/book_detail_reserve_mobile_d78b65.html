@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>University Library - Book Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f8fdfb",
+                        "background-dark": "#0a120e",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-10 flex items-center justify-between px-4 py-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">arrow_back</span>
+</button>
+<h2 class="text-base font-semibold tracking-tight">Book Details</h2>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">share</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto px-4 pb-32">
+<!-- Book Cover Section -->
+<div class="flex justify-center my-6">
+<div class="relative w-56 aspect-[2/3] rounded-xl shadow-2xl overflow-hidden bg-slate-200 dark:bg-slate-800">
+<img alt="Modern Architecture Principles Book Cover" class="w-full h-full object-cover" data-alt="Hardcover book titled Modern Architecture on a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVzZjnep5LbkJupF4DbYwdSzZPjNp5nFJCGvac_vVm0HPRQLEYF7xwiJiQJehjIY-cbB36cGHkWdqT74bYLI_LElIi-P183ErXvcCqahDKoK_cyLTa2-5j2Yea8mjHvUr85LR6T5F14WITb7Zbknh-A6j4sNtVEoGy1ZmpPXu5I6zUaWlPTUMT_iovAen14XXh0bxE1FZS0_oGC1ihVTGHUmAl0rPJJXgEZkiavW_u5WcE16orq9-KXciGqnlYSHv7vA3-labD0LkN"/>
+</div>
+</div>
+<!-- Book Info Header -->
+<div class="text-center mb-6">
+<h1 class="text-2xl font-bold leading-tight mb-1">Principles of Sustainable Urbanism</h1>
+<p class="text-slate-600 dark:text-slate-400 font-medium">by Dr. Helena Richardson</p>
+<!-- Rating & Stats -->
+<div class="flex items-center justify-center gap-4 mt-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined fill text-yellow-500 text-lg">star</span>
+<span class="font-bold">4.8</span>
+<span class="text-xs text-slate-500 dark:text-slate-500">(124)</span>
+</div>
+<div class="h-4 w-px bg-slate-300 dark:bg-slate-700"></div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-lg">menu_book</span>
+<span class="font-bold">342</span>
+<span class="text-xs text-slate-500 dark:text-slate-500">Pages</span>
+</div>
+</div>
+</div>
+<!-- Availability Badges -->
+<div class="flex gap-2 justify-center mb-8">
+<span class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                Physical Available
+            </span>
+<span class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">cloud_done</span>
+                Digital Ready
+            </span>
+</div>
+<!-- Summary -->
+<div class="space-y-3 mb-8">
+<h3 class="text-lg font-bold">Summary</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                This comprehensive guide explores the intersection of environmental psychology and urban planning. Dr. Richardson presents a revolutionary framework for designing cities that prioritize both ecological health and human well-being, featuring case studies from across Northern Europe and East Asia.
+            </p>
+</div>
+<!-- Metadata Grid -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-1">Publisher</p>
+<p class="text-sm font-semibold">Oxford University Press</p>
+</div>
+<div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-1">Published</p>
+<p class="text-sm font-semibold">October 2023</p>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar (Floating) -->
+<div class="fixed bottom-20 left-0 right-0 px-4 py-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 z-20">
+<div class="flex gap-3 max-w-md mx-auto">
+<button class="flex-1 flex items-center justify-center gap-2 h-14 bg-primary text-white rounded-xl font-bold shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">auto_stories</span>
+                Read Now
+            </button>
+<button class="flex-1 flex items-center justify-center gap-2 h-14 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-xl font-bold active:scale-95 transition-transform">
+<span class="material-symbols-outlined">bookmark_add</span>
+                Reserve
+            </button>
+</div>
+</div>
+<!-- Bottom Navigation Component -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-6 py-2 pb-6 z-30">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill">home</span>
+<span class="text-[10px] font-bold">Library</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[10px] font-bold">Search</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">import_contacts</span>
+<span class="text-[10px] font-bold">My Books</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-bold">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

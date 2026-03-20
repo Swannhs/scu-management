@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto bg-white dark:bg-background-dark shadow-2xl">
+<!-- Header -->
+<header class="flex items-center justify-between px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">menu</span>
+<h1 class="text-xl font-bold tracking-tight">Journals &amp; Research</h1>
+</div>
+<button class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto no-scrollbar pb-24">
+<!-- Search Bar -->
+<div class="px-6 py-2">
+<label class="relative block">
+<span class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary">
+<span class="material-symbols-outlined">search</span>
+</span>
+<input class="w-full h-12 bg-primary/5 border-none rounded-xl pl-12 pr-4 placeholder:text-primary/60 focus:ring-2 focus:ring-primary/20 text-slate-900 dark:text-slate-100" placeholder="Search papers, DOI, or authors" type="text"/>
+</label>
+</div>
+<!-- Categories Horizontal Scroll -->
+<div class="mt-6">
+<div class="flex items-center justify-between px-6 mb-3">
+<h2 class="font-bold text-lg">Categories</h2>
+<button class="text-primary text-sm font-semibold">See all</button>
+</div>
+<div class="flex gap-3 overflow-x-auto px-6 no-scrollbar">
+<button class="flex flex-col items-center gap-2 min-w-[80px]">
+<div class="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-3xl">engineering</span>
+</div>
+<span class="text-xs font-medium">Engineering</span>
+</button>
+<button class="flex flex-col items-center gap-2 min-w-[80px]">
+<div class="w-16 h-16 rounded-2xl bg-white dark:bg-slate-800 border border-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">medical_services</span>
+</div>
+<span class="text-xs font-medium">Medicine</span>
+</button>
+<button class="flex flex-col items-center gap-2 min-w-[80px]">
+<div class="w-16 h-16 rounded-2xl bg-white dark:bg-slate-800 border border-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">groups</span>
+</div>
+<span class="text-xs font-medium">Social</span>
+</button>
+<button class="flex flex-col items-center gap-2 min-w-[80px]">
+<div class="w-16 h-16 rounded-2xl bg-white dark:bg-slate-800 border border-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">science</span>
+</div>
+<span class="text-xs font-medium">Science</span>
+</button>
+</div>
+</div>
+<!-- Featured Research -->
+<div class="mt-8">
+<h2 class="px-6 font-bold text-lg mb-4">Featured Research</h2>
+<div class="flex gap-4 overflow-x-auto px-6 no-scrollbar">
+<div class="min-w-[280px] group">
+<div class="relative w-full aspect-video rounded-xl overflow-hidden mb-3 bg-slate-200" data-alt="Abstract green and blue network pattern">
+<img alt="" class="w-full h-full object-cover transition-transform group-hover:scale-105" data-alt="Microscopic view of sustainable energy cells" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZYpH5TiNvs5e7IJZDeuvcOpjMZ8Km5N2hCyZSXamEPGZAE27j-KkVe6jIdGr5lxxSyNrbhlO14qfUkZEJJ9Umfz05ir-hnCjOByXxN41kB7vdNb9ObE9ZM-_1tH9f-aJWni6uxMc6OdyGQFl9KWEkp9UkZkHU5dXGxCDOMGKDGD0E3BA7W3UZ6iPkOl8F3-L0jAUupPkvW_Rq1U4p4a5qP_fAUMI6qYJQqfyIZGW_6ha6kzKG-FxFce8ljodI29aJq2rHlGzA4tbz"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-[10px] font-bold text-primary uppercase">New</div>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-slate-100">Future of Green Energy</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Dr. Elena Rivers • 2024</p>
+</div>
+<div class="min-w-[280px] group">
+<div class="relative w-full aspect-video rounded-xl overflow-hidden mb-3 bg-slate-200" data-alt="Clean medical laboratory equipment background">
+<img alt="" class="w-full h-full object-cover transition-transform group-hover:scale-105" data-alt="Modern medical research lab interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlAHzNIfga_NqzZLG_9wAHRm0nyaeSlT4aJtfwJkdGcnYC8LfrsvCCDtw7sc8b19bv4PRmnQVpWQUrBlBF5VNPc6uolJuFrbDAr6NbHg5F0ZA8YEtohi3WpGMeEy13_nJJxy3syzmBDI_L3tZf70hdY5LBO6KVWBJxXz1OQ8oXxqorX-86ZDY0CB7co7aG7Nq1uAC_I9L_XyGuJxgY9VXx5gnKQoS9HKtPZfNZUaMnshjuVt6aQDZX6YOJRJvDcEO93CCokO5sUj3O"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-[10px] font-bold text-primary uppercase">Trending</div>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-slate-100">Modern Medicine 2024</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">SCU Medical Lab • 2024</p>
+</div>
+</div>
+</div>
+<!-- My Library (Saved Journals) -->
+<div class="mt-8 px-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-bold text-lg">My Library</h2>
+<span class="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded-full">12 Saved</span>
+</div>
+<div class="space-y-3">
+<div class="flex gap-4 p-3 rounded-xl bg-white dark:bg-slate-800 border border-primary/10 shadow-sm">
+<div class="w-16 h-20 bg-primary/20 rounded-lg flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-3xl">description</span>
+</div>
+<div class="flex flex-col justify-center overflow-hidden">
+<h4 class="font-semibold text-sm truncate">Climate Impact on Urbanization</h4>
+<p class="text-xs text-slate-500 mb-2">Environmental Journal</p>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1 text-[10px] text-primary bg-primary/5 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-xs">download</span> PDF
+                                </span>
+<span class="text-[10px] text-slate-400">Saved 2 days ago</span>
+</div>
+</div>
+</div>
+<div class="flex gap-4 p-3 rounded-xl bg-white dark:bg-slate-800 border border-primary/10 shadow-sm">
+<div class="w-16 h-20 bg-primary/20 rounded-lg flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-3xl">description</span>
+</div>
+<div class="flex flex-col justify-center overflow-hidden">
+<h4 class="font-semibold text-sm truncate">AI Ethics in Modern Tech</h4>
+<p class="text-xs text-slate-500 mb-2">Ethics Quarterly</p>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1 text-[10px] text-primary bg-primary/5 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-xs">download</span> PDF
+                                </span>
+<span class="text-[10px] text-slate-400">Saved 1 week ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="absolute bottom-0 w-full bg-white dark:bg-background-dark border-t border-primary/10 pb-6 pt-2 px-6">
+<div class="flex justify-between items-center max-w-sm mx-auto">
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-[1]">book_4</span>
+<span class="text-[10px] font-bold">Research</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="text-[10px] font-medium">Library</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

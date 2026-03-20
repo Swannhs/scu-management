@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCU Mobile - Campus Garden Cleanup</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed-dim": "#a1d1b4",
+              "surface-variant": "#e0e3e5",
+              "surface-bright": "#f8f9fb",
+              "secondary-fixed": "#bceecf",
+              "inverse-on-surface": "#eff1f3",
+              "on-primary-fixed-variant": "#005234",
+              "outline": "#6d7a71",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#5adda0",
+              "on-tertiary-fixed-variant": "#842327",
+              "background": "#f8f9fb",
+              "on-background": "#191c1e",
+              "error": "#ba1a1a",
+              "inverse-surface": "#2d3133",
+              "on-surface-variant": "#3d4a41",
+              "tertiary": "#a33b3c",
+              "secondary-container": "#bceecf",
+              "surface-dim": "#d8dadc",
+              "surface-container-high": "#e6e8ea",
+              "primary-container": "#00a76f",
+              "on-primary-container": "#00321f",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "on-tertiary-fixed": "#410006",
+              "surface-container-highest": "#e0e3e5",
+              "surface-tint": "#006c46",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#191c1e",
+              "on-error-container": "#93000a",
+              "outline-variant": "#bccabf",
+              "on-tertiary-container": "#5d040f",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#ffdad8",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#e66d6c",
+              "on-secondary-fixed": "#002112",
+              "surface-container-low": "#f2f4f6",
+              "primary-fixed": "#79fabb",
+              "on-secondary": "#ffffff",
+              "primary": "#006c46",
+              "secondary": "#3a674f",
+              "on-secondary-fixed-variant": "#224f39",
+              "primary-fixed-dim": "#5adda0",
+              "on-primary-fixed": "#002112",
+              "on-primary": "#ffffff",
+              "surface": "#f8f9fb",
+              "on-secondary-container": "#406e55",
+              "surface-container": "#eceef0"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="University Logo small icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3MJBHoCnlewHP9YIZsQ21Tgxj9ospJ6Rl2GG4m7Uz1wSrAhzfx6WlFdMjLrHf2Q_wMTlxPPvWeWPvzkH34uWdwPIMYgm7v8_WmxultNZK30PCN3up_Zb3ejc6_2d2iHijxSVMS3zs4V6Fl9ZAxTVIlJ2WnDLO8bKw9_xD03UMRs-jA6b0nlKFqTVBVf6NetuVZvud3e2O1SZxLhZxsi6LrhC_N3_z5gO0QukmIZXAnED42_fPUH_xtj7eWm3NTR_co5k__-VFfIBG"/>
+</div>
+<span class="text-xl font-black text-[#00A76F] font-['Public_Sans'] tracking-tight">SCU Mobile</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400">notifications</span>
+</button>
+</header>
+<main class="pt-16 pb-32 max-w-2xl mx-auto">
+<!-- Hero Section -->
+<section class="relative h-72 md:h-96 w-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Lush green university community garden" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4tOkYLoeyHL50-x37Pyl5taEsjz89fbfaGAYbsjqOGTAWzv9zj5rukAL_oUnTieNrQutRp49LLRNebJV_HcRTN-FVgWBJvXHLjPeRA6Gl92Hkmylk8DX9jISfQPdf6lw4Wr5uDcKsI7SCSb82vsXzmp8AlDu3XzLOYI1zf6sjaqTIslzJH9cLRcJu8acix_hgwZBaXFVn1CYOedT8QY4i0y2uwGg9oc_rKERkxFYjthjEI9OHoZMrIN1hQp341nbqZh2_FfLzq6B7"/>
+<div class="absolute inset-0 hero-gradient flex flex-col justify-end p-6 md:p-8">
+<div class="flex gap-2 mb-3">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider">Open - 5 spots left</span>
+<span class="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider">4 Hours Offered</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-black text-white font-headline leading-none tracking-tight">Campus Garden Cleanup</h1>
+</div>
+</section>
+<!-- Content Shell -->
+<div class="px-6 -mt-6 relative z-10">
+<!-- Quick Actions Card -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_12px_32px_rgba(25,28,30,0.04)] mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-container/20">
+<img class="w-full h-full object-cover" data-alt="Portrait of the garden organizer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMfc-ehmSh710dR_Sj8IQ37lgPd7QT5ygHMcnuDz9IFVF4mLDHe9lI1zDb5hhqMrdLpigMSFDH7j00KYoeMrFB2YK64kddPJicGLuiBM2AHXn8Hj1gTXCuHIqAzCmlEEjisns5AuMfK9DIqjjZ6l7tDbxuORNTnBMUsaFY17XrTo5Hl6VxdLaaMV_aPNgw6TWwRPQRygWgGXAb64kuL-A9yRxUUMjYzFiyCkJCCMklHbyqjWSpnq9xDDxUW3ijXlBJgmxBRVuX8naZ"/>
+</div>
+<div>
+<p class="text-[12px] text-outline font-medium">Organized by</p>
+<p class="font-bold text-on-surface">Dr. Sarah Jenkins</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 md:flex-none px-6 py-3 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl font-bold text-sm shadow-md active:scale-[0.98] transition-all">Apply Now</button>
+<button class="p-3 border border-outline-variant/30 text-primary rounded-xl hover:bg-primary/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+</div>
+<!-- Details Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Description Section -->
+<section class="space-y-4">
+<h2 class="text-xl font-bold font-headline text-on-surface">Description</h2>
+<p class="text-on-surface-variant leading-relaxed text-sm">
+                        Join us for our weekly sustainability drive! We'll be weeding, composting, and preparing seasonal beds for the upcoming spring planting. This is a great way to earn service hours while contributing to our campus food security initiative.
+                    </p>
+<div class="bg-surface-container-low p-4 rounded-xl space-y-3">
+<h3 class="text-sm font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">checklist</span> Requirements
+                        </h3>
+<ul class="text-xs text-on-surface-variant space-y-2">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                Bring personal gardening gloves
+                            </li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                Must be a Junior or Senior student
+                            </li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                Completed Safety Orientation (Level 1)
+                            </li>
+</ul>
+</div>
+</section>
+<!-- Location & Info -->
+<section class="space-y-4">
+<h2 class="text-xl font-bold font-headline text-on-surface">Location</h2>
+<div class="bg-surface-container rounded-xl overflow-hidden aspect-video relative group">
+<img class="w-full h-full object-cover" data-alt="Map showing SCU North Campus location" data-location="SCU North Campus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC360BUHiaF6y3zoGobWqPGvwb3OJxfXBh6k3CugJT3QkJEkQsRTPMRFrJw5a5qdjABiUj2yexZdsRpUn1DyXpTZvMQrmENGAAhab5oMxvyqLFdsGZEWL2s4iu7DgBfB3FMKY1DT9542_tnysPGTQLrmsFoSc5hgz1nKgQhrGgbjCb-ZiDxl1z0k0KHxL25WsjcJBlW2iAjhoW4oWMWTPKQ9ZHakU8csSHg1EeD5rvzSsQtguyuk1vH8DnNZr1lfSKy9iUUNgNgpj8w"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+<div class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">location_on</span>
+<span class="text-xs font-bold text-on-surface">North Campus Sector 4</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="p-3 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-tertiary-container text-sm">calendar_today</span>
+<p class="text-[10px] text-outline font-semibold uppercase mt-2">Date</p>
+<p class="text-sm font-bold">Oct 24, 2023</p>
+</div>
+<div class="p-3 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary text-sm">schedule</span>
+<p class="text-[10px] text-outline font-semibold uppercase mt-2">Time</p>
+<p class="text-sm font-bold">09:00 - 13:00</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] z-50">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Service</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Profile</span>
+</a>
+</nav>
+</body></html>

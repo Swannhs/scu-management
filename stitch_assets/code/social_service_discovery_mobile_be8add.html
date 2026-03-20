@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCU Mobile - Volunteering Discovery Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#a1d1b4",
+                        "surface-variant": "#e0e3e5",
+                        "surface-bright": "#f8f9fb",
+                        "secondary-fixed": "#bceecf",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-fixed-variant": "#005234",
+                        "outline": "#6d7a71",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#5adda0",
+                        "on-tertiary-fixed-variant": "#842327",
+                        "background": "#f8f9fb",
+                        "on-background": "#191c1e",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2d3133",
+                        "on-surface-variant": "#3d4a41",
+                        "tertiary": "#a33b3c",
+                        "secondary-container": "#bceecf",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-container": "#00a76f",
+                        "on-primary-container": "#00321f",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "on-tertiary-fixed": "#410006",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-tint": "#006c46",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#bccabf",
+                        "on-tertiary-container": "#5d040f",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#e66d6c",
+                        "on-secondary-fixed": "#002112",
+                        "surface-container-low": "#f2f4f6",
+                        "primary-fixed": "#79fabb",
+                        "on-secondary": "#ffffff",
+                        "primary": "#006c46",
+                        "secondary": "#3a674f",
+                        "on-secondary-fixed-variant": "#224f39",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-primary-fixed": "#002112",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9fb",
+                        "on-secondary-container": "#406e55",
+                        "surface-container": "#eceef0"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9fb;
+            font-family: 'Inter', sans-serif;
+        }
+        .editorial-text {
+            font-family: 'Public Sans', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="University Logo" class="w-full h-full object-cover" data-alt="Official SCU University Circular Green Shield Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHK4EobZPeKY5Ec410S98WpsHyQTAEjG7Pinwtxh-f7eAg1ZY1gB1Aacs_myDC-Fzh877Cghi-KgwMxaXuqnIbqre71rzwYlmPYilz1spr2jEhLSE3jy-WCMklsTlv-nO9HLGKwlKSf6sN1ASbSfsLrmDSHw-PWETfa7a2V6Bkxx1LzWFOkK38_DI8ctfXMcCuwycOtGJGuzvPKenvvmJp_ZUMSEq-XD-PJVOyidkB6ea9bi76LtI6_qmyVQ2Ai2cMsJhV0pVGNvbz"/>
+</div>
+<span class="text-xl font-black text-[#00A76F] font-['Public_Sans'] tracking-tight">SCU Mobile</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-500">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-28 px-6 max-w-2xl mx-auto">
+<!-- Quick Nav Clusters -->
+<div class="flex gap-2 mb-8 overflow-x-auto pb-2 no-scrollbar">
+<button class="flex-shrink-0 px-5 py-2.5 rounded-xl bg-surface-container-lowest shadow-sm text-on-surface font-semibold text-sm flex items-center gap-2 transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary text-lg">assignment_turned_in</span>
+                My Applications
+            </button>
+<button class="flex-shrink-0 px-5 py-2.5 rounded-xl bg-surface-container-lowest shadow-sm text-on-surface font-semibold text-sm flex items-center gap-2 transition-all active:scale-95">
+<span class="material-symbols-outlined text-tertiary-container text-lg">emoji_events</span>
+                Achievements
+            </button>
+</div>
+<!-- Featured Opportunity Card -->
+<section class="mb-10">
+<h2 class="editorial-text text-2xl font-bold mb-5 tracking-tight">Featured Service</h2>
+<div class="relative group rounded-3xl overflow-hidden bg-surface-container-lowest shadow-lg shadow-black/[0.03] transition-transform hover:scale-[1.01]">
+<div class="h-56 w-full relative">
+<img alt="Campus Garden" class="w-full h-full object-cover" data-alt="Student volunteers working in a lush campus garden" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjLzpxcijaNRIEYemh1M1FC9vzgNjEwI3eCVurVycttCFPLBFkbpHQdVeDcKnbA8ikhEQBfHO7U-bfJTTVC1yi9FWDbjYHylgMAMotWgTkyNkYI6TKKMWcfDueRivy8XZTj7hRF9FpvuZvxVrMebIUxbSLPJBFUGHSE1m6xYZQ-VVHpO0hyIm-Aws5RyNMHrXttqalwh61YmDNZnEl7OxRLGiNa-qt5sNyW63YsMojOnqCPSpSdktfgASt24iy36TtFSCt8jk5y17g"/>
+<div class="absolute top-4 left-4">
+<span class="bg-error-container text-on-error-container px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+                            Urgent
+                        </span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="editorial-text text-xl font-extrabold text-on-surface">Campus Garden Cleanup</h3>
+<span class="text-primary font-bold text-sm bg-primary/10 px-3 py-1 rounded-lg">25 Slots Left</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">Help restore our sustainable campus ecosystem. Verified service hours provided for all participants.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4 text-xs font-medium text-slate-500">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">schedule</span> 4 Hours</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">location_on</span> Main Quad</span>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-3 rounded-xl font-bold text-sm shadow-md hover:shadow-lg transition-all active:scale-95">
+                            Apply
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories Asymmetric Layout -->
+<section class="mb-10">
+<div class="flex justify-between items-end mb-5">
+<h2 class="editorial-text text-2xl font-bold tracking-tight">Categories</h2>
+<button class="text-primary text-sm font-bold">View All</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-primary/5 rounded-3xl p-6 h-40 flex flex-col justify-between border border-primary/10 transition-colors hover:bg-primary/10">
+<span class="material-symbols-outlined text-primary text-3xl">nature_people</span>
+<span class="editorial-text font-bold text-lg leading-tight">Environment &amp;<br/>Sustainability</span>
+</div>
+<div class="grid gap-4">
+<div class="bg-tertiary/5 rounded-3xl p-4 flex items-center gap-4 border border-tertiary/10 transition-colors hover:bg-tertiary/10">
+<span class="material-symbols-outlined text-tertiary text-2xl">school</span>
+<span class="editorial-text font-bold">Tutoring</span>
+</div>
+<div class="bg-secondary/5 rounded-3xl p-4 flex items-center gap-4 border border-secondary/10 transition-colors hover:bg-secondary/10">
+<span class="material-symbols-outlined text-secondary text-2xl">groups</span>
+<span class="editorial-text font-bold">Community</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Opportunity List -->
+<section class="mb-6">
+<h2 class="editorial-text text-2xl font-bold mb-5 tracking-tight">Recent Opportunities</h2>
+<div class="space-y-4">
+<!-- List Item 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex gap-4 items-start transition-all hover:translate-x-1">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-slate-400 text-3xl">library_books</span>
+</div>
+<div class="flex-grow">
+<div class="flex gap-2 mb-2 flex-wrap">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase">Open</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase">Verified Service Hours</span>
+</div>
+<h4 class="editorial-text font-bold text-on-surface mb-1">Library Archival Assistant</h4>
+<div class="flex items-center gap-3 text-[11px] text-slate-500 font-medium">
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs">location_on</span> 0.4 miles</span>
+<span>•</span>
+<span>Tomorrow, 2:00 PM</span>
+</div>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex gap-4 items-start transition-all hover:translate-x-1">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-slate-400 text-3xl">restaurant</span>
+</div>
+<div class="flex-grow">
+<div class="flex gap-2 mb-2">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase">Open</span>
+</div>
+<h4 class="editorial-text font-bold text-on-surface mb-1">Soup Kitchen Help</h4>
+<div class="flex items-center gap-3 text-[11px] text-slate-500 font-medium">
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs">location_on</span> 1.2 miles</span>
+<span>•</span>
+<span>Saturday, 10:00 AM</span>
+</div>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex gap-4 items-start transition-all hover:translate-x-1">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-slate-400 text-3xl">history_edu</span>
+</div>
+<div class="flex-grow">
+<div class="flex gap-2 mb-2">
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase">Verified Service Hours</span>
+</div>
+<h4 class="editorial-text font-bold text-on-surface mb-1">Mentorship Program</h4>
+<div class="flex items-center gap-3 text-[11px] text-slate-500 font-medium">
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs">location_on</span> Remote / Campus</span>
+<span>•</span>
+<span>Ongoing</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] z-50">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1">explore</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Service</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1">forum</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Profile</span>
+</a>
+</nav>
+</body></html>

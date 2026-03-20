@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Campus Social - Academic Results</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-screen w-full flex-col max-w-md mx-auto overflow-hidden shadow-2xl bg-background-light dark:bg-background-dark">
+<header class="flex items-center justify-between px-6 py-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-10">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Academic Results</h1>
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">more_vert</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto pb-24">
+<section class="px-6 py-4">
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-white dark:bg-slate-800/50 border border-primary/10 shadow-sm">
+<span class="material-symbols-outlined text-primary text-2xl">grade</span>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider">Cumulative GPA</p>
+<div class="flex items-baseline gap-2">
+<p class="text-3xl font-bold text-slate-900 dark:text-white">3.8</p>
+<p class="text-primary text-xs font-bold leading-normal">+0.2%</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-white dark:bg-slate-800/50 border border-primary/10 shadow-sm">
+<span class="material-symbols-outlined text-primary text-2xl">school</span>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider">Total Credits</p>
+<div class="flex flex-col">
+<p class="text-3xl font-bold text-slate-900 dark:text-white">96<span class="text-lg text-slate-400">/120</span></p>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full w-[80%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-6 py-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Semester Overview</h3>
+<button class="text-primary text-sm font-semibold">Filter</button>
+</div>
+<div class="space-y-4">
+<div class="group flex flex-col gap-4 rounded-xl bg-white dark:bg-slate-800/50 p-4 border border-slate-100 dark:border-slate-700/50 shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-base font-bold leading-tight">Spring 2024</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm">GPA: 3.9 • 5 Subjects</p>
+</div>
+</div>
+<button class="size-8 flex items-center justify-center rounded-full bg-slate-50 dark:bg-slate-700 text-slate-500">
+<span class="material-symbols-outlined text-xl">keyboard_arrow_down</span>
+</button>
+</div>
+<div class="w-full h-32 bg-center bg-no-repeat bg-cover rounded-lg relative overflow-hidden group-hover:opacity-90 transition-opacity" data-alt="College students studying together in a modern library" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCO2AmPHWuCVCuC_HK86FzajSVLlSP83sDyNwXddUmmKcck2biG4K4JZL3e8iVrZXqiA99p8EwnQN1fpLgjv6oNSnCb-sVmL5W59x4J6mjA2Nroh1fYEj7EWVd1Yf9LewPIYD8tt4G8fhybOdGQ6FRx9rHBflHUVHf5Izp9WI56Ki3Ybtfx3arqiTBqpGHw69UBRWf_tS32Rc5elUsMuVBIt99jVC2_DTSeHIoTrKx5rPvbSx0-pwN4rnIaHSiNSkRk-PCyQf_V3SuP");'>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
+<span class="text-white text-xs font-medium">Deans List Candidate</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-slate-800/50 p-4 border border-slate-100 dark:border-slate-700/50 shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">history</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-base font-bold leading-tight">Fall 2023</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm">GPA: 3.7 • 6 Subjects</p>
+</div>
+</div>
+<button class="size-8 flex items-center justify-center rounded-full bg-slate-50 dark:bg-slate-700 text-slate-500">
+<span class="material-symbols-outlined text-xl">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-slate-800/50 p-4 border border-slate-100 dark:border-slate-700/50 shadow-sm opacity-80">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">history</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-base font-bold leading-tight">Spring 2023</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm">GPA: 3.8 • 5 Subjects</p>
+</div>
+</div>
+<button class="size-8 flex items-center justify-center rounded-full bg-slate-50 dark:bg-slate-700 text-slate-500">
+<span class="material-symbols-outlined text-xl">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<nav class="absolute bottom-0 left-0 right-0 border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-4 pb-6 pt-2 z-20">
+<div class="flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">school</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Academic</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Social</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCU Mobile - Organizer Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed-dim": "#a1d1b4",
+              "surface-variant": "#e0e3e5",
+              "surface-bright": "#f8f9fb",
+              "secondary-fixed": "#bceecf",
+              "inverse-on-surface": "#eff1f3",
+              "on-primary-fixed-variant": "#005234",
+              "outline": "#6d7a71",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#5adda0",
+              "on-tertiary-fixed-variant": "#842327",
+              "background": "#f8f9fb",
+              "on-background": "#191c1e",
+              "error": "#ba1a1a",
+              "inverse-surface": "#2d3133",
+              "on-surface-variant": "#3d4a41",
+              "tertiary": "#a33b3c",
+              "secondary-container": "#bceecf",
+              "surface-dim": "#d8dadc",
+              "surface-container-high": "#e6e8ea",
+              "primary-container": "#00a76f",
+              "on-primary-container": "#00321f",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "on-tertiary-fixed": "#410006",
+              "surface-container-highest": "#e0e3e5",
+              "surface-tint": "#006c46",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#191c1e",
+              "on-error-container": "#93000a",
+              "outline-variant": "#bccabf",
+              "on-tertiary-container": "#5d040f",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#ffdad8",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#e66d6c",
+              "on-secondary-fixed": "#002112",
+              "surface-container-low": "#f2f4f6",
+              "primary-fixed": "#79fabb",
+              "on-secondary": "#ffffff",
+              "primary": "#006c46",
+              "secondary": "#3a674f",
+              "on-secondary-fixed-variant": "#224f39",
+              "primary-fixed-dim": "#5adda0",
+              "on-primary-fixed": "#002112",
+              "on-primary": "#ffffff",
+              "surface": "#f8f9fb",
+              "on-secondary-container": "#406e55",
+              "surface-container": "#eceef0"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        background-color: #f8f9fb;
+        color: #191c1e;
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3 {
+        font-family: 'Public Sans', sans-serif;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar Shell -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl fixed top-0 w-full z-50 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<img alt="SCU Logo" class="w-6 h-6" data-alt="Santa Clara University minimal brand logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-vR8s1IQSyVxKZmXuDdsupvAYRiywI7MgIppvse_FaO03p9lYrX27Js0NzfigopSd7J17FT25GBvDwnAVhS1b7LvTwgsQt9y4zKxlvuyOFL3JAUaK8jVBf7XTEUiIu027JAVMCsuXRDzbBNm4o3YeGEusw4rd_j_Jn8n9Ad3yugL63a4Y5focF62N9x4xmIp9-GtjJBI0-IP7jhANrwoJx8rxWUGZETtcjGlmXS3mtPWE2GZs3pxpmt1Sy4tMeKJgjb1zeQnk4hKZ"/>
+</div>
+<h1 class="text-xl font-black text-[#00A76F] font-['Public_Sans'] tracking-tight">SCU Mobile</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-5xl mx-auto space-y-8">
+<!-- Header & Quick Action -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-1">
+<p class="text-primary font-semibold tracking-wide text-sm uppercase">Organizer Flow</p>
+<h2 class="text-3xl font-black tracking-tight text-on-surface">Service Dashboard</h2>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex items-center gap-4">
+<div class="p-3 bg-primary/5 rounded-lg">
+<span class="material-symbols-outlined text-primary">campaign</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Quick Action</p>
+<p class="text-sm font-semibold text-on-surface">Post Announcement</p>
+</div>
+<button class="bg-[#00A76F] text-white px-4 py-2 rounded-lg font-bold text-sm active:scale-95 transition-transform">
+                    Broadcast
+                </button>
+</div>
+</section>
+<!-- Stats Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_12px_32px_rgba(25,28,30,0.04)] border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary p-2 bg-primary/10 rounded-lg">group</span>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded-full">+12%</span>
+</div>
+<p class="text-4xl font-black tracking-tighter mb-1">1,284</p>
+<p class="text-slate-500 font-medium">Total Applicants</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_12px_32px_rgba(25,28,30,0.04)] border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-tertiary p-2 bg-tertiary/10 rounded-lg">verified</span>
+<span class="text-xs font-bold text-slate-400">Goal: 5k</span>
+</div>
+<p class="text-4xl font-black tracking-tighter mb-1">3,450</p>
+<p class="text-slate-500 font-medium">Hours Verified</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_12px_32px_rgba(25,28,30,0.04)] border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-secondary-container p-2 bg-secondary-container/30 rounded-lg">volunteer_activism</span>
+</div>
+<p class="text-4xl font-black tracking-tighter mb-1">18</p>
+<p class="text-slate-500 font-medium">Active Opportunities</p>
+</div>
+</section>
+<!-- Applications List Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold tracking-tight">Garden Cleanup Applications</h3>
+<button class="text-sm font-semibold text-primary flex items-center gap-1">
+                    View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-outline-variant/10">
+<!-- List Header (Desktop) -->
+<div class="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-surface-container-low text-xs font-black uppercase tracking-widest text-slate-500">
+<div class="col-span-4">Student Info</div>
+<div class="col-span-3">Major</div>
+<div class="col-span-2">Status</div>
+<div class="col-span-3 text-right">Actions</div>
+</div>
+<!-- List Item 1 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-5 items-center border-t border-slate-50 hover:bg-slate-50 transition-colors">
+<div class="col-span-4 flex items-center gap-4">
+<img alt="User Avatar" class="w-10 h-10 rounded-full bg-slate-100" data-alt="Profile headshot of a smiling student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrc9DaJ249xxr6wUDS1MXxU7jgz6frW6D-nc7YWWlLDUNWSVXBJ6leXRjJ_n3hJHAf4Gi7urYfZ53eJm2p4hTaOHngVdd91nxnHKtd0S7CnbL5EOrNpfe0rCqj2jgkf3D9Z3NCSuPsUfqVXc6gKHFGBiARB16CfpmJ3R_s_7W60t9Fw4OPC5mpWDUA3jrF9KVPFsPKBIyRZZFDHUa1xY7ZOuRGcn_9ocf5igp6Om_JRMmUCX-8nhgaR_wshy5mUyPEAKPxQhxEGyiC"/>
+<div>
+<p class="font-bold text-on-surface">Alex Morgan</p>
+<p class="text-xs text-slate-500">alex.m@scu.edu</p>
+</div>
+</div>
+<div class="col-span-3">
+<p class="text-sm font-medium text-slate-600">Environmental Science</p>
+</div>
+<div class="col-span-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter bg-tertiary-fixed text-on-tertiary-fixed-variant">
+                            Pending
+                        </span>
+</div>
+<div class="col-span-3 flex justify-end gap-2">
+<button class="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+<button class="p-2 rounded-lg bg-error-container text-on-error-container hover:bg-error hover:text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-5 items-center border-t border-slate-50 hover:bg-slate-50 transition-colors">
+<div class="col-span-4 flex items-center gap-4">
+<img alt="User Avatar" class="w-10 h-10 rounded-full bg-slate-100" data-alt="Student profile placeholder image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPaqLh0Sa5faP3_Jg1taFVpGJD6TmYIT8PpxxJgsmXpw_jVbVfLDJNGosGelP3iq2T1NCbCyFR-bYlw5iPQZTL_2-GlVwFr_gbq0sR-bQYGVB5u-03do5qsnGU4b4tDfCqGSakcaFnwVzh7dg8kHQ3BsLo_3c1IHc0cNY6-43cJxd_SizacrFnh_5UNx11VvgHI820Nqzp2jReaa_IEieKNI60LSri1WwN-8XakZOc5PJwfAf8RotlwiWMiFvtpY4zz51AU8Hy4mT2"/>
+<div>
+<p class="font-bold text-on-surface">Jamie Dawson</p>
+<p class="text-xs text-slate-500">j.dawson@scu.edu</p>
+</div>
+</div>
+<div class="col-span-3">
+<p class="text-sm font-medium text-slate-600">Computer Science</p>
+</div>
+<div class="col-span-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter bg-primary-fixed text-on-primary-fixed-variant">
+                            Reviewed
+                        </span>
+</div>
+<div class="col-span-3 flex justify-end gap-2">
+<button class="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+<button class="p-2 rounded-lg bg-error-container text-on-error-container hover:bg-error hover:text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-5 items-center border-t border-slate-50 hover:bg-slate-50 transition-colors">
+<div class="col-span-4 flex items-center gap-4">
+<img alt="User Avatar" class="w-10 h-10 rounded-full bg-slate-100" data-alt="Student headshot avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBynZHGx3WZPy48vA7-ftXx4LhFfd4dDT2elZGMTj7s3vQ0vmDO2Ctf8v-j0DyTQMqw4d7g7zmF2CdVCZBuyA9zkLsvYHSsyYBu09dSah7xBLZHSsMgR3MHlRkcB1aruiLym_zukITzVdP9ehEdjMVw854SPEDrcnTmjvNk3M8E5oWS78-Tb9pJ3vTZLhinaIm6QYI4W-FmvIPIHhoTJQ2K-u80ga4U27m38-3b67hnttVv5IwKHwfWJUevQV56AGsJqT3ez9f8CsQ"/>
+<div>
+<p class="font-bold text-on-surface">Sarah Lopez</p>
+<p class="text-xs text-slate-500">slopez2@scu.edu</p>
+</div>
+</div>
+<div class="col-span-3">
+<p class="text-sm font-medium text-slate-600">Business Management</p>
+</div>
+<div class="col-span-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter bg-tertiary-fixed text-on-tertiary-fixed-variant">
+                            Pending
+                        </span>
+</div>
+<div class="col-span-3 flex justify-end gap-2">
+<button class="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+<button class="p-2 rounded-lg bg-error-container text-on-error-container hover:bg-error hover:text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary Section: Recent Activity -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="space-y-4">
+<h3 class="text-xl font-bold tracking-tight">Recent Activity</h3>
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="mt-1 w-2 h-2 rounded-full bg-primary shrink-0"></div>
+<div>
+<p class="text-sm font-semibold text-on-surface">New Opportunity Posted</p>
+<p class="text-xs text-slate-500">Tutoring at local primary school. 2 hours ago.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="mt-1 w-2 h-2 rounded-full bg-tertiary shrink-0"></div>
+<div>
+<p class="text-sm font-semibold text-on-surface">Hours Verified</p>
+<p class="text-xs text-slate-500">12 students verified for Food Bank Drive. 5 hours ago.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-[#00A76F]/5 p-6 rounded-2xl border border-[#00A76F]/10 relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-xl font-bold text-[#00A76F] mb-2">Organizer Support</h3>
+<p class="text-sm text-slate-600 mb-4 leading-relaxed">Need help managing your service project? Access our coordinator toolkit or reach out to the Service Center.</p>
+<button class="bg-white text-[#00A76F] px-4 py-2 rounded-lg font-bold text-sm shadow-sm">Get Resources</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-9xl text-[#00A76F]/10 rotate-12">support_agent</span>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] rounded-t-2xl z-50">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Service</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

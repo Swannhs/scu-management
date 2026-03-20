@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campus Social Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-white dark:bg-background-dark shadow-2xl">
+<!-- Top Header -->
+<header class="sticky top-0 z-30 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-primary/10">
+<div class="flex items-center gap-2">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">account_circle</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-wider font-bold text-primary/60">Welcome back</p>
+<p class="text-sm font-bold">Alex Johnson</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="relative p-2 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<button class="p-2 text-slate-600 dark:text-slate-300 bg-primary/5 rounded-full">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Hero Search Section -->
+<div class="px-4 pt-6 pb-4">
+<h1 class="text-2xl font-bold leading-tight mb-4">Find what you need <br/><span class="text-primary">for campus life.</span></h1>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-primary">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="block w-full pl-11 pr-4 py-4 bg-primary/5 border-none rounded-xl focus:ring-2 focus:ring-primary text-slate-900 placeholder-primary/50 text-sm font-medium transition-all" placeholder="Search books, electronics, dorm gear..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+<button class="p-1.5 bg-primary text-white rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-sm">tune</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Categories Horizontal Scroll -->
+<div class="flex gap-3 px-4 py-2 overflow-x-auto hide-scrollbar">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl shadow-md shadow-primary/20 whitespace-nowrap transition-transform active:scale-95">
+<span class="material-symbols-outlined text-lg">grid_view</span>
+<span class="text-sm font-semibold">All</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-800 border border-primary/10 rounded-xl whitespace-nowrap transition-transform active:scale-95">
+<span class="material-symbols-outlined text-lg text-primary">book</span>
+<span class="text-sm font-medium">Books</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-800 border border-primary/10 rounded-xl whitespace-nowrap transition-transform active:scale-95">
+<span class="material-symbols-outlined text-lg text-primary">devices</span>
+<span class="text-sm font-medium">Electronics</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-800 border border-primary/10 rounded-xl whitespace-nowrap transition-transform active:scale-95">
+<span class="material-symbols-outlined text-lg text-primary">bed</span>
+<span class="text-sm font-medium">Dorm Gear</span>
+</button>
+</div>
+<!-- Section Title -->
+<div class="px-4 pt-8 pb-4 flex items-center justify-between">
+<h2 class="text-lg font-bold">Trending Near You</h2>
+<button class="text-xs font-bold text-primary uppercase tracking-widest">See All</button>
+</div>
+<!-- Products Grid -->
+<div class="px-4 grid grid-cols-2 gap-4">
+<!-- Product Card 1 -->
+<div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-primary/5 shadow-sm group">
+<div class="relative h-44 w-full bg-slate-100 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Stack of textbook books on a desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAULHa63FdA7EWAfkkzmW6rnNb850bEUldzyPER8-HEO5aoj6JGfU5M-ffprj8dQnFi9LCsqfhD-qgk6dwuaRrJqX2p-V-DfaA5y-sr5Cr-rG0GFqUfO7H4GgBF9ZrhF5A-_1m3yWxoeJ3Vh1fn9Z2jd3f3S-C1sHUcTY4c_96ZT2en9MSvzUKLuQfCaFKJ7Lg0cUY5UOeGQ6ZKfkAipmHTnT55Rw1H_9uLRCSwcDEzqNf0mGwyyF8ZCIxvVqmwq-PVnOlCKFkUQbuV"/>
+<button class="absolute top-2 right-2 size-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="p-3">
+<p class="text-[10px] font-bold text-primary/70 uppercase">Textbooks</p>
+<h3 class="font-bold text-sm truncate mb-1">Economics 101: 2024 Ed.</h3>
+<div class="flex items-center justify-between mt-2">
+<span class="text-primary font-bold">$45.00</span>
+<button class="size-8 bg-primary text-white rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-primary/5 shadow-sm group">
+<div class="relative h-44 w-full bg-slate-100 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Noise cancelling headphones on a clean surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQpNXQr6UDebU4-EAmMmmA5w9gtYSYyXVGCZZPht3yJ7-0-c9iEosJq0NWgwW-mJCSa64vX4njZj6OK0qq9TTeJvaIcrZbJ8hWrV0-lSEgfLkMCG-MBDukZXhhwoHhMsd9wHq2uoHgny5lK0h8ina0VqHzY3Y211WnvNSoExGFxas8u1fKi3nJKJQbQuIMCkuh2QkoBNDJhN1uoayANM9Pfz8lD_yf8JIH5T8p6vY80YtVQIoTTpa1w1Nb4DQdAm_oioGiTfM0hmRa"/>
+<button class="absolute top-2 right-2 size-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-slate-300 shadow-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="p-3">
+<p class="text-[10px] font-bold text-primary/70 uppercase">Electronics</p>
+<h3 class="font-bold text-sm truncate mb-1">Wireless Headphones</h3>
+<div class="flex items-center justify-between mt-2">
+<span class="text-primary font-bold">$89.99</span>
+<button class="size-8 bg-primary text-white rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-primary/5 shadow-sm group">
+<div class="relative h-44 w-full bg-slate-100 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A modern desk lamp for dorm room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOGEdCStJFciNAVt2My8nsLEzLNO24qSvPe8-CuOyFysEog_oX4plQhWk86WKNpFx3G92rOwpehM_mA_T2x0W4oDN59Iu87ArlfoIuS8KIREHGEZ9InADbkTiDU2E_r9Sz77tKkFNIyDSfslbDWdoiL0f5RbGxjUZwVlFfPOtj2S8hCqbN-t14LiueqZopitbGEmmeF5BbPfvj-GgY-nK81VYdmlR3yq3JpxvQJm2YNylS26p_WJOKlmLDESCOOCOgyogxzvLmz1eZ"/>
+<button class="absolute top-2 right-2 size-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-slate-300 shadow-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="p-3">
+<p class="text-[10px] font-bold text-primary/70 uppercase">Dorm Gear</p>
+<h3 class="font-bold text-sm truncate mb-1">LED Desk Lamp Pro</h3>
+<div class="flex items-center justify-between mt-2">
+<span class="text-primary font-bold">$18.50</span>
+<button class="size-8 bg-primary text-white rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-primary/5 shadow-sm group">
+<div class="relative h-44 w-full bg-slate-100 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Ergonomic desk chair for students" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgShbqWmLLyL27G1YqFQWey_ut2paMFoH5_UXqCnK4KNx-_sUeN3UlFT8dofxVXkp8oBljV5KnKntLiR_2-SNbIDq-QjLhBHAgXg3_wYeWYQOsdTZhMPcdT4iWqtyBPdpAe3aaA_u-5LFuL8G0kZGfS4YKLo5Eiuvlwkei1Du16AAMf71-Z2-_ckcI8-qLmxGtZ-drxwgLGIuesG8jh65xn5Z7YejKHkRLP1w5N55JgfL0svKQwEyQ_toagEbx4DcxKGeORWPVP7eG"/>
+<button class="absolute top-2 right-2 size-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-slate-300 shadow-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="p-3">
+<p class="text-[10px] font-bold text-primary/70 uppercase">Furniture</p>
+<h3 class="font-bold text-sm truncate mb-1">Task Study Chair</h3>
+<div class="flex items-center justify-between mt-2">
+<span class="text-primary font-bold">$35.00</span>
+<button class="size-8 bg-primary text-white rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Promotion Banner -->
+<div class="px-4 py-8">
+<div class="relative w-full h-32 rounded-2xl bg-gradient-to-r from-primary to-emerald-400 p-6 overflow-hidden flex flex-col justify-center text-white">
+<div class="relative z-10">
+<p class="text-xs font-bold uppercase tracking-widest opacity-80">Flash Sale</p>
+<h4 class="text-xl font-bold">20% Off All Electronics</h4>
+<p class="text-[10px] font-medium mt-1">Ends in 02:45:12</p>
+</div>
+<span class="material-symbols-outlined absolute right-[-10px] bottom-[-20px] text-white/20 text-9xl">bolt</span>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 max-w-md w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-primary/10 px-4 pb-6 pt-3 z-40">
+<div class="flex items-center justify-between">
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">storefront</span>
+<div class="absolute -top-1 -right-1 size-1.5 bg-primary rounded-full"></div>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-tight">Market</span>
+</a>
+<div class="relative -top-8">
+<button class="size-14 bg-primary text-white rounded-full flex items-center justify-center shadow-lg shadow-primary/40 border-4 border-white dark:border-background-dark transition-transform active:scale-90">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-2xl">group</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Social</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

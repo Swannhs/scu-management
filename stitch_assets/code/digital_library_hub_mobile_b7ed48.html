@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Library Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="max-w-md mx-auto min-h-screen flex flex-col relative pb-20">
+<!-- Header -->
+<header class="flex items-center justify-between p-4 bg-background-light dark:bg-background-dark sticky top-0 z-10">
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">menu</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Digital Library</h1>
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full uppercase tracking-wider">CS Major</span>
+</div>
+</header>
+<!-- Search Section -->
+<div class="px-4 py-2">
+<div class="relative flex items-center group">
+<span class="material-symbols-outlined absolute left-4 text-primary">search</span>
+<input class="w-full bg-primary/5 border-none rounded-xl py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary/50 text-slate-900 dark:text-slate-100 placeholder:text-slate-500 transition-all" placeholder="Search books, papers, or authors" type="text"/>
+</div>
+</div>
+<!-- Categories -->
+<div class="flex gap-3 px-4 py-4 overflow-x-auto no-scrollbar">
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-primary text-white px-5 shadow-sm">
+<span class="material-symbols-outlined text-sm">auto_stories</span>
+<p class="text-sm font-medium">E-books</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5">
+<span class="material-symbols-outlined text-sm text-primary">science</span>
+<p class="text-sm font-medium">Research</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5">
+<span class="material-symbols-outlined text-sm text-primary">inventory_2</span>
+<p class="text-sm font-medium">Course Material</p>
+</div>
+</div>
+<!-- My Borrowed Section -->
+<section class="px-4 py-4">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold">My Borrowed</h2>
+<button class="text-primary text-sm font-medium">View All</button>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar">
+<!-- Borrowed Card 1 -->
+<div class="min-w-[280px] bg-white dark:bg-slate-800 p-4 rounded-xl flex gap-4 shadow-sm border border-slate-100 dark:border-slate-700">
+<img alt="Computer Science book cover" class="w-16 h-20 rounded-md object-cover" data-alt="Modern web development technical book cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAHofuxZIwFE0Tb-ZIssj2kBkAHtmdcwg6P_4gb6VqB_MzWTmjCY9a5jgD6mvaSbSH3M1x1GqIB8MhmcHwxg7Bcy5WF_r3JXkT1BFXamrivZVyoBlwXmK7sVperMxxwoJrGklVw5fCwpIz7nCyJCE3JzBX1cEPm_HGzobJxERy3lVdFyHHE6jGut1CjvUs7iaqa076VgJUWk_0Wg8bg3ZFHPUSCNhZMYYa97lEpodM0d8UtIFUHdZpfEcs6igdPfhB5aCpGCHSPKMT"/>
+<div class="flex flex-col justify-between py-1">
+<div>
+<h3 class="font-bold text-sm line-clamp-1">Algorithms 4th Ed</h3>
+<p class="text-xs text-slate-500">Due in 3 days</p>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mt-2">
+<div class="bg-primary h-full rounded-full w-2/3"></div>
+</div>
+</div>
+</div>
+<!-- Borrowed Card 2 -->
+<div class="min-w-[280px] bg-white dark:bg-slate-800 p-4 rounded-xl flex gap-4 shadow-sm border border-slate-100 dark:border-slate-700">
+<img alt="Programming book cover" class="w-16 h-20 rounded-md object-cover" data-alt="Abstract programming language code book cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHLKgZgc5soDdxFmAosadd71bKKz3a1sPIxqhApDE1vPTS-fD-b_7sTxBbWRjV2y8sBeEwUrrItiQq8xZ6uXLcuvPhKZw7v_t9OpvUiTyabC2R_rGONW91VZzMoCQAF8Gg_h_Ik2Zj6vOtFq5zlPtYejp3uSVawdSeyz4GmXrX-yJlnh4_kAnUsDr52Z2v507u-KFGshUs0enjp_ZEorPS-xXtxdX2TprSHDBg6PG8B1368_w48YWoRwF_-lIbO4TBGMGEpx-oHHVb"/>
+<div class="flex flex-col justify-between py-1">
+<div>
+<h3 class="font-bold text-sm line-clamp-1">Discrete Mathematics</h3>
+<p class="text-xs text-slate-500">Due in 12 days</p>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mt-2">
+<div class="bg-primary h-full rounded-full w-1/4"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recommended Grid -->
+<section class="px-4 py-4 mb-8">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold">Recommended for CS</h2>
+<button class="text-primary text-sm font-medium">Refresh</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Book 1 -->
+<div class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 group">
+<div class="relative mb-3 aspect-[3/4] rounded-lg overflow-hidden">
+<img alt="Cybersecurity book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Digital security and lock neon pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoEdNxmGrZ0htS6CGYWc8M_yBFJp7KUA90oMd_Q5VOZZyfVSfMSVZcVuobMkEtegXIXSj8ikLItH1H2FL5EARhmZyqG-SsB_Bjwbz6gY-CFXyM5_cG-8-iOAPYPcexJy6zA10-dFagFr4pLmT_sz8YhAbeRWg-UIWhZik25-A1t6gnkUoUn4WjiGluY6buCHDaDaRi87PPGm5-ARe20TLsS2ncRY5aR3d3Z0_R_ke8B8icw05uhmopf3koZLkbyzlthEhluAlkOXyZ"/>
+<div class="absolute top-2 right-2">
+<button class="bg-white/90 p-1.5 rounded-full shadow-md">
+<span class="material-symbols-outlined text-sm text-primary">bookmark</span>
+</button>
+</div>
+</div>
+<h3 class="font-bold text-sm line-clamp-1">Intro to Cyber Security</h3>
+<p class="text-xs text-slate-500 mt-1">Dr. Alan Turing</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">★ 4.8</span>
+<button class="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded-md font-bold">BORROW</button>
+</div>
+</div>
+<!-- Book 2 -->
+<div class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 group">
+<div class="relative mb-3 aspect-[3/4] rounded-lg overflow-hidden">
+<img alt="Artificial Intelligence book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Humanoid robot face side profile concept" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrI_SQmlQtT5kJycRa3ilblVYgTJjy0zp9pYxVtjCejdjGQiJx1juMOheLPkq7YYlWO1u2ajOtfoXB8rfX75t1fyENvwjEcrdlXtDlHf-7AIJx63DZC3WOHxYgwh2m6-q3Lyk3cmbQ28WcgRJqL_jcTPrbJ1WgzyZGs1tE_xY2BpiQ5GIxoCpeXiKh8e4hLRfoFADu6HkZsJp4NxAiL9c2K1Na3MbLZ4OwgjDQSxCrCtzHJwajHQ518lotUdDzsQ0vYfCbbGHY5LSe"/>
+<div class="absolute top-2 right-2">
+<button class="bg-white/90 p-1.5 rounded-full shadow-md">
+<span class="material-symbols-outlined text-sm text-slate-400">bookmark</span>
+</button>
+</div>
+</div>
+<h3 class="font-bold text-sm line-clamp-1">Neural Networks</h3>
+<p class="text-xs text-slate-500 mt-1">S. Russell</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">★ 4.9</span>
+<button class="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded-md font-bold">BORROW</button>
+</div>
+</div>
+<!-- Book 3 -->
+<div class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 group">
+<div class="relative mb-3 aspect-[3/4] rounded-lg overflow-hidden">
+<img alt="Database systems book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Abstract blue data structures and nodes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIdazQD4IJWLzoKBa2XczbKcg-hE6CevyosMwCM-CxxWH83L-bCn0jKRpnOOI1K818HB4Gq2n8U-qLXNpybji3S-z-V1O-mn2iK5R9HOASelsz_LdgO2zI58AWDDU8i4tWzOyR2YnSydVCQ2H35z6PoLn58ufQ5lLNlCRCi1V2E3_98BmWPX2J6AER7lDj5Kf4c7FEvIhpkqyg0nNDWnDjIq_1uTQDRiLzCEM7BVhh01Yc2WnQcFAuY4rLi8rR62E6j2n_nWEwKIrQ"/>
+<div class="absolute top-2 right-2">
+<button class="bg-white/90 p-1.5 rounded-full shadow-md">
+<span class="material-symbols-outlined text-sm text-slate-400">bookmark</span>
+</button>
+</div>
+</div>
+<h3 class="font-bold text-sm line-clamp-1">Database Systems</h3>
+<p class="text-xs text-slate-500 mt-1">A. Silberschatz</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">★ 4.7</span>
+<button class="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded-md font-bold">BORROW</button>
+</div>
+</div>
+<!-- Book 4 -->
+<div class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 group">
+<div class="relative mb-3 aspect-[3/4] rounded-lg overflow-hidden">
+<img alt="Compilers book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Modern technical circuit board pattern background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWUhazp3ruy3jOzlQitJTqRYmBkB1t8nIUi6M06TR0oXVsF_Rl1yGoET6RDA9w2T6kNOuN3ysZwnJYnl8Zo7VuQR8V4IbP-GKrnzoGIQ2svcHE5d22Sixgq6PmGV2lLeiDc0Yc4RLR3ON6ZO2tgPLfzFq0OVONqlp6U03ug1C1Kk6T36JEzt13qjN4d9QUaztpdKQ0dd-Br9yEqpsRHEPFKWEuBoXwLmLNVQnMKYdUQwfjO7e_6mw3f4nJZb68jZFreWY7eUIKt3B3"/>
+<div class="absolute top-2 right-2">
+<button class="bg-white/90 p-1.5 rounded-full shadow-md">
+<span class="material-symbols-outlined text-sm text-slate-400">bookmark</span>
+</button>
+</div>
+</div>
+<h3 class="font-bold text-sm line-clamp-1">Compiler Design</h3>
+<p class="text-xs text-slate-500 mt-1">Alfred Aho</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">★ 4.5</span>
+<button class="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded-md font-bold">BORROW</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 flex justify-between px-6 py-3 z-50">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-[26px]">home</span>
+<span class="text-[10px] font-bold">Library</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[26px]">book</span>
+<span class="text-[10px] font-medium">My Books</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[26px]">favorite</span>
+<span class="text-[10px] font-medium">Saved</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[26px]">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</div>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

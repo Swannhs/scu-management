@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCU - Journals &amp; Research Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<!-- Header & Search -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pt-6 pb-2">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight">Journals &amp; Research</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200/50 dark:bg-slate-800/50">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">account_circle</span>
+</button>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full pl-11 pr-4 py-3 bg-white dark:bg-slate-900 border-none rounded-xl ring-1 ring-slate-200 dark:ring-slate-800 focus:ring-2 focus:ring-primary outline-none text-sm transition-all shadow-sm" placeholder="Search papers, authors, or topics" type="text"/>
+</div>
+</header>
+<main class="pb-24">
+<!-- Categories -->
+<section class="mt-4 px-4">
+<div class="flex items-center justify-between mb-3">
+<h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Categories</h2>
+<button class="text-xs font-medium text-primary">View All</button>
+</div>
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+<div class="flex h-10 shrink-0 items-center justify-center gap-2 rounded-xl bg-primary text-white px-5 shadow-sm shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">biotech</span>
+<p class="text-sm font-medium">Engineering</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-5">
+<span class="material-symbols-outlined text-[18px] text-primary">medical_services</span>
+<p class="text-sm font-medium">Medicine</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-5">
+<span class="material-symbols-outlined text-[18px] text-primary">science</span>
+<p class="text-sm font-medium">Science</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-5">
+<span class="material-symbols-outlined text-[18px] text-primary">memory</span>
+<p class="text-sm font-medium">Tech</p>
+</div>
+</div>
+</section>
+<!-- Featured Research Carousel -->
+<section class="mt-8 px-4">
+<h2 class="text-lg font-bold mb-4">Featured Research</h2>
+<div class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-lg group">
+<img alt="Laboratory research background" class="absolute inset-0 w-full h-full object-cover" data-alt="Modern laboratory equipment with blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjrS4wCfroRFk6ZQX7Jo4i4ZUgFXFRTZVo1dmHVKlPXTF1xMffR1VPuralUgrKC4-U3k7HDt2yD_vuJyNCUDoSN4mEYARmv3qe7F91G4Lx7iEJkB4I8mN9uvaM9mfuu7zniBAVzvYDzmyfzvlkPXNTfAyVB2tiJbpl4nGul8QeBNX9JbOBpv32HdCXOYZmohSkb2UwJZoIV6LUA8TqGFwDbdEatAyNjOB6dZVomFJmK4baaM__v7XJnewm3HH5w1pUGeIXC09d1Jmt"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 p-5 w-full">
+<span class="inline-block px-2 py-1 bg-primary text-[10px] font-bold text-white rounded uppercase tracking-widest mb-2">Editor's Choice</span>
+<h3 class="text-white text-lg font-semibold leading-tight mb-2">Breakthroughs in CRISPR-Cas9 Gene Editing for Oncology</h3>
+<div class="flex items-center gap-3 text-slate-300 text-xs">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">person</span> Dr. Elena Vance</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_month</span> Oct 2023</span>
+</div>
+</div>
+</div>
+</section>
+<!-- My Library List -->
+<section class="mt-8 px-4">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold">My Library</h2>
+<div class="flex items-center text-primary text-sm font-medium gap-1">
+<span class="material-symbols-outlined text-sm">sort</span>
+                    Recent
+                </div>
+</div>
+<div class="space-y-3">
+<!-- Library Item 1 -->
+<div class="flex gap-4 p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="w-20 h-24 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+<img alt="Physics research thumbnail" class="w-full h-full object-cover opacity-80" data-alt="Microscopic view of crystalline structures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrQw1t7j6poHj7pw8vzCe0XizbXrcg8S0y2O1pRrnMmC2sbOQDgDTEx9_7LX0iIrA1VUL2rTd76aBpCBiNRRYVl-jWsm222mH-V989Q4_qzfyO-e3djavx0zGjVPsiIPB5AAFVk0F1am5LJuD0CUcPpy-bk_sWX9Yio5G0YAO43vMUYbM5ZzxEh9pQuVF_TQjOegLavW34ml83g2n7CxDHUtsoFxYtaIUFNPnt2mdMgllPP646IrJnRG92VQxg1VSbrnrJmDIpkQEH"/>
+</div>
+<div class="flex flex-col justify-between py-1 overflow-hidden">
+<div>
+<h4 class="text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-2">Neural Network Optimizations for Quantum Systems</h4>
+<p class="text-xs text-slate-500 mt-1">International Journal of Physics</p>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400">PDF Available</span>
+<span class="material-symbols-outlined text-primary text-sm">bookmark</span>
+</div>
+</div>
+</div>
+<!-- Library Item 2 -->
+<div class="flex gap-4 p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="w-20 h-24 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+<img alt="Sustainability image thumbnail" class="w-full h-full object-cover opacity-80" data-alt="Aerial view of wind turbines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQPdCzVtMhldgDsQgvJ7gkl9sw37jI9C1Pxaqyr42XjfkEfMXCa3yqKzuwEgZKu9r6ZsOdULAy8Y9-dggB-TaWYM2pb6rPtvvuKuVS1PbK6_pjQoL3LcjOFfD16MMok578jFhJajWlElN24ZkOW6xmzCQNRaE2GG9O7yWRKk2bmn9RW4utjW0h5cXpbOSMw52zdEfn9ctn7TFrU4_WfArU15FfgBeP-HqqnTb0f2_RO46uL7Yorx8xQSnoymSod0JOVOIW8ANl7ta_"/>
+</div>
+<div class="flex flex-col justify-between py-1 overflow-hidden">
+<div>
+<h4 class="text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-2">Sustainable Materials in Civil Engineering: A 10-Year Review</h4>
+<p class="text-xs text-slate-500 mt-1">GreenTech Quarterly</p>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[10px] bg-primary/10 px-2 py-0.5 rounded text-primary font-medium">Published Today</span>
+<span class="material-symbols-outlined text-primary text-sm">bookmark</span>
+</div>
+</div>
+</div>
+<!-- Library Item 3 -->
+<div class="flex gap-4 p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="w-20 h-24 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+<img alt="Data analytics thumbnail" class="w-full h-full object-cover opacity-80" data-alt="Digital representation of complex data graphs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe0hUK1BB99sZC4QKAw1yEoK3u0ec7s7eDhaRerDpUA4bQjyagtlWiXqEbx6nnrKR6rQOC3__XhTb9z54JiEp6arxazTNCPM7lsRqOcXXeUux4z56NAsQBoz7f8s0l1F5tFuIe4jS50ScJLxBuzbhpqTBb8uxcyElbgMDMga-vwmjGjPzoktaXEmXmFHV_k23Xy7k9x5-dBqiXo9CV8xq4b8QgIKIVfzjqLIYgiPZsZOUCAF4klKjNRu1-_E3NfcKOOfC-9Thxuz2H"/>
+</div>
+<div class="flex flex-col justify-between py-1 overflow-hidden">
+<div>
+<h4 class="text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-2">Algorithmic Bias in Healthcare AI: Mitigation Strategies</h4>
+<p class="text-xs text-slate-500 mt-1">Science &amp; Society</p>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400">Review Copy</span>
+<span class="material-symbols-outlined text-primary text-sm">bookmark</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full max-w-screen-md mx-auto left-0 right-0 z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur-lg border-t border-slate-100 dark:border-slate-800 px-6 py-3">
+<div class="flex justify-between items-center max-w-sm mx-auto">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">home</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-primary">book_2</span>
+<span class="text-[10px] font-bold text-primary">Research</span>
+</a>
+<div class="relative -top-6">
+<button class="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg shadow-primary/40 border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">bookmarks</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary">Library</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">person</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

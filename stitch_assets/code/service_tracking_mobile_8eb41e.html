@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCU Mobile - My Volunteering Status</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#a1d1b4",
+                        "surface-variant": "#e0e3e5",
+                        "surface-bright": "#f8f9fb",
+                        "secondary-fixed": "#bceecf",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-fixed-variant": "#005234",
+                        "outline": "#6d7a71",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#5adda0",
+                        "on-tertiary-fixed-variant": "#842327",
+                        "background": "#f8f9fb",
+                        "on-background": "#191c1e",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2d3133",
+                        "on-surface-variant": "#3d4a41",
+                        "tertiary": "#a33b3c",
+                        "secondary-container": "#bceecf",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-container": "#00a76f",
+                        "on-primary-container": "#00321f",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "on-tertiary-fixed": "#410006",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-tint": "#006c46",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#bccabf",
+                        "on-tertiary-container": "#5d040f",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#e66d6c",
+                        "on-secondary-fixed": "#002112",
+                        "surface-container-low": "#f2f4f6",
+                        "primary-fixed": "#79fabb",
+                        "on-secondary": "#ffffff",
+                        "primary": "#006c46",
+                        "secondary": "#3a674f",
+                        "on-secondary-fixed-variant": "#224f39",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-primary-fixed": "#002112",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9fb",
+                        "on-secondary-container": "#406e55",
+                        "surface-container": "#eceef0"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface selection:bg-primary/20">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none h-16 flex justify-between items-center px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="SCU Logo" data-alt="University Logo Branding" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYE_N7jaW0NbsGrDKepvGp55ykPMzk4pDYGo1kHhWsRh869iYTstaM-UiA7c-1GbyLhNAaR5o-I5L99Vvxj2YIS_zUMUuA9R08byWnLiNB5EAR7No3OCDIzCw97prre5CA_Y6O4enX8_QmJtiZAG2VvZvNmrj-Xan2b_p7_2JXOBGlEQWtTDQ1numOSNfBz3X5SJS6Z1A0-nnzn0hHNfa9c_kxKxHxFIf9qAPFb8jDsTx8QpUkuMv4UZ5PCGlFoxOrzmIMSrIXCQu9"/>
+</div>
+<h1 class="font-headline font-bold tracking-tight text-xl text-[#00A76F]">SCU Mobile</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 text-slate-500">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/20 overflow-hidden">
+<img alt="Avatar" data-alt="Student profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnV6LjJ9NdHXhTniM0EH627herAJLWon38qUPqPPdUpQB5ATkWgMpwp_0_3bPsq5cTAUwVWj8sLUfUnGN2ch4EvGyZFtzIPdvXhoy1eHHRB-NbfVdFIqb1IwABOaytkUlx6Psb7XYadWEz59lWi07ZnOt7ITtapFAzJkuR_mI2hb8VsxoRT68EGLimfPfKb-YqSJWFHXKwsTRVRTvoU2yVj6WwfScsS2ZOXU4mlsJbbjfnbx8OUrUwen4ZZYc08sW0BimuHfLITTdB"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto space-y-8">
+<!-- Hero Stats Section: Verified Hours -->
+<section class="relative overflow-hidden bg-gradient-to-br from-primary to-primary-container rounded-3xl p-8 text-white shadow-xl shadow-primary/10">
+<div class="relative z-10">
+<p class="font-headline font-semibold opacity-80 text-sm tracking-wide uppercase">Total Impact</p>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="text-6xl font-headline font-black tracking-tighter">24h</span>
+<span class="text-xl font-headline font-bold opacity-90">Verified</span>
+</div>
+<div class="mt-6 flex gap-4">
+<div class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-xl">
+<p class="text-[10px] uppercase font-bold opacity-70">Goal Progress</p>
+<p class="font-bold text-lg">75%</p>
+</div>
+<div class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-xl">
+<p class="text-[10px] uppercase font-bold opacity-70">This Month</p>
+<p class="font-bold text-lg">+8h</p>
+</div>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+</section>
+<!-- Active Tracking Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-2">
+<h2 class="font-headline font-bold text-lg text-on-surface">Active Service</h2>
+<span class="text-primary font-bold text-xs uppercase tracking-widest">Live Now</span>
+</div>
+<!-- Campus Garden Card -->
+<div class="bg-surface-container-lowest rounded-3xl p-6 shadow-sm border border-outline-variant/10 group transition-all hover:shadow-md">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="potted_plant" style="font-variation-settings: 'FILL' 1;">potted_plant</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg leading-tight">Campus Garden Cleanup</h3>
+<p class="text-on-surface-variant text-sm mt-0.5">Environmental Club</p>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label text-[11px] font-bold uppercase tracking-wider">
+                        Approved - In Progress
+                    </span>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-4 mb-6 flex justify-between items-center">
+<div>
+<p class="text-[10px] font-bold text-outline uppercase">Schedule</p>
+<p class="font-semibold text-sm">Today, 2:00 PM - 5:00 PM</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-bold text-outline uppercase">Location</p>
+<p class="font-semibold text-sm">West Quad</p>
+</div>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-white py-4 rounded-xl font-headline font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+                    Start Tracking
+                </button>
+</div>
+</section>
+<!-- Pending/Past Section -->
+<section class="space-y-4">
+<h2 class="font-headline font-bold text-lg px-2 text-on-surface">Recent Submissions</h2>
+<!-- Math Tutoring Card -->
+<div class="bg-surface-container-lowest rounded-3xl p-6 shadow-sm border border-outline-variant/10 transition-all hover:shadow-md">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="calculate" style="font-variation-settings: 'FILL' 1;">calculate</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg leading-tight">Math Tutoring</h3>
+<p class="text-on-surface-variant text-sm mt-0.5">Academic Success Center</p>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label text-[11px] font-bold uppercase tracking-wider">
+                        Completed - Pending Verification
+                    </span>
+</div>
+<div class="flex items-center gap-4 text-sm text-on-surface-variant mb-6 px-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base" data-icon="calendar_today">calendar_today</span>
+<span>Oct 24, 2023</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base" data-icon="schedule">schedule</span>
+<span>2.5 Hours</span>
+</div>
+</div>
+<button class="w-full bg-surface-container-high text-on-surface py-4 rounded-xl font-headline font-bold flex items-center justify-center gap-2 hover:bg-surface-variant active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
+                    Submit Proof
+                </button>
+</div>
+<!-- Legacy Card: Animal Shelter (Verified Example) -->
+<div class="bg-white/50 border border-dashed border-outline-variant/30 rounded-3xl p-6 opacity-80">
+<div class="flex justify-between items-center">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface">Animal Shelter Support</h3>
+<p class="text-xs text-on-surface-variant">Completed Oct 12 • 4h Verified</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] rounded-t-2xl z-50">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="volunteer_activism" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Service</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

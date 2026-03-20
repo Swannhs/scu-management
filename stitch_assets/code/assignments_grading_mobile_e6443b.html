@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Assignments &amp; Grading</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#00a870",
+                "background-light": "#f5f8f7",
+                "background-dark": "#0f231c",
+              },
+              fontFamily: {
+                "display": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-white dark:bg-background-dark shadow-xl overflow-x-hidden">
+<!-- Header -->
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md z-10">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Assignments</h2>
+<div class="flex size-10 items-center justify-end">
+<div class="text-slate-900 dark:text-slate-100 flex items-center justify-center rounded-full hover:bg-primary/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+</div>
+</div>
+<!-- Tabs -->
+<div class="px-4 pt-2">
+<div class="flex border-b border-primary/10 gap-8">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-2" href="#">
+<p class="text-sm font-bold">Upcoming</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2" href="#">
+<p class="text-sm font-bold">Graded</p>
+</a>
+</div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 overflow-y-auto pb-24">
+<!-- Due Soon Section -->
+<div class="px-4 py-4">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Due Soon</h3>
+<span class="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded-full">3 Tasks</span>
+</div>
+<!-- Assignment Card 1 -->
+<div class="group flex gap-4 bg-white dark:bg-slate-800/40 p-4 rounded-xl border border-primary/5 shadow-sm mb-3 hover:border-primary/30 transition-all">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold leading-tight mb-1">Advanced Calculus - PS4</p>
+<div class="flex items-center gap-3">
+<span class="text-amber-600 dark:text-amber-400 text-xs font-medium flex items-center gap-1">
+<span class="size-1.5 rounded-full bg-amber-500"></span> Pending
+                            </span>
+<span class="text-slate-500 dark:text-slate-400 text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> Today, 11:59 PM
+                            </span>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end justify-center">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold">Oct 24</p>
+</div>
+</div>
+<!-- Assignment Card 2 -->
+<div class="group flex gap-4 bg-white dark:bg-slate-800/40 p-4 rounded-xl border border-primary/5 shadow-sm mb-3 hover:border-primary/30 transition-all">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12">
+<span class="material-symbols-outlined">biotech</span>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold leading-tight mb-1">Organic Chem Lab Report</p>
+<div class="flex items-center gap-3">
+<span class="text-primary text-xs font-medium flex items-center gap-1">
+<span class="size-1.5 rounded-full bg-primary"></span> Submitted
+                            </span>
+<span class="text-slate-500 dark:text-slate-400 text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> Oct 26, 5:00 PM
+                            </span>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end justify-center">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold">Oct 26</p>
+</div>
+</div>
+</div>
+<!-- Recent Feedback Section -->
+<div class="px-4 py-2">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold mb-3">Recent Grades</h3>
+<!-- Grade Card 1 -->
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl p-4 border border-primary/10 mb-4">
+<div class="flex justify-between items-start mb-3">
+<div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold">Midterm Project: Modernism</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Art History 101 • Prof. Aris</p>
+</div>
+<div class="bg-primary text-white rounded-lg px-3 py-1 text-lg font-black">94%</div>
+</div>
+<div class="bg-white/60 dark:bg-slate-900/40 rounded-lg p-3 border border-primary/5">
+<p class="text-xs font-semibold text-primary uppercase tracking-wider mb-1">Professor Feedback</p>
+<p class="text-sm text-slate-700 dark:text-slate-300 italic leading-relaxed">
+                            "Excellent analysis of cubist influences. Your visual presentation was particularly strong. Minor formatting issues in the citations."
+                        </p>
+</div>
+</div>
+<!-- Grade Card 2 -->
+<div class="bg-slate-100 dark:bg-slate-800/60 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
+<div class="flex justify-between items-start mb-3">
+<div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold">Statistical Models Quiz</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Mathematics • Dr. Chen</p>
+</div>
+<div class="bg-slate-800 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg px-3 py-1 text-lg font-black">82%</div>
+</div>
+<div class="bg-white/60 dark:bg-slate-900/40 rounded-lg p-3 border border-slate-200 dark:border-slate-700">
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Professor Feedback</p>
+<p class="text-sm text-slate-700 dark:text-slate-300 italic leading-relaxed">
+                            "Good understanding of hypothesis testing. Watch your rounding in the final calculation of question 4."
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 mx-auto max-w-md bg-white/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-primary/10">
+<div class="flex h-16 items-center justify-around px-2">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<p class="text-[10px] font-medium">Tasks</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">school</span>
+<p class="text-[10px] font-medium">Grades</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-medium">Profile</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>

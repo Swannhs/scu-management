@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Deep Learning in Robotics - Research Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex justify-center">
+<!-- Mobile Container -->
+<div class="w-full max-w-md bg-background-light dark:bg-background-dark min-h-screen shadow-2xl relative flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b border-primary/10">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-icons-outlined text-slate-700 dark:text-slate-300">arrow_back</span>
+</button>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-icons-outlined text-slate-700 dark:text-slate-300">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Content Scrollable Area -->
+<main class="flex-1 overflow-y-auto px-6 pt-6 pb-32">
+<!-- Journal Tag & Date -->
+<div class="flex items-center gap-3 mb-4">
+<span class="bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Robotics AI Journal</span>
+<span class="text-slate-500 dark:text-slate-400 text-xs">Oct 24, 2023</span>
+</div>
+<!-- Title -->
+<h1 class="text-2xl font-bold leading-tight mb-4 dark:text-white">
+                Deep Learning in Robotics: A Comprehensive Survey of Recent Advancements
+            </h1>
+<!-- Authors -->
+<div class="flex flex-wrap gap-2 mb-8">
+<div class="flex items-center gap-2 bg-white dark:bg-slate-800/50 border border-primary/5 p-1 pr-3 rounded-full">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of a male research scientist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA28aFiJi_d1qgTidt49wcBdlFoZrVs4Rg2cJxbIsVwbkwWUsslc9HaHBqUEExwOiBwoBLPvOacb1H0AFRr4SHHnbXzsNoNmzoj6aH-Wkgqk5jH4pdxS4yg5SIbfTXu6B7T538sm6zjmrL7gdlYn9uOKOrscClWOTZ6Z3I8ZKqCND9eZ9pIiy3FKd1Px3HatX2wVxhG1bc54UUoBCXxuxnITO1aOU99gQmJT4GZe419qgmUT7dodV4cFp4rKIGUxn-42MYxxMNQ8j6T"/>
+<span class="text-sm font-medium">Dr. Elena Rodriguez</span>
+</div>
+<div class="flex items-center gap-2 bg-white dark:bg-slate-800/50 border border-primary/5 p-1 pr-3 rounded-full">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of a female research scientist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASoKyivOS6yrQ2j5rNRX9SiDlwigdVbZUQrMHJYJ_t-kIFeQv3kH6C0shfXvkrELBUgqawmeNOP5ZfD4Ajz0SFh_wU2QvJpE1Jm9UgB7UGW_0WyyoEeepmNYARPH7vI7GQ0ikmxuWb_SHH-wEw-dIgFSmTTpgTdO4DemnPoPCaolVxXO4e5kxjAh2SKdZVZb_42mvcsmmscHiGOL1m9AT2_fj6EKjggmHHv5mIMMbPKeTPpTxz35bwlQAAhPpDMiyTf8k_DmLundQN"/>
+<span class="text-sm font-medium">Dr. Marcus Chen</span>
+</div>
+</div>
+<!-- Statistics Grid -->
+<div class="grid grid-cols-3 gap-4 mb-8">
+<div class="bg-primary/5 rounded-xl p-3 text-center border border-primary/10">
+<span class="block text-primary font-bold text-lg">1.2k</span>
+<span class="text-[10px] uppercase text-slate-500 dark:text-slate-400 font-semibold">Citations</span>
+</div>
+<div class="bg-primary/5 rounded-xl p-3 text-center border border-primary/10">
+<span class="block text-primary font-bold text-lg">45k</span>
+<span class="text-[10px] uppercase text-slate-500 dark:text-slate-400 font-semibold">Views</span>
+</div>
+<div class="bg-primary/5 rounded-xl p-3 text-center border border-primary/10">
+<span class="block text-primary font-bold text-lg">890</span>
+<span class="text-[10px] uppercase text-slate-500 dark:text-slate-400 font-semibold">Saves</span>
+</div>
+</div>
+<!-- Abstract Section -->
+<section class="mb-8">
+<h2 class="text-lg font-bold mb-3 flex items-center gap-2">
+<span class="w-1.5 h-6 bg-primary rounded-full"></span>
+                    Abstract
+                </h2>
+<p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                    This paper provides an in-depth analysis of the current state of deep learning integration within robotic systems. We examine how neural networks are revolutionizing perception, control, and decision-making processes. The study highlights significant breakthroughs in reinforcement learning for locomotion and the challenges of deploying high-dimensional models in real-time edge environments.
+                </p>
+<button class="mt-2 text-primary text-sm font-semibold flex items-center gap-1">
+                    Show more <span class="material-icons-outlined text-sm">expand_more</span>
+</button>
+</section>
+<!-- PDF Preview Placeholder -->
+<div class="relative group rounded-xl overflow-hidden mb-8 border border-primary/10">
+<div class="aspect-[3/4] bg-slate-200 dark:bg-slate-800 flex items-center justify-center relative">
+<div class="absolute inset-0 opacity-40">
+<div class="w-full h-full p-8 flex flex-col gap-4">
+<div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-3/4"></div>
+<div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-full"></div>
+<div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-5/6"></div>
+<div class="h-32 bg-slate-300 dark:bg-slate-700 rounded w-full mt-4"></div>
+<div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-full"></div>
+<div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-2/3"></div>
+</div>
+</div>
+<div class="z-10 bg-white/90 dark:bg-slate-900/90 p-6 rounded-2xl shadow-xl flex flex-col items-center gap-4 text-center">
+<div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="material-icons-outlined text-primary text-3xl">picture_as_pdf</span>
+</div>
+<div>
+<p class="font-bold text-sm">Preview Unavailable</p>
+<p class="text-xs text-slate-500">Log in to view the full PDF</p>
+</div>
+<button class="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm hover:opacity-90 transition-opacity">
+                            Read Full Paper
+                        </button>
+</div>
+</div>
+</div>
+<!-- Interaction Buttons -->
+<div class="grid grid-cols-3 gap-3">
+<button class="flex flex-col items-center gap-2 p-4 bg-white dark:bg-slate-800 rounded-xl border border-primary/10 hover:border-primary/40 transition-colors">
+<span class="material-icons-outlined text-primary">format_quote</span>
+<span class="text-xs font-medium">Cite</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-4 bg-white dark:bg-slate-800 rounded-xl border border-primary/10 hover:border-primary/40 transition-colors">
+<span class="material-icons-outlined text-primary">bookmark_border</span>
+<span class="text-xs font-medium">Save</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-4 bg-white dark:bg-slate-800 rounded-xl border border-primary/10 hover:border-primary/40 transition-colors">
+<span class="material-icons-outlined text-primary">share</span>
+<span class="text-xs font-medium">Share</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full max-w-md bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-primary/10 px-6 py-3 pb-6 flex items-center justify-between z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-icons-outlined">home</span>
+<span class="text-[10px] font-bold">Explore</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
+<span class="material-icons-outlined">search</span>
+<span class="text-[10px] font-medium">Search</span>
+</button>
+<div class="relative -top-6">
+<button class="bg-primary text-white w-14 h-14 rounded-full shadow-lg shadow-primary/40 flex items-center justify-center border-4 border-background-light dark:border-background-dark">
+<span class="material-icons-outlined">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
+<span class="material-icons-outlined">library_books</span>
+<span class="text-[10px] font-medium">Library</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
+<span class="material-icons-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</nav>
+</div>
+</body></html>
