@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Post Detail - Campus Social</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface": "#f8f9fb",
+              "surface-bright": "#f8f9fb",
+              "primary-fixed": "#79fabb",
+              "on-secondary-container": "#406e55",
+              "secondary-fixed": "#bceecf",
+              "tertiary": "#a33b3c",
+              "error-container": "#ffdad6",
+              "on-primary-fixed-variant": "#005234",
+              "inverse-primary": "#5adda0",
+              "on-tertiary-fixed": "#410006",
+              "on-surface-variant": "#3d4a41",
+              "tertiary-fixed": "#ffdad8",
+              "surface-dim": "#d8dadc",
+              "primary-container": "#00a76f",
+              "outline-variant": "#bccabf",
+              "on-secondary": "#ffffff",
+              "surface-variant": "#e0e3e5",
+              "outline": "#6d7a71",
+              "tertiary-container": "#e66d6c",
+              "on-primary-fixed": "#002112",
+              "surface-container-highest": "#e0e3e5",
+              "surface-container": "#eceef0",
+              "on-error": "#ffffff",
+              "primary-fixed-dim": "#5adda0",
+              "secondary-container": "#bceecf",
+              "inverse-surface": "#2d3133",
+              "surface-container-high": "#e6e8ea",
+              "on-secondary-fixed": "#002112",
+              "secondary": "#3a674f",
+              "on-tertiary-container": "#5d040f",
+              "on-tertiary": "#ffffff",
+              "primary": "#006c46",
+              "surface-container-low": "#f2f4f6",
+              "surface-container-lowest": "#ffffff",
+              "on-background": "#191c1e",
+              "error": "#ba1a1a",
+              "on-secondary-fixed-variant": "#224f39",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "inverse-on-surface": "#eff1f3",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-tertiary-fixed-variant": "#842327",
+              "surface-tint": "#006c46",
+              "on-error-container": "#93000a",
+              "background": "#f8f9fb",
+              "on-surface": "#191c1e",
+              "on-primary-container": "#00321f",
+              "on-primary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f8f9fb;
+            color: #191c1e;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none">
+<div class="flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform duration-200 text-slate-500 hover:opacity-80">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Public_Sans'] font-bold tracking-tight text-xl text-slate-900 dark:text-slate-50">Post</h1>
+</div>
+<button class="active:scale-95 transition-transform duration-200 text-slate-500 hover:opacity-80">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 h-[1px]"></div>
+</header>
+<main class="pb-32 max-w-2xl mx-auto">
+<!-- Post Content Section -->
+<article class="bg-surface-container-lowest p-4 mb-2">
+<!-- Author Header -->
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img alt="Alex Rivera" class="w-full h-full object-cover" data-alt="Close up portrait of Alex Rivera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT5b128APyIJeVToi6QkYiZiqyEdklpeW2zD1pNEZpUacWKdE-JoRHWMGyYOO0Ynaa9Ve7krimQaN2Pe9_fGD2mtgZFzshl3dH1aCx7yWIj_K-Azxhdxm1AQV-M_Su9FsGOtad82ZnjgDY2_P0i_5QJGKKFXQ9TXFVYkO1viBzPlXIo1xcmnNFpS09cNuI-Bq8WrgBCzG5THTdO-LXeP6bKk8cI8gftnIsuSK294g5eAPYmMWFF3BQWzAyGv3pLKnZG9jiP57IZIML"/>
+</div>
+<div>
+<h2 class="text-on-surface font-bold text-base leading-tight">Alex Rivera</h2>
+<div class="flex items-center gap-1.5 text-xs text-on-surface-variant font-medium">
+<span>Engineering Student</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>2h ago</span>
+</div>
+</div>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Project</span>
+</div>
+<!-- Caption -->
+<div class="mb-4">
+<p class="text-on-surface leading-relaxed text-[15px]">
+                    Just finished the final prototype for the robotics competition! 🤖 Massive thanks to the team for the late-night grinds. Let's win this! 
+                    <span class="text-primary font-semibold">#EngineeringLife #CampusSocial #Robotics</span>
+</p>
+</div>
+<!-- Media -->
+<div class="rounded-xl overflow-hidden mb-4 bg-surface-container shadow-sm border border-black/5">
+<img alt="Robot Prototype" class="w-full aspect-video object-cover" data-alt="Highly detailed complex robotics prototype on lab table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ML72yS3oVkENqiT0JiPLJaU6MaEChLYj-IN7UwBg0kTSqDXB-sFsvR-6qoz0NaMliX9wO2HI4IHDtZNpKw48W7bRZtoosHYUT3V8NVIhquksIOYM0w7nRXHk09N09hthq8mYgAFTPX2okSEx-GC3NuiX6Ls1CAe2gSNROJpOf-kgWjPoC2Njyj1pt62WdkjrFJNrIkYvhKhl9mTVIZRHdNE4tCwlK1IF7DlXfj735br2rFWE1SCiXle83rT_THIKbt2A6P7MkIsB"/>
+</div>
+<!-- Interaction Bar -->
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-1.5 text-primary active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-sm font-bold">124</span>
+</button>
+<button class="flex items-center gap-1.5 text-on-surface-variant active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-sm font-bold">18</span>
+</button>
+</div>
+<button class="flex items-center gap-1.5 text-on-surface-variant active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</article>
+<!-- Comments Section -->
+<section class="px-4 py-6 bg-surface">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline font-bold text-lg text-on-surface">Comments</h3>
+<span class="text-sm text-on-surface-variant font-medium">Top Comments</span>
+</div>
+<!-- Comment List -->
+<div class="space-y-6">
+<!-- Comment Item 1 -->
+<div class="flex gap-3">
+<div class="flex-shrink-0 w-9 h-9 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="Sarah Jenkins" class="w-full h-full object-cover" data-alt="Sarah Jenkins profile photo circular" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhP7zNoCqJ_0XDe7b93Izb8z1Wz7h_kYQLshaEjjQVPlwJtdO4ecjkJV3p8KzU66ighytRPSF8W4CclMGCpsW1OKwk4K6MZrjNW03ETMzl_fTjTv17osh-XA9Hkz8U-A7cJZW-4e1VZSa-6eeTEHwZx9qkj3pn1UksUU1u48X_Qqf65bNKdjqYGO6I9iljVImpelmFptvtC-QyLMF_DnOr7x5y6aU4GnxYXs-5AkkzljQlUc-n7hEL1nnBFyVbT9XFVFOi65ePtGun"/>
+</div>
+<div class="flex-1">
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+<div class="flex items-center justify-between mb-1">
+<span class="text-sm font-bold text-on-surface">Sarah Jenkins</span>
+<span class="text-[10px] text-on-surface-variant">1h ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-normal">That looks incredible! Can't wait to see it in action next week. 🔥</p>
+</div>
+<div class="flex items-center gap-4 mt-2 px-1">
+<button class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider hover:text-primary transition-colors">Like</button>
+<button class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider hover:text-primary transition-colors">Reply</button>
+</div>
+</div>
+</div>
+<!-- Comment Item 2 -->
+<div class="flex gap-3">
+<div class="flex-shrink-0 w-9 h-9 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="Marcus Chen" class="w-full h-full object-cover" data-alt="Marcus Chen profile photo circular" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo4JkIUaizKNLTTbkJZZXs_fIMI4H3HFtUIp2Bcn6sUyA2t6gjjwEx_pchctkdUmBxmCS8KV7dfrYZf20-KdB9io5i3w8TqpSxIh5vB2Jbqcp3VHAKUvQIprMlhS62mzaZRuFtKgBVLnnRkPIjbeQp7Tnbmf6FAqN8i_Kj7OX9Rg15Kizun3Q3845nwyt0MOMG8JP63mkzMwLpSmKZigbMoo9NKRQoR-Aq5RSVvWgSUSEj-2b4flmNC-ocEdtR3Ma1y1OthLMD5lS6"/>
+</div>
+<div class="flex-1">
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+<div class="flex items-center justify-between mb-1">
+<span class="text-sm font-bold text-on-surface">Marcus Chen</span>
+<span class="text-[10px] text-on-surface-variant">45m ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-normal">The wiring looks so clean compared to the last version. Major improvement!</p>
+</div>
+<div class="flex items-center gap-4 mt-2 px-1">
+<button class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider hover:text-primary transition-colors">Like</button>
+<button class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider hover:text-primary transition-colors">Reply</button>
+</div>
+<!-- Nested Reply -->
+<div class="mt-4 flex gap-3">
+<div class="flex-shrink-0 w-7 h-7 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="Alex Rivera" class="w-full h-full object-cover" data-alt="Alex Rivera reply avatar small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYpXY5ZCHDHfm-_N867CFBQExXPj-B7InLYNGdql5C42MUW4ueBJ4cLsEA4yQOhUc_3Sejr-5eukH30Oe9rAYWZiJJk8hNzXM9EdOdWTBc2hj6OdJyMY6qE3tEtSQh4oDLcOSkz_Dc-Rix6rytOc1zs6U493uVD7L2WqMxXUm9w30zYqkULdLd8Wj7fXcPXaRAI8R22c3h2oMxw1-wXLhAvRSwNY9lOay35lMrYKxJK7Yo7fonoqDTtFTUQIGQwu_SqNZeWJ1qFy3T"/>
+</div>
+<div class="flex-1">
+<div class="bg-surface-container-high rounded-xl p-2.5">
+<div class="flex items-center justify-between mb-0.5">
+<span class="text-xs font-bold text-on-surface">Alex Rivera</span>
+<span class="text-[10px] text-on-surface-variant">20m ago</span>
+</div>
+<p class="text-[13px] text-on-surface-variant">Thanks Marcus! We spent 4 hours just on cable management haha.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Comment Input Area -->
+<div class="fixed bottom-0 left-0 w-full z-[60] bg-white/95 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 pb-safe">
+<div class="flex items-end gap-3 px-4 py-3">
+<div class="w-10 h-10 flex-shrink-0 rounded-full bg-surface-container overflow-hidden">
+<img alt="CurrentUser" class="w-full h-full object-cover" data-alt="User profile picture for comment input" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNN3H3eFAbsqO3us1eXgF0dtOsATMyHefeM_mxnJu7BSFNOTt7HIrxutnL6CvWA2uZHxPKVpbmNnwKrt55ULF6WajE9Hm9sXUh1ajczMGAyzTrRQFvheiiqkt-pb6nX7wKv-AMfs_1_0XithuxV6uADrQmRXlc5isfvMPGmziYkJszUlJn994ssUF7TYSU1mJQA_bXSr8evVRWQbnmr4zsVzzNRscs2YVqBq1mC25lzElieiPX0Dpe7kmQ1_urR2Fr2OI-o8AQqMur"/>
+</div>
+<div class="flex-1 relative">
+<textarea class="w-full bg-surface-container-high border-none rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all resize-none" placeholder="Write a comment..." rows="1"></textarea>
+<div class="absolute right-2 bottom-2 flex items-center gap-1">
+<button class="p-1 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="sentiment_satisfied">sentiment_satisfied</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="attach_file">attach_file</span>
+</button>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full shadow-lg shadow-primary/20 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+<!-- Shared Component: BottomNavBar (Internal) -->
+<nav class="flex justify-around items-center px-4 pb-2 pt-1">
+<div class="flex flex-col items-center justify-center text-emerald-600 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-900/20 rounded-xl px-3 py-1">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-emerald-500 transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-emerald-500 transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Create</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-emerald-500 transition-all active:scale-90 relative">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Inbox</span>
+<span class="absolute top-1 right-3 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-emerald-500 transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Profile</span>
+</div>
+</nav>
+</div>
+</body></html>

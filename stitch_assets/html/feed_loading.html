@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campus Social - Loading Feed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "primary-container": "#00a76f",
+                        "surface-container-high": "#e6e8ea",
+                        "on-tertiary-fixed": "#410006",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#bccabf",
+                        "on-primary-container": "#00321f",
+                        "on-tertiary-fixed-variant": "#842327",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "tertiary-container": "#e66d6c",
+                        "surface": "#f8f9fb",
+                        "secondary-fixed-dim": "#a1d1b4",
+                        "on-tertiary-container": "#5d040f",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-container": "#406e55",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-tint": "#006c46",
+                        "tertiary-fixed": "#ffdad8",
+                        "on-surface-variant": "#3d4a41",
+                        "surface-bright": "#f8f9fb",
+                        "primary": "#006c46",
+                        "on-secondary-fixed": "#002112",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005234",
+                        "surface-variant": "#e0e3e5",
+                        "primary-fixed": "#79fabb",
+                        "surface-dim": "#d8dadc",
+                        "inverse-primary": "#5adda0",
+                        "on-secondary-fixed-variant": "#224f39",
+                        "secondary": "#3a674f",
+                        "error": "#ba1a1a",
+                        "outline": "#6d7a71",
+                        "surface-container": "#eceef0",
+                        "primary-fixed-dim": "#5adda0",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f8f9fb",
+                        "tertiary": "#a33b3c",
+                        "on-background": "#191c1e",
+                        "secondary-container": "#bceecf",
+                        "secondary-fixed": "#bceecf",
+                        "on-primary-fixed": "#002112"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Skeleton Pulse with Tonal Match */
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .skeleton-shimmer {
+            animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            background-color: #e6e8ea; /* surface-container-high */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full skeleton-shimmer"></div>
+<h1 class="text-xl font-black text-slate-900 dark:text-slate-100 font-headline tracking-tight">Editorial</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 dark:text-slate-400 hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-28 px-4 max-w-lg mx-auto space-y-4">
+<!-- Create Post Entry Skeleton -->
+<section class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4">
+<div class="w-10 h-10 rounded-full skeleton-shimmer flex-shrink-0"></div>
+<div class="h-10 w-full bg-surface-container-high rounded-xl skeleton-shimmer"></div>
+</section>
+<!-- Feed List Skeletons -->
+<div class="space-y-4">
+<!-- Skeleton Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full skeleton-shimmer"></div>
+<div class="space-y-2">
+<div class="h-3 w-24 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-2 w-16 bg-surface-container-high rounded-full skeleton-shimmer opacity-60"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="h-3 w-full bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-3 w-4/5 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+</div>
+<div class="aspect-video w-full bg-surface-container-high rounded-xl skeleton-shimmer"></div>
+<div class="flex items-center justify-between pt-2">
+<div class="h-8 w-20 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-8 w-20 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-8 w-20 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+</div>
+</article>
+<!-- Skeleton Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full skeleton-shimmer"></div>
+<div class="space-y-2">
+<div class="h-3 w-32 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-2 w-20 bg-surface-container-high rounded-full skeleton-shimmer opacity-60"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="h-3 w-full bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-3 w-3/4 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-3 w-1/2 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+</div>
+<div class="aspect-video w-full bg-surface-container-high rounded-xl skeleton-shimmer"></div>
+<div class="flex items-center justify-between pt-2">
+<div class="h-8 w-20 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-8 w-20 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-8 w-20 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+</div>
+</article>
+<!-- Skeleton Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full skeleton-shimmer"></div>
+<div class="space-y-2">
+<div class="h-3 w-28 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-2 w-12 bg-surface-container-high rounded-full skeleton-shimmer opacity-60"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="h-3 w-full bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-3 w-5/6 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+</div>
+<div class="aspect-video w-full bg-surface-container-high rounded-xl skeleton-shimmer"></div>
+<div class="flex items-center justify-between pt-2">
+<div class="h-8 w-20 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-8 w-20 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+<div class="h-8 w-20 bg-surface-container-high rounded-full skeleton-shimmer"></div>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] z-50">
+<!-- Active Home -->
+<a class="flex flex-col items-center justify-center text-emerald-600 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-900/20 rounded-xl px-3 py-1 font-inter text-[11px] font-semibold active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span>Home</span>
+</a>
+<!-- Inactive Explore -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 font-inter text-[11px] font-semibold hover:text-emerald-500 dark:hover:text-emerald-300 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="explore">explore</span>
+<span>Explore</span>
+</a>
+<!-- Inactive Create -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 font-inter text-[11px] font-semibold hover:text-emerald-500 dark:hover:text-emerald-300 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="add_circle">add_circle</span>
+<span>Create</span>
+</a>
+<!-- Inactive Profile -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 font-inter text-[11px] font-semibold hover:text-emerald-500 dark:hover:text-emerald-300 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+</nav>
+</body></html>

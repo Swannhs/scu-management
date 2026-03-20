@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Replies - Campus Social App</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#002112",
+              "surface": "#f8f9fb",
+              "inverse-surface": "#2d3133",
+              "tertiary-fixed": "#ffdad8",
+              "on-tertiary": "#ffffff",
+              "outline-variant": "#bccabf",
+              "on-primary-container": "#00321f",
+              "background": "#f8f9fb",
+              "tertiary-container": "#e66d6c",
+              "on-background": "#191c1e",
+              "surface-container-low": "#f2f4f6",
+              "secondary-container": "#bceecf",
+              "on-secondary-fixed-variant": "#224f39",
+              "on-primary-fixed-variant": "#005234",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "on-primary": "#ffffff",
+              "secondary": "#3a674f",
+              "tertiary": "#a33b3c",
+              "on-tertiary-container": "#5d040f",
+              "inverse-primary": "#5adda0",
+              "on-tertiary-fixed": "#410006",
+              "outline": "#6d7a71",
+              "surface-tint": "#006c46",
+              "on-error": "#ffffff",
+              "surface-container-high": "#e6e8ea",
+              "error-container": "#ffdad6",
+              "surface-container-lowest": "#ffffff",
+              "on-surface": "#191c1e",
+              "surface-variant": "#e0e3e5",
+              "surface-container": "#eceef0",
+              "on-primary-fixed": "#002112",
+              "on-secondary-container": "#406e55",
+              "on-surface-variant": "#3d4a41",
+              "error": "#ba1a1a",
+              "surface-bright": "#f8f9fb",
+              "surface-dim": "#d8dadc",
+              "secondary-fixed-dim": "#a1d1b4",
+              "secondary-fixed": "#bceecf",
+              "primary-fixed": "#79fabb",
+              "on-secondary": "#ffffff",
+              "on-error-container": "#93000a",
+              "primary-fixed-dim": "#5adda0",
+              "primary-container": "#00a76f",
+              "inverse-on-surface": "#eff1f3",
+              "surface-container-highest": "#e0e3e5",
+              "primary": "#006c46",
+              "on-tertiary-fixed-variant": "#842327"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+      }
+      body {
+        -webkit-tap-highlight-color: transparent;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-none">
+<div class="flex items-center px-4 h-16 w-full max-w-md mx-auto">
+<button class="p-2 -ml-2 text-slate-600 active:scale-95 duration-200 transition-colors hover:bg-slate-100 rounded-full">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Public_Sans'] font-bold text-lg tracking-tight text-[#00A76F] ml-2">Replies</h1>
+</div>
+<div class="bg-[#f2f4f6] dark:bg-slate-800 h-[1px] w-full max-w-md mx-auto"></div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-24 max-w-md mx-auto px-4">
+<!-- Parent Comment Card -->
+<section class="mb-6">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_8px_24px_rgba(0,0,0,0.02)] border border-outline-variant/10">
+<div class="flex items-start gap-3">
+<img alt="Alex Rivera" class="w-10 h-10 rounded-full object-cover ring-2 ring-primary/5" data-alt="Young man with short dark hair smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1pePjwYplDYijMi2Js-qf97_o910ImNJ9CUMTJJy81X5mhH8127vvHWtlaHidZeKa_u_igsIK7sNhTLxZ5UJhAMp8KtgEbUh4-ol7TzcM5GxIYdPH5BlqdQni28l0b5nqjxTMkfbNbcXqzalURL2uTRWlOgIwt0N3xd-SnwAX2ycX0YEHt1AgvoMnCHd6_3EyhaU1SnEbnBj1O0OAiubkenUnej9SsMIqgfP0sLJLi0PZc3AFvmXF_YVPzYSkADuYf3QKqYfIEXUL"/>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline justify-between">
+<h3 class="font-semibold text-on-surface text-sm truncate">Alex Rivera</h3>
+<span class="text-[10px] text-outline font-medium">2h ago</span>
+</div>
+<div class="inline-flex items-center px-2 py-0.5 mt-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold">
+                            STUDENT
+                        </div>
+</div>
+</div>
+<div class="mt-3 text-on-surface leading-relaxed text-[15px] font-medium">
+                    Does anyone know when the library starts its 24/7 hours for finals week?
+                </div>
+<div class="mt-4 flex items-center gap-6">
+<button class="flex items-center gap-1.5 text-outline hover:text-primary transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="favorite">favorite</span>
+<span class="text-xs font-semibold">12</span>
+</button>
+<button class="flex items-center gap-1.5 text-outline hover:text-primary transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-xs font-semibold">2</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Reply Thread -->
+<div class="relative pl-4 space-y-6">
+<!-- Thread Line -->
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant/30 rounded-full ml-4"></div>
+<!-- Reply 1 -->
+<article class="relative pl-6">
+<!-- Connector dot -->
+<div class="absolute -left-1.5 top-5 w-3 h-3 rounded-full bg-surface border-2 border-outline-variant/40"></div>
+<div class="flex items-start gap-3">
+<img alt="Sarah Chen" class="w-8 h-8 rounded-full object-cover" data-alt="Young woman with black hair smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUuWmDj6isZ4wK2CiR0QMVljn5H3Ud-DGTZQLGLeWi-ASiFRqzAR1ckYXaLSUg-Jtdpix4f4mxFnmRWtIUlYPlvVMk8e7OuxUkkXSNY3XDLTQp6-GE-9TbD7_lu6uYaawF3-qTyca8LSrBWbu9ywnuFPfct0NevXUZmRzkbSi6RuG9fPoOB5XhoxV72JsFaLs_4STpGwf92Uz6YdaC5K1n9hMeWb_yNx2YpgFlnoX2BxtlYYaUDS2BAyRx_cHkMX0NkqOQu4rQ4RI_"/>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline justify-between">
+<div>
+<span class="font-semibold text-sm text-on-surface">Sarah Chen</span>
+<span class="ml-2 text-[10px] uppercase font-bold text-outline-variant">Student</span>
+</div>
+<span class="text-[10px] text-outline font-medium">45m ago</span>
+</div>
+<p class="mt-1 text-on-surface-variant text-sm leading-relaxed">
+                            It officially starts this Sunday at midnight! They just posted the schedule this morning.
+                        </p>
+<div class="mt-2 flex items-center gap-4">
+<button class="text-[11px] font-bold text-primary active:scale-95">Like</button>
+<button class="text-[11px] font-bold text-outline active:scale-95">Reply</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Reply 2 -->
+<article class="relative pl-6">
+<!-- Connector dot -->
+<div class="absolute -left-1.5 top-5 w-3 h-3 rounded-full bg-surface border-2 border-outline-variant/40"></div>
+<div class="flex items-start gap-3">
+<img alt="Marcus Thorne" class="w-8 h-8 rounded-full object-cover" data-alt="Middle-aged man with beard and glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1Dra0T08WeU3jCwkpoZ_ZtqvH2v0-UmG6qSoSAKkFfX8wSJ8ablTs5zpXjnbFL0r1xmVimrAkJMQBZUx3Od8kuay1LDaf2QxI2oRonh6SKsVzRoI1alkfi5yhPT_ebBgUVqHwERv3vfK9eZic917bSYB2iLbA0h6p3rSIMrGqKLhQPLCxvk9kURJURl26XuYS2ubSHH-q33mfmOPil7PMsU28BT_JZEdX52kEdZ0Fl7toBc0zZdFvaQcvx9LSF91_j7hsWh4137N4"/>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline justify-between">
+<div>
+<span class="font-semibold text-sm text-on-surface">Marcus Thorne</span>
+<span class="ml-2 text-[10px] uppercase font-bold text-tertiary-container/80">Faculty</span>
+</div>
+<span class="text-[10px] text-outline font-medium">12m ago</span>
+</div>
+<p class="mt-1 text-on-surface-variant text-sm leading-relaxed">
+                            Thanks for clarifying, Sarah!
+                        </p>
+<div class="mt-2 flex items-center gap-4">
+<button class="text-[11px] font-bold text-primary active:scale-95">Like</button>
+<button class="text-[11px] font-bold text-outline active:scale-95">Reply</button>
+</div>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- Bottom Input Bar -->
+<footer class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-100 px-4 pt-3 pb-8 z-50">
+<div class="max-w-md mx-auto flex items-center gap-3">
+<img alt="Jordan Smith" class="w-9 h-9 rounded-full object-cover shrink-0" data-alt="Current user profile headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEsUmbkOXxck6tqwma8Nv-MN-PajeHDbDh5wfjNKa3kLSFxqFlQIVM_3vDN3ptjC5zT-_6OPplbO66kT1p7-e5OkuT_T-Q-NNSu1W9GZNPAjWlpAC9KZgwXyVhRaTHOuIqaTni1g6RbnirOmg1IzgrcONucEDbFnrR-2fnGPoeGG2P73tBN43WeduOwokHCTlZmyLeyLx2siT6lZ9pUUVSlocLrWx2ud6BGth-eVWa2ovUNx0s5xci7BYMD65OxngjHHM7ZVBu_hl-"/>
+<div class="flex-1 relative flex items-center">
+<input class="w-full bg-surface-container-high border-none rounded-xl py-2.5 pl-4 pr-10 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/60" placeholder="Add a reply..." type="text"/>
+<div class="absolute right-2 flex items-center gap-1 text-outline">
+<button class="p-1 hover:text-primary active:scale-90">
+<span class="material-symbols-outlined text-[20px]" data-icon="mood">mood</span>
+</button>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-container text-white shadow-lg shadow-primary/20 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="send" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+<div class="max-w-md mx-auto flex gap-2 mt-3 px-12">
+<button class="flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-low text-outline text-[11px] font-bold active:scale-95">
+<span class="material-symbols-outlined text-[14px]" data-icon="attachment">attachment</span>
+                Attach
+            </button>
+<button class="flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-low text-outline text-[11px] font-bold active:scale-95">
+<span class="material-symbols-outlined text-[14px]" data-icon="image">image</span>
+                Media
+            </button>
+</div>
+</footer>
+</body></html>

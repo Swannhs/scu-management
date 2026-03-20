@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campus Video - Full Screen Viewer</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-on-surface": "#eff1f3",
+              "surface": "#f8f9fb",
+              "on-tertiary-container": "#5d040f",
+              "on-primary-container": "#00321f",
+              "surface-container-highest": "#e0e3e5",
+              "on-primary-fixed": "#002112",
+              "surface-container-high": "#e6e8ea",
+              "primary-fixed-dim": "#5adda0",
+              "surface-variant": "#e0e3e5",
+              "surface-dim": "#d8dadc",
+              "on-secondary-fixed-variant": "#224f39",
+              "on-tertiary-fixed": "#410006",
+              "surface-bright": "#f8f9fb",
+              "on-surface-variant": "#3d4a41",
+              "error": "#ba1a1a",
+              "primary": "#006c46",
+              "tertiary-fixed": "#ffdad8",
+              "on-tertiary-fixed-variant": "#842327",
+              "surface-container": "#eceef0",
+              "background": "#f8f9fb",
+              "on-secondary-fixed": "#002112",
+              "on-secondary": "#ffffff",
+              "primary-container": "#00a76f",
+              "surface-container-low": "#f2f4f6",
+              "outline-variant": "#bccabf",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "secondary-fixed": "#bceecf",
+              "secondary": "#3a674f",
+              "tertiary": "#a33b3c",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#5adda0",
+              "primary-fixed": "#79fabb",
+              "outline": "#6d7a71",
+              "tertiary-container": "#e66d6c",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "inverse-surface": "#2d3133",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-fixed-variant": "#005234",
+              "on-error-container": "#93000a",
+              "on-surface": "#191c1e",
+              "on-background": "#191c1e",
+              "secondary-container": "#bceecf",
+              "on-secondary-container": "#406e55",
+              "surface-tint": "#006c46"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .video-gradient-overlay {
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.8) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-black text-white font-body selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-black/40 backdrop-blur-md">
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-white" data-icon="close">close</span>
+</button>
+<h1 class="font-headline font-bold tracking-tight text-white text-base truncate max-w-[240px]">
+                Campus Hackathon Finalist Presentation
+            </h1>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-white" data-icon="cast">cast</span>
+</button>
+<button class="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-white" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Video Canvas -->
+<main class="relative h-screen w-full flex items-center justify-center bg-black">
+<!-- Background "Video" Placeholder -->
+<div class="absolute inset-0 z-0">
+<img alt="Hackathon Presentation" class="w-full h-full object-cover opacity-80" data-alt="Students presenting at a campus hackathon event" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs87MHHjzYM82KMbysMZqThfM0JzoZNsPw7ifNnY4OkWQQIr88lXbNEDzLmOPdwYeYWygawRB-zc8CL8PlC6UwKJ_pVDOT7PqznMtoPy2zglZMx4k8sfUFUnjyfeU73feMZk37mBSCagqy7qYp7ZZzPl2tN0jjvH9KrzVsBzje7Zg4Fac0MBTwakiDxfG6WEvVxCW2JvjpsV-gyfA9b9d01k1_zvIlYxZkdYN0_FGk8Cmj3bR5QUmTaZnywpZ8TuXc2TxwPqmY3TnB"/>
+<div class="absolute inset-0 video-gradient-overlay"></div>
+</div>
+<!-- Centered Play Interaction -->
+<div class="relative z-10">
+<button class="group relative flex items-center justify-center w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 scale-102 active:scale-95">
+<span class="material-symbols-outlined text-white text-5xl translate-x-1" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<!-- Optional Loading State (Hidden by default, shown via logic) -->
+<div class="hidden absolute inset-0 z-20 items-center justify-center bg-black/40 backdrop-blur-[2px]">
+<div class="flex flex-col items-center gap-4">
+<div class="w-12 h-12 border-4 border-primary-container/30 border-t-primary-container rounded-full animate-spin"></div>
+<p class="text-sm font-medium tracking-wide text-white/80">Buffering...</p>
+</div>
+</div>
+<!-- Optional Error State (Hidden by default) -->
+<div class="hidden absolute inset-0 z-30 items-center justify-center bg-black/80 backdrop-blur-xl px-8">
+<div class="max-w-xs text-center">
+<div class="w-16 h-16 bg-error-container/20 rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-error text-3xl" data-icon="error_outline">error_outline</span>
+</div>
+<h3 class="text-xl font-headline font-bold mb-2">Playback Error</h3>
+<p class="text-on-surface-variant text-sm mb-8">We couldn't load the video. Please check your connection and try again.</p>
+<button class="w-full py-4 bg-primary text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="refresh">refresh</span>
+                    Retry Playback
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Controls Area -->
+<footer class="fixed bottom-0 left-0 w-full z-50 px-4 pb-8 pt-12">
+<!-- Playback Progress -->
+<div class="mb-6">
+<div class="flex justify-between items-center mb-3 text-[11px] font-medium font-label tracking-wider text-white/70">
+<span>02:45</span>
+<span>12:30</span>
+</div>
+<div class="relative h-1.5 w-full bg-white/20 rounded-full overflow-hidden cursor-pointer group">
+<!-- Seek Bar Background -->
+<div class="absolute inset-0 bg-white/10"></div>
+<!-- Buffer Progress -->
+<div class="absolute inset-0 bg-white/20" style="width: 45%;"></div>
+<!-- Active Progress -->
+<div class="absolute inset-0 bg-primary-container" style="width: 22%;"></div>
+<!-- Scrub Handle (Visible on hover/touch) -->
+<div class="absolute top-1/2 left-[22%] -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<!-- Control Buttons -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-6">
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-white group-hover:text-primary-container transition-colors" data-icon="volume_up">volume_up</span>
+</button>
+<button class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg hover:bg-white/20 transition-colors">
+<span class="text-[12px] font-bold tracking-tight">1.0x</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+<div class="flex items-center gap-6">
+<button class="p-2">
+<span class="material-symbols-outlined text-white" data-icon="subtitles">subtitles</span>
+</button>
+<button class="p-2">
+<span class="material-symbols-outlined text-white" data-icon="settings">settings</span>
+</button>
+<button class="p-2 bg-primary-container/20 text-primary-container rounded-lg">
+<span class="material-symbols-outlined" data-icon="fullscreen">fullscreen</span>
+</button>
+</div>
+</div>
+</footer>
+<!-- Video Interaction Overlays (Like/Share/Save) -->
+<aside class="fixed right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-6">
+<div class="flex flex-col items-center gap-1">
+<button class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-all active:scale-90">
+<span class="material-symbols-outlined text-white" data-icon="favorite">favorite</span>
+</button>
+<span class="text-[10px] font-bold text-white/80">1.2k</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<button class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-all active:scale-90">
+<span class="material-symbols-outlined text-white" data-icon="chat_bubble">chat_bubble</span>
+</button>
+<span class="text-[10px] font-bold text-white/80">84</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<button class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-all active:scale-90">
+<span class="material-symbols-outlined text-white" data-icon="share">share</span>
+</button>
+<span class="text-[10px] font-bold text-white/80">Share</span>
+</div>
+<button class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-all active:scale-90">
+<span class="material-symbols-outlined text-white" data-icon="bookmark">bookmark</span>
+</button>
+</aside>
+</body></html>

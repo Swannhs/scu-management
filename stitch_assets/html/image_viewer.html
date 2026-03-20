@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campus Social - Image Viewer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d8dadc",
+              "tertiary-container": "#e66d6c",
+              "surface-container-low": "#f2f4f6",
+              "secondary-fixed": "#bceecf",
+              "on-tertiary": "#ffffff",
+              "background": "#f8f9fb",
+              "surface-variant": "#e0e3e5",
+              "primary-fixed": "#79fabb",
+              "on-secondary": "#ffffff",
+              "on-primary": "#ffffff",
+              "tertiary-fixed": "#ffdad8",
+              "surface-bright": "#f8f9fb",
+              "on-tertiary-container": "#5d040f",
+              "on-primary-fixed": "#002112",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "on-secondary-container": "#406e55",
+              "inverse-surface": "#2d3133",
+              "secondary": "#3a674f",
+              "on-surface-variant": "#3d4a41",
+              "secondary-container": "#bceecf",
+              "on-primary-container": "#00321f",
+              "on-surface": "#191c1e",
+              "on-secondary-fixed": "#002112",
+              "secondary-fixed-dim": "#a1d1b4",
+              "error-container": "#ffdad6",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#842327",
+              "error": "#ba1a1a",
+              "primary": "#006c46",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed": "#410006",
+              "on-background": "#191c1e",
+              "primary-container": "#00a76f",
+              "on-secondary-fixed-variant": "#224f39",
+              "surface-tint": "#006c46",
+              "surface": "#f8f9fb",
+              "surface-container": "#eceef0",
+              "surface-container-highest": "#e0e3e5",
+              "tertiary": "#a33b3c",
+              "on-primary-fixed-variant": "#005234",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#eff1f3",
+              "inverse-primary": "#5adda0",
+              "surface-container-high": "#e6e8ea",
+              "primary-fixed-dim": "#5adda0",
+              "outline": "#6d7a71",
+              "outline-variant": "#bccabf"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .canvas-bg {
+            background-color: #000000;
+        }
+        .editorial-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
+        }
+        .top-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="h-full font-body canvas-bg text-on-background overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar (Shared Component: TopAppBar) -->
+<header class="fixed top-0 w-full z-50 bg-black/40 dark:bg-black/60 backdrop-blur-md flex items-center justify-between px-4 h-16 w-full">
+<button class="p-2 text-white/70 hover:bg-white/10 transition-colors scale-102 active:scale-95 transition-transform rounded-full">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h1 class="font-['Public_Sans'] font-medium text-white tracking-tight">1 of 12</h1>
+<button class="p-2 text-white/70 hover:bg-white/10 transition-colors scale-102 active:scale-95 transition-transform rounded-full">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="relative h-full w-full flex items-center justify-center">
+<!-- Full-Screen Image -->
+<div class="absolute inset-0 w-full h-full">
+<img alt="Students at a university hackathon event" class="w-full h-full object-contain" data-alt="Students collaborating at a university hackathon event" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiKykodP9zs8cLoCaOuXCM2cNjrvSDeGy78tEh2raXKjl-f4BCJTKwdpoa1IcRnM8Q3ELb6P_8QYRymEpJFTI7RKrplN2TuByb_w1tdjtlf4pSol4T8ZIx_dzL7Ee3Lx0ua7S3SSGCOlvRX_GFbLsygXNErCAAqFVZA5uYzJ2_WSHNiRkzlLTxZIwrZ-MBA0n3ooqwViM5VEAC0psRUSjdXBujnddkaA5sXuJ0nHDBNH6r-2nfPuTotrKkmycpAyPk2gU-xnK4ArSC"/>
+</div>
+<!-- Left/Right Swipe Hints -->
+<button class="absolute left-4 z-20 p-3 bg-black/20 backdrop-blur-sm rounded-full text-white/50 hover:text-white transition-colors md:flex hidden">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="absolute right-4 z-20 p-3 bg-black/20 backdrop-blur-sm rounded-full text-white/50 hover:text-white transition-colors md:flex hidden">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Bottom Content Overlay (Editorial Precision) -->
+<section class="absolute bottom-0 left-0 w-full z-40 editorial-overlay pt-32 pb-24 px-6 md:px-12">
+<div class="max-w-2xl mx-auto">
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-primary text-white text-[10px] font-bold tracking-wider uppercase">Hackathon '24</span>
+<span class="text-white/40 text-xs font-medium">2 hours ago</span>
+</div>
+<h2 class="font-headline text-2xl font-bold text-white tracking-tight leading-tight md:text-3xl">
+                        The hackathon kickoff was absolutely amazing! 🚀
+                    </h2>
+<p class="text-white/80 text-sm md:text-base leading-relaxed line-clamp-2 md:line-clamp-none">
+                        Our team finally started working on the "Campus Connect" project. The energy in the main hall is electric! Can't wait to see what everyone builds in the next 48 hours. Shoutout to the organizers for the endless pizza!
+                    </p>
+<div class="flex items-center gap-6 mt-4">
+<button class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-white/60 group-hover:text-primary-container transition-colors" data-icon="favorite">favorite</span>
+<span class="text-white/60 text-xs font-medium group-hover:text-white transition-colors">1.2k</span>
+</button>
+<button class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-white/60 group-hover:text-primary-container transition-colors" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-white/60 text-xs font-medium group-hover:text-white transition-colors">84</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Swipe Indicator Dots -->
+<div class="absolute bottom-20 left-0 w-full flex justify-center gap-1.5 z-40">
+<div class="h-1 w-4 rounded-full bg-primary-container"></div>
+<div class="h-1 w-1.5 rounded-full bg-white/30"></div>
+<div class="h-1 w-1.5 rounded-full bg-white/30"></div>
+<div class="h-1 w-1.5 rounded-full bg-white/30"></div>
+<div class="h-1 w-1.5 rounded-full bg-white/30"></div>
+</div>
+</main>
+<!-- Bottom Action Bar (Shared Component: BottomNavBar) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-8 bg-black/40 dark:bg-black/60 backdrop-blur-md">
+<!-- Download (Inactive) -->
+<button class="flex flex-col items-center justify-center text-white/80 p-2 hover:bg-white/10 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+<span class="text-[10px] font-medium text-white mt-1">Save</span>
+</button>
+<!-- Share (Active mapping based on intent) -->
+<button class="flex flex-col items-center justify-center bg-emerald-500/20 text-emerald-400 rounded-2xl p-2 scale-105 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="share" style="font-variation-settings: 'FILL' 1;">share</span>
+<span class="text-[10px] font-medium text-white mt-1">Share</span>
+</button>
+<!-- Info (Inactive) -->
+<button class="flex flex-col items-center justify-center text-white/80 p-2 hover:bg-white/10 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+<span class="text-[10px] font-medium text-white mt-1">Details</span>
+</button>
+</nav>
+</body></html>

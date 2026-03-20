@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline": "#6d7a71",
+              "on-secondary-fixed": "#002112",
+              "surface-bright": "#f8f9fb",
+              "on-primary-container": "#00321f",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "surface-variant": "#e0e3e5",
+              "inverse-on-surface": "#eff1f3",
+              "on-secondary-fixed-variant": "#224f39",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#2d3133",
+              "on-tertiary": "#ffffff",
+              "primary-fixed": "#79fabb",
+              "secondary-container": "#bceecf",
+              "on-surface-variant": "#3d4a41",
+              "on-secondary": "#ffffff",
+              "tertiary-container": "#e66d6c",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed": "#410006",
+              "on-tertiary-fixed-variant": "#842327",
+              "tertiary-fixed": "#ffdad8",
+              "surface-container-highest": "#e0e3e5",
+              "surface": "#f8f9fb",
+              "secondary-fixed": "#bceecf",
+              "secondary": "#3a674f",
+              "on-surface": "#191c1e",
+              "surface-container": "#eceef0",
+              "error": "#ba1a1a",
+              "primary-container": "#00a76f",
+              "surface-container-high": "#e6e8ea",
+              "outline-variant": "#bccabf",
+              "primary-fixed-dim": "#5adda0",
+              "on-primary-fixed": "#002112",
+              "inverse-primary": "#5adda0",
+              "surface-tint": "#006c46",
+              "on-background": "#191c1e",
+              "surface-container-low": "#f2f4f6"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg docked full-width top-0 sticky z-50 shadow-none">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-gray-500 hover:scale-105 transition-transform active:scale-95 duration-200" data-icon="grid_view">grid_view</span>
+<h1 class="font-['Public_Sans'] font-bold tracking-tight text-2xl font-black text-gray-900 dark:text-white">Curated</h1>
+</div>
+<div class="h-10 w-10 rounded-full bg-surface-variant overflow-hidden border-2 border-primary-container hover:scale-105 transition-transform active:scale-95 duration-200">
+<img alt="User avatar" data-alt="Close up professional headshot of a person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqXFefRiCdlC3f4Q6v524f4pjahqlMLERxjcihTuXOpwwwnrfN4v10k7gAQfdaMq2fVqkaQc0mKN0nCehJfybWQbWNo4Vr4GaVHrrj0Th_r-9bmVrW8ajD9SfF0rXSjLvqjJAqcovXrnY0uGWTy-aH44q9Yhh3slNFMoUMPELC3MiNIuPr8gFK6LYd6aP1Rc7LCJX3Roxhgnr_H8k89dXb8bIfvg9xWQn4VpNSHEZsVfqqrtXyPXci-U-R2w4Im6rf49Awt8vLWTgU"/>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto px-4 mt-6">
+<!-- Post Card -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_12px_32px_rgba(25,28,30,0.04)] mb-6 border border-outline-variant/10">
+<!-- Author Row -->
+<div class="flex items-center justify-between p-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full overflow-hidden">
+<img alt="Alex Rivera" data-alt="Portrait of Alex Rivera smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtlhxXOM5GU8OrU009QqtzRlOf-D_Q1H8gzBpgO3c-5GuT4h1pQkdahE_a5JAT9Q6saXIjQaqrAwG5eT7FpZlTUxf-jTc1GU7-JoNJ7HLm-1vaVYka7qH-gVjeNUOUy5wtZhqG_k0HFAeTtLHhoEYh80ceX9V2fuSKVQbTU5HpJMl_69cvUxqi4jfEd-wYaaqhsoU-PNWONfrOTGksaukYwWWXGgZO3Nllyav05RGXX9nUEMU8-DHG6V952aCunAn_uk_m0UUnVwSC"/>
+</div>
+<div>
+<h3 class="font-semibold text-sm text-on-surface leading-none">Alex Rivera</h3>
+<p class="text-[12px] text-on-surface-variant mt-1">Student <span class="mx-1">•</span> 2h ago</p>
+</div>
+</div>
+<button class="text-on-surface-variant material-symbols-outlined" data-icon="more_vert">more_vert</button>
+</div>
+<!-- Caption -->
+<div class="px-4 pb-3">
+<p class="text-[14px] leading-relaxed text-on-surface">
+                    Had an amazing time at the SCU Tech Expo yesterday! So many inspiring projects and great networking. 
+                    <span class="text-primary font-medium">#CampusLife #TechExpo2024</span>
+</p>
+</div>
+<!-- Multi-Image Grid (2x2) -->
+<div class="grid grid-cols-2 gap-0.5 aspect-square bg-surface-variant overflow-hidden">
+<!-- Image 1 -->
+<div class="relative overflow-hidden h-full">
+<img alt="Tech Expo Students" class="object-cover w-full h-full" data-alt="Students discussing a tech project at a booth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC4XSB8YNl4SfEEa-vd3fx4_0-lKYfle8RoE7vNBrRP7XR9nxArFNPjf3F-O0gL55Hds4PTl3ojxokNNpQZCobs46aDZElFgY-T5UbpvCPXKCtfbxDyKHIq-7iHtBCg8YuAxAwchu5J4XUNcBWywRStKsC1FRP2GGq3wJbwTFiaj0ChOZmtir1Nj_O8IBRpokH4vM0N7qoZmn_V9p_X9yQ_bbwLxT3XdoWi5H7-S2Ea-yqKoJZiDbvX9dcqpTn37-gmEgDVJav8Tyb"/>
+</div>
+<!-- Image 2 -->
+<div class="relative overflow-hidden h-full">
+<img alt="Robotics demo" class="object-cover w-full h-full" data-alt="Close up of a robotic arm at an expo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz5kAB5HkZH55TP47nqJUXmkb7Bq2Z37SXRylvfDVVa7q6ejDmSjytOxzcOvGycpK-BRFtX-XBmzyQtUgEiN3BQc5QvavAyil-cDEKIYuirKwV6cNJNjY7d8brtwnc5_mOTo-efbX9z1ffhqUfA1rRHSU08831kjsT7zid6nAuGqDxn-zvhzsyZw0oHZ0jtZlsvHwSmeVHQ-EyK_qMnLnkVzQAX9WMDLma1LOsc3Y5rCtilJeIZpENxwAohZlLy3SeETuI4mNxSWGI"/>
+</div>
+<!-- Image 3 -->
+<div class="relative overflow-hidden h-full">
+<img alt="Networking event" class="object-cover w-full h-full" data-alt="A crowd of people at a tech event" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOJZ5gtSSvP8mFV4rsfoZnnX16b-LythBajXJKjPJvwDTtApwCh4PchX8IW39JIi4waDxciI45iorGUtCJJbJlJn1we0PPWOpomUDLdwOnzH705zIwqti4NpWMUaHlzCvtKP66A2yE6MdNK3YjzytElkQ4BOpylfRh3zMcpixvLDYcKpH5_tpOm9e10RonKTc_1QswhKIIREJFrBPj0o4VWJLunvk0k498NZI-iAR5-vHiFNBk9wt-faRTKhdxIAZA0dIsLRR_y4jF"/>
+</div>
+<!-- Image 4 with Overlay -->
+<div class="relative overflow-hidden h-full">
+<img alt="Exhibition floor" class="object-cover w-full h-full" data-alt="Modern office or expo space with blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpkCKZT2OWSnDC-ktCyO7RhQ8LJOy28EFtTPMzLTFPzkEFAjtiDij-yQi2L_meaM0g8xA0X8vk3xPVjKSVGWC9zSWtw90x6Jz1W78Z5YV-uUAJv9AyxAC5goaXOpY3ux6Od78SQ_f-qxSQtre6cgaZYQ7n_TCeHiz_cjZTft4tQVfET83LiCyL4Y3dB7Le0hssL0wp0ZYcIOk7th4g8wmS_ithJ4477hm6pXUyP-E_TI-nZAY66FMuyHyp2p_mh5dDMi6Raa4k6U8g"/>
+<div class="absolute inset-0 bg-on-surface/60 flex items-center justify-center">
+<span class="text-white text-2xl font-bold">+3</span>
+</div>
+</div>
+</div>
+<!-- Engagement Text -->
+<div class="px-4 py-3 flex items-center gap-4 text-[12px] text-on-surface-variant border-b border-outline-variant/10">
+<div class="flex items-center gap-1.5">
+<span class="bg-primary/10 text-primary p-0.5 rounded-full material-symbols-outlined text-[14px] fill-icon" data-icon="thumb_up">thumb_up</span>
+<span class="font-medium">124 Likes</span>
+</div>
+<div class="flex items-center gap-1.5 ml-auto">
+<span>18 Comments</span>
+</div>
+</div>
+<!-- Interaction Bar -->
+<div class="px-4 py-2 flex items-center justify-between">
+<button class="flex items-center gap-2 py-2 px-3 rounded-lg text-primary bg-primary/5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined fill-icon" data-icon="favorite">favorite</span>
+<span class="text-xs font-semibold">Liked</span>
+</button>
+<button class="flex items-center gap-2 py-2 px-3 rounded-lg text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-xs font-semibold">Comment</span>
+</button>
+<button class="flex items-center gap-2 py-2 px-3 rounded-lg text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+<span class="text-xs font-semibold">Share</span>
+</button>
+</div>
+</article>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg z-50 rounded-t-xl border-t border-gray-100 dark:border-gray-800 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
+<!-- Home / Feed (Active) -->
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/5 rounded-2xl px-4 py-2 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="home">home</span>
+<span class="font-['Inter'] text-[10px] font-semibold">Home</span>
+</a>
+<!-- Explore -->
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 px-4 py-2 hover:text-[#00A76F] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-['Inter'] text-[10px] font-semibold">Explore</span>
+</a>
+<!-- Create -->
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 px-4 py-2 hover:text-[#00A76F] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-['Inter'] text-[10px] font-semibold">Create</span>
+</a>
+<!-- Alerts -->
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 px-4 py-2 hover:text-[#00A76F] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-['Inter'] text-[10px] font-semibold">Alerts</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 px-4 py-2 hover:text-[#00A76F] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold">Profile</span>
+</a>
+</nav>
+</body></html>

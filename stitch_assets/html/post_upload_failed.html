@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Post Status - Upload Failed</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary": "#ffffff",
+              "inverse-on-surface": "#eff1f3",
+              "surface-container-lowest": "#ffffff",
+              "error": "#ba1a1a",
+              "surface-dim": "#d8dadc",
+              "primary-fixed-dim": "#5adda0",
+              "on-secondary-container": "#406e55",
+              "outline": "#6d7a71",
+              "tertiary": "#a33b3c",
+              "on-surface": "#191c1e",
+              "on-error-container": "#93000a",
+              "surface-container-high": "#e6e8ea",
+              "secondary-fixed": "#bceecf",
+              "secondary": "#3a674f",
+              "on-tertiary-container": "#5d040f",
+              "on-secondary": "#ffffff",
+              "secondary-container": "#bceecf",
+              "on-tertiary-fixed": "#410006",
+              "on-background": "#191c1e",
+              "tertiary-fixed": "#ffdad8",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#2d3133",
+              "tertiary-container": "#e66d6c",
+              "primary-container": "#00a76f",
+              "surface-container-low": "#f2f4f6",
+              "on-primary-fixed": "#002112",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "on-secondary-fixed-variant": "#224f39",
+              "surface-container-highest": "#e0e3e5",
+              "primary": "#006c46",
+              "on-primary-container": "#00321f",
+              "error-container": "#ffdad6",
+              "surface": "#f8f9fb",
+              "inverse-primary": "#5adda0",
+              "on-primary-fixed-variant": "#005234",
+              "surface-bright": "#f8f9fb",
+              "secondary-fixed-dim": "#a1d1b4",
+              "surface-container": "#eceef0",
+              "on-error": "#ffffff",
+              "surface-tint": "#006c46",
+              "on-surface-variant": "#3d4a41",
+              "background": "#f8f9fb",
+              "surface-variant": "#e0e3e5",
+              "outline-variant": "#bccabf",
+              "primary-fixed": "#79fabb",
+              "on-secondary-fixed": "#002112",
+              "on-tertiary-fixed-variant": "#842327"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Blurred Background (Simulated Home Feed) -->
+<main class="fixed inset-0 z-0 overflow-hidden filter blur-sm scale-105 opacity-40">
+<div class="p-4 space-y-6">
+<div class="h-48 bg-surface-container-highest rounded-xl"></div>
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high"></div>
+<div class="space-y-2">
+<div class="w-32 h-4 bg-surface-container-high"></div>
+<div class="w-20 h-3 bg-surface-container-low"></div>
+</div>
+</div>
+<div class="h-64 bg-surface-container-highest rounded-xl"></div>
+</div>
+</main>
+<!-- Overlay Wrapper -->
+<div class="fixed inset-0 z-10 bg-on-surface/5"></div>
+<!-- Top Navigation Anchor -->
+<nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md fixed top-0 w-full z-50">
+<div class="flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-3">
+<button class="active:scale-95 transition-transform text-slate-500 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h1 class="font-['Public_Sans'] font-bold text-lg tracking-tight text-on-surface">Post Status</h1>
+</div>
+<div class="w-8"></div> <!-- Spacer for symmetry -->
+</div>
+</nav>
+<!-- Focused Content Canvas -->
+<div class="relative z-20 flex flex-col items-center justify-center min-h-screen px-6 pt-20 pb-24">
+<!-- Error Message Header -->
+<div class="text-center mb-8">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-error-container mb-4">
+<span class="material-symbols-outlined text-error text-3xl" data-icon="cloud_off">cloud_off</span>
+</div>
+<h2 class="font-headline font-extrabold text-2xl tracking-tight text-on-surface mb-2">Post Upload Failed</h2>
+<p class="text-on-surface-variant text-sm max-w-[280px] mx-auto">Something went wrong while sharing your update. Let's try to fix it.</p>
+</div>
+<!-- Post Preview Card (The Curated Canvas approach) -->
+<div class="w-full max-w-sm mb-10">
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_12px_32px_rgba(25,28,30,0.04)] ring-1 ring-outline-variant/15">
+<div class="relative aspect-[16/10] overflow-hidden">
+<img alt="University campus landscape" class="w-full h-full object-cover grayscale-[30%] opacity-90" data-alt="Modern university campus building with green lawns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpbvlBmScZVvPc5CsJuqC6FYSqiF0ug7kJQv9efBanHtjeaHA-Lo1asw1cdjDE9k9esFi5NrzNsnRFkMqU6CKHR0v7yt9hRbFhLEcZwei-kKI2T9_asYY8cUinodiMRu2PyV_-K1EXG32Lc0ZprMZIMWYCdZUMovgSEmAXN4Wdw1zQGWyJxiqRIW2w3vlvXq1Dc3t4oCyeNmA7v76Nilf9TS42F7fvReDKXUFLH4W5Gm2c8_atmAb10CGQSZYCcTsuTySovCyeBiYt"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute bottom-3 left-4 flex items-center space-x-2">
+<span class="material-symbols-outlined text-white text-sm" data-icon="image">image</span>
+<span class="text-white text-[10px] font-semibold tracking-wider uppercase">Draft Preview</span>
+</div>
+</div>
+<div class="p-5 bg-surface-container-lowest">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="person">person</span>
+</div>
+<p class="text-on-surface font-medium leading-relaxed italic">"Finally finished the robot!"</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Panel -->
+<div class="w-full max-w-sm space-y-3">
+<!-- Primary Action -->
+<button class="w-full py-4 px-6 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl font-headline font-bold text-base shadow-lg shadow-primary/20 active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+                Retry Upload
+            </button>
+<!-- Secondary Actions Row -->
+<div class="flex gap-3">
+<button class="flex-1 py-3.5 px-4 bg-surface-container-high text-on-surface-variant rounded-xl font-semibold text-sm hover:bg-surface-container-highest transition-colors active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+                    Edit Post
+                </button>
+<button class="flex-1 py-3.5 px-4 bg-transparent border border-outline-variant/20 text-on-surface-variant rounded-xl font-semibold text-sm hover:bg-error-container/10 transition-colors active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+                    Discard
+                </button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Shell -->
+<footer class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md fixed bottom-0 left-0 w-full flex justify-around items-center px-2 pb-6 pt-2 z-50 border-t border-[#bccabf]/15 shadow-[0px_-4px_12px_rgba(0,0,0,0.02)]">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-[#00A76F] transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Inter'] text-[10px] font-semibold">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-[#00A76F] transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-['Inter'] text-[10px] font-semibold">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#00A76F]/10 text-[#00A76F] rounded-xl px-3 py-1 active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-['Inter'] text-[10px] font-semibold">Create</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-[#00A76F] transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<span class="font-['Inter'] text-[10px] font-semibold">Inbox</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-[#00A76F] transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold">Profile</span>
+</div>
+</footer>
+</body></html>

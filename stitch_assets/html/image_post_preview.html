@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary": "#a33b3c",
+              "inverse-primary": "#5adda0",
+              "inverse-on-surface": "#eff1f3",
+              "surface-dim": "#d8dadc",
+              "on-surface-variant": "#3d4a41",
+              "on-primary-fixed-variant": "#005234",
+              "on-tertiary": "#ffffff",
+              "on-primary-container": "#00321f",
+              "inverse-surface": "#2d3133",
+              "surface-container": "#eceef0",
+              "secondary": "#3a674f",
+              "on-tertiary-fixed": "#410006",
+              "error-container": "#ffdad6",
+              "on-error": "#ffffff",
+              "on-tertiary-container": "#5d040f",
+              "outline": "#6d7a71",
+              "primary": "#006c46",
+              "on-secondary": "#ffffff",
+              "on-error-container": "#93000a",
+              "surface-variant": "#e0e3e5",
+              "primary-container": "#00a76f",
+              "surface-container-highest": "#e0e3e5",
+              "background": "#f8f9fb",
+              "on-secondary-fixed": "#002112",
+              "surface-container-high": "#e6e8ea",
+              "surface-container-lowest": "#ffffff",
+              "surface-bright": "#f8f9fb",
+              "on-secondary-container": "#406e55",
+              "on-primary-fixed": "#002112",
+              "on-tertiary-fixed-variant": "#842327",
+              "tertiary-container": "#e66d6c",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "secondary-container": "#bceecf",
+              "primary-fixed": "#79fabb",
+              "outline-variant": "#bccabf",
+              "on-background": "#191c1e",
+              "secondary-fixed": "#bceecf",
+              "on-primary": "#ffffff",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-surface": "#191c1e",
+              "surface-container-low": "#f2f4f6",
+              "surface": "#f8f9fb",
+              "primary-fixed-dim": "#5adda0",
+              "surface-tint": "#006c46",
+              "on-secondary-fixed-variant": "#224f39",
+              "error": "#ba1a1a",
+              "tertiary-fixed": "#ffdad8"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar from Shared Components JSON -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl fixed top-0 w-full z-50 shadow-none">
+<div class="flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-2 active:scale-95 transition-transform hover:opacity-80 cursor-pointer">
+<span class="material-symbols-outlined text-slate-500">close</span>
+</div>
+<h1 class="font-['Public_Sans'] font-bold text-lg text-on-surface">New Post</h1>
+<button class="text-[#00A76F] font-['Public_Sans'] font-bold text-lg hover:opacity-80 active:scale-95 transition-all">Post</button>
+</div>
+<div class="bg-[#f2f4f6] dark:bg-slate-800 h-[1px]"></div>
+</header>
+<main class="pt-20 pb-24 px-4 max-w-md mx-auto">
+<!-- Image Preview Section -->
+<div class="space-y-4">
+<div class="relative group">
+<div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-high shadow-sm">
+<img alt="Campus architecture and vibrant students" class="w-full h-full object-cover" data-alt="Modern university campus building with green lawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX6xx_nUs6z1TEmi_xpJtaWVs3jKn-L0cSIWr7SUJXtAfNUzlX3k_M8eCZSQFITe8Wy1cTbBHjJWFWkfIsqpR-NsVwbcBeWt0jy6CjYd665AJ5z2FBPWSt7VkwU28MaqGUzqO1EDINPYV27fJ2yrqe56VYAuq1acPk-ncqKylpFYuRvFZCdo0bz22mROozzFmQSQ1mlE97kOz53YmMYKrAGynAIxJHdvaQQQFk41FTkKfCIdMJ8UMWBcBxcyCFmSMgCZquFficNWv6"/>
+</div>
+<!-- Remove Action -->
+<button class="absolute top-3 right-3 bg-on-surface/60 backdrop-blur-md text-white p-1.5 rounded-full hover:bg-on-surface transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Add More Thumbnails -->
+<div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
+<div class="flex-shrink-0 w-20 h-20 rounded-xl bg-surface-container-lowest border-2 border-dashed border-outline-variant flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-outline" data-icon="add_a_photo">add_a_photo</span>
+<span class="text-[10px] font-medium mt-1 text-outline">Add More</span>
+</div>
+<div class="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden relative">
+<img alt="Student studying in library" class="w-full h-full object-cover opacity-60" data-alt="Close up of a student reading in library" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLN7J8fekyZMwl_OQZsn8cIpxtMYrTY27MK8DPlGfsWshQWKrUufDnQ9JWJYenW9vt067B4H4uJqC5KIDvNsgcDtZoRwiOtnpw7pU_9X-irITB27x4NAmJDvx2f9uQ2eDQN9gc_nnMcLoQNvCMmjxf4f2ZYWRzQ1Sb4_-NC41rfM2kRK0guNg02_vIgKkyTgzrHSdHcH4knjYdls1hyOZEcADjc9gyDGwBs9A-ePUOKKWLFMQSZtf_xojo5FK7wuWmg0S8u5NbVK3T"/>
+<div class="absolute inset-0 flex items-center justify-center bg-on-surface/20">
+<span class="material-symbols-outlined text-white text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Caption Input Section -->
+<div class="mt-6">
+<label class="block text-xs font-semibold uppercase tracking-wider text-outline mb-2 px-1">Caption</label>
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0px_12px_32px_rgba(25,28,30,0.04)]">
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/60 resize-none min-h-[100px] font-body" placeholder="Write a caption for your campus update..."></textarea>
+</div>
+</div>
+<!-- Post Options / Metadata -->
+<div class="mt-6 space-y-3">
+<label class="block text-xs font-semibold uppercase tracking-wider text-outline mb-2 px-1">Details</label>
+<!-- Tag People -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+</div>
+<div>
+<p class="text-sm font-semibold">Tag Students</p>
+<p class="text-xs text-outline">Mention friends in this photo</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Location -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</div>
+<div>
+<p class="text-sm font-semibold">Add Location</p>
+<p class="text-xs text-outline">Main Campus Quad</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Audience Selector -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</div>
+<div>
+<p class="text-sm font-semibold">Audience</p>
+<p class="text-xs text-outline">Public (Everyone on Campus)</p>
+</div>
+</div>
+<div class="flex items-center gap-1 text-primary font-medium text-xs">
+<span>Public</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Sticky Post Bottom Button (FAB Hybrid for Mobile Focus) -->
+<div class="mt-8 mb-12">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-4 rounded-xl font-bold text-lg shadow-lg active:scale-[0.98] transition-all hover:opacity-90 flex items-center justify-center gap-2">
+<span>Post to Feed</span>
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar from Shared Components JSON -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-safe h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 z-50">
+<a class="flex flex-col items-center justify-center text-slate-400 p-2 hover:bg-slate-50 transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2 hover:bg-slate-50 transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#00A76F]/10 text-[#00A76F] rounded-xl p-2 transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="add_box" style="font-variation-settings: 'FILL' 1;">add_box</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2 hover:bg-slate-50 transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="subscriptions">subscriptions</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2 hover:bg-slate-50 transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+</nav>
+</body></html>

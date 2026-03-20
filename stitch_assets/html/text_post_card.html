@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#e66d6c",
+              "on-tertiary-fixed-variant": "#842327",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "surface-container-high": "#e6e8ea",
+              "on-primary-fixed": "#002112",
+              "surface-container-lowest": "#ffffff",
+              "surface-bright": "#f8f9fb",
+              "on-secondary-container": "#406e55",
+              "surface-container-low": "#f2f4f6",
+              "tertiary-fixed": "#ffdad8",
+              "on-secondary-fixed-variant": "#224f39",
+              "error": "#ba1a1a",
+              "surface-tint": "#006c46",
+              "surface": "#f8f9fb",
+              "primary-fixed-dim": "#5adda0",
+              "secondary-fixed": "#bceecf",
+              "on-primary": "#ffffff",
+              "on-background": "#191c1e",
+              "secondary-container": "#bceecf",
+              "primary-fixed": "#79fabb",
+              "outline-variant": "#bccabf",
+              "on-surface": "#191c1e",
+              "secondary-fixed-dim": "#a1d1b4",
+              "inverse-surface": "#2d3133",
+              "on-tertiary": "#ffffff",
+              "on-primary-container": "#00321f",
+              "on-primary-fixed-variant": "#005234",
+              "secondary": "#3a674f",
+              "on-tertiary-fixed": "#410006",
+              "error-container": "#ffdad6",
+              "surface-container": "#eceef0",
+              "tertiary": "#a33b3c",
+              "inverse-primary": "#5adda0",
+              "surface-dim": "#d8dadc",
+              "on-surface-variant": "#3d4a41",
+              "inverse-on-surface": "#eff1f3",
+              "background": "#f8f9fb",
+              "surface-container-highest": "#e0e3e5",
+              "on-secondary-fixed": "#002112",
+              "on-tertiary-container": "#5d040f",
+              "on-error": "#ffffff",
+              "surface-variant": "#e0e3e5",
+              "primary-container": "#00a76f",
+              "primary": "#006c46",
+              "on-secondary": "#ffffff",
+              "on-error-container": "#93000a",
+              "outline": "#6d7a71"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        background-color: #F4F6F8;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body text-on-surface min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm docked full-width top-0 sticky z-50 flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant/20">
+<img alt="User profile" data-alt="Close up of a smiling male student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIP3kXMs3ft2Xyu78PB3DY8ofKO16rDHsdrwZeHT8en9fvCBat_uM2o8aq46Wyzh7v4eKyiPUHhi_SH840zDO26uVZN1xIjiEG4cqviyLDS8-Oo4IbpPd6iy1sS2wVLsmnQAS8SXZZ7_hQmSe25E4gjEwuBOwD_nYU9N4A2CkhPWpnMbkdxAdUuyB5ea4nJI8s1RKTX4K3ZuyTSUepXFQUd3T6X1kxAsWeBhD5yd4e99tZcU77GEwYSvbvIGD2J6-w0oJihv-EFvIU"/>
+</div>
+<h1 class="font-headline font-bold tracking-tight text-xl font-black text-[#00A76F]">Campus Social</h1>
+</div>
+<button class="text-slate-500 hover:opacity-80 transition-opacity active:scale-95 transition-transform p-2">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-xl mx-auto px-4 py-6 space-y-4">
+<!-- Post Feed Card (Active State Example) -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0px_12px_32px_rgba(25,28,30,0.04)] overflow-hidden transition-all duration-200">
+<!-- Author Row -->
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/10">
+<img alt="Author avatar" data-alt="Student developer portrait with clear expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeBp8kIjShknQ_6KVX-wYhvAz-JoOBf_ktJamgerygRpCAVqOBIgEpLDTwbRS9VKDHCLuaxp4xZ7dX0j-dl-QDjhfTH0NCRf7CqlfLy6pIAv_-NA5ysB6C1Nme1xDjHAi1q1Qrmy-nzP4JJYQu3NydSrPiKuXdiQ1pcE8roOy7bII1ySP7i3niwFdiQjU6-A7nXpW5mCAYFhALpiX4gL5gN1i1Lx-Q9eZ9xVc1wvjm70dkwd98P6_FcqwyBrrXCQ4z4inY_ZCoIeLT"/>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline font-semibold text-sm tracking-tight text-on-surface">Alex Johnson</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-xs font-medium text-primary-container">Student</span>
+</div>
+<span class="text-xs text-slate-400">2h ago</span>
+</div>
+</div>
+<button class="text-slate-400 hover:bg-surface-container-low rounded-full p-1.5 transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Content Area -->
+<div class="px-4 pb-4">
+<p class="font-headline text-base leading-relaxed text-on-surface-variant">
+                    Just finished the final prototype for the robotics competition! Can't wait for everyone to see it. <span class="text-primary font-medium">#CampusHacks</span> <span class="text-primary font-medium">#BuildInPublic</span>
+</p>
+</div>
+<!-- Metrics -->
+<div class="px-4 pb-3 flex items-center gap-3 border-b border-surface-container/50">
+<div class="flex items-center gap-1.5">
+<div class="flex -space-x-2">
+<div class="w-5 h-5 rounded-full border-2 border-white bg-primary text-white flex items-center justify-center text-[8px]">
+<span class="material-symbols-outlined text-[10px]" data-icon="thumb_up" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+</div>
+</div>
+<span class="text-[11px] font-semibold text-slate-500">124 Likes</span>
+</div>
+<div class="flex items-center gap-1.5 ml-auto">
+<span class="text-[11px] font-semibold text-slate-500">18 Comments</span>
+</div>
+</div>
+<!-- Interaction Bar -->
+<div class="px-2 py-2 flex items-center justify-between">
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-primary bg-primary/5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-xs font-semibold">Like</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-slate-500 hover:bg-surface-container-low active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-xs font-semibold">Comment</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-slate-500 hover:bg-surface-container-low active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+<span class="text-xs font-semibold">Share</span>
+</button>
+</div>
+</article>
+<!-- Second Card Example (Inactive State) -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0px_12px_32px_rgba(25,28,30,0.04)] overflow-hidden transition-all duration-200">
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/10">
+<img alt="Author avatar" data-alt="Female student in study environment avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyBT9A_Tcfmy1G2inPTi_oXwtZbjn5yVaCxyFUgST03hILFmQi1I5t1g6NeLufoNbf89Rq_PosxF20KgA1aqKE1CajQwpmR62y-36wLJRyjzHe4U4BCY1lp7k-_SXOY8gXjzr7VIRrc-siV4zFtODl3498fBb20CQaFVK2mdWoztGW8d-n8qjk9ClFrouAmPcNu6M7vDmJFzyZ8OcHuF_vRm-7uvmIRJL1YheKR8A9UXIxxI8QQnIwcmZqToUbXzTOVnqYzc32KaXk"/>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline font-semibold text-sm tracking-tight text-on-surface">Sarah Chen</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-xs font-medium text-primary-container">Professor</span>
+</div>
+<span class="text-xs text-slate-400">5h ago</span>
+</div>
+</div>
+<button class="text-slate-400 hover:bg-surface-container-low rounded-full p-1.5 transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<div class="px-4 pb-4">
+<p class="font-headline text-base leading-relaxed text-on-surface-variant">
+                    Reminder: The guest lecture on AI Ethics is tomorrow at 2 PM in the Great Hall. Don't forget to submit your pre-reading questions! 📚✨
+                </p>
+</div>
+<div class="px-4 pb-3 flex items-center gap-3 border-b border-surface-container/50">
+<div class="flex items-center gap-1.5">
+<span class="text-[11px] font-semibold text-slate-500">42 Likes</span>
+</div>
+<div class="flex items-center gap-1.5 ml-auto">
+<span class="text-[11px] font-semibold text-slate-500">5 Comments</span>
+</div>
+</div>
+<div class="px-2 py-2 flex items-center justify-between">
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-slate-500 hover:bg-surface-container-low active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+<span class="text-xs font-semibold">Like</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-slate-500 hover:bg-surface-container-low active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-xs font-semibold">Comment</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-slate-500 hover:bg-surface-container-low active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+<span class="text-xs font-semibold">Share</span>
+</button>
+</div>
+</article>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-slate-100 dark:border-slate-800">
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dynamic_feed">dynamic_feed</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-[#00A76F] transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-[#00A76F] transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Chats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-[#00A76F] transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Profile</span>
+</a>
+</nav>
+<!-- Contextual FAB -->
+<button class="fixed bottom-24 right-6 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-container text-white shadow-lg flex items-center justify-center active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined text-[28px]" data-icon="add">add</span>
+</button>
+</body></html>

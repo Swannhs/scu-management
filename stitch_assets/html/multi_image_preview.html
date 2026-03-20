@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .headline-font {
+            font-family: 'Public Sans', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface-variant": "#3d4a41",
+                        "tertiary": "#a33b3c",
+                        "surface-container-high": "#e6e8ea",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary": "#006c46",
+                        "outline": "#6d7a71",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-fixed": "#410006",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#842327",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-fixed": "#002112",
+                        "surface": "#f8f9fb",
+                        "background": "#f8f9fb",
+                        "surface-container-low": "#f2f4f6",
+                        "primary-fixed": "#79fabb",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-secondary-fixed": "#002112",
+                        "secondary-fixed": "#bceecf",
+                        "tertiary-fixed": "#ffdad8",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-bright": "#f8f9fb",
+                        "surface-container": "#eceef0",
+                        "secondary": "#3a674f",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#e66d6c",
+                        "outline-variant": "#bccabf",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#5adda0",
+                        "surface-tint": "#006c46",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary-fixed-variant": "#224f39",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#00a76f",
+                        "on-secondary-container": "#406e55",
+                        "on-primary-fixed-variant": "#005234",
+                        "on-primary-container": "#00321f",
+                        "secondary-container": "#bceecf",
+                        "secondary-fixed-dim": "#a1d1b4",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "on-tertiary-container": "#5d040f"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl flex items-center justify-between px-4 h-16 w-full">
+<button class="flex items-center justify-center w-10 h-10 hover:bg-[#00A76F]/10 hover:scale-105 transition-all active:scale-95 duration-200 rounded-full">
+<span class="material-symbols-outlined text-slate-500" data-icon="close">close</span>
+</button>
+<h1 class="font-['Public_Sans'] font-semibold text-lg text-on-surface">Post Preview</h1>
+<button class="px-5 py-2 rounded-xl bg-primary-container text-on-primary-container font-semibold hover:bg-primary-container/90 hover:scale-105 transition-all active:scale-95 duration-200">
+            Post
+        </button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-24 px-4 max-w-md mx-auto">
+<!-- Image Management Grid -->
+<section class="grid grid-cols-2 gap-3 mb-6">
+<!-- Image 1 -->
+<div class="relative group aspect-square rounded-xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Modern university campus building with glass facade" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP1Q4_w4SdsWSm_UtayvW8vs-5BCE8bTSg7K0QxDCe8sSkNxiLLl9RwyNTlrMzMZlU2KwzL9l_IGW_Qv3Dko9Z0QYKVTqyvYHJvZUF3UiZ8nk1DLVxO37ekfn7LY1pNfFPrDUBNYJvdF3yQxJ8Hq5JhXn6jS0YwGJFGbBCwI1qYknWSDqK-g9btQoilwnjS3I22A3HsqptKT63hNDUKAr2pjBFFt272nkkf5KfAFdpCL45_9z563hICe0wiSnIjyuqWVGjctXftEE3"/>
+<button class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-black/40 backdrop-blur-md rounded-lg text-white hover:bg-black/60 transition-colors active:scale-90">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+</button>
+</div>
+<!-- Image 2 -->
+<div class="relative group aspect-square rounded-xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Students studying together in a bright library" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkk7Tv-ceNHVCnjNVu3_fUTc1uVzqqzNBznX5Jip8cD9zmOm3530Ks8gKXNra_2Dp7nRTrBy1ddvppeX4ARRD51o0z8ljvcy6P4j5Yj8YbEc5Viru0X4ESozaZw3BmGuvDLNg69--2_ox5FFTqGqLRVx3fbcyKxO55zkG7ZRkSzV6xYntQ-VWSLCA-trS7fYZmgQ14EY4GWaN5v5LQO7uL3uP9DBx8VYN9DwD7yb_-v3wr2A_MClG9OkwbWMIo6IqXH3WMH-a_595i"/>
+<button class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-black/40 backdrop-blur-md rounded-lg text-white hover:bg-black/60 transition-colors active:scale-90">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+</button>
+</div>
+<!-- Image 3 -->
+<div class="relative group aspect-square rounded-xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Campus greenery and academic architecture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVNxvJR7mKMRv9v4feTEag2K9HjQoYGHj57Yp2iy1OLirSmp_mpTRsrkIT7xoLmBis6y2efMBuj-6_wsQGTsUAAf6YoGKfaCAXMeWZahGdjDyLV-k4uw7l_YG4zMFDsvwKBrt7Lq9ye2jEsxar9iHbia2WuAPI8VdpMNYftt8viSwsHNR5VaLuyll88TR8CTTSSORu_Q-gmfM5FL4uklbBuPDWUKXKJHbJXBlgyZEQFQoi_LhRB4i9j91uiT4KnGN7BhGcqQN5AZC7"/>
+<button class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-black/40 backdrop-blur-md rounded-lg text-white hover:bg-black/60 transition-colors active:scale-90">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+</button>
+</div>
+<!-- Image 4 -->
+<div class="relative group aspect-square rounded-xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Close up of campus garden in spring" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACXggoppNmmpD-GGhsjF9gl7FBe26tbH8e-mvrql1buKz3zwwfYC0HCamCBm9ChbmDd6Lz8gBtx2L7TqLE7XDcG6hjqixY6qDMnpDyCAIGGRDMv6NS3VTAA3a53Kb9Y943kIM5WNZhbJLngt-kbeNT3lAnSMououTDuHrT-3EKw0owgXmLIupQCGeHnMNdrkUVfpxZ0aTjNmJQaCxd_o4xQqddwaoKA84sZ6tNAmaOMlWpOnFP0ibwTpozKidB8Y5ndFo3sNrCQmw-"/>
+<button class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-black/40 backdrop-blur-md rounded-lg text-white hover:bg-black/60 transition-colors active:scale-90">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+</button>
+</div>
+<!-- Add More Card -->
+<button class="aspect-square rounded-xl border-2 border-dashed border-outline-variant flex flex-col items-center justify-center gap-2 text-slate-500 hover:bg-[#00A76F]/5 hover:border-[#00A76F]/40 transition-all active:scale-95 duration-200">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[#00A76F]" data-icon="add">add</span>
+</div>
+<span class="text-xs font-medium font-['Inter']">Add more</span>
+</button>
+</section>
+<!-- Caption Area -->
+<section class="space-y-4">
+<div class="p-1 rounded-xl bg-surface-container-low">
+<textarea class="w-full p-4 bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container rounded-lg text-on-surface placeholder-slate-400 resize-none font-['Inter'] leading-relaxed" placeholder="Write a caption for your post..." rows="4"></textarea>
+</div>
+<!-- Post Settings (Optional but enhances realism) -->
+<div class="space-y-1">
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-surface-container-high/50 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400" data-icon="location_on">location_on</span>
+<span class="text-sm font-medium">Add location</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 text-lg" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-surface-container-high/50 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400" data-icon="sell">sell</span>
+<span class="text-sm font-medium">Tag people</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 text-lg" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-6 py-4 pb-safe bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-t-2xl shadow-[0px_-4px_16px_rgba(0,0,0,0.04)] border-t border-slate-100 dark:border-slate-800">
+<button class="text-slate-400 dark:text-slate-500 p-3 hover:text-[#00A76F] transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+</button>
+<button class="text-slate-400 dark:text-slate-500 p-3 hover:text-[#00A76F] transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<!-- Active "Create" context mapping to 'add_photo_alternate' from JSON -->
+<button class="bg-[#00A76F]/10 text-[#00A76F] rounded-xl p-3 hover:text-[#00A76F] transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="add_photo_alternate">add_photo_alternate</span>
+</button>
+<button class="text-slate-400 dark:text-slate-500 p-3 hover:text-[#00A76F] transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="sell">sell</span>
+</button>
+<button class="text-slate-400 dark:text-slate-500 p-3 hover:text-[#00A76F] transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</nav>
+</body></html>

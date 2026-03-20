@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed-variant": "#005234",
+              "background": "#f8f9fb",
+              "surface-container-highest": "#e0e3e5",
+              "primary-container": "#00a76f",
+              "on-error-container": "#93000a",
+              "primary-fixed": "#79fabb",
+              "surface-container-high": "#e6e8ea",
+              "tertiary-container": "#e66d6c",
+              "surface-dim": "#d8dadc",
+              "secondary-fixed": "#bceecf",
+              "on-surface-variant": "#3d4a41",
+              "on-secondary-fixed": "#002112",
+              "outline-variant": "#bccabf",
+              "inverse-primary": "#5adda0",
+              "surface-bright": "#f8f9fb",
+              "error-container": "#ffdad6",
+              "error": "#ba1a1a",
+              "outline": "#6d7a71",
+              "on-secondary-fixed-variant": "#224f39",
+              "on-primary-fixed": "#002112",
+              "surface-variant": "#e0e3e5",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "primary": "#006c46",
+              "on-tertiary-fixed": "#410006",
+              "surface": "#f8f9fb",
+              "secondary": "#3a674f",
+              "on-error": "#ffffff",
+              "on-secondary-container": "#406e55",
+              "on-background": "#191c1e",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "tertiary-fixed": "#ffdad8",
+              "secondary-container": "#bceecf",
+              "on-tertiary-fixed-variant": "#842327",
+              "primary-fixed-dim": "#5adda0",
+              "on-primary": "#ffffff",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-tertiary-container": "#5d040f",
+              "surface-tint": "#006c46",
+              "inverse-surface": "#2d3133",
+              "surface-container": "#eceef0",
+              "on-surface": "#191c1e",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#00321f",
+              "surface-container-low": "#f2f4f6",
+              "tertiary": "#a33b3c",
+              "inverse-on-surface": "#eff1f3"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .media-grid-item {
+            aspect-ratio: 1 / 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
+<div class="flex items-center justify-between px-4 h-14 w-full">
+<button class="active:scale-95 transition-transform duration-200 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Public_Sans'] font-semibold text-lg tracking-tight text-slate-900 dark:text-slate-50">Select Media</h1>
+<button class="active:scale-95 transition-transform duration-200 font-['Public_Sans'] font-semibold text-lg tracking-tight text-[#00A76F] dark:text-[#00A76F]">
+                Done
+            </button>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 h-[1px] w-full"></div>
+</header>
+<main class="pt-14 pb-24">
+<!-- Subheader Content -->
+<div class="px-4 py-4 flex items-center justify-between sticky top-14 bg-surface z-40">
+<div class="flex items-center gap-1 group cursor-pointer active:opacity-70 transition-opacity">
+<span class="font-headline font-bold text-lg text-on-surface">Recent Media</span>
+<span class="material-symbols-outlined text-on-surface-variant text-xl" data-icon="expand_more">expand_more</span>
+</div>
+<div class="flex gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="multi_select">select</span>
+</button>
+</div>
+</div>
+<!-- Media Grid -->
+<div class="grid grid-cols-3 gap-0.5 px-0.5">
+<!-- Selected Item 1 -->
+<div class="relative media-grid-item overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="Abstract vibrant digital art with green tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4BP3PHX--kTW4FZ7J9Ue9iKWd6YbV6EMphVext1R3ZRLTryI1EXfHanK9AFlJLxzySxwbo9VFEUUaeoqt4bBaJfppJBHuNfE_xSdjcNz_OltTNxEs09jWh5GwRje0sL3RkGNvCaqtDTpKG3UOeas-MxyZSUVXNLIT2VdFDHy9Qorbqw_5cgklRMGpj9cxWT8CBCFwoyt_HXEWSUf0YknZFfVGEyFRw0Y0-olJRZu-pmatQ-boq4C9z2B9L5WtH-CUyIJdHMF-yVkI"/>
+<div class="absolute inset-0 border-4 border-primary-container bg-primary-container/10"></div>
+<div class="absolute top-2 right-2 w-6 h-6 bg-primary-container rounded-full flex items-center justify-center border-2 border-white shadow-sm">
+<span class="text-[12px] font-bold text-white">1</span>
+</div>
+</div>
+<!-- Video Item -->
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Cinematic landscape shot from a video" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgMGDIG74pk-bIlcDU08c39bARCImaQ34sFtG1m8Ssqn3MQ8M_Hce1wtQVJ5g9RvDb0s0aV_crT2icgW3jtsxT0JIm1YZKRnAxYnZh5JlJY7FCaThQLsddT-lHwOQgBJy-z4OEUxRgrdETt9tTAjoNDLpJ33dP0-PCd6qUGOOxF9vJxa4nxQfjgDCUJRNIVv4a5MCXCH-bx0cZGSYnIun31yB0l5-f4y62AoRBVuiyoYiv0UDwvla4UcKrIPpH1y_JBHoA3dpynD5m"/>
+<div class="absolute bottom-2 right-2 bg-black/50 backdrop-blur-sm rounded-lg px-1.5 py-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-white text-[14px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span class="text-white text-[10px] font-medium">0:15</span>
+</div>
+</div>
+<!-- Selected Item 2 -->
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="High tech retro computer setup photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVefqEg-oH0jLydne1ODm69V0hQSGwjYNSkHhCiyOSEqaKtrCoU7f8t0ZeIjV8_ZCNng6_-ylqB0C5kfwJI1v8hZmXCDTma9I6ST0GDtPoYypTxPclHwk-7HnHZxsH_gmrlEeA68vL9jArhaeCt4x3Z-mojsdGj8Ln5_FEwXa8VwQXpErgV8t5TFKZCFtQQkXu974K_Ey72WxG5u4vOd2G-4r-Y88jIsmY-2CTP4Gq2RXCZ64GR_8aGELVGYt7Ic-_glfC0xzR4eA-"/>
+<div class="absolute inset-0 border-4 border-primary-container bg-primary-container/10"></div>
+<div class="absolute top-2 right-2 w-6 h-6 bg-primary-container rounded-full flex items-center justify-center border-2 border-white shadow-sm">
+<span class="text-[12px] font-bold text-white">2</span>
+</div>
+</div>
+<!-- Regular Grid Items -->
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Abstract colorful wavy background pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVMC9EdhZI4UQF4h4gB34k2kqy8j10eGSh-z_CVu_A90cOVYyk6VBdw0TB7Ys8tgPj-I7mDrOnBvJE2Ksoy7x9ezPwhEqIWxl6VLpmouKbOOg4i6H-yWEc2DXiIZn8vgnCGFUjv_n0rbKV57orDAPdc6lNxd98-_hXiM3Fmo7K4M_AERo6D4Xx5gLDPSNy7B_PCnrZhLkMag_UY8QhC9x0D_2CbQ-gvMOXX_DUzqUK8Uo3hHMgXn4OtaCgI2umprFIbbzof5trpp2Q"/>
+</div>
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Minimalist desk workspace with laptop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHkRTijmz-HddqP1KrQC9ky0iQCNJMqV1QdQhAQuZgvj-gfvBguFVbylNTUP4E21tWCOvMO2tKb7Jy_e52QrxqjbhyMzrdy5Jqny2QFYbmNnOzUlaECnl9SB1-dRb_YG-4X9ZCNgw56oLjjndyUSyvy5nM-7vvVDigKfZn1a14hcBL4984mYlsGuRPecDOD5YYiicjyVBPUXQy8-Y7Xk-Z7pS554SgYs-T69MKu-KjKeWesbXDcVdLLBC5tkiYuQNC8fXj05MBwm0A"/>
+</div>
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Stylish interior retail space photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJMAICMDWAGfx9MzJB0xpweQ_vWlZY24yECRpoKEaRi6olPMMbL_cwPx03pMtra1Xm4HsKPV6WQ6YdLM9Cl3xRiHz5hkY9UinbXmRZ0L5jtKenWp8-CssrViJNTVTAxEL7jjzDkgLObU1eUJelv9AlLJgWGfpIOA1OAQ-wk9KkSaRdL7xaHC5Os-j_QGQ9RbdkXukFxMGqWb1ewR0evqne8HmdZh1q8-nBJlWwLP2iRPbKxdj_Wd2I2RbspoV5AjoNeeZaRlVuHV1S"/>
+</div>
+<!-- Video Item 2 -->
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Modern electronic gadget close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrYhNtw2vhgIwh2t9WTAJ4SsNHnqjSqOeRes58ADZuURmJ47_MSwwilSvtjiTQgUHLbnuJAJy-VErOHveJd1V16aYgJewxSaYXEuZzo7PPhbiNdEW4D2eGzCvN9Unv3keR9w2Vd3-NXECya7F1k6Yill0vcWorWEIr1CbhXRfywDAhjB5lYffygd8ZmVo5K24ofRBmYctEC9VbUCM8RXgkgYWaG-uFOGKIRnQEYGeRXZ13j_viVJpmiCZMYpOYw84NGAi_qVknRdrE"/>
+<div class="absolute bottom-2 right-2 bg-black/50 backdrop-blur-sm rounded-lg px-1.5 py-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-white text-[14px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span class="text-white text-[10px] font-medium">1:04</span>
+</div>
+</div>
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Product shot of sleek headphones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg-Gqntth7hDqSFzrLgGQ3MrC1R60Ck0QBbdp1auiKfgzwRzQPyWRDMrwohYfRepa0M8na9qvlYNHherRzNNpzYXEMbLugcLjh3mCEE3xUjG3D-NudAKGSLcOT1U9-RwaOcqckjeTpvSFJW3DzGyRrZtOqVFPpLqoC7sQbFhZpY0EGLsXUzFGcSzwRPANJLknq8aILidx8eA78UgfF55PwUqu74Gft1fgpqODjYy__Hsn1eROBiLgLblykbDEAb_N3BEtCsVKRyMfr"/>
+</div>
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Vibrant pop art style food photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-UARbcHjvP6OT0A5LUxTdsnzvc5f0zJx5al2jGDw3wlTykWGlNPFw_7ZJ2_YvbpPdjBQkyEEFj47KVMRSLvRRzoWFW6nuekFnk_Gck1ReXXJ-Grvo9rGvxwpsWdwCk-wJm9_2nIVp7hSTXjyIMSDb67QUr1lolyokUbgMIYhRb7hsO_N1QT3BP4DFyHGYQg4zHftZjevZal-RkPqS0v_vKvOWAuLoPimSYaoI0jnhqtSsBz3dDOf8Rnt9ZUm_pV9AI1tfycyZ6yfV"/>
+</div>
+<!-- More grid items to show scrollability -->
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Bright red athletic sneakers close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA28eu1IAlpfuXJLvSVypCjYreXo16T1j-sPjWoL5ZHwLH1M2zkCVL8nDH2QfXdAhe2elP9JcLS-Ze81iFR5oY4CI4f25K24gaZkjL8OR7AvhFuWuNWsm6pwZnVPMQiDeeMQNgd53lmMi-O7cTt4WSLDPO2XdvYuIsK33YxF1EL8WkhnJswWmuaFc0Ei3Cq3aQF61pI-VfVH0VORxhnBngrOEeC3gZOp6kG_zrNa7Z121k_xdrPGrnFhrZLBLdTQDvKG7X0hB1K5MIL"/>
+</div>
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Retro polaroid camera on table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_FfCRHBow8UPiAOXiDkzllAEysUppl3dfHPZJlYQ61bTG5YZdK2iIhr8Txt61bbxoanBYKe-Wcked0sV1GXdv-OIkMxU7p6vVE0DdSFmUUZ9L9DgK9xN8hRyMgTZ4xwJUUvQMxokBRIEwIzd_dF0m_t5MnIIjJ1A_T5OyYulpjmR1O9H7JnRUSjCbJVAbzBGnyFg2pDD1r4Qrh6AW8-jtQwV9u_ykG3U-47SB5kBjehMMgkyg3Jj_dbzEmNMohi0lGXaIP6rJIM_v"/>
+</div>
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Artistic designer chair in studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXjU69zla8pKpbPcT6gSmC9ZGmfoUV_WkQIjJFZr_QhXYMhwnTrv33jT3dA_Y_NhwsblWN35sxgPKqRqErPq6vS3FvdtMA7RONAHyxM-UEHCFRCPYPRAM0m2pa7fgG2ertMywVh8eKRTBgEZ25ABGX1rNklZXlIXUpTEsCI1iROE15I8-Fm6CQkWz8lh0BsxNcDss_fDDlPRYse6QJttEDkj8OBELOTsQFETKKL23eN0mJCnVOcGP_lev-T4ihv50tfgOIQea1sMZn"/>
+</div>
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional camera equipment close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzNfF22scrgIKG8jqDwvErO_h2YF33Bx4CkIoSWZhhk9-uEBvb9JFalPEmh7bSBsg0dSI_l9LFZ1A3mmih0zhUNhGJ25_Gy-Gt9z6s_jhf1ymnCaPkvv79_jK2KnqMVH5Ki2zVjeKrQxWqmQosX6OdEc89ZYsIfMEazDICg7sgZaNEb2R2599IscQJtgMhHEaU_9LR2DoXssiUVG28Yx1btct3t4ZfOfShS6zU6J1LEt9DQG5iJ5hpp0PsEY4fBEvzSDWcdWekGjO1"/>
+</div>
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Clean abstract digital line art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbVXUZGJR4wNfSrngydTRbqUajwu585KdD4DrzIwDzzOGf8SjsxpKyhpJgX1hxwhhU2d4eUdWinuqTpLo7qCltf8tcpqcdAmUpYhk4-ViUCTWb_KX7J8CJmNSRig-Fx4iMlzjVkbnl2Q3yTL_t_jbK6VkFKhvwihEEEMdwAoRwTEJUbQPmTA9GnpPjneX_ZAIHDYd_ktccdvuge5svP1-hVlPOAzisnVRck6QYLvEpWbS_fNBJXbTSJB8sOV55xdIZ0-AAjCRhGIx0"/>
+</div>
+<div class="relative media-grid-item overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Bright yellow designer object" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-1eSdkG2lUia5PfmLjDIy9npFZZzSz2HBPfP9aJzyxxafLu0Cl5TT7XYbNKNhImP6mo6kRL4ZPg5tkrocZT3fXwjkXLK5PoYQtRAahHsdN_oarSspNPoxAehCDNSN8ceBcp-feoWFKCdRaxVC859lxS-hCSicwButq8KxruckgahS5nTtnv4pHWXdvZPbmaFfOYeRXg2wHvRkBokh034BjGC3s5dqmmC1zvvmDbSt3T2nYueVMVhjkmUrD93sMSZH040wgdi06-Nq"/>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-6 pt-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-t-2xl shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-slate-100 dark:border-slate-800">
+<button class="flex flex-col items-center justify-center bg-[#00A76F]/10 dark:bg-[#00A76F]/20 text-[#00A76F] rounded-xl p-2 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="photo_library" style="font-variation-settings: 'FILL' 1;">photo_library</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 active:scale-90 transition-transform duration-200 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined" data-icon="video_library">video_library</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 active:scale-90 transition-transform duration-200 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined" data-icon="camera_alt">camera_alt</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 active:scale-90 transition-transform duration-200 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</nav>
+<!-- Selection Floating Action Information (Optional UX enhancement) -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 z-40">
+<div class="bg-inverse-surface text-inverse-on-surface px-6 py-2.5 rounded-full shadow-lg flex items-center gap-3">
+<span class="font-headline font-semibold text-sm">2 items selected</span>
+<div class="w-[1px] h-4 bg-outline-variant/30"></div>
+<button class="text-primary-fixed-dim font-bold text-sm">Review</button>
+</div>
+</div>
+</body></html>

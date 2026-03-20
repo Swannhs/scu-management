@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Comments - Campus Social Feed</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#406e55",
+              "inverse-on-surface": "#eff1f3",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#00321f",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed": "#002112",
+              "surface-bright": "#f8f9fb",
+              "surface-container": "#eceef0",
+              "on-primary-fixed": "#002112",
+              "primary-container": "#00a76f",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "on-surface-variant": "#3d4a41",
+              "outline-variant": "#bccabf",
+              "surface-container-highest": "#e0e3e5",
+              "on-tertiary-fixed-variant": "#842327",
+              "surface-container-low": "#f2f4f6",
+              "tertiary-container": "#e66d6c",
+              "surface-dim": "#d8dadc",
+              "surface-variant": "#e0e3e5",
+              "on-error": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "secondary": "#3a674f",
+              "outline": "#6d7a71",
+              "on-tertiary-container": "#5d040f",
+              "on-tertiary-fixed": "#410006",
+              "on-primary-fixed-variant": "#005234",
+              "on-background": "#191c1e",
+              "tertiary-fixed": "#ffdad8",
+              "on-secondary-fixed-variant": "#224f39",
+              "secondary-fixed": "#bceecf",
+              "surface": "#f8f9fb",
+              "primary-fixed": "#79fabb",
+              "surface-container-high": "#e6e8ea",
+              "inverse-primary": "#5adda0",
+              "background": "#f8f9fb",
+              "tertiary": "#a33b3c",
+              "on-error-container": "#93000a",
+              "secondary-container": "#bceecf",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-surface": "#191c1e",
+              "inverse-surface": "#2d3133",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "surface-tint": "#006c46",
+              "primary-fixed-dim": "#5adda0",
+              "primary": "#006c46"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Public Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface flex flex-col min-h-screen">
+<!-- TopAppBar (From Shared Components) -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
+<div class="flex items-center justify-between px-4 h-16 w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 duration-200 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-full">
+<span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight font-['Public_Sans']">Comments</h1>
+</div>
+<div class="w-10"></div> <!-- Spacer to center title visually -->
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 pt-20 pb-24 overflow-y-auto px-4 max-w-screen-md mx-auto w-full space-y-6">
+<!-- Original Post Summary Section -->
+<section class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border-l-4 border-primary">
+<div class="flex gap-3 mb-3">
+<img alt="Author Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Close up portrait of a young student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJemHz7GFONaWDYo3KdY7uQsLBevm63PP25S5VCxDil0tLrfboT0vXRbQZ0zvmHs1k4KXbC4CinPOJS8O9swrngyJtX2RIAJxKXRyrc530OzkTFneCsNdYp3HIA1XSatxT93YD0xzQaZDiC2cEl9yC61iyptHl-oH_GWzPrp0pjnvjPY97K3ObW4hW9AFHUbopfc6wgOcGtAtbEnaDK65A9THK8X-QV_c-m_-KYTM9LHeRrvBxgXFJQauPy8teLVNT189EsIW6z2Ho"/>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-bold text-sm text-on-surface">Alex Rivera</span>
+<span class="text-xs text-outline">2h ago</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-primary">Student</span>
+</div>
+</div>
+<div class="flex gap-4">
+<p class="text-sm leading-relaxed text-on-surface-variant line-clamp-2 flex-1">
+                    Does anyone know when the library starts its 24/7 hours for finals week? I've heard conflicting reports about whether it starts this Monday or next.
+                </p>
+<div class="w-16 h-16 shrink-0 rounded-lg overflow-hidden bg-surface-container-high">
+<img alt="Post Thumbnail" class="w-full h-full object-cover" data-alt="Modern university library building exterior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6peAll5mHzHqJ2X5weA23yqZKQ-XXa1RYSFIlySgB80f-IatBkFvSk2E05e92VLOnyO9aL8g07tqr9ZKXzfpeXEreRQVzpreX4wQx7F2EyiRWqQWSuY5XNHB1mTY-QWH7GSg6ILEWVg10rvZY7WdtXw5rXB3fMQ-c83nJ_X8yALuW8C_JxQ75d6tBnpKVRx7QfI8RTkw5Cmg8ISzPe5dmVZfShlRQhZW-iePhQwKFP8s9Ror0CwSQ2WgOinJC5hBiJOzr5ePF_qyt"/>
+</div>
+</div>
+</section>
+<!-- Comments Header -->
+<div class="flex items-center justify-between px-1">
+<h2 class="text-sm font-bold text-on-surface uppercase tracking-widest">Discussion (3)</h2>
+<button class="text-xs font-semibold text-primary flex items-center gap-1">
+                Most Recent <span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+<!-- Comments List -->
+<div class="space-y-6">
+<!-- Comment 1 -->
+<div class="group">
+<div class="flex gap-3">
+<img alt="User Avatar" class="w-9 h-9 rounded-full object-cover" data-alt="Smiling female university student portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd8z8VSYuPa8WSyb5nfkcP8L11qz_uXn8yYcb62l_Q77q1X2M4jgY9Av2LsJis3qwmyZs4GDP8CoDwt_70vMRQRfOQ5rsqtbbu26dB3eiZjQ5jTKe8aRBLw_1420ll0UkDQ1f80Pov1QUd_AIQwoE_JGin7k9aH_Cy_MZfEouNvVx-nuEY7Yer27W5vzRNcVn6-UUcCcyfQXMhnKwqC9win-gCHNACFa1MHuEKbcmrGnGHdoK7c2QaphDkAcUtJRgBUUFHCWjVbKZK"/>
+<div class="flex-1 space-y-1">
+<div class="flex items-baseline gap-2">
+<span class="font-bold text-sm">Sarah Chen</span>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold">STUDENT</span>
+<span class="text-[11px] text-outline ml-auto">45m ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                            It officially starts this Sunday at midnight! They just posted the schedule on the main campus portal this morning.
+                        </p>
+<div class="flex items-center gap-4 pt-1">
+<button class="flex items-center gap-1 text-xs font-semibold text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-base" data-icon="thumb_up">thumb_up</span> 12
+                            </button>
+<button class="flex items-center gap-1 text-xs font-semibold text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="reply">reply</span> Reply
+                            </button>
+</div>
+</div>
+</div>
+<!-- Nested Reply -->
+<div class="ml-12 mt-4 flex gap-3 border-l-2 border-surface-container pl-4">
+<img alt="User Avatar" class="w-7 h-7 rounded-full object-cover" data-alt="Young man with glasses looking confident" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqMQ0zTp9_kL4mmESZ2Yp_lFdUjRU_0prAvDnFWy8waZt_ssn_TulPeqQqtzz1mR20JE_7RphnuSvou30TNiRnM9V6-Vnk1BELR49zL1taq_AONDJiXldT024KiI2DeHFIHlGArpQFp2QDUHoVMMTxF59wQPr3bvxwlQfXep6pEPN-CuMKev5KhGFvz0WCeg2WzjElFX7SddMUJIGhh04Vgm_dR52lqiSK6EF1_o_Vn-MCLci4o4mQQgW-m70_7AoH5sTiTgVQ7-z3"/>
+<div class="flex-1 space-y-1">
+<div class="flex items-baseline gap-2">
+<span class="font-bold text-[13px]">Marcus Thorne</span>
+<span class="bg-tertiary-container/20 text-tertiary text-[9px] px-1.5 py-0.5 rounded-full font-bold">FACULTY</span>
+<span class="text-[10px] text-outline ml-auto">12m ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                            Thanks for clarifying, Sarah! I'll let my seminar students know as well.
+                        </p>
+<div class="flex items-center gap-4 pt-1">
+<button class="flex items-center gap-1 text-xs font-semibold text-outline hover:text-primary transition-colors active:scale-90">
+<span class="material-symbols-outlined text-base" data-icon="thumb_up">thumb_up</span> 2
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Comment 2 -->
+<div class="flex gap-3">
+<img alt="User Avatar" class="w-9 h-9 rounded-full object-cover" data-alt="Male student with headphones around neck" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQljV2YEG2i22CMlWVe5FHDsVVcsrzwG9hbAw5WB46535rnut0BNxkXn7G5OdGctFncQ-U7q08KAnAzDaMPuSDqCq5ei8kHuqOxHBAjuPzMXV9QDzvE0DCm3b4wPdmfM_NoeCuGLk3333xf4m8WPnmjHu4gYFI7Z14DGghMp6PIkRKeY9pc5lRQayDn81QtMgMvN-y0tANQc1uZKUBfZs4T39wT6_YmHAzLb9072c31X-s8swZ8ttvEgQ1jFBF4n1cXhLhvC4xv4JP"/>
+<div class="flex-1 space-y-1">
+<div class="flex items-baseline gap-2">
+<span class="font-bold text-sm">Jordan Lee</span>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold">STUDENT</span>
+<span class="text-[11px] text-outline ml-auto">1h ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        The 3rd floor quiet zone is already filling up fast, better get there early!
+                    </p>
+<div class="flex items-center gap-4 pt-1">
+<button class="flex items-center gap-1 text-xs font-semibold text-outline hover:text-primary transition-colors active:scale-90">
+<span class="material-symbols-outlined text-base" data-icon="thumb_up">thumb_up</span> 5
+                        </button>
+<button class="flex items-center gap-1 text-xs font-semibold text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="reply">reply</span> Reply
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default, shown here conceptually or via CSS if needed) -->
+<div class="hidden flex-col items-center justify-center py-12 text-center space-y-4">
+<div class="w-48 h-48 rounded-full bg-emerald-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary/30" data-icon="chat_bubble_outline">chat_bubble_outline</span>
+</div>
+<div class="space-y-2 max-w-[240px]">
+<h3 class="font-bold text-lg text-on-surface">No comments yet</h3>
+<p class="text-sm text-outline">Be the first to start the conversation! Your campus is listening.</p>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Input Bar -->
+<footer class="fixed bottom-0 left-0 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 px-4 pt-3 pb-8 z-50">
+<div class="max-w-screen-md mx-auto flex items-end gap-3">
+<img alt="Current User Avatar" class="w-10 h-10 rounded-full object-cover shrink-0 mb-1 border-2 border-primary-container" data-alt="Portrait of a young woman with a friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmbOUcbUrEX3OonnsuWTDS49YPqxKrJyj87a8twOf2hVQP69LbczZape_VmVwGoSRAvNsK95IX2Cd2dcO7Ql3O_YE-RyIxZGk-Z1D_siXaERnuSYqEr32WkhYR_yWPqmiATW-BxBuhh9Q_wfoNSO4OGQWZJdfhg7EcwpNo6jYVadCf718nJcjGJS0T0eXkh1q7cgTuk5D_wh511H5LrvfiPaYOVOCHJGpZdpm65d7I_2eNRPZsUIwNKp_Mzz20jg5ORBC13SrtXoQ8"/>
+<div class="flex-1 bg-surface-container-high rounded-2xl px-4 py-2 flex flex-col gap-2">
+<textarea class="bg-transparent border-none focus:ring-0 text-sm resize-none w-full p-0 py-1 font-body text-on-surface placeholder:text-outline" placeholder="Write a comment..." rows="1"></textarea>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="sentiment_satisfied">sentiment_satisfied</span>
+</button>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="attach_file">attach_file</span>
+</button>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="image">image</span>
+</button>
+</div>
+<button class="bg-primary hover:bg-primary-container text-white px-4 py-1.5 rounded-full text-xs font-bold transition-all active:scale-95 shadow-sm shadow-primary/20">
+                        Send
+                    </button>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

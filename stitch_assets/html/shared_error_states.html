@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-high": "#e6e8ea",
+              "on-tertiary-fixed-variant": "#842327",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "outline-variant": "#bccabf",
+              "on-secondary": "#ffffff",
+              "error": "#ba1a1a",
+              "tertiary": "#a33b3c",
+              "surface-container-low": "#f2f4f6",
+              "surface-bright": "#f8f9fb",
+              "on-secondary-container": "#406e55",
+              "inverse-surface": "#2d3133",
+              "on-background": "#191c1e",
+              "on-primary-container": "#00321f",
+              "primary-fixed": "#79fabb",
+              "inverse-primary": "#5adda0",
+              "on-secondary-fixed-variant": "#224f39",
+              "surface-tint": "#006c46",
+              "on-primary-fixed": "#002112",
+              "primary-fixed-dim": "#5adda0",
+              "on-primary": "#ffffff",
+              "surface-variant": "#e0e3e5",
+              "surface": "#f8f9fb",
+              "primary-container": "#00a76f",
+              "inverse-on-surface": "#eff1f3",
+              "tertiary-fixed": "#ffdad8",
+              "error-container": "#ffdad6",
+              "secondary-fixed": "#bceecf",
+              "surface-container-highest": "#e0e3e5",
+              "on-tertiary-container": "#5d040f",
+              "background": "#f8f9fb",
+              "tertiary-container": "#e66d6c",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-surface": "#191c1e",
+              "outline": "#6d7a71",
+              "on-secondary-fixed": "#002112",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "primary": "#006c46",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed": "#410006",
+              "on-primary-fixed-variant": "#005234",
+              "secondary": "#3a674f",
+              "surface-dim": "#d8dadc",
+              "surface-container": "#eceef0",
+              "secondary-container": "#bceecf",
+              "on-surface-variant": "#3d4a41",
+              "on-error-container": "#93000a"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0px 12px 32px rgba(25, 28, 30, 0.04);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-background antialiased">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+<div class="flex items-center justify-between px-6 h-16 w-full max-w-none">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer active:scale-95 duration-200">arrow_back</span>
+<h1 class="font-headline font-bold text-lg tracking-tight text-[#00A76F]">Social Service</h1>
+</div>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer active:scale-95 duration-200">help_outline</span>
+</div>
+</header>
+<main class="pt-16 pb-24 min-h-screen flex flex-col">
+<!-- Variant 1: Page Load Error (Primary Full-Screen State) -->
+<section class="flex-grow flex flex-col items-center justify-center px-8 py-12 text-center">
+<div class="relative mb-8">
+<div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl scale-150"></div>
+<div class="relative w-48 h-48 flex items-center justify-center bg-surface-container-lowest rounded-full editorial-shadow">
+<span class="material-symbols-outlined text-7xl text-primary/40" style="font-variation-settings: 'wght' 200;">search_off</span>
+</div>
+</div>
+<h2 class="font-headline text-3xl font-black tracking-tight mb-4 text-on-surface">Something went wrong</h2>
+<p class="text-on-surface-variant max-w-xs mx-auto leading-relaxed mb-10">
+                We're having trouble loading the volunteer opportunities. Take a deep breath while we try to reconnect.
+            </p>
+<div class="flex flex-col w-full max-w-xs gap-4">
+<button class="w-full bg-gradient-to-br from-[#006c46] to-[#00a76f] text-white font-semibold py-4 rounded-xl shadow-lg active:scale-[0.98] transition-all">
+                    Retry
+                </button>
+<button class="w-full py-2 text-primary font-medium hover:opacity-80 transition-opacity">
+                    Contact Support
+                </button>
+</div>
+</section>
+<!-- Component Library: Reference Variants -->
+<section class="px-6 py-12 bg-surface-container-low rounded-t-[40px]">
+<div class="max-w-md mx-auto space-y-12">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline font-bold text-sm uppercase tracking-widest text-outline">Error Patterns</h3>
+<div class="h-px flex-grow ml-4 bg-outline-variant/30"></div>
+</div>
+<!-- Variant 2: Submission Error (Card Preview) -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl editorial-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-error-container/20 rounded-bl-full -mr-8 -mt-8"></div>
+<div class="flex items-start gap-4 mb-6">
+<div class="p-3 bg-error-container text-on-error-container rounded-2xl">
+<span class="material-symbols-outlined">cloud_off</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-lg text-on-surface">Upload failed</h4>
+<p class="text-sm text-on-surface-variant mt-1">Your service proof couldn't be uploaded. Check your file size or format.</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-grow bg-primary-container text-on-primary-container font-semibold py-3 rounded-lg text-sm">Retry Upload</button>
+<button class="px-4 py-3 border border-outline-variant/30 rounded-lg text-sm font-medium">Support</button>
+</div>
+</div>
+<!-- Variant 3: Network Error (Card Preview) -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl editorial-shadow border-l-4 border-tertiary-container">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 flex items-center justify-center bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined text-outline">signal_cellular_connected_no_internet_4_bar</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline font-bold text-on-surface">Connection lost</h4>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="text-xs font-medium text-on-surface-variant uppercase tracking-tight">Offline Mode</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 leading-snug">
+                        Please check your internet connection to access the latest social service alerts.
+                    </p>
+<button class="w-full bg-[#00A76F] text-white font-bold py-3 rounded-xl active:scale-95 duration-200">
+                        Try Again
+                    </button>
+</div>
+<!-- Guidance Note -->
+<div class="text-center pb-8">
+<p class="text-[11px] font-semibold text-outline tracking-wider uppercase">Visual System Note</p>
+<p class="text-xs text-on-surface-variant mt-2 px-8">Use asymmetrical layouts for primary states and standard containers for inline failures to maintain semantic hierarchy.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
+<div class="flex justify-around items-center h-20 px-4 pb-safe w-full">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

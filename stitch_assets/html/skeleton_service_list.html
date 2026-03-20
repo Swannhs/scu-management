@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kindred - Opportunities</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-surface": "#2d3133",
+              "on-surface": "#191c1e",
+              "secondary-container": "#bceecf",
+              "on-primary": "#ffffff",
+              "primary": "#006c46",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "on-secondary-container": "#406e55",
+              "surface-container-highest": "#e0e3e5",
+              "background": "#f8f9fb",
+              "surface-container": "#eceef0",
+              "secondary": "#3a674f",
+              "inverse-on-surface": "#eff1f3",
+              "tertiary-fixed": "#ffdad8",
+              "secondary-fixed": "#bceecf",
+              "primary-container": "#00a76f",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-fixed-variant": "#842327",
+              "on-tertiary-fixed": "#410006",
+              "on-error-container": "#93000a",
+              "on-tertiary-container": "#5d040f",
+              "error": "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary": "#ffffff",
+              "tertiary": "#a33b3c",
+              "surface-tint": "#006c46",
+              "outline-variant": "#bccabf",
+              "inverse-primary": "#5adda0",
+              "on-error": "#ffffff",
+              "primary-fixed": "#79fabb",
+              "on-primary-fixed-variant": "#005234",
+              "surface-container-low": "#f2f4f6",
+              "surface": "#f8f9fb",
+              "on-secondary-fixed": "#002112",
+              "surface-dim": "#d8dadc",
+              "primary-fixed-dim": "#5adda0",
+              "on-primary-fixed": "#002112",
+              "surface-variant": "#e0e3e5",
+              "surface-bright": "#f8f9fb",
+              "surface-container-high": "#e6e8ea",
+              "on-surface-variant": "#3d4a41",
+              "on-background": "#191c1e",
+              "on-secondary-fixed-variant": "#224f39",
+              "outline": "#6d7a71",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#e66d6c",
+              "on-primary-container": "#00321f",
+              "secondary-fixed-dim": "#a1d1b4"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .skeleton {
+            background: linear-gradient(90deg, #eceef0 25%, #f2f4f6 50%, #eceef0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl fixed top-0 w-full z-50">
+<div class="flex items-center justify-between px-6 h-16 w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#00A76F]" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="font-['Public_Sans'] font-bold tracking-tight text-xl font-black text-[#00A76F]">Kindred</span>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-600">notifications</span>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-24 px-6 max-w-md mx-auto">
+<!-- Search Bar Placeholder -->
+<section class="mb-8">
+<div class="h-14 w-full bg-surface-container-high rounded-xl flex items-center px-4 gap-3">
+<div class="w-5 h-5 rounded-full skeleton"></div>
+<div class="h-4 w-32 rounded-full skeleton opacity-60"></div>
+</div>
+</section>
+<!-- Category Chips Placeholder -->
+<section class="mb-8 overflow-x-hidden">
+<div class="flex gap-3">
+<div class="h-10 w-24 rounded-full bg-primary/10 border border-primary/20 shrink-0"></div>
+<div class="h-10 w-28 rounded-full bg-surface-container-highest shrink-0 skeleton opacity-40"></div>
+<div class="h-10 w-20 rounded-full bg-surface-container-highest shrink-0 skeleton opacity-40"></div>
+<div class="h-10 w-32 rounded-full bg-surface-container-highest shrink-0 skeleton opacity-40"></div>
+</div>
+</section>
+<!-- Opportunity List -->
+<section class="space-y-6">
+<!-- Skeleton Card 1 -->
+<div class="bg-surface-container-lowest rounded-[24px] p-4 shadow-[0px_12px_32px_rgba(25,28,30,0.04)] overflow-hidden">
+<div class="w-full aspect-video rounded-2xl skeleton mb-4"></div>
+<div class="space-y-3">
+<div class="flex justify-between items-start">
+<div class="h-6 w-3/4 rounded-lg skeleton"></div>
+<div class="h-6 w-6 rounded-full skeleton"></div>
+</div>
+<div class="flex gap-2">
+<div class="h-4 w-20 rounded-full skeleton opacity-60"></div>
+<div class="h-4 w-24 rounded-full skeleton opacity-60"></div>
+</div>
+<div class="pt-2 border-t border-surface-container flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded-full skeleton"></div>
+<div class="h-3 w-20 rounded-full skeleton"></div>
+</div>
+<div class="h-8 w-24 rounded-full skeleton"></div>
+</div>
+</div>
+</div>
+<!-- Skeleton Card 2 -->
+<div class="bg-surface-container-lowest rounded-[24px] p-4 shadow-[0px_12px_32px_rgba(25,28,30,0.04)] overflow-hidden">
+<div class="w-full aspect-video rounded-2xl skeleton mb-4"></div>
+<div class="space-y-3">
+<div class="flex justify-between items-start">
+<div class="h-6 w-2/3 rounded-lg skeleton"></div>
+<div class="h-6 w-6 rounded-full skeleton"></div>
+</div>
+<div class="flex gap-2">
+<div class="h-4 w-16 rounded-full skeleton opacity-60"></div>
+<div class="h-4 w-28 rounded-full skeleton opacity-60"></div>
+</div>
+<div class="pt-2 border-t border-surface-container flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded-full skeleton"></div>
+<div class="h-3 w-16 rounded-full skeleton"></div>
+</div>
+<div class="h-8 w-24 rounded-full skeleton"></div>
+</div>
+</div>
+</div>
+<!-- Skeleton Card 3 -->
+<div class="bg-surface-container-lowest rounded-[24px] p-4 shadow-[0px_12px_32px_rgba(25,28,30,0.04)] overflow-hidden opacity-50">
+<div class="w-full aspect-video rounded-2xl skeleton mb-4"></div>
+<div class="space-y-3">
+<div class="h-6 w-1/2 rounded-lg skeleton"></div>
+<div class="flex gap-2">
+<div class="h-4 w-24 rounded-full skeleton"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 bg-white dark:bg-slate-900 flex justify-around items-center px-4 pb-2 z-50 rounded-t-[32px] shadow-[0_-4px_20px_rgba(0,0,0,0.03)] border-t border-slate-100 dark:border-slate-800">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Impact</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#00A76F]/10 text-[#00A76F] rounded-2xl px-5 py-2 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Messages</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Profile</span>
+</div>
+</nav>
+</body></html>

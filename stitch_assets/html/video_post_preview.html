@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CampusPulse - Video Preview</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#a1d1b4",
+                        "on-primary-fixed-variant": "#005234",
+                        "surface-bright": "#f8f9fb",
+                        "outline-variant": "#bccabf",
+                        "surface-container": "#eceef0",
+                        "tertiary-container": "#e66d6c",
+                        "surface-tint": "#006c46",
+                        "on-tertiary-container": "#5d040f",
+                        "on-surface": "#191c1e",
+                        "on-error": "#ffffff",
+                        "background": "#f8f9fb",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "on-tertiary-fixed-variant": "#842327",
+                        "on-tertiary-fixed": "#410006",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#224f39",
+                        "primary-container": "#00a76f",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#6d7a71",
+                        "on-secondary-fixed": "#002112",
+                        "secondary-container": "#bceecf",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed": "#bceecf",
+                        "secondary": "#3a674f",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-container-low": "#f2f4f6",
+                        "surface": "#f8f9fb",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#3d4a41",
+                        "primary": "#006c46",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed": "#79fabb",
+                        "on-background": "#191c1e",
+                        "error": "#ba1a1a",
+                        "tertiary": "#a33b3c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#406e55",
+                        "on-primary-fixed": "#002112",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e0e3e5",
+                        "on-primary-container": "#00321f",
+                        "inverse-primary": "#5adda0"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9fb;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl fixed top-0 w-full z-50 flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="text-slate-500 dark:text-slate-400 active:scale-95 duration-200 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold text-slate-900 dark:text-slate-50 font-public-sans tracking-tight">Preview</h1>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-semibold text-sm hover:opacity-90 active:scale-95 transition-all shadow-sm">
+            Post
+        </button>
+</header>
+<main class="flex-1 pt-20 pb-24 px-4 max-w-md mx-auto w-full">
+<!-- Video Preview Area -->
+<section class="relative aspect-[9/16] w-full rounded-2xl overflow-hidden bg-surface-container-high shadow-[0_12_32px_rgba(25,28,30,0.04)]">
+<img alt="Campus video preview" class="w-full h-full object-cover" data-alt="Cinematic shot of university students walking across a sunny green campus lawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGPuETfBbj4SWqi_0ENoQEaQTP0m0JjErYO9SE5q696YpqDmDJLDoWI1GPqPf9LhJ6SgFkEas1v943eQqlErSXW1FTdfHKCZhEMyT6DoQx-7-opzvrQn5mSieg61TIVcRY4iII1KHLjbQDSRydU-BSpz39ixPrgK1kP8pGpssHuaYAoVQqKT5oLBkIxfb_gcvdhYaO3Wuz9QDvB1Vjld6SI75WXBD1ABH74g7UiVU_GP9zog6Tc1fPQmxQfnHITFskrNvLYVgc58GG"/>
+<!-- Play Overlay -->
+<div class="absolute inset-0 flex items-center justify-center bg-black/10">
+<div class="bg-white/20 backdrop-blur-md rounded-full p-6 border border-white/30 shadow-2xl active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-white text-5xl" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<!-- Duration Badge -->
+<div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-white px-2 py-1 rounded-lg text-xs font-medium">
+                0:45
+            </div>
+</section>
+<!-- Action Row -->
+<div class="flex gap-3 mt-4">
+<button class="flex-1 flex items-center justify-center gap-2 py-3 border border-outline-variant/30 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="sync">sync</span>
+<span class="text-sm font-medium text-on-surface-variant">Replace</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 py-3 border border-outline-variant/30 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-error text-[20px]" data-icon="delete">delete</span>
+<span class="text-sm font-medium text-on-surface-variant">Remove</span>
+</button>
+</div>
+<!-- Caption Area -->
+<div class="mt-8 space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-outline px-1">Caption</label>
+<div class="relative rounded-xl bg-surface-container-low focus-within:bg-surface-container-lowest focus-within:ring-2 focus-within:ring-primary/20 transition-all p-4">
+<textarea class="w-full bg-transparent border-none focus:ring-0 p-0 text-on-surface placeholder:text-outline/60 text-base leading-relaxed resize-none h-24 font-body" placeholder="Write a caption for your video..."></textarea>
+<div class="flex justify-end pt-2">
+<span class="text-[10px] text-outline font-medium">0 / 2200</span>
+</div>
+</div>
+</div>
+<!-- Audience Selector -->
+<div class="mt-6 space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-outline px-1">Visibility</label>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl active:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="public">public</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface">Public</p>
+<p class="text-xs text-on-surface-variant/70">Everyone on CampusPulse</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Add Location Option (Bonus UI element for high-end feel) -->
+<div class="mt-4 flex items-center gap-3 p-4 bg-surface-container-low/50 rounded-xl border border-dashed border-outline-variant/40 active:bg-surface-container-low transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-outline" data-icon="location_on">location_on</span>
+<span class="text-sm font-medium text-on-surface-variant">Add location</span>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] z-50 rounded-t-2xl">
+<!-- Home -->
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-inter text-[10px] font-medium">Home</span>
+</div>
+<!-- Explore -->
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-inter text-[10px] font-medium">Explore</span>
+</div>
+<!-- Create (ACTIVE) -->
+<div class="flex flex-col items-center justify-center bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-inter text-[10px] font-medium">Create</span>
+</div>
+<!-- Inbox -->
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<span class="font-inter text-[10px] font-medium">Inbox</span>
+</div>
+<!-- Profile -->
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-inter text-[10px] font-medium">Profile</span>
+</div>
+</nav>
+</body></html>

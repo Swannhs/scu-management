@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Campus Social - Create Post</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#79fabb",
+              "outline": "#6d7a71",
+              "inverse-primary": "#5adda0",
+              "tertiary-container": "#e66d6c",
+              "secondary": "#3a674f",
+              "error-container": "#ffdad6",
+              "tertiary": "#a33b3c",
+              "surface-tint": "#006c46",
+              "secondary-container": "#bceecf",
+              "on-secondary-container": "#406e55",
+              "on-surface": "#191c1e",
+              "on-background": "#191c1e",
+              "on-error-container": "#93000a",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-fixed-variant": "#005234",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "inverse-surface": "#2d3133",
+              "surface-container-high": "#e6e8ea",
+              "primary-fixed-dim": "#5adda0",
+              "surface-dim": "#d8dadc",
+              "on-secondary-fixed-variant": "#224f39",
+              "surface-variant": "#e0e3e5",
+              "surface-container-highest": "#e0e3e5",
+              "on-primary-container": "#00321f",
+              "surface": "#f8f9fb",
+              "on-tertiary-container": "#5d040f",
+              "inverse-on-surface": "#eff1f3",
+              "on-primary-fixed": "#002112",
+              "surface-container-low": "#f2f4f6",
+              "primary-container": "#00a76f",
+              "on-secondary-fixed": "#002112",
+              "on-secondary": "#ffffff",
+              "secondary-fixed": "#bceecf",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "outline-variant": "#bccabf",
+              "on-error": "#ffffff",
+              "primary": "#006c46",
+              "surface-bright": "#f8f9fb",
+              "on-surface-variant": "#3d4a41",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#410006",
+              "surface-container": "#eceef0",
+              "background": "#f8f9fb",
+              "on-tertiary-fixed-variant": "#842327",
+              "tertiary-fixed": "#ffdad8"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+            overscroll-behavior-y: contain;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed">
+<!-- TopAppBar - Mandatory Component Execution -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-2">
+<button class="active:scale-95 transition-transform hover:opacity-80 p-2 -ml-2">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400" data-icon="close">close</span>
+</button>
+<h1 class="font-['Public_Sans'] font-bold text-lg text-on-surface">Create Post</h1>
+</div>
+<button class="active:scale-95 transition-transform bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-headline font-bold text-sm tracking-wide">
+            Post
+        </button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-24 px-4 max-w-2xl mx-auto min-h-screen flex flex-col">
+<!-- User Identity Section -->
+<div class="flex items-center gap-3 mb-6">
+<div class="relative">
+<img alt="Alex Rivera" class="w-12 h-12 rounded-xl object-cover ring-2 ring-primary-container/10" data-alt="Close up portrait of Alex Rivera smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMeHJJ4b0w--AkTvW3vePNGkffpA9CT1au2PbX3aET5Du7_SVQ4pATBfXooca7KA5UBv2YNMiT13761IxYkEDo-pKNYihFqFgvpcE6XLPgxjH3XPtmOPOactgSd2HLn_MJ2hRe3rI55RpHdh-zPhvN8enFYabAwFUAgfnwvBkwvVElQudB5_H8skuCecKN3zUthC8M0EclCC5smXmDliRKVYcx_KDMUPya93fVFv34WtXL7bSYTQZhI84RlbiVALSVkaY_tWH8MdC2"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-primary-container border-2 border-white rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline font-bold text-on-surface leading-tight">Alex Rivera</span>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-2 py-0.5 rounded-full mt-1 w-fit cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="public">public</span>
+<span class="text-[11px] font-medium text-on-surface-variant">Public</span>
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Editor Area -->
+<div class="flex-grow flex flex-col">
+<textarea class="w-full flex-grow bg-transparent border-none focus:ring-0 text-xl font-body placeholder:text-slate-400 resize-none min-h-[200px]" placeholder="What's on your mind, Alex?"></textarea>
+</div>
+<!-- Bento Media Picker -->
+<div class="mt-auto space-y-4">
+<!-- Location & Tagging Row -->
+<div class="flex flex-wrap gap-2">
+<button class="flex items-center gap-2 px-3 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors text-on-surface-variant group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform" data-icon="location_on">location_on</span>
+<span class="text-xs font-semibold">Add Location</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors text-on-surface-variant group">
+<span class="material-symbols-outlined text-[#0ea5e9] group-hover:scale-110 transition-transform" data-icon="person_add">person_add</span>
+<span class="text-xs font-semibold">Tag Friends</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors text-on-surface-variant group">
+<span class="material-symbols-outlined text-tertiary group-hover:scale-110 transition-transform" data-icon="sentiment_satisfied">sentiment_satisfied</span>
+<span class="text-xs font-semibold">Feeling</span>
+</button>
+</div>
+<!-- Main Media Actions - Bento Style -->
+<div class="grid grid-cols-4 gap-3 p-4 bg-surface-container-lowest rounded-2xl shadow-[0px_12px_32px_rgba(25,28,30,0.04)] outline outline-variant/15">
+<button class="flex flex-col items-center gap-2 group active:scale-90 transition-all">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-container/10 text-primary rounded-xl group-hover:bg-primary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Photo</span>
+</button>
+<button class="flex flex-col items-center gap-2 group active:scale-90 transition-all">
+<div class="w-12 h-12 flex items-center justify-center bg-[#8b5cf6]/10 text-[#8b5cf6] rounded-xl group-hover:bg-[#8b5cf6] group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="videocam">videocam</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Video</span>
+</button>
+<button class="flex flex-col items-center gap-2 group active:scale-90 transition-all">
+<div class="w-12 h-12 flex items-center justify-center bg-[#f59e0b]/10 text-[#f59e0b] rounded-xl group-hover:bg-[#f59e0b] group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="attachment">attachment</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">File</span>
+</button>
+<button class="flex flex-col items-center gap-2 group active:scale-90 transition-all">
+<div class="w-12 h-12 flex items-center justify-center bg-[#ec4899]/10 text-[#ec4899] rounded-xl group-hover:bg-[#ec4899] group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="equalizer">equalizer</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Poll</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar - Mandatory Logic Execution -->
+<!-- Suppression Logic: Navigation is suppressed as this is a task-focused sub-page with a "Close" action -->
+<!-- Floating Contextual Action - Only if relevant. Suppressed on Details/Transactional. -->
+<!-- Mobile Navigation Shell Mockup (Inactive/Visual Only for Layout Balance if needed) -->
+<div class="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-md px-4 py-3 border-t border-slate-100 md:hidden flex justify-between items-center text-[10px] font-medium text-slate-400">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="text_fields">text_fields</span>
+<span>Character Count: 0/280</span>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Draft saved</span>
+</div>
+</div>
+</body></html>

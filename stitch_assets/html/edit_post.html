@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Post - Campus Social</title>
+<!-- Public Sans & Inter Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e0e3e5",
+              "on-secondary-fixed": "#002112",
+              "on-secondary-container": "#406e55",
+              "on-primary-fixed-variant": "#005234",
+              "tertiary-fixed": "#ffdad8",
+              "on-tertiary-fixed-variant": "#842327",
+              "on-error": "#ffffff",
+              "surface": "#f8f9fb",
+              "on-primary": "#ffffff",
+              "outline": "#6d7a71",
+              "surface-dim": "#d8dadc",
+              "primary-container": "#00a76f",
+              "error": "#ba1a1a",
+              "on-surface-variant": "#3d4a41",
+              "primary-fixed-dim": "#5adda0",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "surface-container-high": "#e6e8ea",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-tertiary-fixed": "#410006",
+              "on-error-container": "#93000a",
+              "secondary": "#3a674f",
+              "on-primary-container": "#00321f",
+              "on-surface": "#191c1e",
+              "primary-fixed": "#79fabb",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary": "#ffffff",
+              "secondary-container": "#bceecf",
+              "inverse-on-surface": "#eff1f3",
+              "surface-variant": "#e0e3e5",
+              "primary": "#006c46",
+              "inverse-surface": "#2d3133",
+              "inverse-primary": "#5adda0",
+              "tertiary-container": "#e66d6c",
+              "outline-variant": "#bccabf",
+              "surface-bright": "#f8f9fb",
+              "on-primary-fixed": "#002112",
+              "on-tertiary-container": "#5d040f",
+              "surface-container": "#eceef0",
+              "on-tertiary": "#ffffff",
+              "on-background": "#191c1e",
+              "surface-tint": "#006c46",
+              "on-secondary-fixed-variant": "#224f39",
+              "background": "#f8f9fb",
+              "tertiary": "#a33b3c",
+              "secondary-fixed": "#bceecf",
+              "surface-container-low": "#f2f4f6"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8f9fb;
+        color: #191c1e;
+      }
+      h1, h2, h3 {
+        font-family: 'Public Sans', sans-serif;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface selection:bg-primary-container/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
+<div class="flex items-center justify-between px-4 h-16 w-full max-w-3xl mx-auto">
+<div class="flex items-center gap-3">
+<button class="active:scale-95 transition-transform duration-200 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h1 class="font-['Public_Sans'] font-semibold text-lg text-on-surface">Edit Post</h1>
+</div>
+<button class="text-[#00A76F] font-bold font-['Public_Sans'] text-lg hover:opacity-80 transition-opacity active:scale-95">
+                Save
+            </button>
+</div>
+</header>
+<main class="pt-20 pb-24 px-4 max-w-3xl mx-auto space-y-6">
+<!-- User Context Section -->
+<section class="flex items-center gap-3 p-2">
+<div class="relative">
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm" data-alt="Close up portrait of a young man smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhNHngy_bG3QYMWJ-kIqpf5eXzsvZlz62MXZPQYFq-plV0wd013LpW3z6X-VqArOCnEk9Uk1GR_PhrxUtkWmMCOTNvGQOV15N_82_54qCz4A81IYrJN_lXFtKQOaZvsQUxJkHeb7ZumgKQ5qZKlwiVWfIHy9wfQBgJcXPMjlt0M_fdHADI-bWMoESjWJVRhl5Vgyr6vSwp96aKxl6AXLZ2VWiA26T7YiU2hl9MS0ElIKEj_tEvDNIqps1LGyr39tkh9o0HgRvgLuTc"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-white rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline font-bold text-on-surface leading-tight">Alex Rivera</span>
+<span class="text-xs text-on-surface-variant font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="public">public</span> 
+                    Public
+                </span>
+</div>
+</section>
+<!-- Content Editor -->
+<section class="relative">
+<textarea class="w-full min-h-[160px] p-4 bg-surface-container-lowest rounded-xl border-none focus:ring-2 focus:ring-primary-container/20 text-on-surface font-body text-base placeholder:text-outline-variant resize-none" placeholder="What's happening?">Just finished our robotics prototype! Check it out.</textarea>
+</section>
+<!-- Media Preview -->
+<section class="relative group">
+<div class="overflow-hidden rounded-xl bg-surface-container-high aspect-video shadow-sm">
+<img alt="Robotics Project" class="w-full h-full object-cover" data-alt="A desk with mechanical parts and robot arm prototype" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRSoY57qO0Gt75VkWz1lzPfemZvFxyOCk_KiqmpqAM___xwTJnIXm7YEPLA5TuT5HUcfG1l-asQJpLKGDgSS026c0_6ySW8ANqe9Kdq2h-5KU56OYs0O-t37xocM0H0rkFf5AY2zcPeIG0j6Ar9kz76fJ7tZ_igEwtAICEg39Vz1JBs6_HQGbGSFNYktyWgtYdsTHIe6BBlgjmkzal4VtsD08AhV7ZKwKfWVGK5fiQslQP0aWJ_jJlEWPEvuu729ashHQaRoBCCbU6"/>
+</div>
+<!-- Remove Overlay Icon -->
+<button class="absolute top-3 right-3 w-8 h-8 bg-black/40 backdrop-blur-md text-white rounded-full flex items-center justify-center active:scale-90 transition-all border border-white/20">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+<!-- Badge -->
+<div class="absolute bottom-3 left-3 px-2 py-1 bg-white/90 backdrop-blur-sm rounded-lg flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="image">image</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Prototype_Final.jpg</span>
+</div>
+</section>
+<!-- Quick Tag Chips -->
+<section class="flex flex-wrap gap-2">
+<div class="px-3 py-1.5 bg-secondary-container text-on-secondary-container rounded-full text-[11px] font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="engineering">engineering</span>
+                RoboticsLab
+            </div>
+<div class="px-3 py-1.5 bg-surface-container-high text-on-surface-variant rounded-full text-[11px] font-semibold flex items-center gap-1.5 border border-outline-variant/10">
+<span class="material-symbols-outlined text-[14px]" data-icon="add">add</span>
+                Tag Topic
+            </div>
+</section>
+</main>
+<!-- Bottom Actions Toolbar -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] rounded-t-2xl">
+<div class="flex justify-around items-center h-20 px-6 pb-4">
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-90">
+<span class="material-symbols-outlined mb-1" data-icon="person_add">person_add</span>
+<span class="font-['Inter'] text-[11px] font-medium">Tag</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-90">
+<span class="material-symbols-outlined mb-1" data-icon="location_on">location_on</span>
+<span class="font-['Inter'] text-[11px] font-medium">Location</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-90">
+<span class="material-symbols-outlined mb-1" data-icon="lock">lock</span>
+<span class="font-['Inter'] text-[11px] font-medium">Privacy</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-4 py-1.5 active:scale-90 transition-all">
+<span class="material-symbols-outlined mb-0.5" data-icon="edit" style="font-variation-settings: 'FILL' 1;">edit</span>
+<span class="font-['Inter'] text-[11px] font-bold">Draft</span>
+</button>
+</div>
+</footer>
+<!-- Focused Visual Indicator (Editorial Element) -->
+<div class="fixed top-24 -left-12 w-32 h-32 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="fixed bottom-32 -right-12 w-48 h-48 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+</body></html>
