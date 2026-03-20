@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Active Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed-variant": "#005234",
+              "on-tertiary-fixed": "#410006",
+              "error-container": "#ffdad6",
+              "primary": "#006c46",
+              "inverse-primary": "#5adda0",
+              "background": "#f8f9fb",
+              "surface-container-high": "#e6e8ea",
+              "on-secondary-fixed": "#002112",
+              "inverse-on-surface": "#eff1f3",
+              "on-surface": "#191c1e",
+              "surface-container-highest": "#e0e3e5",
+              "error": "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              "secondary-container": "#bceecf",
+              "primary-fixed": "#79fabb",
+              "surface": "#f8f9fb",
+              "outline-variant": "#bccabf",
+              "on-secondary-fixed-variant": "#224f39",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "secondary": "#3a674f",
+              "on-secondary": "#ffffff",
+              "on-primary-fixed": "#002112",
+              "primary-fixed-dim": "#5adda0",
+              "on-primary": "#ffffff",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-tertiary-fixed-variant": "#842327",
+              "on-surface-variant": "#3d4a41",
+              "tertiary": "#a33b3c",
+              "secondary-fixed": "#bceecf",
+              "outline": "#6d7a71",
+              "surface-tint": "#006c46",
+              "surface-variant": "#e0e3e5",
+              "on-tertiary-container": "#5d040f",
+              "surface-bright": "#f8f9fb",
+              "on-error-container": "#93000a",
+              "surface-dim": "#d8dadc",
+              "surface-container": "#eceef0",
+              "on-background": "#191c1e",
+              "primary-container": "#00a76f",
+              "tertiary-container": "#e66d6c",
+              "inverse-surface": "#2d3133",
+              "tertiary-fixed": "#ffdad8",
+              "on-primary-container": "#00321f",
+              "surface-container-low": "#f2f4f6",
+              "on-secondary-container": "#406e55"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">menu</span>
+<h1 class="font-headline font-bold text-xl tracking-tight text-on-surface">Active Services</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container/20">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="Portrait of a smiling young male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkVcNd9MRTbr69WRuH--75AEopeYz5VTBKmNOxPAkkEsFduzMTcQn07Y_Augqh1g4LajiMuJOxPsQ2rgKsDY1zFrDTalUvAYFQamOGh0AMmRdf2CXwYSebGAtwhxDooX-Y4hqIBDza8EIq7TelfG0ktEPF9bzqAfAkxUHVHReMauvWc0nPOfOKbEhL5afse2HJzlJQVJ3mQGlWeouOVimsmwAuMYg5jzHOT5hLmkCpglSj7d8Jm57D1909PIiOkJeHUy4DZYEfQY9Z"/>
+</div>
+</header>
+<main class="pt-20 pb-24 px-4 max-w-md mx-auto">
+<!-- Summary Dashboard (Asymmetric Bento Style) -->
+<section class="grid grid-cols-2 gap-3 mb-8">
+<div class="col-span-2 bg-gradient-to-br from-primary to-primary-container p-5 rounded-xl text-on-primary shadow-lg shadow-primary/10">
+<p class="text-xs font-medium opacity-80 uppercase tracking-widest mb-1">Impact Score</p>
+<div class="flex items-end justify-between">
+<span class="text-4xl font-headline font-black">24.5h</span>
+<span class="material-symbols-outlined scale-150 opacity-40">volunteer_activism</span>
+</div>
+</div>
+</section>
+<!-- Section Header -->
+<div class="flex items-center justify-between mb-4 px-2">
+<h2 class="text-on-surface font-headline font-bold text-lg">Ongoing Enrollment</h2>
+<span class="text-primary text-xs font-semibold uppercase tracking-wider">2 Projects</span>
+</div>
+<!-- Service Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl p-5 mb-4 shadow-[0px_12px_32px_rgba(25,28,30,0.04)] hover:scale-[1.01] transition-transform">
+<div class="flex justify-between items-start mb-4">
+<div class="flex-1">
+<h3 class="font-headline font-bold text-[#191c1e] text-lg leading-tight">City Park Restoration</h3>
+<p class="text-on-surface-variant text-sm flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs">corporate_fare</span>
+                        GreenEarth Org
+                    </p>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+<div class="flex items-center gap-3 mb-4 bg-surface-container-low p-3 rounded-lg">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<div>
+<p class="text-[10px] text-on-surface-variant font-semibold uppercase opacity-60">Next Session</p>
+<p class="text-sm font-bold">Tomorrow, 09:00 AM</p>
+</div>
+</div>
+<div class="mb-5">
+<div class="flex justify-between text-xs font-bold mb-1.5">
+<span class="text-on-surface-variant">Hours Completed</span>
+<span class="text-primary">4 / 10 hrs</span>
+</div>
+<div class="h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[40%] rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center gap-2 mb-5 p-3 bg-primary/5 rounded-lg border-l-4 border-primary">
+<span class="material-symbols-outlined text-primary text-sm">info</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+<span class="font-bold text-primary">Next Step:</span> Arrive at Central Park North Entrance
+                </p>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold py-3.5 rounded-lg shadow-md active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">qr_code_scanner</span>
+                Check-in
+            </button>
+</article>
+<!-- Service Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl p-5 mb-4 shadow-[0px_12px_32px_rgba(25,28,30,0.04)] hover:scale-[1.01] transition-transform">
+<div class="flex justify-between items-start mb-4">
+<div class="flex-1">
+<h3 class="font-headline font-bold text-[#191c1e] text-lg leading-tight">Community Kitchen Support</h3>
+<p class="text-on-surface-variant text-sm flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs">restaurant</span>
+                        Campus Care Hub
+                    </p>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Action Required</span>
+</div>
+<div class="flex items-center gap-3 mb-4 bg-surface-container-low p-3 rounded-lg">
+<span class="material-symbols-outlined text-tertiary">warning</span>
+<div>
+<p class="text-[10px] text-on-surface-variant font-semibold uppercase opacity-60">Missing Info</p>
+<p class="text-sm font-bold text-tertiary">Verify Attendance</p>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex justify-between text-xs font-bold mb-1.5">
+<span class="text-on-surface-variant">Hours Completed</span>
+<span class="text-tertiary">8 / 12 hrs</span>
+</div>
+<div class="h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[66%] rounded-full"></div>
+</div>
+</div>
+<button class="w-full bg-white border border-outline-variant/30 text-on-surface font-bold py-3.5 rounded-lg shadow-sm active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">upload_file</span>
+                Submit Proof
+            </button>
+</article>
+<!-- Empty State Preview (Commented out in logic but kept for design reference) -->
+<!-- 
+        <section class="flex flex-col items-center justify-center py-20 px-6 text-center">
+            <div class="w-48 h-48 mb-8 relative">
+                <div class="absolute inset-0 bg-primary/10 rounded-full blur-3xl"></div>
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=300&h=300&auto=format&fit=crop" 
+                     alt="Empty state student" 
+                     data-alt="Illustration of a relaxed student sitting outdoors"
+                     class="w-full h-full object-contain relative z-10 grayscale opacity-80">
+            </div>
+            <h3 class="font-headline font-black text-2xl text-on-surface mb-3 tracking-tight">No Active Services</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed mb-8 max-w-[280px]">
+                You haven't joined any projects yet. Start making an impact today!
+            </p>
+            <button class="bg-primary text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-primary/20">
+                Explore Opportunities
+            </button>
+        </section>
+        -->
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-[#bccabf]/15 shadow-[0px_-4px_16px_rgba(25,28,30,0.04)] flex justify-around items-center h-20 px-4 pb-safe w-full rounded-t-2xl">
+<a class="flex flex-col items-center justify-center text-slate-400 group" href="#">
+<span class="material-symbols-outlined group-active:scale-90 transition-transform">home</span>
+<span class="font-['Inter'] text-[11px] font-medium mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-4 py-1 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="font-['Inter'] text-[11px] font-medium mt-0.5">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 group" href="#">
+<span class="material-symbols-outlined group-active:scale-90 transition-transform">history_edu</span>
+<span class="font-['Inter'] text-[11px] font-medium mt-1">Hours</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 group" href="#">
+<span class="material-symbols-outlined group-active:scale-90 transition-transform">person</span>
+<span class="font-['Inter'] text-[11px] font-medium mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

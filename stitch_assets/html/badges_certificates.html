@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Achievements - SCU Social Service</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, .headline-font {
+            font-family: 'Public Sans', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-background": "#191c1e",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#a1d1b4",
+                        "on-tertiary-fixed": "#410006",
+                        "on-primary-fixed-variant": "#005234",
+                        "primary-fixed": "#79fabb",
+                        "surface-container": "#eceef0",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-surface": "#191c1e",
+                        "surface-bright": "#f8f9fb",
+                        "on-primary-fixed": "#002112",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-container": "#5d040f",
+                        "surface-tint": "#006c46",
+                        "surface": "#f8f9fb",
+                        "on-secondary-fixed": "#002112",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-fixed-variant": "#224f39",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "background": "#f8f9fb",
+                        "secondary-container": "#bceecf",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-dim": "#d8dadc",
+                        "on-surface-variant": "#3d4a41",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#6d7a71",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#bceecf",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#00a76f",
+                        "inverse-primary": "#5adda0",
+                        "on-primary-container": "#00321f",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#406e55",
+                        "on-tertiary-fixed-variant": "#842327",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "secondary": "#3a674f",
+                        "tertiary": "#a33b3c",
+                        "outline-variant": "#bccabf",
+                        "tertiary-container": "#e66d6c",
+                        "primary": "#006c46",
+                        "surface-variant": "#e0e3e5"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform text-slate-500">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="text-xl font-['Public_Sans'] font-bold tracking-tight text-slate-900 dark:text-slate-100">Achievements</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img class="w-full h-full object-cover" data-alt="Portrait of Alex Johnson, a male student volunteer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSYw_GiqggKMb7yPcuyiQkCMtsTBf0QLqhyvBLohuVvIvATBHRwVAdrkPKfhQWaaNiVIe8oa-joh7UnLHXEBcpEG0DcysjZlR4ZMotp5Tch-8s0DxkMQAEFQk67livGp-yy69aF4jyda_HVcOksFzWYpLphMP1GUfxlFXu8EzrYEmzZqKcc0UIy8CeqID105HGTSMeD-P7P-Dx1BiYctNY01Xjje_eyW6YclwmZFUCPQpG7yyY-RyEKEJRHvkV1XEeyCwYQoVo-n7_"/>
+</div>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 h-[1px]"></div>
+</header>
+<main class="pt-20 px-4 space-y-8 max-w-2xl mx-auto">
+<!-- Profile Summary -->
+<section class="flex flex-col items-center pt-4 text-center">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-primary to-primary-container">
+<img class="w-full h-full rounded-full border-4 border-white object-cover" data-alt="Profile picture of Alex Johnson" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcxf-_RVEqshDxVMgBizgqNUdkvitF539uXwLdxqCA8D1pEOlLrtoK5oxAiwmhfr6CMpkS5DT9YA83bzc3pAfcS_2BjINEe5NBY0ej3zHPT6Ge2naq2wOBccu_099LPCR0qx_5Jf4walMiTMf5LLCURh9J2McoTdx96DqZISbu6Sp_4q9flp-1pEe_7bl-d5YAZSAQxBSW85pyxk_w2VS97FxaQM7Nts1C2PW1MBbo8mWH9Lk3hkwFPeZcGbM7YrBeikj32LgC69G4"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full border-2 border-white uppercase tracking-wider">PRO</div>
+</div>
+<h2 class="text-2xl font-['Public_Sans'] font-bold text-on-surface">Alex Johnson</h2>
+<div class="mt-1 inline-flex items-center gap-1.5 px-3 py-1 bg-primary/10 text-primary rounded-full">
+<span class="material-symbols-outlined text-[18px]" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-sm font-semibold">Top 5% of Volunteers</span>
+</div>
+</section>
+<!-- Achievement Progress -->
+<section>
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0px_12px_32px_rgba(25,28,30,0.04)]">
+<div class="flex justify-between items-end mb-4">
+<div>
+<p class="text-xs font-semibold text-outline uppercase tracking-widest mb-1">Current Milestone</p>
+<h3 class="text-lg font-['Public_Sans'] font-bold text-on-surface leading-tight">Master Volunteer</h3>
+</div>
+<div class="text-right">
+<span class="text-2xl font-bold text-primary">85%</span>
+</div>
+</div>
+<div class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container rounded-full" style="width: 85%;"></div>
+</div>
+<p class="mt-4 text-sm text-on-surface-variant leading-relaxed">
+                    You're only <span class="font-bold text-on-surface">15 hours</span> away from your next tier. Keep up the great impact!
+                </p>
+</div>
+</section>
+<!-- Earned Badges Section -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-['Public_Sans'] font-bold text-on-surface">Earned Badges</h3>
+<span class="text-sm font-semibold text-primary">View All</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Badge 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex flex-col items-center text-center border border-outline-variant/10 shadow-sm">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<h4 class="text-sm font-bold text-on-surface mb-1 leading-tight">Green Leader</h4>
+<p class="text-[11px] text-outline font-medium">Earned Oct 12, 2023</p>
+</div>
+<!-- Badge 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex flex-col items-center text-center border border-outline-variant/10 shadow-sm">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="volunteer_activism" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+</div>
+<h4 class="text-sm font-bold text-on-surface mb-1 leading-tight">Community Hero</h4>
+<p class="text-[11px] text-outline font-medium">Earned Sep 05, 2023</p>
+</div>
+<!-- Badge 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex flex-col items-center text-center border border-outline-variant/10 shadow-sm">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="energy_savings_leaf" style="font-variation-settings: 'FILL' 1;">energy_savings_leaf</span>
+</div>
+<h4 class="text-sm font-bold text-on-surface mb-1 leading-tight">Eco Warrior</h4>
+<p class="text-[11px] text-outline font-medium">Earned Aug 22, 2023</p>
+</div>
+<!-- Badge 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex flex-col items-center text-center border border-outline-variant/10 shadow-sm">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="diversity_3" style="font-variation-settings: 'FILL' 1;">diversity_3</span>
+</div>
+<h4 class="text-sm font-bold text-on-surface mb-1 leading-tight">Social Bond</h4>
+<p class="text-[11px] text-outline font-medium">Earned Jul 18, 2023</p>
+</div>
+</div>
+</section>
+<!-- Certificates Section -->
+<section class="pb-10">
+<h3 class="text-xl font-['Public_Sans'] font-bold text-on-surface mb-6">Certificates</h3>
+<div class="space-y-4">
+<!-- Certificate 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center gap-4 shadow-sm border border-outline-variant/10">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="description">description</span>
+</div>
+<div class="flex-grow min-w-0">
+<h4 class="text-sm font-bold text-on-surface truncate">Environmental Stewardship</h4>
+<p class="text-xs text-on-surface-variant">SCU Sustainability Dept.</p>
+</div>
+<button class="shrink-0 flex items-center justify-center w-10 h-10 bg-primary/5 text-primary rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+</button>
+</div>
+<!-- Certificate 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center gap-4 shadow-sm border border-outline-variant/10">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="description">description</span>
+</div>
+<div class="flex-grow min-w-0">
+<h4 class="text-sm font-bold text-on-surface truncate">Community Leadership 101</h4>
+<p class="text-xs text-on-surface-variant">Red Cross Partner</p>
+</div>
+<button class="shrink-0 flex items-center justify-center w-10 h-10 bg-primary/5 text-primary rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+</button>
+</div>
+<!-- Certificate 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center gap-4 shadow-sm border border-outline-variant/10">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="description">description</span>
+</div>
+<div class="flex-grow min-w-0">
+<h4 class="text-sm font-bold text-on-surface truncate">Youth Mentorship Program</h4>
+<p class="text-xs text-on-surface-variant">SCU Outreach</p>
+</div>
+<button class="shrink-0 flex items-center justify-center w-10 h-10 bg-primary/5 text-primary rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-6 pb-6 pt-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] rounded-t-2xl z-50">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 hover:text-emerald-500 dark:hover:text-emerald-300 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 hover:text-emerald-500 dark:hover:text-emerald-300 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="volunteer_activism">volunteer_activism</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Impact</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl px-3 py-1.5 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="emoji_events" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Awards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 hover:text-emerald-500 dark:hover:text-emerald-300 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Profile</span>
+</a>
+</nav>
+</body></html>

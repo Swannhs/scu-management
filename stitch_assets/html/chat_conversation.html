@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCU Social Service - Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary": "#ffffff",
+                        "outline": "#6d7a71",
+                        "on-primary-fixed": "#002112",
+                        "on-primary-container": "#00321f",
+                        "secondary-container": "#bceecf",
+                        "surface-variant": "#e0e3e5",
+                        "outline-variant": "#bccabf",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#bceecf",
+                        "primary-container": "#00a76f",
+                        "on-tertiary-fixed-variant": "#842327",
+                        "on-surface-variant": "#3d4a41",
+                        "surface-tint": "#006c46",
+                        "on-background": "#191c1e",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "inverse-primary": "#5adda0",
+                        "secondary": "#3a674f",
+                        "on-secondary-fixed-variant": "#224f39",
+                        "on-secondary-fixed": "#002112",
+                        "on-tertiary-fixed": "#410006",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-container": "#5d040f",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "secondary-fixed-dim": "#a1d1b4",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "tertiary-container": "#e66d6c",
+                        "surface-container-highest": "#e0e3e5",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-primary-fixed-variant": "#005234",
+                        "surface": "#f8f9fb",
+                        "error": "#ba1a1a",
+                        "tertiary": "#a33b3c",
+                        "on-surface": "#191c1e",
+                        "tertiary-fixed": "#ffdad8",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "surface-bright": "#f8f9fb",
+                        "primary-fixed": "#79fabb",
+                        "on-secondary-container": "#406e55",
+                        "primary": "#006c46",
+                        "background": "#f8f9fb"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9fb;
+            font-family: 'Inter', sans-serif;
+        }
+        .chat-container {
+            height: calc(100vh - 144px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-4 h-20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm">
+<div class="flex items-center gap-3">
+<button class="active:scale-95 transition-transform text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-['Public_Sans'] font-semibold text-lg tracking-tight text-on-surface">Coordinator Sarah</h1>
+<div class="inline-flex items-center self-start px-2 py-0.5 mt-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-semibold">
+                    Project: City Park Restoration
+                </div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="active:scale-95 transition-transform text-slate-500 hover:opacity-80">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Message Thread Canvas -->
+<main class="pt-24 pb-28 px-4 flex flex-col gap-6 overflow-y-auto chat-container">
+<!-- Date Indicator -->
+<div class="flex justify-center">
+<span class="text-[11px] font-medium text-outline bg-surface-container px-3 py-1 rounded-full uppercase tracking-wider">Today</span>
+</div>
+<!-- Incoming Message (Teacher) -->
+<div class="flex flex-col gap-1 max-w-[85%] self-start">
+<div class="bg-surface-container-high text-on-surface px-4 py-3 rounded-2xl rounded-tl-none shadow-sm">
+<p class="text-sm leading-relaxed">Hello! I've just updated the site visit schedule for the City Park Restoration. Could you please review the new times?</p>
+</div>
+<span class="text-[10px] text-outline px-1">09:41 AM</span>
+</div>
+<!-- Outgoing Message (Student) -->
+<div class="flex flex-col gap-1 max-w-[85%] self-end items-end">
+<div class="bg-primary text-white px-4 py-3 rounded-2xl rounded-tr-none shadow-sm">
+<p class="text-sm leading-relaxed">Sure thing, Coordinator Sarah! I'll check it right away. Are the tools already on-site?</p>
+</div>
+<div class="flex items-center gap-1 px-1">
+<span class="text-[10px] text-outline">09:45 AM</span>
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="done_all">done_all</span>
+</div>
+</div>
+<!-- Incoming Message with Attachment -->
+<div class="flex flex-col gap-1 max-w-[85%] self-start">
+<div class="bg-surface-container-high text-on-surface p-1 rounded-2xl rounded-tl-none shadow-sm">
+<div class="rounded-xl overflow-hidden mb-2">
+<img alt="Park restoration progress" class="w-full aspect-video object-cover" data-alt="Modern park landscape under restoration with trees" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2__r8SoPetro0YUd89JbNBg8Cbdu8xz-_bUuPX5vGhUwmwTjKD9F7RAYmOdq2HFzewI4UEt0ofKbR0WAHh6WnTFOd3JEH1XZPIST9gX5KDYib-ULj4ftyWt7cVZGWmeqIsXwIGE-jSX69Ph1YRK6QWBnlK1b3chfUHb382dfWa6DmJMQgnRTnjnSJZXhU5YCHvMA95al6vtL1_cJLyBYC8K-idA8SHGmfz0_vwN82vCrrbpQaOEB4QtwHaRl2L8RFmUno2i3q2xac"/>
+</div>
+<div class="px-3 pb-2 pt-1">
+<p class="text-sm leading-relaxed">Yes, everything is ready. Here's a photo of the main entrance area we'll be starting with.</p>
+</div>
+</div>
+<span class="text-[10px] text-outline px-1">09:47 AM</span>
+</div>
+<!-- Outgoing Message -->
+<div class="flex flex-col gap-1 max-w-[85%] self-end items-end">
+<div class="bg-primary text-white px-4 py-3 rounded-2xl rounded-tr-none shadow-sm">
+<p class="text-sm leading-relaxed">The site looks great! The progress is impressive.</p>
+</div>
+<div class="flex items-center gap-1 px-1">
+<span class="text-[10px] text-outline">09:50 AM</span>
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="done_all">done_all</span>
+</div>
+</div>
+</main>
+<!-- Floating Action Area (Input) -->
+<div class="fixed bottom-20 left-0 w-full px-4 pb-4">
+<div class="bg-surface-container-lowest shadow-[0_-4px_24px_rgba(0,0,0,0.04)] rounded-2xl p-2 flex items-center gap-2 border border-outline-variant/20">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl text-primary hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm placeholder:text-outline py-2" placeholder="Type a message..." type="text"/>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl bg-primary text-white shadow-md active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="send" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-6 pt-2 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-2xl">
+<div class="flex flex-col items-center justify-center bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-xl p-2 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="chat" style="font-variation-settings: 'FILL' 1;">chat</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+</nav>
+</body></html>

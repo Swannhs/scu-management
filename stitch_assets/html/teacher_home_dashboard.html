@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ServiceHub - Teacher Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Public+Sans:wght@700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffffff",
+              "primary-container": "#00a76f",
+              "surface-bright": "#f8f9fb",
+              "on-secondary-fixed": "#002112",
+              "on-surface-variant": "#3d4a41",
+              "on-secondary-fixed-variant": "#224f39",
+              "on-secondary-container": "#406e55",
+              "inverse-surface": "#2d3133",
+              "tertiary-fixed": "#ffdad8",
+              "on-tertiary-fixed-variant": "#842327",
+              "on-secondary": "#ffffff",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-error-container": "#93000a",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f2f4f6",
+              "secondary": "#3a674f",
+              "surface-container-high": "#e6e8ea",
+              "surface-dim": "#d8dadc",
+              "outline-variant": "#bccabf",
+              "tertiary-container": "#e66d6c",
+              "surface-tint": "#006c46",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "inverse-primary": "#5adda0",
+              "surface-container": "#eceef0",
+              "secondary-fixed": "#bceecf",
+              "error-container": "#ffdad6",
+              "on-surface": "#191c1e",
+              "primary-fixed": "#79fabb",
+              "on-primary-container": "#00321f",
+              "surface-variant": "#e0e3e5",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed": "#002112",
+              "surface": "#f8f9fb",
+              "on-primary": "#ffffff",
+              "tertiary": "#a33b3c",
+              "primary": "#006c46",
+              "primary-fixed-dim": "#5adda0",
+              "on-tertiary-container": "#5d040f",
+              "error": "#ba1a1a",
+              "on-primary-fixed-variant": "#005234",
+              "surface-container-highest": "#e0e3e5",
+              "inverse-on-surface": "#eff1f3",
+              "outline": "#6d7a71",
+              "on-tertiary-fixed": "#410006",
+              "on-background": "#191c1e"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fb; }
+        h1, h2, h3 { font-family: 'Public Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased mb-24">
+<!-- TopAppBar - Shared Component Implementation -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between px-6 h-16">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center border border-primary-container/20">
+<img alt="Coordinator Profile" class="w-full h-full rounded-full object-cover" data-alt="Professional profile headshot of a smiling female coordinator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF8QP3PNSgQ39iM_cpmUIStSsbh3wvrqs2bfnhatbPiDJQwkwTLJO4ZdHc9sLFaDZnceqbWjlqtp-Gko1WJVekd3mWdUArXlb5o1ko9vKByDkjoFKGgOpIXjh1c4UNfWFQg55_1g8Mlc4UPIvWb2OsbZW41cpczok06r4tmQeJsu1HY3pJdliJzWboroUecTsGbHRgoJ0hedL2_F_uJfsHdQpZE_-cOHLh1528KnvBjU_eperHozPhE4EfZqa1lbnlrdy0O3VPhJcn"/>
+</div>
+<span class="text-xl font-black text-slate-900 dark:text-slate-50 tracking-tight">ServiceHub</span>
+</div>
+<button class="text-slate-500 hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-20 px-5 pb-8 max-w-md mx-auto">
+<!-- Greeting Section -->
+<section class="mb-8">
+<h1 class="text-2xl font-extrabold text-on-surface tracking-tight mb-1">Good morning, Coordinator Sarah</h1>
+<p class="text-on-surface-variant text-sm font-medium opacity-70">Welcome back to your dashboard.</p>
+</section>
+<!-- Summary Cards Row (Bento Style) -->
+<section class="grid grid-cols-2 gap-4 mb-8">
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/10 shadow-[0px_12px_32px_rgba(25,28,30,0.02)] active:scale-95 transition-transform">
+<div class="flex flex-col gap-2">
+<span class="text-4xl font-extrabold text-primary tracking-tighter">12</span>
+<span class="text-xs font-bold text-on-surface uppercase tracking-wider opacity-80">Pending Applications</span>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold">
+                        Action Required
+                    </div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/10 shadow-[0px_12px_32px_rgba(25,28,30,0.02)] active:scale-95 transition-transform">
+<div class="flex flex-col gap-2">
+<span class="text-4xl font-extrabold text-primary tracking-tighter">8</span>
+<span class="text-xs font-bold text-on-surface uppercase tracking-wider opacity-80">Pending Submissions</span>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold">
+                        Action Required
+                    </div>
+</div>
+</div>
+</section>
+<!-- Quick Actions Horizontal Scroll -->
+<section class="mb-8 overflow-hidden">
+<h2 class="text-xs font-black uppercase tracking-[0.15em] text-on-surface-variant mb-4 px-1">Quick Actions</h2>
+<div class="flex gap-3 overflow-x-auto pb-4 no-scrollbar">
+<button class="flex-shrink-0 bg-primary-container text-white px-5 py-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="add_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="text-xs font-bold whitespace-nowrap">Create Opportunity</span>
+</button>
+<button class="flex-shrink-0 bg-surface-container-high text-on-surface px-5 py-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl text-primary" data-icon="campaign">campaign</span>
+<span class="text-xs font-bold whitespace-nowrap">Broadcast Message</span>
+</button>
+<button class="flex-shrink-0 bg-surface-container-high text-on-surface px-5 py-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl text-primary" data-icon="ios_share">ios_share</span>
+<span class="text-xs font-bold whitespace-nowrap">Export Reports</span>
+</button>
+</div>
+</section>
+<!-- Active Opportunities List -->
+<section class="mb-8">
+<div class="flex items-center justify-between mb-4 px-1">
+<h2 class="text-xs font-black uppercase tracking-[0.15em] text-on-surface-variant">Active Opportunities</h2>
+<button class="text-xs font-bold text-primary">View All</button>
+</div>
+<div class="space-y-3">
+<!-- Opportunity Item -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/10 shadow-sm flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="park">park</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-on-surface">City Park Restoration</h3>
+<p class="text-xs font-medium text-on-surface-variant">24 active volunteers</p>
+</div>
+</div>
+<button class="bg-primary/5 text-primary text-xs font-bold px-4 py-2 rounded-lg group-active:scale-90 transition-all">Manage</button>
+</div>
+<!-- Opportunity Item -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/10 shadow-sm flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="functions">functions</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-on-surface">Math Tutoring</h3>
+<p class="text-xs font-medium text-on-surface-variant">15 active volunteers</p>
+</div>
+</div>
+<button class="bg-primary/5 text-primary text-xs font-bold px-4 py-2 rounded-lg group-active:scale-90 transition-all">Manage</button>
+</div>
+</div>
+</section>
+<!-- Recent Activity Feed -->
+<section class="mb-4">
+<h2 class="text-xs font-black uppercase tracking-[0.15em] text-on-surface-variant mb-4 px-1">Recent Activity</h2>
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/10">
+<div class="p-4 flex gap-4 border-b border-surface-container">
+<div class="w-2 h-2 mt-1.5 rounded-full bg-primary flex-shrink-0"></div>
+<div>
+<p class="text-sm text-on-surface leading-tight"><span class="font-bold">Alex J.</span> submitted proof for <span class="text-primary font-medium">Park Cleanup</span></p>
+<p class="text-[10px] font-medium text-on-surface-variant mt-1">2 mins ago</p>
+</div>
+</div>
+<div class="p-4 flex gap-4">
+<div class="w-2 h-2 mt-1.5 rounded-full bg-primary flex-shrink-0"></div>
+<div>
+<p class="text-sm text-on-surface leading-tight">New application from <span class="font-bold">Maria L.</span> for <span class="text-primary font-medium">Math Tutoring</span></p>
+<p class="text-[10px] font-medium text-on-surface-variant mt-1">1 hour ago</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar - Shared Component Implementation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] z-50 rounded-t-2xl">
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-['Inter'] text-[11px] font-medium">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+<span class="font-['Inter'] text-[11px] font-medium">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
+<span class="font-['Inter'] text-[11px] font-medium">Reviews</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] text-[11px] font-medium">Profile</span>
+</a>
+</nav>
+</body></html>

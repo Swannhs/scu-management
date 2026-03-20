@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notifications - SCU Social Service</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#e0e3e5",
+              "background": "#f8f9fb",
+              "error": "#ba1a1a",
+              "surface-container-highest": "#e0e3e5",
+              "surface-container-high": "#e6e8ea",
+              "outline": "#6d7a71",
+              "on-secondary-fixed": "#002112",
+              "surface-tint": "#006c46",
+              "on-tertiary-fixed-variant": "#842327",
+              "on-error-container": "#93000a",
+              "inverse-surface": "#2d3133",
+              "surface-container": "#eceef0",
+              "on-tertiary-container": "#5d040f",
+              "on-primary-fixed-variant": "#005234",
+              "on-tertiary-fixed": "#410006",
+              "secondary-fixed": "#bceecf",
+              "secondary-container": "#bceecf",
+              "on-surface": "#191c1e",
+              "primary": "#006c46",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed-variant": "#224f39",
+              "on-primary-container": "#00321f",
+              "surface-container-low": "#f2f4f6",
+              "surface-dim": "#d8dadc",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              "tertiary-container": "#e66d6c",
+              "on-surface-variant": "#3d4a41",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "surface": "#f8f9fb",
+              "primary-fixed": "#79fabb",
+              "tertiary-fixed": "#ffdad8",
+              "secondary-fixed-dim": "#a1d1b4",
+              "primary-fixed-dim": "#5adda0",
+              "primary-container": "#00a76f",
+              "on-primary-fixed": "#002112",
+              "secondary": "#3a674f",
+              "tertiary": "#a33b3c",
+              "outline-variant": "#bccabf",
+              "inverse-on-surface": "#eff1f3",
+              "inverse-primary": "#5adda0",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#f8f9fb",
+              "on-background": "#191c1e",
+              "on-primary": "#ffffff",
+              "on-secondary-container": "#406e55"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .active-pill {
+        background: linear-gradient(135deg, #006c46 0%, #00a76f 100%);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#ffffff]/80 dark:bg-[#191c1e]/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-all text-on-surface">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Public_Sans'] font-bold text-lg tracking-tight text-on-surface">Notifications</h1>
+</div>
+<button class="text-[#00A76F] font-bold text-sm active:scale-95 transition-all">Mark all as read</button>
+</div>
+</header>
+<main class="pt-20 pb-24 px-4 max-w-md mx-auto">
+<!-- Notification Filters -->
+<div class="flex gap-2 overflow-x-auto pb-6 scrollbar-hide">
+<button class="active-pill text-white px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap shadow-md">All</button>
+<button class="bg-surface-container-high text-on-surface-variant px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap hover:scale-102 transition-transform">Applications</button>
+<button class="bg-surface-container-high text-on-surface-variant px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap hover:scale-102 transition-transform">Sessions</button>
+<button class="bg-surface-container-high text-on-surface-variant px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap hover:scale-102 transition-transform">Messages</button>
+</div>
+<!-- Section: Today -->
+<section class="mb-8">
+<h2 class="text-xs font-bold uppercase tracking-widest text-outline mb-4 px-2">Today</h2>
+<div class="space-y-3">
+<!-- Notification Item 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0px_12px_32px_rgba(25,28,30,0.04)] flex gap-4 relative">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface leading-tight">Application Approved</h3>
+<span class="text-[10px] font-medium text-outline">10:45 AM</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-1">Your application for 'City Park Restoration' has been approved.</p>
+<div class="absolute top-4 right-4 w-2 h-2 bg-primary-container rounded-full"></div>
+</div>
+</div>
+<!-- Notification Item 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0px_12px_32px_rgba(25,28,30,0.04)] flex gap-4 relative">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary" data-icon="chat_bubble" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface leading-tight">New Message</h3>
+<span class="text-[10px] font-medium text-outline">09:12 AM</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-3">Coordinator: "Don't forget to bring your ID for tomorrow's session."</p>
+<button class="text-[#00A76F] text-xs font-bold flex items-center gap-1 active:scale-95 transition-all">
+                            Reply Now
+                            <span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<div class="absolute top-4 right-4 w-2 h-2 bg-primary-container rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Yesterday -->
+<section class="mb-8">
+<h2 class="text-xs font-bold uppercase tracking-widest text-outline mb-4 px-2">Yesterday</h2>
+<div class="space-y-3 opacity-80">
+<!-- Notification Item 3 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex gap-4">
+<div class="w-12 h-12 rounded-full bg-outline-variant/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="schedule">schedule</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface leading-tight">Attendance Reminder</h3>
+<span class="text-[10px] font-medium text-outline">4:20 PM</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Please remember to clock in for the Community Kitchen session.</p>
+</div>
+</div>
+<!-- Notification Item 4 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex gap-4">
+<div class="w-12 h-12 rounded-full bg-outline-variant/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="info">info</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface leading-tight">Policy Update</h3>
+<span class="text-[10px] font-medium text-outline">11:00 AM</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">We've updated our volunteering guidelines for 2024.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Empty State Visual Cue (Hidden by default, shown here as a concept) -->
+<!-- 
+        <div class="flex flex-col items-center justify-center py-12 text-center">
+            <div class="w-32 h-32 mb-6 bg-surface-container-high rounded-full flex items-center justify-center">
+                <span class="material-symbols-outlined text-5xl text-outline-variant" data-icon="notifications_off">notifications_off</span>
+            </div>
+            <h3 class="text-lg font-bold text-on-surface">You're all caught up!</h3>
+            <p class="text-sm text-on-surface-variant px-12">No new notifications at the moment. Check back later for updates.</p>
+        </div>
+        -->
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-2xl border-t border-[#bccabf]/15 bg-[#ffffff] dark:bg-[#191c1e] shadow-[0px_-4px_16px_rgba(25,28,30,0.04)]">
+<div class="flex justify-around items-center w-full h-20 px-4 pb-safe">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-[#44474a] dark:text-[#c4c7ca] px-4 py-1 hover:bg-[#f2f4f6] dark:hover:bg-[#2e3133] active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Inter'] text-[11px] font-medium">Home</span>
+</a>
+<!-- Events -->
+<a class="flex flex-col items-center justify-center text-[#44474a] dark:text-[#c4c7ca] px-4 py-1 hover:bg-[#f2f4f6] dark:hover:bg-[#2e3133] active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-['Inter'] text-[11px] font-medium">Events</span>
+</a>
+<!-- Alerts (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-[#00A76F]/10 text-[#00A76F] rounded-xl px-4 py-1 active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="font-['Inter'] text-[11px] font-bold">Alerts</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-[#44474a] dark:text-[#c4c7ca] px-4 py-1 hover:bg-[#f2f4f6] dark:hover:bg-[#2e3133] active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] text-[11px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

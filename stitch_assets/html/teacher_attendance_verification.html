@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface": "#f8f9fb",
+              "on-secondary-container": "#406e55",
+              "primary": "#006c46",
+              "surface-container-highest": "#e0e3e5",
+              "primary-fixed": "#79fabb",
+              "background": "#f8f9fb",
+              "primary-container": "#00a76f",
+              "outline-variant": "#bccabf",
+              "inverse-surface": "#2d3133",
+              "on-background": "#191c1e",
+              "outline": "#6d7a71",
+              "on-tertiary-fixed-variant": "#842327",
+              "inverse-primary": "#5adda0",
+              "on-secondary-fixed": "#002112",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-tertiary-fixed": "#410006",
+              "surface-container-low": "#f2f4f6",
+              "on-secondary": "#ffffff",
+              "on-surface": "#191c1e",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#ffdad8",
+              "tertiary-container": "#e66d6c",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "on-error": "#ffffff",
+              "surface-bright": "#f8f9fb",
+              "on-tertiary": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-container-high": "#e6e8ea",
+              "secondary-fixed": "#bceecf",
+              "surface-tint": "#006c46",
+              "secondary-container": "#bceecf",
+              "inverse-on-surface": "#eff1f3",
+              "secondary": "#3a674f",
+              "on-primary-fixed-variant": "#005234",
+              "tertiary": "#a33b3c",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#eceef0",
+              "surface-dim": "#d8dadc",
+              "on-tertiary-container": "#5d040f",
+              "primary-fixed-dim": "#5adda0",
+              "on-primary-container": "#00321f",
+              "surface-variant": "#e0e3e5",
+              "on-surface-variant": "#3d4a41",
+              "on-primary-fixed": "#002112",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "on-secondary-fixed-variant": "#224f39"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Public Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-[#161c24]/80 backdrop-blur-md fixed top-0 w-full z-50">
+<div class="flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-3">
+<button class="hover:bg-[#919eab]/08 transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[#00a76f]" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Public_Sans'] font-bold text-xl text-[#00a76f]">Attendance Verification</h1>
+</div>
+<button class="hover:bg-[#919eab]/08 transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[#637381]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-4 md:px-8 max-w-5xl mx-auto">
+<!-- Session Hero Information -->
+<section class="mb-8 mt-4">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_12px_32px_rgba(25,28,30,0.04)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/05 rounded-full -mr-16 -mt-16"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary-container/10 text-primary font-semibold px-3 py-1 rounded-full text-xs uppercase tracking-wider">Morning Session</span>
+</div>
+<h2 class="text-2xl font-extrabold text-on-surface mb-3 tracking-tight">City Park Restoration</h2>
+<div class="flex flex-wrap gap-4 text-sm text-outline">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base" data-icon="calendar_today">calendar_today</span>
+<span class="font-medium">Oct 24, 2024</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base" data-icon="location_on">location_on</span>
+<span class="font-medium">Central Sector</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-base" data-icon="groups">groups</span>
+<span class="font-bold">24 Students Registered</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Search and Filter Bar -->
+<section class="mb-6 sticky top-20 z-40 bg-surface/90 backdrop-blur-sm py-2">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="w-full bg-surface-container-high border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all text-on-surface placeholder:text-outline/60 shadow-sm" placeholder="Search students by name or ID..." type="text"/>
+</div>
+</section>
+<!-- Student Attendance List -->
+<section class="space-y-3">
+<!-- Student Row 1: Checked In -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Close up portrait of male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4QwPeabI9i1GrFIftRNFXkVS8ACs4UCl92YTID-XDjHfPTfyDwoBOPQyL6FkXHxIn4QC3oTtyAPkApqxzmRjZqU-5ldL81UBF93r20en_rdNMWu1bXWqoonLkWwQjtnl0iuIdOGrEo175xLAnLjF6Kn0vGdF5zPxk2BVEmURxxtSEKrM_AxcvW2o2_ir-eDbQiOMWktV4BF84_n4Em5mQy4YNSRy2LxsNWOR127u8Mnc01ihjxDF-iay6ZJgzIRGOLPkDjvjXarf4"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-primary rounded-full border-2 border-white"></div>
+</div>
+<div>
+<h3 class="font-semibold text-on-surface">Alex Thompson</h3>
+<p class="text-xs text-outline font-medium tracking-wide">ID: #STU-2901</p>
+</div>
+</div>
+<div class="flex items-center bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-1.5 rounded-md text-xs font-bold bg-primary text-on-primary shadow-sm transition-all">Checked In</button>
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-error transition-colors">Absent</button>
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-on-surface-variant transition-colors">Excused</button>
+</div>
+</div>
+<!-- Student Row 2: Default/Pending -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of smiling female student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDMQTlP6rmi6SPqe5qYCVUZgQwv58atBCWYzhaxwYS6fhDvBZ3bmSGrTEDpfOS2olouz1dU6pozSpx3PIcycU0YYNlqTwSnTHnRhR0DjaD0b3a7F3CzxA8RHUtKRX8CWxhir-Qe3ShJ_kqlFtAF1W83rkriyOzCoFoLCiLPtpKCOMtIN-xz1Ok11g-qHBzxsJ8Tf5deIo1ROntsxKufUj0M5XjjEQFSo2soVbTmamTMy882jmXvBXfV3xu2R4tIUakCGOhHMvAizEk"/>
+<div>
+<h3 class="font-semibold text-on-surface">Sarah Jenkins</h3>
+<p class="text-xs text-outline font-medium tracking-wide">ID: #STU-3142</p>
+</div>
+</div>
+<div class="flex items-center bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-primary transition-colors">Checked In</button>
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-error transition-colors">Absent</button>
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-on-surface-variant transition-colors">Excused</button>
+</div>
+</div>
+<!-- Student Row 3: Absent -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between shadow-sm hover:shadow-md transition-shadow opacity-90">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of male college student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYeEMjw1GINDPr7wcutPYmPoGcsyTGXqr2he1jXrNJBvYIdG0wxtu1KzBfdafYykFGyqZwSJvscF9qjBDKjgeOrzeRPbjvIo5WOhXBM9p5K4jwdTMpidBoq9lX9TElo7Cw9F67mHb8jFKaw4Z_IgjQrgyTMUZfSBRIX6-FQQ9HOhP5OzN5Xq-ZmbKWu9yR9GEqALmMzgK5Kj1b3NgqaOMEiPn_jIx8_pinnGthCZ_UtLBlrwtiIMkGa7eSaF0wGaV81bg-bVJAGrZ9"/>
+<div>
+<h3 class="font-semibold text-on-surface">Marcus Wei</h3>
+<p class="text-xs text-outline font-medium tracking-wide">ID: #STU-8821</p>
+</div>
+</div>
+<div class="flex items-center bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-primary transition-colors">Checked In</button>
+<button class="px-4 py-1.5 rounded-md text-xs font-bold bg-error text-on-error shadow-sm">Absent</button>
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-on-surface-variant transition-colors">Excused</button>
+</div>
+</div>
+<!-- Student Row 4: Excused -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of female university student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyX4jtH_9op4qle78T3nNye0egpHwOHc3PXhDsVfdZ6kvdq0qShtIu6wAxn7Wvpk6hTSrdG8val1iELBcD5oP0d06IiLC9TvRkmTyBNH7600SsisORj9qYnR-bD2aIzekjWOxFkYknKiZLf1G9LoV25OCGEy0kQs9L0Rw-Wtx7VN2m4jbEsRzVPmlYZwr8EJmKVCJzYEv2gqKCSyO6Gd_b_vTO7UVd50ZcvLAItZ7LDdd3nPMrGyP_0iGPU91sWMcnu0KY5EhM01dk"/>
+<div>
+<h3 class="font-semibold text-on-surface">Elena Rodriguez</h3>
+<p class="text-xs text-outline font-medium tracking-wide">ID: #STU-4402</p>
+</div>
+</div>
+<div class="flex items-center bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-primary transition-colors">Checked In</button>
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-error transition-colors">Absent</button>
+<button class="px-4 py-1.5 rounded-md text-xs font-bold bg-outline text-white shadow-sm">Excused</button>
+</div>
+</div>
+<!-- Student Row 5: Pending -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Profile photo of male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN55jsgeVPj9sSl-tqwc8CQZxmTgY70FmArsj5kNkvzKliyxyHqXNeLPIVfkcpdTZfgX8GKo07NEgPvRgYok3bJlspAbz_XWhZh9TRTYimr1FxzfPyWgZYu8uLWVU8MmkCUVfzkVeWoCJcs0KqXo19cF82SGp9NCJvwWewk8-GjihCcEE5hQBpA3p8bmA95zvO5Qm2v2bJWd4INhTROO51deRrX9NxQIM3mz-nvn2IHGNo8I5e-aw_JJ-q2R997gfuyXNECHfuNyWw"/>
+<div>
+<h3 class="font-semibold text-on-surface">Jordan Smith</h3>
+<p class="text-xs text-outline font-medium tracking-wide">ID: #STU-9210</p>
+</div>
+</div>
+<div class="flex items-center bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-primary transition-colors">Checked In</button>
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-error transition-colors">Absent</button>
+<button class="px-4 py-1.5 rounded-md text-xs font-bold text-outline hover:text-on-surface-variant transition-colors">Excused</button>
+</div>
+</div>
+</section>
+<!-- Hidden Empty State (Template for when filter returns no results) -->
+<section class="hidden py-20 flex-col items-center justify-center text-center">
+<div class="w-24 h-24 bg-surface-container-high rounded-full flex items-center justify-center mb-4 text-outline/40">
+<span class="material-symbols-outlined text-5xl" data-icon="person_off">person_off</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-2">No students registered for this session</h3>
+<p class="text-outline text-sm max-w-xs">It looks like the registration list for this specific restoration session is currently empty.</p>
+</section>
+</main>
+<!-- Bottom Action Bar / FAB Wrapper -->
+<div class="fixed bottom-24 left-0 w-full px-4 md:px-0 flex justify-center z-40">
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold py-4 px-10 rounded-xl shadow-[0_12px_32px_rgba(0,167,111,0.24)] active:scale-95 transition-all flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+            Verify All 24 Students
+        </button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-3 bg-white/80 dark:bg-[#161c24]/80 backdrop-blur-md z-50 border-t border-[#919eab]/20 shadow-[0_-12px_32px_rgba(25,28,30,0.04)] rounded-t-2xl">
+<a class="flex flex-col items-center justify-center text-[#00a76f] bg-[#00a76f]/08 rounded-xl px-3 py-1 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-['Public_Sans'] text-[10px] font-semibold">Sessions</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#637381] hover:text-[#00a76f] active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-['Public_Sans'] text-[10px] font-semibold">Students</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#637381] hover:text-[#00a76f] active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-['Public_Sans'] text-[10px] font-semibold">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#637381] hover:text-[#00a76f] active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Public_Sans'] text-[10px] font-semibold">Settings</span>
+</a>
+</nav>
+</body></html>

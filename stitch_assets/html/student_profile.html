@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Profile - Social Service App</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Public+Sans:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f2f4f6",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-primary": "#ffffff",
+              "on-primary-fixed-variant": "#005234",
+              "surface-container-high": "#e6e8ea",
+              "primary-fixed-dim": "#5adda0",
+              "surface-container-highest": "#e0e3e5",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#e66d6c",
+              "on-surface": "#191c1e",
+              "tertiary": "#a33b3c",
+              "error": "#ba1a1a",
+              "surface": "#f8f9fb",
+              "background": "#f8f9fb",
+              "primary": "#006c46",
+              "on-secondary-container": "#406e55",
+              "surface-bright": "#f8f9fb",
+              "primary-fixed": "#79fabb",
+              "surface-dim": "#d8dadc",
+              "tertiary-fixed": "#ffdad8",
+              "on-tertiary": "#ffffff",
+              "secondary-container": "#bceecf",
+              "outline": "#6d7a71",
+              "on-primary-fixed": "#002112",
+              "on-primary-container": "#00321f",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed-variant": "#842327",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#bceecf",
+              "primary-container": "#00a76f",
+              "surface-variant": "#e0e3e5",
+              "outline-variant": "#bccabf",
+              "secondary": "#3a674f",
+              "on-secondary-fixed-variant": "#224f39",
+              "on-secondary-fixed": "#002112",
+              "inverse-primary": "#5adda0",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "surface-tint": "#006c46",
+              "on-background": "#191c1e",
+              "on-surface-variant": "#3d4a41",
+              "on-error": "#ffffff",
+              "inverse-surface": "#2d3133",
+              "on-tertiary-container": "#5d040f",
+              "on-error-container": "#93000a",
+              "inverse-on-surface": "#eff1f3",
+              "surface-container": "#eceef0",
+              "on-tertiary-fixed": "#410006"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.75rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8f9fb;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<button class="hover:scale-105 transition-transform active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-400">arrow_back</span>
+</button>
+<h1 class="font-['Public_Sans'] font-bold tracking-tight text-xl text-slate-900">Student Profile</h1>
+<button class="hover:scale-105 transition-transform active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-400">settings</span>
+</button>
+</header>
+<main class="pt-20 pb-28 px-4 max-w-md mx-auto space-y-8">
+<!-- Header Profile Section -->
+<section class="relative flex flex-col items-center text-center space-y-4 pt-4">
+<div class="relative">
+<div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-primary to-primary-container">
+<img alt="Alex Johnson" class="w-full h-full rounded-full object-cover border-4 border-white shadow-sm" data-alt="Close up portrait of a young man smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXOmWAqemFsjKXLTvzcCPsn3issiPrbyORixzTCXyyJ2EwIFqMEqIPrxqtQTF5MidvPIgBk0lLG0zRshYwtS9EDYNWnY4y3Idzy7YlKgYMiC5b4H3hsAc6vAEmLmtMqFFPOKRI98vU01Htaqvv6xw1HZ1qfnsq7lSQZzcHq7thtWPPn77yqCK089YPhHhVVIlb7VDSYdiDfmqF6LsfDIjcKfLJ6jqnjrBuW1wV9e8jE74b-6biGeFf49b2sGWaZNZ9BvP9lHgUA3C3"/>
+</div>
+<div class="absolute bottom-1 right-1 bg-primary p-2 rounded-full border-2 border-white text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="space-y-1">
+<h2 class="font-headline font-extrabold text-2xl tracking-tight text-on-surface">Alex Johnson</h2>
+<p class="text-sm font-medium text-primary uppercase tracking-wider">Environmental Science</p>
+<p class="text-xs text-outline font-mono">ID: ST-2024-8842</p>
+</div>
+</section>
+<!-- Impact Metrics Grid -->
+<section class="grid grid-cols-3 gap-3">
+<div class="bg-surface-container-lowest p-4 rounded-xl flex flex-col items-center justify-center space-y-1 hover:scale-102 transition-all">
+<span class="text-xs font-semibold text-outline">Total Hours</span>
+<span class="text-xl font-headline font-bold text-on-surface">45.5h</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl flex flex-col items-center justify-center space-y-1 border-t-2 border-primary-container">
+<span class="text-xs font-semibold text-outline text-primary">Active</span>
+<span class="text-xl font-headline font-bold text-primary">2</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl flex flex-col items-center justify-center space-y-1 hover:scale-102 transition-all">
+<span class="text-xs font-semibold text-outline">Completed</span>
+<span class="text-xl font-headline font-bold text-on-surface">8</span>
+</div>
+</section>
+<!-- Achievements Preview -->
+<section class="space-y-4">
+<div class="flex justify-between items-end px-1">
+<h3 class="font-headline font-bold text-lg text-on-surface">Achievements</h3>
+<span class="text-xs font-medium text-primary">View All</span>
+</div>
+<div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar -mx-4 px-4">
+<!-- Badge 1 -->
+<div class="flex-shrink-0 w-28 text-center space-y-2">
+<div class="w-20 h-20 mx-auto rounded-full bg-primary-fixed flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<p class="text-[10px] font-bold leading-tight px-2 text-on-surface">Green Leader</p>
+</div>
+<!-- Badge 2 -->
+<div class="flex-shrink-0 w-28 text-center space-y-2">
+<div class="w-20 h-20 mx-auto rounded-full bg-secondary-fixed flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+</div>
+<p class="text-[10px] font-bold leading-tight px-2 text-on-surface">Top Volunteer</p>
+</div>
+<!-- Badge 3 -->
+<div class="flex-shrink-0 w-28 text-center space-y-2">
+<div class="w-20 h-20 mx-auto rounded-full bg-surface-container-high flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-outline text-3xl" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<p class="text-[10px] font-bold leading-tight px-2 text-on-surface">20h Milestone</p>
+</div>
+<!-- Badge 4 (Placeholder/Next) -->
+<div class="flex-shrink-0 w-28 text-center space-y-2 opacity-40">
+<div class="w-20 h-20 mx-auto rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-3xl">lock</span>
+</div>
+<p class="text-[10px] font-bold leading-tight px-2 text-outline">Next Goal</p>
+</div>
+</div>
+</section>
+<!-- Quick Links / History -->
+<section class="space-y-4">
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<div class="p-1">
+<!-- History Link -->
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">history</span>
+</div>
+<span class="font-medium text-sm text-on-surface">Full Service History</span>
+</div>
+<span class="material-symbols-outlined text-outline text-sm">chevron_right</span>
+</button>
+<!-- Certificates Link -->
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">card_membership</span>
+</div>
+<span class="font-medium text-sm text-on-surface">My Certificates</span>
+</div>
+<span class="material-symbols-outlined text-outline text-sm">chevron_right</span>
+</button>
+<!-- Impact Report Link -->
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">query_stats</span>
+</div>
+<span class="font-medium text-sm text-on-surface">Impact Report</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="bg-primary-container text-white text-[10px] font-bold px-2 py-0.5 rounded-full">NEW</span>
+<span class="material-symbols-outlined text-outline text-sm">chevron_right</span>
+</div>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_20px_0_rgba(0,0,0,0.03)] z-50 rounded-t-2xl">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 scale-102 transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-medium font-['Inter']">Impact</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 scale-102 transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="text-[10px] font-medium font-['Inter']">History</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#00A76F]/10 text-[#00A76F] rounded-xl px-3 py-1 scale-102 transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-medium font-['Inter']">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 scale-102 transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="text-[10px] font-medium font-['Inter']">Goals</span>
+</a>
+</nav>
+</body></html>

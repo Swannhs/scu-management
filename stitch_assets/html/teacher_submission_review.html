@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Review Submission - EduServe</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#3d4a41",
+              "error-container": "#ffdad6",
+              "outline-variant": "#bccabf",
+              "surface-tint": "#006c46",
+              "secondary-container": "#bceecf",
+              "surface-dim": "#d8dadc",
+              "on-tertiary-container": "#5d040f",
+              "on-secondary-container": "#406e55",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#ffdad8",
+              "inverse-primary": "#5adda0",
+              "surface-bright": "#f8f9fb",
+              "on-primary": "#ffffff",
+              "on-error-container": "#93000a",
+              "error": "#ba1a1a",
+              "on-primary-fixed-variant": "#005234",
+              "surface-container-low": "#f2f4f6",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-highest": "#e0e3e5",
+              "surface-container-high": "#e6e8ea",
+              "secondary-fixed": "#bceecf",
+              "primary-container": "#00a76f",
+              "surface": "#f8f9fb",
+              "inverse-on-surface": "#eff1f3",
+              "background": "#f8f9fb",
+              "inverse-surface": "#2d3133",
+              "on-primary-container": "#00321f",
+              "tertiary-container": "#e66d6c",
+              "surface-variant": "#e0e3e5",
+              "on-primary-fixed": "#002112",
+              "surface-container": "#eceef0",
+              "primary": "#006c46",
+              "on-secondary-fixed": "#002112",
+              "on-tertiary-fixed-variant": "#842327",
+              "on-tertiary-fixed": "#410006",
+              "outline": "#6d7a71",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "secondary": "#3a674f",
+              "tertiary": "#a33b3c",
+              "on-secondary": "#ffffff",
+              "on-surface": "#191c1e",
+              "primary-fixed": "#79fabb",
+              "primary-fixed-dim": "#5adda0",
+              "on-secondary-fixed-variant": "#224f39",
+              "on-background": "#191c1e"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        -webkit-tap-highlight-color: transparent;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<!-- The TopAppBar uses "Review" as active intent logic from the JSON "Review" label -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 text-slate-500">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-black text-emerald-600 dark:text-emerald-400 font-headline tracking-tight">Review Submission</h1>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400">notifications</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Teacher Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a professional teacher" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBouRvT_eiFwsVjY1hOUdRrgDvJtezIF8iyqAyLh8lVPCmWFQjf4_2iMwSJqXzfLycM0e0KUWWSfdw2rNxtd3rcMvWCbTL6Vs4opb7ytVuuhCa33qrEDBsR62UwjjrgL_fxFA0ydY2PSCaVav2RqfgAFH3Uv1vbNdcvapHY69EPScCyxVxMQb-F4xLD0Dzo-aqdz2lHbmRivK5F7JLAWmfMelTRC5p_z4KClcF0cU3syMezyKpH-MgZGzu1MTRof4VEhgueFBKtsil8"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-40 px-5 max-w-md mx-auto space-y-6">
+<!-- Student Summary Card -->
+<section class="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_12px_32px_rgba(25,28,30,0.04)] flex items-center gap-4">
+<div class="relative">
+<img alt="Student Avatar" class="w-16 h-16 rounded-full object-cover" data-alt="Student Alex Rivera smiling in a headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgFUWdV_SWg1HqKQU5DUaeyzr9_8XRYaotvc2NGPGJR80iYui23FIKpJmRzPvccxnFKsE790w8NtKYCwzZUti7Thbgq9KxpJTquaAJZrqSSNKA4x1-IuZ9bBt0_Wf8MkeN_ErX9Ed2YQf1RafOspPfc05jdKfiR4qnHGD3mnkLSPES2xC5Dh2f8-ekdAK4Z_V8d3wgH4ll7RD_qMK3Aory2vZYM6IkfkUVBQzAOMmr2S1eqRIwRtn_J5y_adrrWLM3sU-JE2eDHKaM"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-primary rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-1">
+<h2 class="font-headline font-bold text-lg leading-tight">Alex Rivera</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-semibold px-2 py-0.5 bg-surface-container-high rounded text-on-surface-variant">ID: 294021</span>
+<span class="text-xs font-semibold px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded">Grade 11-B</span>
+</div>
+</div>
+</section>
+<!-- Service Context Card -->
+<section class="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_12px_32px_rgba(25,28,30,0.04)] space-y-3">
+<div class="flex justify-between items-start">
+<div>
+<span class="text-[10px] uppercase font-bold tracking-wider text-outline">Project Title</span>
+<h3 class="font-headline font-bold text-primary">City Park Restoration</h3>
+</div>
+<div class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                    4.0 Hours
+                </div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2 border-t border-outline-variant/10">
+<div>
+<span class="text-[10px] uppercase font-bold tracking-wider text-outline">Date</span>
+<p class="text-sm font-semibold">Oct 24, 2023</p>
+</div>
+<div>
+<span class="text-[10px] uppercase font-bold tracking-wider text-outline">Location</span>
+<p class="text-sm font-semibold truncate">Central District Park</p>
+</div>
+</div>
+</section>
+<!-- Submitted Proof Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-1">
+<h4 class="font-headline font-bold text-on-surface-variant">Submitted Proof</h4>
+<button class="text-primary text-xs font-bold uppercase tracking-wide">View Fullscreen</button>
+</div>
+<div class="group relative rounded-2xl overflow-hidden bg-surface-container-high aspect-[4/3] shadow-md border border-white/40">
+<img alt="Proof Photo" class="w-full h-full object-cover" data-alt="Student working on planting trees in a park" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkXXoW0yV_EK7yG2YWNLx9pRjMX0yq7Vqie68l-eVBj7uiIAL9cEx-si28nG9lf7C-iOj_gMrfAjfwuruPKsUz9Yj-GX_4cqjTQRUW6MBAOM_GjT1DIaDKk24S0BWMpEUO-7hreQRhidwHaeOmPs7AOdlXka1x57MS1934mZQT9XTEQLqPq5b3zvRJLBjFtoATTT3rxUUHEpbm7NJtTsPBGs_7j6mbBGux4jDox_xla3SLxpn_jJd2CpYAc6j0DsYmOE_SJsus2LRf"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<p class="text-white text-xs font-medium">Timestamped: 2023-10-24 14:32:11</p>
+</div>
+</div>
+<!-- Reflection Block -->
+<div class="bg-surface-container-low rounded-xl p-5 border border-outline-variant/5">
+<span class="text-[10px] uppercase font-bold tracking-wider text-outline block mb-2">Student Reflection</span>
+<p class="text-sm leading-relaxed text-on-surface-variant italic">
+                    "Today we focused on clearing the debris from the north quadrant. It was challenging because of the recent rain, but we managed to prepare three new soil beds for the native wildflower seeding. I learned about soil drainage and local biodiversity."
+                </p>
+</div>
+</section>
+<!-- Feedback Note Area -->
+<section class="space-y-3">
+<label class="font-headline font-bold text-on-surface-variant px-1 block" for="feedback">Internal Feedback &amp; Notes</label>
+<div class="relative group">
+<textarea class="w-full bg-surface-container-high border-none rounded-xl p-4 text-sm focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline" id="feedback" placeholder="Provide feedback or reasons for decision..." rows="3"></textarea>
+<div class="absolute bottom-3 right-3 opacity-30">
+<span class="material-symbols-outlined text-sm">edit_note</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Fixed Action Bar -->
+<footer class="fixed bottom-0 left-0 w-full bg-white dark:bg-slate-900 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] px-6 pt-4 pb-8 z-50">
+<div class="max-w-md mx-auto space-y-4">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-white py-4 rounded-xl font-headline font-bold text-base shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+                Approve Submission
+            </button>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 border border-outline/20 text-on-surface-variant py-3 rounded-xl font-bold text-sm hover:bg-surface-container-low active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm text-slate-500">history</span>
+                    Resubmit
+                </button>
+<button class="flex items-center justify-center gap-2 border border-error/20 text-error py-3 rounded-xl font-bold text-sm hover:bg-error-container/30 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">block</span>
+                    Reject
+                </button>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation Shell - Semantic Implementation -->
+<!-- Suppressed based on "Task-Focused/Transactional" rule - this is a review flow with back action -->
+</body></html>

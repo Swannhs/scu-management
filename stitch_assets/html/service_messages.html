@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Messages - Campus Social Service</title>
+<!-- Public Sans & Inter Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-high": "#e6e8ea",
+              "secondary": "#3a674f",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f2f4f6",
+              "outline-variant": "#bccabf",
+              "surface-dim": "#d8dadc",
+              "tertiary-container": "#e66d6c",
+              "surface-tint": "#006c46",
+              "surface-bright": "#f8f9fb",
+              "primary-container": "#00a76f",
+              "on-error": "#ffffff",
+              "on-secondary-fixed": "#002112",
+              "inverse-surface": "#2d3133",
+              "on-surface-variant": "#3d4a41",
+              "on-secondary-fixed-variant": "#224f39",
+              "on-secondary-container": "#406e55",
+              "on-error-container": "#93000a",
+              "secondary-fixed-dim": "#a1d1b4",
+              "tertiary-fixed": "#ffdad8",
+              "on-tertiary-fixed-variant": "#842327",
+              "on-secondary": "#ffffff",
+              "surface": "#f8f9fb",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed": "#002112",
+              "on-primary-fixed-variant": "#005234",
+              "primary-fixed-dim": "#5adda0",
+              "on-tertiary-container": "#5d040f",
+              "error": "#ba1a1a",
+              "tertiary": "#a33b3c",
+              "primary": "#006c46",
+              "outline": "#6d7a71",
+              "surface-container-highest": "#e0e3e5",
+              "inverse-on-surface": "#eff1f3",
+              "on-tertiary-fixed": "#410006",
+              "on-background": "#191c1e",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "surface-container": "#eceef0",
+              "secondary-container": "#bceecf",
+              "background": "#f8f9fb",
+              "inverse-primary": "#5adda0",
+              "primary-fixed": "#79fabb",
+              "on-surface": "#191c1e",
+              "secondary-fixed": "#bceecf",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e0e3e5",
+              "on-primary-container": "#00321f"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.75rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+      }
+      .hide-scrollbar::-webkit-scrollbar { display: none; }
+      .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline font-bold text-xl tracking-tight text-on-surface">Messages</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-slate-500 hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant/20">
+<img alt="" class="w-full h-full object-cover" data-alt="User profile circular avatar photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ2GmITN6dTAquAF-xq4iboRvD8VTWAW18wmyRvH759i8w9l_vXNVGeqrPnxY2-7mKPDJi2hu9NPmceoiXmGtsXn14DZMXM_P7GbT6d59veDJP3ji3Eh7fMGqB0MUeyoZaN1YZi3yUSx7BjgM4MxechkT7kLRpXu0kqTqXWGhFNxTaDoIUEeeqwTIaD_deHUC4kecAIpeIuP-JeQA6HDNQNhRjqcpHG1tM3KGv05wqGD19iPYeemAxbiWuf4Xe2rwgTsxpWR6Z7qdd"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-24 px-4 max-w-md mx-auto min-h-screen">
+<!-- Search/Filter Subtle Bar -->
+<div class="mb-6 px-2">
+<div class="bg-surface-container-low rounded-xl px-4 py-3 flex items-center gap-3 text-on-surface-variant/60">
+<span class="material-symbols-outlined text-sm" data-icon="search">search</span>
+<span class="text-sm font-medium">Search conversations...</span>
+</div>
+</div>
+<!-- Chat List -->
+<div class="flex flex-col gap-2">
+<!-- Item 1: Unread -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex gap-4 items-center shadow-[0px_12px_32px_rgba(25,28,30,0.04)] ring-1 ring-primary/5 hover:scale-102 active:scale-95 transition-transform cursor-pointer">
+<div class="relative flex-shrink-0">
+<img alt="" class="w-14 h-14 rounded-xl object-cover" data-alt="Female user portrait for avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSzIExo3mIvS-4hAZWyB9bfjr-s_JxW9XJDSlxPDhVU1n3sg_40zNdigecdq-m8oEjtDEhJGq8IoRvkNZyWH8f_62n6LI2XpfPzP24tv9k7s7vvYV3tiVAQiKxpXx7rnEgulKMJTm75oNrG7NxsvPmGYtjG9UW4_nxbcrx3XZ36FtVDxSikeasys6hDwgqkBZeVYDG6P9jBYmjKHOt_6wmKgAsBEENmd9pi7JIdz-loeh5n0UeN0Y4ighKCQc-f67iQdLkk4j5TODA"/>
+<div class="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full border-2 border-white flex items-center justify-center">
+<span class="text-[8px] text-white font-bold">2</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-0.5">
+<h3 class="font-headline font-bold text-on-surface truncate">Sarah Jenkins</h3>
+<span class="text-[10px] font-semibold text-primary">10:45 AM</span>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-[9px] font-bold tracking-wide uppercase">City Park Restoration</span>
+</div>
+<p class="text-sm font-semibold text-on-surface truncate">I've just uploaded the final site maps for tomorrow's shift.</p>
+</div>
+</div>
+<!-- Item 2: Unread High Importance -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex gap-4 items-center shadow-[0px_12px_32px_rgba(25,28,30,0.04)] ring-1 ring-primary/5 hover:scale-102 active:scale-95 transition-transform cursor-pointer">
+<div class="relative flex-shrink-0">
+<div class="w-14 h-14 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+</div>
+<div class="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full border-2 border-white flex items-center justify-center">
+<span class="text-[8px] text-white font-bold">1</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-0.5">
+<h3 class="font-headline font-bold text-on-surface truncate">Coordinator</h3>
+<span class="text-[10px] font-semibold text-primary">9:12 AM</span>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full text-[9px] font-bold tracking-wide uppercase">General Admin</span>
+</div>
+<p class="text-sm font-semibold text-on-surface truncate">Please confirm your attendance for the Friday workshop.</p>
+</div>
+</div>
+<!-- Item 3: Read -->
+<div class="bg-transparent rounded-2xl p-4 flex gap-4 items-center hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="relative flex-shrink-0">
+<img alt="" class="w-14 h-14 rounded-xl object-cover grayscale opacity-80" data-alt="Male user portrait for avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHSntQ984aOhWNnzlrmTfGo4eYIuDbq1_ePFsOPYqqxnJTA7pA9SLhXh2CzXGgGYHfkgPO-dN1uHn65FmUg3h7WGPPRGjF4novg0ScO-B3KHk4C9Hfc5t_8MEBaGG0XR4G3n09dnK8Ds7UEvaqzMjLjTjW_mYlmQYANM21Gxnxw5WvhKdfc4wE3bKP3e3xfBlEhh2HB7x4VQ2AaVYYuLO1GwpdqIZn2lz72aYbSk0cSuUMCjkujJqXeg8DhrYfxAsU3_tSMmLBD-9W"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-0.5">
+<h3 class="font-headline font-medium text-on-surface-variant truncate">Marcus Thorne</h3>
+<span class="text-[10px] text-slate-400">Yesterday</span>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full text-[9px] font-bold tracking-wide uppercase">Tutoring Program</span>
+</div>
+<p class="text-sm text-slate-500 truncate">Thanks for the help with the math curriculum, it really made a difference.</p>
+</div>
+</div>
+<!-- Item 4: Read -->
+<div class="bg-transparent rounded-2xl p-4 flex gap-4 items-center hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="relative flex-shrink-0">
+<img alt="" class="w-14 h-14 rounded-xl object-cover opacity-80" data-alt="Professional female portrait avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT0njqFdKB_j1wQOrXWRHy0njGKNd0jUCg5EWGo9k31FslbjTuT1U_Q3EZsdCL2RjDDCocVS0aIAgoJgkPlFAPS7xob4S-yZp-ES3Y03__i75Gcl3YH0de-RKOMAzMbqZAg7WDcPNzocOmp0epIXGHco3AAshMnkZLMMa36xuQPhr5q8cHiMWRm-GTRcazclCLiTAIVeMoJrA8LX5OnXq3a4I2FHVNjHaZWaZCuww5bpOmpjsKM8OgF9v02h_ec7YnTTlmHIqpVARa"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-0.5">
+<h3 class="font-headline font-medium text-on-surface-variant truncate">Elena Rodriguez</h3>
+<span class="text-[10px] text-slate-400">Tuesday</span>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-primary/5 text-primary/70 px-2 py-0.5 rounded-full text-[9px] font-bold tracking-wide uppercase">Community Kitchen</span>
+</div>
+<p class="text-sm text-slate-500 truncate">The inventory count is finished. We need more dry goods for next week.</p>
+</div>
+</div>
+<!-- Item 5: Read -->
+<div class="bg-transparent rounded-2xl p-4 flex gap-4 items-center hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="relative flex-shrink-0">
+<img alt="" class="w-14 h-14 rounded-xl object-cover opacity-80" data-alt="Male student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtlyCO0DqAKrFbxz9z91krZH25VLPqht3u6bmOE7uS-SGwSdzR2s1MojTmMjkGOS-EGc8bDnBvUdnV-4hXRHqkxrWJBnN7NzN0peeQwjWo1_syD9cvoKWjOvXXo3DsfnDk2M1BbZMqAPfHWBdyLjnNfEDvhyHwK0CaF79cZ9wHsLP_ff6cMp6s9RR4XXfvC5wzzJebKA72AmUuaf4mNeI_TpF3gPfVbkPAaVHilcjuv6BTsZwrGGDKhkdFi58mzymbL-ISNUS4xPVT"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-0.5">
+<h3 class="font-headline font-medium text-on-surface-variant truncate">David Kim</h3>
+<span class="text-[10px] text-slate-400">Oct 12</span>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full text-[9px] font-bold tracking-wide uppercase">Beach Clean Up</span>
+</div>
+<p class="text-sm text-slate-500 truncate">I left the equipment in the storage locker near the pier.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for New Message -->
+<button class="fixed right-6 bottom-24 w-14 h-14 bg-gradient-to-br from-primary to-primary-container text-white rounded-2xl shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">edit_square</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-safe bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-t-2xl z-50 border-t border-slate-100 dark:border-slate-800 shadow-[0px_-4px_20px_0px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Inter'] font-medium text-[10px] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+<span class="font-['Inter'] font-medium text-[10px] mt-1">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-4 py-1 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<span class="font-['Inter'] font-medium text-[10px] mt-1">Chats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] font-medium text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

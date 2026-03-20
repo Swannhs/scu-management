@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Application Submitted</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-bright": "#f8f9fb",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "secondary": "#3a674f",
+                        "on-surface-variant": "#3d4a41",
+                        "on-tertiary-fixed-variant": "#842327",
+                        "primary-fixed": "#79fabb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-fixed": "#002112",
+                        "secondary-container": "#bceecf",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#410006",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-container": "#eceef0",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#5d040f",
+                        "on-secondary": "#ffffff",
+                        "primary": "#006c46",
+                        "surface-tint": "#006c46",
+                        "background": "#f8f9fb",
+                        "primary-fixed-dim": "#5adda0",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#bceecf",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "tertiary": "#a33b3c",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed-dim": "#a1d1b4",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d8dadc",
+                        "outline-variant": "#bccabf",
+                        "on-primary-fixed-variant": "#005234",
+                        "on-primary-fixed": "#002112",
+                        "primary-container": "#00a76f",
+                        "on-primary-container": "#00321f",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#e66d6c",
+                        "surface-variant": "#e0e3e5",
+                        "on-background": "#191c1e",
+                        "surface": "#f8f9fb",
+                        "outline": "#6d7a71",
+                        "on-secondary-container": "#406e55",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-fixed-variant": "#224f39",
+                        "inverse-primary": "#5adda0"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Public Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none h-16 flex items-center justify-between px-6">
+<div class="flex items-center gap-4">
+<button class="text-slate-500 dark:text-slate-400 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h1 class="font-['Public_Sans'] font-bold text-lg tracking-tight text-[#00A76F]">Submission Status</h1>
+</div>
+<div class="w-8"></div> <!-- Spacer for centering feel -->
+</header>
+<main class="pt-24 pb-32 px-6 max-w-md mx-auto">
+<!-- Success Confirmation Header -->
+<section class="flex flex-col items-center text-center mb-10">
+<div class="w-24 h-24 bg-primary-container/10 rounded-full flex items-center justify-center mb-6 scale-105 transition-transform duration-500">
+<div class="w-16 h-16 bg-gradient-to-br from-primary to-primary-container rounded-full flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+</div>
+<h2 class="text-3xl font-black text-on-surface mb-2 tracking-tight">Application Submitted!</h2>
+<p class="text-on-surface-variant text-sm px-4">Great work! Your contribution makes a real difference in our community.</p>
+</section>
+<!-- Opportunity Summary Card (Bento/Minimal Style) -->
+<section class="bg-surface-container-lowest rounded-xl p-5 mb-6 shadow-[0px_12px_32px_rgba(25,28,30,0.04)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16"></div>
+<div class="flex items-start justify-between mb-4 relative z-10">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1 block">Selected Service</span>
+<h3 class="text-xl font-bold text-on-surface leading-tight">City Park Restoration</h3>
+</div>
+<div class="bg-secondary-container/30 p-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="park">park</span>
+</div>
+</div>
+<div class="space-y-3 relative z-10">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="calendar_today">calendar_today</span>
+<span class="text-sm font-medium">Saturday, Oct 24 • 09:00 AM</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="location_on">location_on</span>
+<span class="text-sm font-medium">Central Park, North Entrance</span>
+</div>
+</div>
+<div class="mt-5 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
+<div class="flex -space-x-2">
+<img alt="Volunteer" class="w-7 h-7 rounded-full border-2 border-white" data-alt="Volunteer user profile picture small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyVbckrZ7AWSIbuNeRQh6i5Zk36BOUoBZLBUqZo52miMiu-g46216o0JS3_LRH5e4Z9C5cNu7TK4fFc-fCtfX6eF-vnsH8evQXdKv65Yt4tULE7Kv6wnFP5-GNvywYhILt3WlZyrvJUVBDcCf8d21ddeHQBQbSz8nW-Mucj4ShTrqkIhmaWkpm_kDJN57oUOiqZl-L73a_gtd7jDzS8nn0O-laNHXZjJ2bSLPQoQJrxpnkHVnZIS7CPcApXp58F0XOubiyxFSMK1Nh"/>
+<img alt="Volunteer" class="w-7 h-7 rounded-full border-2 border-white" data-alt="Volunteer user profile picture small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDfLrKVVpo_4JK80TpKJVrdDqsAWvCiMfSg-kKXVgpJ3kDmVYb-5zzQ-AuCvj7JQ0p1jFbmxh5PZn949q2IkGXl7RKkpBZk2nauOhTcfVdfuTL-9IpXEemea7npwsD2cjQVFrDxnDTc4lBJwOTTC6hamAUqGitr8qn7SOAs9N_ep4bgrIzmYBD4ih4COqvFMdQpr8Xgc-41dCSs4ZpvfFlYxwk5arcgoVuNZJZfGJRsoJpk-QjjwroE-vjPMkG1Gp92R9U9OelsBRw"/>
+<div class="w-7 h-7 rounded-full bg-surface-container-high border-2 border-white flex items-center justify-center text-[10px] font-bold">+12</div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase bg-surface-container px-2 py-1 rounded">Volunteer Team</span>
+</div>
+</section>
+<!-- Next Steps block -->
+<section class="bg-surface-container-low rounded-xl p-5 mb-10">
+<h4 class="text-sm font-bold text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="info">info</span>
+                What happens next?
+            </h4>
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-[10px] text-white font-bold">1</div>
+<div class="w-0.5 h-full bg-outline-variant/30 mt-1"></div>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface">Coordinator Review</p>
+<p class="text-xs text-on-surface-variant mt-0.5 leading-relaxed">Usually takes 2-3 business days. We check all volunteer credentials.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-[10px] text-on-surface-variant font-bold">2</div>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface-variant">Orientation Invite</p>
+<p class="text-xs text-on-surface-variant mt-0.5 leading-relaxed">Once approved, you'll receive a digital welcome kit via email.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Buttons -->
+<div class="space-y-3">
+<button class="w-full h-14 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">
+                View Application Status
+            </button>
+<button class="w-full h-14 bg-transparent border-2 border-outline-variant/20 text-on-surface font-bold rounded-xl hover:bg-surface-container-low transition-colors">
+                Back to Home
+            </button>
+</div>
+</main>
+<!-- BottomNavBar - Suppressed for focused success journey per instructions -->
+</body></html>

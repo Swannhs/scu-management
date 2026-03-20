@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduServe - Submit Proof</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Public Sans & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#eceef0",
+              "on-primary": "#ffffff",
+              "primary-fixed-dim": "#5adda0",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-background": "#191c1e",
+              "on-tertiary-fixed": "#410006",
+              "on-primary-fixed-variant": "#005234",
+              "primary-fixed": "#79fabb",
+              "secondary-fixed-dim": "#a1d1b4",
+              "surface-tint": "#006c46",
+              "surface": "#f8f9fb",
+              "on-secondary-fixed": "#002112",
+              "surface-container-low": "#f2f4f6",
+              "on-tertiary-container": "#5d040f",
+              "surface-container-highest": "#e0e3e5",
+              "surface-bright": "#f8f9fb",
+              "error": "#ba1a1a",
+              "on-surface": "#191c1e",
+              "on-primary-fixed": "#002112",
+              "inverse-surface": "#2d3133",
+              "outline": "#6d7a71",
+              "secondary-container": "#bceecf",
+              "tertiary-fixed": "#ffdad8",
+              "surface-dim": "#d8dadc",
+              "on-surface-variant": "#3d4a41",
+              "primary-container": "#00a76f",
+              "inverse-primary": "#5adda0",
+              "surface-container-high": "#e6e8ea",
+              "secondary-fixed": "#bceecf",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#224f39",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#eff1f3",
+              "background": "#f8f9fb",
+              "tertiary": "#a33b3c",
+              "outline-variant": "#bccabf",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "secondary": "#3a674f",
+              "surface-variant": "#e0e3e5",
+              "tertiary-container": "#e66d6c",
+              "primary": "#006c46",
+              "on-secondary-container": "#406e55",
+              "on-primary-container": "#00321f",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed-variant": "#842327"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Public Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none h-16 flex items-center justify-between px-6">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 duration-200 text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-black text-emerald-700 dark:text-emerald-500 font-public-sans tracking-tight">EduServe</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="h-full w-full object-cover" data-alt="Close up portrait of a male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCypxy8xhywKhxKXtxkfrk8VE3kEttZmuNhD1mu5KEqcVGo8tCCtPAec8Q5gBbZiHoTO4XbAFmx0H1ki5EXPK740v6cERASOSQYB2aji9LiiDKeiuZPuFz5BA9-qbe8Txq6OrAVaYMAueGXIusYsHOuyANVc2Ldct7YN1wIQu5pbpyHVyP5EeZ3t_AFPQZTMPAhkhWRtZ-rUlLby7s6HD3DyNsRPBwPgggayjPR5b5msQ3OvYWVv9ZmI6i922y4Z3c_cXomxN_EFQNp"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-5 max-w-md mx-auto space-y-6">
+<!-- Status Indicator -->
+<div class="flex justify-between items-center">
+<h2 class="text-2xl font-bold tracking-tight text-on-surface">Submit Proof</h2>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Active Session</span>
+</div>
+<!-- Opportunity Summary Card -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_12px_32px_rgba(25,28,30,0.04)] border border-outline-variant/15">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">nature_people</span>
+</div>
+<div>
+<h3 class="text-lg font-bold leading-tight">City Park Restoration</h3>
+<p class="text-on-surface-variant text-sm mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+                        Oct 24, 2023
+                    </p>
+<p class="text-on-surface-variant text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-base">person</span>
+                        Sarah Jenkins (Coordinator)
+                    </p>
+</div>
+</div>
+</div>
+<!-- Form Section -->
+<form class="space-y-6">
+<!-- Hours Input -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant ml-1">Hours worked</label>
+<div class="relative">
+<input class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all text-lg font-medium outline-none" placeholder="e.g. 4.5" step="0.5" type="number"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-medium">hours</span>
+</div>
+</div>
+<!-- Upload Area -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant ml-1">Photo evidence</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container transition-colors group cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary mb-3 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">add_a_photo</span>
+</div>
+<p class="text-on-surface font-semibold text-center leading-tight">Upload Photo</p>
+<p class="text-on-surface-variant text-xs mt-1">or Drag &amp; Drop</p>
+</div>
+</div>
+<!-- Reflection -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant ml-1">Reflection</label>
+<textarea class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all outline-none resize-none" placeholder="What did you learn from this session?" rows="4"></textarea>
+</div>
+<!-- Action Buttons -->
+<div class="pt-4 space-y-3">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold py-4 rounded-xl shadow-lg shadow-primary/20 active:scale-95 transition-transform" type="submit">
+                    Submit for Verification
+                </button>
+<button class="w-full border border-outline-variant/30 text-primary font-bold py-4 rounded-xl hover:bg-primary/5 active:scale-95 transition-transform" type="button">
+                    Save as Draft
+                </button>
+</div>
+</form>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-1 hover:text-emerald-600 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-inter text-xs font-semibold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-xl px-4 py-1 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-inter text-xs font-semibold">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-1 hover:text-emerald-600 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-inter text-xs font-semibold">Hours</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-1 hover:text-emerald-600 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-inter text-xs font-semibold">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Session Check-In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface-variant": "#3d4a41",
+                        "tertiary-container": "#e66d6c",
+                        "outline": "#6d7a71",
+                        "on-secondary-fixed": "#002112",
+                        "tertiary-fixed": "#ffdad8",
+                        "on-tertiary-container": "#5d040f",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#006c46",
+                        "surface-dim": "#d8dadc",
+                        "secondary-container": "#bceecf",
+                        "on-primary-fixed": "#002112",
+                        "surface-bright": "#f8f9fb",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#406e55",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#bceecf",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#00a76f",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#a33b3c",
+                        "on-tertiary-fixed-variant": "#842327",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-high": "#e6e8ea",
+                        "inverse-primary": "#5adda0",
+                        "on-background": "#191c1e",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-surface": "#191c1e",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary-container": "#00321f",
+                        "surface-container": "#eceef0",
+                        "secondary": "#3a674f",
+                        "primary": "#006c46",
+                        "secondary-fixed-dim": "#a1d1b4",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-fixed-variant": "#005234",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "background": "#f8f9fb",
+                        "surface": "#f8f9fb",
+                        "on-secondary-fixed-variant": "#224f39",
+                        "primary-fixed": "#79fabb",
+                        "on-tertiary-fixed": "#410006",
+                        "inverse-on-surface": "#eff1f3",
+                        "outline-variant": "#bccabf",
+                        "on-primary": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9fb;
+            font-family: 'Inter', sans-serif;
+            color: #191c1e;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-500">arrow_back</span>
+</button>
+<h1 class="font-['Public_Sans'] font-bold text-lg tracking-tight text-slate-900 dark:text-slate-50">Session Check-In</h1>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-500">more_vert</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-20 pb-28 px-4 max-w-2xl mx-auto w-full">
+<!-- Status Notification Hero -->
+<div class="mb-8 p-6 rounded-2xl bg-primary-container/10 border border-primary-container/20 flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">how_to_reg</span>
+</div>
+<div>
+<h2 class="font-headline font-bold text-xl text-on-primary-container">Check-in Available</h2>
+<p class="text-on-surface-variant text-sm mt-1">You can now confirm your attendance for today's session. Please check-in before 09:15 AM.</p>
+</div>
+</div>
+<!-- Session Detail Card (Asymmetric Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<div class="md:col-span-2 bg-surface-container-lowest rounded-2xl p-6 shadow-[0_12px_32px_rgba(25,28,30,0.04)]">
+<div class="flex items-center justify-between mb-4">
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">Active Mission</span>
+<span class="text-primary font-bold text-sm">Tomorrow, 09:00 AM</span>
+</div>
+<h3 class="font-headline font-extrabold text-2xl mb-2 tracking-tight">City Park Restoration</h3>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm mb-6">
+<span class="material-symbols-outlined text-base">location_on</span>
+<span>Central Park West Entrance, District 5</span>
+</div>
+<div class="flex -space-x-2 overflow-hidden mb-6">
+<img alt="Volunteer" class="inline-block h-8 w-8 rounded-full ring-2 ring-white" data-alt="Student profile volunteer avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD39wttH5HtNtUWErbfATIVm8qOm6l7NL1VlFdhOzqU7lTs9ibQnI524DDUt_3ULCi_rAwhXsbnZJv4-i_YnIR1sEdcpQiYiffCowDTVL2gonOrBIJWJe8u0fiVa3sgUzeq6V-k-9haL-kmApbj246q5m5THWF11ZXKyUSKTpKLwM_IS9_Vy1wCiBdJ1GarPHcGu0FGZ5T3CplywKQ_6aweoIED-Ha9ey7evQ23Mel-XIjXwenxKBtEPZTz0Czcn8ISzjTKYspDPeb6"/>
+<img alt="Volunteer" class="inline-block h-8 w-8 rounded-full ring-2 ring-white" data-alt="Volunteer student portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTFxuCftqNi35wL1buTJouvsklmW5U71CUa774JrV4Zv8H4ZqaYcaCClR-VqHoRl5M_Y9J1xKFoPwC5H9rH7NK_9S18tfAbLc2wbdT_REGGVpPnzXK_NGuj-Kq2EDjPxUBujyo61K62jZONVNE0zfb-R1iZrhh7eYRaCQXFnb-WwV95YcHk0iuWJ7jQFNqDO9znjHovERHCxl-ZfIHk7J-ioVVtkVISLfSz7zzkD_bOGpUtCBk1mtmvFN714t6QdRUEiVEuDsxD5VF"/>
+<img alt="Volunteer" class="inline-block h-8 w-8 rounded-full ring-2 ring-white" data-alt="Male student volunteer headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLbUmaBPXEVj4yl4DW41rIox_YKHFqk7VOmQVTQ3QTYkpr26d6xgVzhztJcmn1_gDATUDDd8fy0arxInQ-HjUITBqKGiOqdetMpDX4uEZndVZpNZgVukYpBk03XpCO848tDVgPo83rKsNFze5O_HLRG6OVghChN3jNXcVc4ih4qroBbC-9gkIYefcIMXRja1w4nXqq5OSyqpESVSw0pfx7uYtYuFfByqde6NWVFQBY6afYBodVkL3zHMLxCCeZuF228FaSLRolJ-Fz"/>
+<div class="flex items-center justify-center h-8 w-8 rounded-full ring-2 ring-white bg-surface-container-high text-[10px] font-bold">+12</div>
+</div>
+<div class="h-[140px] w-full rounded-xl overflow-hidden relative grayscale-[0.5] opacity-80">
+<img alt="Park Location" class="w-full h-full object-cover" data-alt="Aerial view of city park landscaping" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY7aQYyfdhiF86rX-ZJM7-FARrsPct3ZxzeGaBpb0brzaeR2KVH2dBq-7scHly2jCZ0GTdLSpHCAAuEGbFi01gUeMdL0t9P4cxZF59FKseIu8KKBySktxXhZWVsBGNMoft1OogyhhsW80whLn32SpjR_4X7nqGJWS3qeNzMvOZBt5sZlqnd4NxstlHQv1ycyrdSA08PRCCftEmaeMRwPCsRwFVg82nwHjt6PzjaZ61rG7XihMKe5dFHINBKBnoCsQKqKNXGOnJf_Kf"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-sm text-primary">map</span>
+<span class="text-[10px] font-bold text-slate-800">VIEW MAP</span>
+</div>
+</div>
+</div>
+<!-- Side Metric Card -->
+<div class="flex flex-col gap-4">
+<div class="bg-surface-container-low rounded-2xl p-5 flex flex-col justify-center">
+<p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Duration</p>
+<p class="font-headline font-bold text-xl">4.5 Hours</p>
+<p class="text-xs text-on-surface-variant/60 mt-1">Credits: 12.0 pts</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-5 flex-grow flex flex-col justify-between">
+<div>
+<p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Coordinator</p>
+<p class="font-headline font-bold text-lg">Sarah Jenkins</p>
+</div>
+<button class="mt-4 w-full py-2 bg-white border border-outline-variant/30 rounded-lg text-xs font-bold hover:bg-surface-container-high transition-colors">
+                        Message
+                    </button>
+</div>
+</div>
+</div>
+<!-- Interaction Zone -->
+<div class="space-y-4">
+<!-- Primary Action -->
+<button class="w-full py-5 rounded-xl bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold text-lg shadow-[0_8px_20px_rgba(0,108,70,0.25)] flex items-center justify-center gap-3 transition-transform active:scale-95 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                Confirm Attendance
+            </button>
+<div class="flex items-center justify-center gap-6 py-2">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<span class="text-xs font-bold text-on-surface-variant">Available</span>
+</div>
+<div class="flex items-center gap-2 opacity-40">
+<div class="w-2 h-2 rounded-full bg-slate-400"></div>
+<span class="text-xs font-bold text-on-surface-variant">Completed</span>
+</div>
+<div class="flex items-center gap-2 opacity-40">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-xs font-bold text-on-surface-variant">Missed</span>
+</div>
+</div>
+</div>
+<!-- Success Toast Simulation (hidden by default in real flow, shown here for design context) -->
+<div class="mt-8 bg-inverse-surface text-inverse-on-surface p-4 rounded-xl flex items-center justify-between shadow-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed">verified</span>
+<span class="text-sm font-medium">You're all set! Attendance confirmed.</span>
+</div>
+<button class="text-xs font-bold text-primary-fixed px-3 py-1 hover:bg-white/10 rounded-lg">Undo</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-white dark:bg-slate-900 flex justify-around items-center px-4 pb-6 pt-3 rounded-t-2xl shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-slate-100 dark:border-slate-800">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Schedule</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="how_to_reg" style="font-variation-settings: 'FILL' 1;">how_to_reg</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Attendance</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] text-[11px] font-semibold mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

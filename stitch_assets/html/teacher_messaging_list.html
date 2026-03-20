@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Service Messages</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "background": "#f8f9fb",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-fixed": "#002112",
+                        "primary": "#006c46",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-secondary-fixed": "#002112",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#bceecf",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "inverse-primary": "#5adda0",
+                        "outline": "#6d7a71",
+                        "secondary": "#3a674f",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-background": "#191c1e",
+                        "tertiary-fixed": "#ffdad8",
+                        "tertiary-container": "#e66d6c",
+                        "surface-bright": "#f8f9fb",
+                        "on-primary-fixed-variant": "#005234",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#eceef0",
+                        "secondary-fixed-dim": "#a1d1b4",
+                        "surface-dim": "#d8dadc",
+                        "primary-container": "#00a76f",
+                        "on-primary-container": "#00321f",
+                        "on-tertiary-fixed-variant": "#842327",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#bccabf",
+                        "on-surface-variant": "#3d4a41",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed": "#79fabb",
+                        "on-secondary-container": "#406e55",
+                        "on-tertiary-fixed": "#410006",
+                        "tertiary": "#a33b3c",
+                        "on-secondary-fixed-variant": "#224f39",
+                        "surface": "#f8f9fb",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f2f4f6",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#bceecf",
+                        "surface-tint": "#006c46",
+                        "on-tertiary-container": "#5d040f",
+                        "surface-container-highest": "#e0e3e5"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        .headline-font {
+            font-family: 'Public Sans', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 w-full bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-3">
+<button class="text-neutral-500 hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-['Public_Sans'] font-bold text-lg tracking-tight text-on-surface">Service Messages</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-neutral-500 hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+</header>
+<main class="pb-24">
+<!-- Message List (Action Needed / Unread Priority) -->
+<section class="mt-2">
+<!-- Conversation Row: Priority 1 -->
+<div class="flex items-start gap-4 px-4 py-5 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="relative flex-shrink-0">
+<img alt="Alex Johnson" class="w-14 h-14 rounded-full object-cover" data-alt="Young man with a friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjfzr7Pdb0SgjD5f77sW0onQK_i-q8KQDIDTSO2Clw65tcSRSolEvbXAW5n_h_HNSzSScWlggkPlE09z8J_9H-HWPweXgZo7uZN8g8RGUqQRvKGCEoll7EnNhEahcQ_dT8t3uS8l5b3oU3XhzfyagQpgIFwRIxnD4MBBXYtegi49-MLLk89SRt2Utr2dDHLDPlhxx8CbG67-8FzLdmfWvvi0E3rhk7veVagRyYPgOvJ3xrMrcY0-9m620bIA9zMzCPG8IPHMX9uUbU"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-primary rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-on-surface truncate">Alex Johnson</h3>
+<span class="text-[11px] font-medium text-primary">2 min ago</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container text-[10px] font-bold uppercase tracking-wider">
+                            City Park Restoration
+                        </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold uppercase tracking-wider">
+                            Action Needed
+                        </span>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-1 font-medium">I've completed the initial survey of the north quadrant. What are the next steps for the soil testing?</p>
+</div>
+</div>
+<!-- Conversation Row: Priority 2 -->
+<div class="flex items-start gap-4 px-4 py-5 hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="relative flex-shrink-0">
+<img alt="Sarah Chen" class="w-14 h-14 rounded-full object-cover" data-alt="Young woman with professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkyQaD6T7FsdkhHA1b1Oi2Ycpt2sfRMRwzXW5axKNse0le8gDH3knd-Zx2KWutZrYvyMTTMs5y2OOJi8Qy9nmaCY4C9h5S426-aq_a4ITEA-cyLnKgGQEQIVKIS7xqLYB_jVOUzywJWkFXAFeZDklhOxy0Kjvr9fMUj08-5pfloehmmn8v6txep2CXfXaryp5xItUCs8n89_gmdvRZPn18sshREz9O_PsRM7XrTNQ_TbqISmnGGM-SxYxG9k5XK5EG7KDICEY-yido"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-on-surface truncate">Sarah Chen</h3>
+<span class="text-[11px] font-medium text-neutral-400">1 hour ago</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container text-[10px] font-bold uppercase tracking-wider">
+                            Elderly Care Initiative
+                        </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary text-white text-[10px] font-bold uppercase tracking-wider">
+                            New Message
+                        </span>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-1 font-semibold">The weekend schedule has been updated. Looking forward to the workshop.</p>
+</div>
+<div class="mt-1">
+<div class="w-2.5 h-2.5 bg-primary rounded-full"></div>
+</div>
+</div>
+<!-- Conversation Row: Regular -->
+<div class="flex items-start gap-4 px-4 py-5 hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="relative flex-shrink-0">
+<img alt="Marcus Wright" class="w-14 h-14 rounded-full object-cover" data-alt="Young man with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4QLxXBt7qBeQ7Q34U6Y1ynJuBvWXUABQnkt4vZxzlBuPWpqrTRQpNnNKrKisqOJaDKD1p9uHwdLE70nNyUcms0VVWRf3RHJpJrIhA4LxZMH4qNwPhqEsu5FQFdicVAyiTwsF6i9QlgUeTywX7SJGzNtdv0ixYIBJ0smEOF5_zzPPrkAjms1IsiPyB_mhNEaNIaLkRog7FKkzawW4CUTipsbFSO-7W_lwxyapONr3sqrnmus_kpq533Nt_q3g4v7Uf3d21Fwwt_tKq"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-on-surface truncate">Marcus Wright</h3>
+<span class="text-[11px] font-medium text-neutral-400">Yesterday</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container text-[10px] font-bold uppercase tracking-wider">
+                            Community Literacy
+                        </span>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-1">Thanks for the feedback on my session plan. I'll make those adjustments tonight.</p>
+</div>
+</div>
+<!-- Conversation Row: Regular -->
+<div class="flex items-start gap-4 px-4 py-5 hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="relative flex-shrink-0">
+<img alt="Elena Rodriguez" class="w-14 h-14 rounded-full object-cover" data-alt="Young woman smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8i0Z1b8SqVubYmSuDAy53HZY2cn1uIM9itz8vAld1sKnuHYm2hphzSpx0-NzyZLj5BjZD5yiMiy9WDuAMi3tdGvg9DrpK1yAx4SUfk-lKjDvllm6-u6k9y6wKuUF8WedRJkbkXaNi2z4fEQgLHU6mhv5e1pkSqHiDYazW60mjpouhixBV7qeNM2HHN_DJru7RSywBi26llWnSnHt7Rbj0NPYBoPCaX9Cx864p2VkMJLRdig7FaPRbXGwMCia_H9pRV8DWShYE5tEi"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-on-surface truncate">Elena Rodriguez</h3>
+<span class="text-[11px] font-medium text-neutral-400">2 days ago</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container text-[10px] font-bold uppercase tracking-wider">
+                            Urban Farming Project
+                        </span>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-1">Can we discuss the irrigation logistics during our next check-in?</p>
+</div>
+</div>
+</section>
+<!-- Divider / Spacer -->
+<div class="h-8 bg-surface-container-low/30 my-4"></div>
+<!-- Empty State (Design Guidance) -->
+<section class="px-8 py-12 flex flex-col items-center text-center">
+<div class="w-20 h-20 bg-surface-container rounded-3xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-neutral-300 text-5xl" data-icon="chat_bubble">chat_bubble</span>
+</div>
+<h4 class="font-headline font-bold text-lg text-on-surface mb-2">End of conversations</h4>
+<p class="text-sm text-on-surface-variant max-w-[200px] mx-auto">All your active student interactions are listed above.</p>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl flex justify-around items-center px-2 pb-6 pt-2 z-50 border-t border-neutral-100 dark:border-neutral-800 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-neutral-400 hover:text-[#00A76F] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-['Inter'] text-[10px] font-semibold tracking-wide">Home</span>
+</a>
+<!-- Projects -->
+<a class="flex flex-col items-center justify-center text-neutral-400 hover:text-[#00A76F] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="volunteer_activism">volunteer_activism</span>
+<span class="font-['Inter'] text-[10px] font-semibold tracking-wide">Projects</span>
+</a>
+<!-- Messages (Active) -->
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-0.5" data-icon="chat_bubble" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<span class="font-['Inter'] text-[10px] font-semibold tracking-wide">Messages</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-neutral-400 hover:text-[#00A76F] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="account_circle">account_circle</span>
+<span class="font-['Inter'] text-[10px] font-semibold tracking-wide">Profile</span>
+</a>
+</nav>
+</body></html>
