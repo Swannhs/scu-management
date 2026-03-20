@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-xl">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pt-6 pb-2">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">forum</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Messages</h1>
+</div>
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">edit_square</span>
+</button>
+</div>
+<!-- Search Bar -->
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-slate-200/50 dark:bg-slate-800/50 border-none rounded-xl py-3 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-500" placeholder="Search conversations..." type="text"/>
+</div>
+</header>
+<!-- Active Now Horizontal List -->
+<div class="px-4 py-4">
+<h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">Active Now</h2>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<div class="flex flex-col items-center gap-1 min-w-[64px]">
+<div class="relative">
+<div class="size-14 rounded-full border-2 border-primary p-0.5">
+<img class="size-full rounded-full object-cover" data-alt="Close up portrait of a student smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4I5Cc0yUOK3mL_GplxrhADsd9HqtL4dSuXqCuLpQTO7FqWZ-o6Gv6Sh8VoG0b_1JrpOI-sxsh5f3Aqz9DgBorSL-jUkyD70dETTF6fRdnoZr59u1u7ruJ6eybF9Yt-qB4OAunKDulc2kXKe11y9QNv7FrbGHdhqd6Uo8tCdpKxdqUIEK7IZzcQKGLlEc_3Alj5nBKcvsrfrkDb6Pet-a6Ij9sLw_AZA00YBkeIauMUGJ9S1CYhL_jUHjFe7BqHyUZhNPOOYinWm-y"/>
+</div>
+<div class="absolute bottom-0 right-0 size-3.5 bg-green-500 border-2 border-background-light dark:border-background-dark rounded-full"></div>
+</div>
+<span class="text-[10px] font-medium text-slate-600 dark:text-slate-300">Alex</span>
+</div>
+<div class="flex flex-col items-center gap-1 min-w-[64px]">
+<div class="relative">
+<div class="size-14 rounded-full border-2 border-primary p-0.5">
+<img class="size-full rounded-full object-cover" data-alt="Profile photo of a young woman laughing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_C3EY9NeXc5JHLW0PdIx0qUnYE4QX-dZQYzgh1EEQzMmEvZje8NF5lMkx5Askk9gHgaHKQsPjAEXflwFKlQ2ZpZNM0c4ePiCR89DNUucs7EdCYUy4vXUPpmkTdCvAyLhDzrsjlfy6DyDnUCXQGhtSdP87h4tOgwD0Rm_f75yXvSpPCQOrlcJFbbA1oenNmeklMFkI9u-4DKcLRg_H4U13_416Cm7xEtLCj01PFlqcEPCyoEgcwaKFnxnr338s4AU74-VM-vKfrC0P"/>
+</div>
+<div class="absolute bottom-0 right-0 size-3.5 bg-green-500 border-2 border-background-light dark:border-background-dark rounded-full"></div>
+</div>
+<span class="text-[10px] font-medium text-slate-600 dark:text-slate-300">Sarah</span>
+</div>
+<div class="flex flex-col items-center gap-1 min-w-[64px]">
+<div class="relative">
+<div class="size-14 rounded-full border-2 border-primary/20 p-0.5">
+<img class="size-full rounded-full object-cover" data-alt="Portrait of a male student with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbB78n0ytMrJ2LjC1dY7LbGVVYvwchywKH_SRV9dZ-aQWWkR4hFYYE5YF8jPi394cuFjGJSG43CEdo20-Be52s1wNNemAzXmKyTCYqJEiPGvY1gC1PANWV5iLC1TXeVrUUlL09F18d2etQLrS4IaU93-nkbSi3NvkrFbeBRnEBwSZbvvHvtsPPCaTycV_z-CSxzlG3DAh9raNSxsC1cdyHDUOYlDQ8r2_EGbEhifcCz1ctWhu_HMGDuvx8x0nl-lWRMItXbm3lSra8"/>
+</div>
+<div class="absolute bottom-0 right-0 size-3.5 bg-green-500 border-2 border-background-light dark:border-background-dark rounded-full"></div>
+</div>
+<span class="text-[10px] font-medium text-slate-600 dark:text-slate-300">Jordan</span>
+</div>
+<div class="flex flex-col items-center gap-1 min-w-[64px]">
+<div class="relative">
+<div class="size-14 rounded-full border-2 border-primary/20 p-0.5">
+<img class="size-full rounded-full object-cover" data-alt="Woman with curly hair outdoors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuckli_Uu-e78OHxfbLddrDkTNe6WZSeu6HDXRvwAghPl94U5mucJGASiweyItVfaFIxKf3kwWln1PXybw6QACvy39B4KHdTXq9yH0ODepFLQVKA6b6XcqTiFr5PyVtHw5RxAcVOQkuOGTKBjr8R75jq1vP2JOPTDDEFCTsoII0nICHHyRjwircCGaBieZCpF9ggttNcJWes2wIMycpccXuoOzbpPijemLrFBpeUKcg5sk51bfKEeBJv8EdmefVs3RUX7KsrTlBQL_"/>
+</div>
+<div class="absolute bottom-0 right-0 size-3.5 bg-green-500 border-2 border-background-light dark:border-background-dark rounded-full"></div>
+</div>
+<span class="text-[10px] font-medium text-slate-600 dark:text-slate-300">Mila</span>
+</div>
+<div class="flex flex-col items-center gap-1 min-w-[64px]">
+<div class="relative">
+<div class="size-14 rounded-full border-2 border-primary/20 p-0.5">
+<img class="size-full rounded-full object-cover" data-alt="Professional portrait of a young man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbeay1YZOW9eylsf3bF4OvpP0fKFuzj5RTiRwwX3qxxECfspH2UCONFO5rJYOmWrTPfmW3K-4YN6QCnkM-Nz882d3o0SmNLRHrsLk6_3fhdHYq6Nw_TmEtNoZH8Y2HfZm9TAdOgxUD-OVdUFlbaxSd5LMb2DEMP3LCHYgoqj7ZQbuCustyVjRZHhA67gYiLv4JIKjTWdRcKZ0tBlDTiWvg1Zcq5nyzH-Z7UCZyX2xJ3ZMIQWu3dvpfk9qaTYmJS2EsmZEfD1fnF9G9"/>
+</div>
+<div class="absolute bottom-0 right-0 size-3.5 bg-green-500 border-2 border-background-light dark:border-background-dark rounded-full"></div>
+</div>
+<span class="text-[10px] font-medium text-slate-600 dark:text-slate-300">David</span>
+</div>
+</div>
+</div>
+<!-- Conversation List -->
+<main class="flex-1 overflow-y-auto px-4 pb-24">
+<h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">Recent Messages</h2>
+<div class="space-y-1">
+<!-- Chat Item (Unread) -->
+<a class="flex items-center gap-4 p-3 rounded-2xl hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors bg-primary/5" href="#">
+<div class="relative shrink-0">
+<img class="size-14 rounded-full object-cover" data-alt="Student profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgY5QxMuPUVJmZV-zbJlhBX40x-7aoPKOKH0_1xhDlEa-R7ZqI520-d2vfxA1I7z0j4O0K9KeWl6Mkn4uBu97NLlyrei_A72BqHxWS5LAaA8BVOLf8eUd6mXowB8KHuc3d59k6qPMhb5Xl3vP1noATcHvv8lqoiBxoxVC9U-cMnofu6Mjxdd236XyapSZNyO7vaUOyqVxL5wFqo8NIzFeGpb_k8ejJmN-ZK3CyWR4BdjgFsqeNnWdc-OQmr1WOvoSGejs-3ci1kVQ3"/>
+<div class="absolute -top-1 -right-1 size-5 bg-primary text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-background-light dark:border-background-dark">2</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate">Alex Rivera</h3>
+<span class="text-xs font-bold text-primary">12:45 PM</span>
+</div>
+<p class="text-sm font-semibold text-slate-900 dark:text-slate-200 line-clamp-1">Hey, are we still meeting at the library for the study session?</p>
+</div>
+</a>
+<!-- Chat Item -->
+<a class="flex items-center gap-4 p-3 rounded-2xl hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<div class="shrink-0">
+<img class="size-14 rounded-full object-cover" data-alt="Sarah profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCylgac5vnyw_NWRSMl5mXcMKfl8XFRTFT5Txi-Fl8hNwNy0s8sci7cBI4_zhKH_f3HQiuYpJW3YEbNJ7TIL0QPtqDQ84brpYOYyohiP_MaaFduNx-IfCJmG-qjaMmNo29696vD0FVPxk9TT3dS5oj3I5bVJTx8PJn9cLvQS0An5_Hg2iGI7qLZzLEie2nKhgXpaAlaUNTXXniNAmmNC0LprN8fDI98UlwfprkDw9fQcRuAJ35VTdVt7W_htbtBEhhWYy16Ym-A4pPN"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="text-base font-medium text-slate-900 dark:text-white truncate">Sarah Jenkins</h3>
+<span class="text-xs text-slate-500">2:14 PM</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">I uploaded the psychology notes to the shared drive!</p>
+</div>
+</a>
+<!-- Group Chat Item -->
+<a class="flex items-center gap-4 p-3 rounded-2xl hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<div class="shrink-0 relative">
+<div class="size-14 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">groups</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="text-base font-medium text-slate-900 dark:text-white truncate">Basket-Ball Varsity '24</h3>
+<span class="text-xs text-slate-500">Yesterday</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1"><span class="font-medium text-slate-700 dark:text-slate-300">Coach:</span> Practice starts at 5PM sharp tomorrow.</p>
+</div>
+</a>
+<!-- Chat Item -->
+<a class="flex items-center gap-4 p-3 rounded-2xl hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<div class="shrink-0">
+<img class="size-14 rounded-full object-cover" data-alt="Jordan profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzREbhdIIRLvAsFw-FLx0WGW2KZeZqB77Ay9vsdxKl-9zmAnp10cEfxj3oQwMr5DlbfmX40E_na5uVfc-Q9nuz7FxEnoLwxvCFDDHCfVCAtYz2Y_CaVf4ExB8YBdbaYWSFQKTCbHGUQRI0p5QJqi5rZd473foqE8utwL9B0lUbtHUrBSg3ZIFOvAQTdfGbWNvHWL_yyiJQiMHVgO_X5YAHsRkZCgS--Q2Vy7TdYI9ShhhaagzOEPxe3axS7ocMyHcIkP4EYcNXTNQQ"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="text-base font-medium text-slate-900 dark:text-white truncate">Jordan Smith</h3>
+<span class="text-xs text-slate-500">Tuesday</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">That movie was actually pretty good. Thanks for the rec!</p>
+</div>
+</a>
+<!-- Chat Item -->
+<a class="flex items-center gap-4 p-3 rounded-2xl hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<div class="shrink-0">
+<img class="size-14 rounded-full object-cover" data-alt="Mila profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQteEXvKk8PNP6i3GZ-T-z_tEiFkvtDHRtIG9BFd7fjy6Tw1wN3huZP6vqGgySnMCyxtOg9nD88B2x3x0xKX3nLxCutMLTYIOZtaZcrXj4mWU2UmzWGrjobzl_zOmSJa6IZHz2wXpw9uGGB1Y5DwmrrVmKc7bJjfwM7cFh5iRKHpfdVUlaR38fTcyrHerDXRTNQ_vQ-WY-9m5B_VyCle_6KKnyouicsRzwbvy1xz2T69zA5OFJw4vGeQJ8DbwGUX7d7bzf_SkCagCk"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="text-base font-medium text-slate-900 dark:text-white truncate">Mila Kunis</h3>
+<span class="text-xs text-slate-500">Monday</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">Did you finish the lab report yet? I'm stuck on part 3.</p>
+</div>
+</a>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full max-w-md bg-white/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 pb-6 pt-2 px-4 flex justify-between items-center z-20">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">home</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">explore</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary">Discover</span>
+</a>
+<a class="flex flex-col items-center gap-1" href="#">
+<div class="relative flex flex-col items-center">
+<span class="material-symbols-outlined material-symbols-fill text-primary">chat_bubble</span>
+<span class="text-[10px] font-bold text-primary">Messages</span>
+<div class="absolute -top-1 -right-1 size-2 bg-primary rounded-full"></div>
+</div>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">person</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary">Profile</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">settings</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary">Settings</span>
+</a>
+</nav>
+</div>
+</body></html>

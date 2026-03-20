@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#00a870",
+              "background-light": "#f5f8f7",
+              "background-dark": "#0f231c",
+            },
+            fontFamily: {
+              "display": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pt-6 pb-4">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-primary uppercase tracking-wider">Robotics Club</span>
+<h1 class="text-2xl font-bold leading-tight tracking-tight">Group Events</h1>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</header>
+<main class="flex-1 px-4 pb-24">
+<div class="flex items-center justify-between py-4">
+<h3 class="text-lg font-bold leading-tight tracking-tight">Upcoming Events</h3>
+<span class="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">3 Scheduled</span>
+</div>
+<div class="space-y-4">
+<!-- Event Card 1 -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-slate-800/50 p-4 border border-slate-100 dark:border-slate-700/50 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="w-20 h-20 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-3xl">precision_manufacturing</span>
+</div>
+<div class="flex flex-col flex-1 gap-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-slate-100">Weekly Workshop</h4>
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<p class="text-xs font-medium">Oct 12, 4:00 PM</p>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="text-xs font-medium">Robotics Lab, Room 302</p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-slate-50 dark:border-slate-700/50">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full border-2 border-white dark:border-slate-800 bg-slate-200" data-alt="User avatar profile picture circles" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBA0zI2JjilqqPKB1N2Opzo7wK0UtN9M7CzX82E36E0HoTKGzD1zf-1OZnckjuA4_jm1CBrBYbB8TI-MaPbuUZmmin7X7Tp6DWpneaCLrgrTDmCfozpqX8DVho4EA4R9WpzcPz8EGE0TFCh3QxWRq7EYwdn1lB46H-ScyCZMp3L3UNlj91jeoWfX_PwPKziTHOQkZJgNjvCHQVQFmBLvenNUY12lzDenfbAZkt6Tzw1qdTIr9BYsYXEBMFdzsxjAr0nzog3Pu7lpM5e')"></div>
+<div class="w-7 h-7 rounded-full border-2 border-white dark:border-slate-800 bg-slate-300" data-alt="User avatar profile picture circles" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBxC07z47PWH6CQItFfr6xshVGWnPQ6dXkTgvHEcqSfqzzF7r9KHiMP4gWytT_i_YYXw4tphXdiX83XpROOZlW-mMrcEXx9xkSoJplddMK75nckdfjKC9xEgNGfr9MzTlS0nETyaObQHr_9BUVHIe8ioF_ifU03oG4RzYD2Y7FWe7KQkhk5njFUQwcl5c-rnZ_3xyexmIgupIhYDk745mso7jijqW1Y2KTr7Rb-NS_wKK5-IIWQvG5DA9RD4GVyXZdeKTz-bBGxo5UA')"></div>
+<div class="w-7 h-7 rounded-full border-2 border-white dark:border-slate-800 bg-primary text-[10px] flex items-center justify-center text-white font-bold">+12</div>
+</div>
+<button class="flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span>Going</span>
+</button>
+</div>
+</div>
+<!-- Event Card 2 -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-slate-800/50 p-4 border border-slate-100 dark:border-slate-700/50 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="w-20 h-20 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-3xl">trophy</span>
+</div>
+<div class="flex flex-col flex-1 gap-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-slate-100">Competition Prep</h4>
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<p class="text-xs font-medium">Oct 15, 5:30 PM</p>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="text-xs font-medium">Innovation Hub, Lab 1</p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-slate-50 dark:border-slate-700/50">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full border-2 border-white dark:border-slate-800 bg-slate-200" data-alt="User avatar profile picture circles" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBCjNxTLMtvZjk3bbK99kOPWDsg1dcNPAAlxzzTpc91W51MeXOPvimVb_1eujlbA9K9S1uoMzbjvQRaZ1YL8yc89SPG7HM6emJ6aZ0172xI5Bv16XGV2PAwyqbEK8Yl9npVcA1mVXob1sQWPdcFMTlaIA2qZ8YVfNkrT7CMMbj9m34IXm--hVXSWluUfTN-C0OZxcpivVoUBB3IIsK1vYzMzs-SyNI0pAzLBEDD0BXyuXSrR18KMCscFd9_OUp0pjodbH6ldBIbnE10')"></div>
+<div class="w-7 h-7 rounded-full border-2 border-white dark:border-slate-800 bg-slate-300" data-alt="User avatar profile picture circles" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPdoW5iveWy8rft-4CK2URnQ-JirV9GuPUJ2paAbpGzeli0mmomE7-uQ0JplW2eMHaXICpBRThk8sFAZlkF8g4_syexVFfP6q6GGCBaBBac2_MeffLCmKmPeePeMdGCAc8mvbjzvjV2cEVdhV4KSJhDuBfPJS9Fzgr12ycuVaKctJEBXQ1zDJbqs3F9-SAu8EIl2D3Fb4gV-3kN6U59GrLMN_29Mp1YxjYP913dI9_ovcjr5FDI0_RTKzddXOCK97GozYm9Rz-O96e')"></div>
+<div class="w-7 h-7 rounded-full border-2 border-white dark:border-slate-800 bg-primary text-[10px] flex items-center justify-center text-white font-bold">+8</div>
+</div>
+<button class="flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-slate-100 text-sm font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+<span class="material-symbols-outlined text-sm">add_task</span>
+<span>Join</span>
+</button>
+</div>
+</div>
+<!-- Event Card 3 -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-slate-800/50 p-4 border border-slate-100 dark:border-slate-700/50 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="w-20 h-20 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-3xl">record_voice_over</span>
+</div>
+<div class="flex flex-col flex-1 gap-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-slate-100">Guest Lecture: AI Trends</h4>
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<p class="text-xs font-medium">Oct 20, 2:00 PM</p>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="text-xs font-medium">Auditorium B, Main Hall</p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-slate-50 dark:border-slate-700/50">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full border-2 border-white dark:border-slate-800 bg-slate-200" data-alt="User avatar profile picture circles" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARBCpiAIMCrQ6zjSnQX5uc1Ct8ZhFoRwXgfIKDHywiRoC_LKEefzDCqiu-SxLrBYz3vT8P9MLP5I1SNR41dAtPGkkRh-2jBQROXW9ZRIxMqpW05dDf1OY5RQfAnIjyWeS7j_YfTimIenDkFhiCQCIxK-RxNUrBikt7NSJmtk3ZcPIvgY3udzzmYTj6CzCC7-4ZRxQu72tfEBryso3Js3oZp5oRvnm336d9-SjtOb8PvDTA0cVoaIqBKN5BR4IyZrCJvnqBVYQcdSzi')"></div>
+<div class="w-7 h-7 rounded-full border-2 border-white dark:border-slate-800 bg-slate-300" data-alt="User avatar profile picture circles" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAopIbt23Ya9bDolw8N_KboP9p2Kh5coGUev9NfFfxIxE0ZcHEOiKwhnW0Qau10gQEVvLQ2l1F0WG8s0Ww1aJL2dbhkfF6UGxwX5BzKzqwzds0n50IqvDw2Aho_fC9SfA1nSxIz6jcEXxR0naZHLKThS17oqDwJhSqpukxCHDuusCdSBwHiyrU_v6tbZoxpm4fLInI2njqCTG2lotMEgkIZ3PFyJJ7VR4z3mwn_DtWD3LsVlp6m0v1dyGimDZKF-bIwDlNmqWnV4DBg')"></div>
+<div class="w-7 h-7 rounded-full border-2 border-white dark:border-slate-800 bg-primary text-[10px] flex items-center justify-center text-white font-bold">+42</div>
+</div>
+<button class="flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-slate-100 text-sm font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+<span class="material-symbols-outlined text-sm">add_task</span>
+<span>Join</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 border-t border-slate-100 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg px-6 pb-6 pt-3 flex items-center justify-between z-20">
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">group</span>
+<span class="text-[10px] font-bold">Groups</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-medium">Schedule</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCU Smart Campus - Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#bceecf",
+              "on-tertiary-fixed-variant": "#842327",
+              "on-primary-fixed": "#002112",
+              "inverse-surface": "#2d3133",
+              "on-primary-fixed-variant": "#005234",
+              "secondary-fixed": "#bceecf",
+              "on-tertiary-container": "#5d040f",
+              "on-tertiary-fixed": "#410006",
+              "tertiary-fixed": "#ffdad8",
+              "surface-container": "#eceef0",
+              "on-primary-container": "#00321f",
+              "inverse-primary": "#5adda0",
+              "on-error": "#ffffff",
+              "on-background": "#191c1e",
+              "surface-container-low": "#f2f4f6",
+              "primary-fixed-dim": "#5adda0",
+              "error": "#ba1a1a",
+              "tertiary-container": "#e66d6c",
+              "primary": "#006c46",
+              "surface-tint": "#006c46",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-surface": "#191c1e",
+              "tertiary": "#a33b3c",
+              "on-primary": "#ffffff",
+              "outline-variant": "#bccabf",
+              "inverse-on-surface": "#eff1f3",
+              "on-surface-variant": "#3d4a41",
+              "on-secondary-fixed": "#002112",
+              "surface-container-highest": "#e0e3e5",
+              "surface-dim": "#d8dadc",
+              "primary-container": "#00a76f",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#406e55",
+              "primary-fixed": "#79fabb",
+              "background": "#f8f9fb",
+              "surface": "#f8f9fb",
+              "secondary": "#3a674f",
+              "on-secondary-fixed-variant": "#224f39",
+              "surface-container-high": "#e6e8ea",
+              "surface-bright": "#f8f9fb",
+              "outline": "#6d7a71",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#e0e3e5",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "on-secondary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .tonal-shift-bg {
+        background: linear-gradient(180deg, rgba(255,255,255,0) 0%, #f2f4f6 100%);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+<div class="flex items-center justify-between px-5 h-16 w-full max-w-none">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#00A76F]" data-icon="school">school</span>
+<h1 class="font-['Public_Sans'] font-bold text-lg tracking-tight text-on-surface">SCU Smart Campus</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity text-slate-500">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-primary-container/20 border border-primary/10">
+<img alt="Student Profile" data-alt="Student profile picture looking professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASiwTqYlTtBMNHvGi6Wgvq1xYdmkX0pspWabSLT4cW5dGpH1HbM3-jGfdpJOtpP7cMiO8qTjfPkW128hcHoRQCPTqApVe2xFiP2T2P8pCgt6k8WAcDWcdu7PujsHPBCQKViGYZwVi1ERFWa9SSn1WcWWcTe5u19gHLi91pgc6rggxK3r1urDECaC5_-e-XwqM7WvljyHG48NHUnabHG_GMpZD0YuMvep2rFNZ1dRu1uxWDmkahKnHF7iJohYt51ku2qeP3mrSUOeQu"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-20 px-5 space-y-6">
+<!-- Welcome Hero Section -->
+<section class="mt-4">
+<h2 class="font-headline font-black text-3xl tracking-tighter text-on-surface leading-tight">
+                Welcome back,<br/>
+<span class="text-primary-container">Mateo Estrada</span>
+</h2>
+<p class="text-on-surface-variant text-sm mt-1">Computer Engineering · Semester 6</p>
+</section>
+<!-- Academic Progress Cards (Bento Style) -->
+<div class="grid grid-cols-2 gap-4">
+<!-- GPA Card -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0px_12px_32px_rgba(25,28,30,0.04)] border border-outline-variant/15">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Current GPA</span>
+<span class="material-symbols-outlined text-primary" data-icon="trending_up">trending_up</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-headline font-extrabold text-on-surface">3.84</span>
+<span class="text-xs text-primary font-bold">+0.12</span>
+</div>
+</div>
+<!-- Credits Card -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0px_12px_32px_rgba(25,28,30,0.04)] border border-outline-variant/15">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Credits</span>
+<span class="material-symbols-outlined text-secondary" data-icon="school">school</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-headline font-extrabold text-on-surface">142</span>
+<span class="text-xs text-on-surface-variant">/ 240</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary-container h-full w-[60%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Social Service Project (Hero Action Card) -->
+<section class="relative overflow-hidden bg-primary-container rounded-2xl p-6 text-on-primary">
+<!-- Decorative Background Pattern -->
+<div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<span class="inline-block px-2 py-0.5 bg-white/20 rounded-lg text-[10px] font-bold uppercase tracking-widest mb-2">Active Service</span>
+<h3 class="font-headline font-bold text-xl">Community Tech Literacy</h3>
+</div>
+<span class="material-symbols-outlined text-3xl" data-icon="volunteer_activism">volunteer_activism</span>
+</div>
+<div class="flex items-center gap-6">
+<div>
+<p class="text-[10px] text-white/70 uppercase font-medium">Hours Completed</p>
+<p class="text-lg font-bold">120 / 180</p>
+</div>
+<div class="flex -space-x-2">
+<img alt="Team Member 1" class="w-7 h-7 rounded-full border-2 border-primary-container" data-alt="Team member profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCduA9t_hzuR3-FnfrKyvcTQQkgYLpKhXaAt5z5t6GJKwM69ngqPzOhxHt2M_AbohYLmfiXlfzjwT7zUcvYKYTAlnv8NxHPnvtH2KEZE2mehi6sBNsh-5u0cZl0V0XlE8gX8u8CKuTlaMIU9KQggILTOuKjMzfMcbsOPKKmzGo8tKln_40tMw0vipY-2RxqqTqfNElW2Gz690ACp-Xumb_Jpwi6azJzB11acW2wBR4rkvOSwcVAqtyVZryj_5qLE0jRVccE2lgF1NXj"/>
+<img alt="Team Member 2" class="w-7 h-7 rounded-full border-2 border-primary-container" data-alt="Team member profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9Dw61kPvIkHjrdxL8uvtGYBFvFT9nShzZutzs0z0VuvrifaMmf4E8sj8KK3uZAz-BeDDW78o-psWds_1SYIm6z2byF2t0Co6NXW5hn8oK5dAtZVToAIMceUxU-Stsu04ZV_0hTK8-ajYw070KDTZwDK4Pd8nHnp-yvUuPpcBWEqiz3KfUWycH9YVCYbPzEr4avAlTMwbLBOVAP5-ifeez3XICYMtgwPa7R1kjRIgmk3uZSWlpRGKiI2xl-_ppkxZtWFHqFWL1H-B1"/>
+<div class="w-7 h-7 rounded-full border-2 border-primary-container bg-white/20 flex items-center justify-center text-[10px] font-bold">+4</div>
+</div>
+</div>
+<button class="mt-2 w-full bg-white text-primary font-bold py-3 rounded-xl scale-102 active:scale-95 transition-transform duration-200 shadow-lg">
+                    Log Current Session
+                </button>
+</div>
+</section>
+<!-- Upcoming Classes -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline font-bold text-lg text-on-surface">Schedule Today</h3>
+<button class="text-primary-container text-sm font-semibold">View Full</button>
+</div>
+<!-- Class Item 1 -->
+<div class="flex gap-4 p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+<div class="flex flex-col items-center justify-center min-w-[56px] border-r border-outline-variant/10 pr-4">
+<span class="text-primary font-black text-lg">09:00</span>
+<span class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">AM</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface">Distributed Systems</h4>
+<div class="flex items-center gap-1 text-slate-500 text-xs mt-0.5">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span>Lab 402 · Building B</span>
+</div>
+</div>
+<div class="flex items-center">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+</div>
+</div>
+<!-- Class Item 2 -->
+<div class="flex gap-4 p-4 bg-surface-container-low/50 rounded-xl border border-transparent">
+<div class="flex flex-col items-center justify-center min-w-[56px] border-r border-outline-variant/10 pr-4 opacity-60">
+<span class="text-on-surface-variant font-black text-lg">01:30</span>
+<span class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">PM</span>
+</div>
+<div class="flex-1 opacity-60">
+<h4 class="font-bold text-on-surface">Ethics in Computing</h4>
+<div class="flex items-center gap-1 text-slate-500 text-xs mt-0.5">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span>Room 211 · Building A</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.03)] border-t border-slate-100 dark:border-slate-800">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 scale-110 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-0.5">Home</span>
+</a>
+<!-- Explore -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-0.5">Explore</span>
+</a>
+<!-- Service -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-0.5">Service</span>
+</a>
+<!-- Chat -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-0.5">Chat</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-0.5">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary-container": "#00a76f",
+            "surface-dim": "#d8dadc",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-background": "#191c1e",
+            "tertiary-container": "#e66d6c",
+            "outline": "#6d7a71",
+            "on-tertiary-container": "#5d040f",
+            "on-primary-fixed-variant": "#005234",
+            "surface-tint": "#006c46",
+            "on-secondary-fixed": "#002112",
+            "on-secondary": "#ffffff",
+            "secondary": "#3a674f",
+            "on-tertiary-fixed-variant": "#842327",
+            "on-secondary-container": "#406e55",
+            "primary-fixed": "#79fabb",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed-variant": "#224f39",
+            "on-primary-fixed": "#002112",
+            "surface-variant": "#e0e3e5",
+            "primary-fixed-dim": "#5adda0",
+            "outline-variant": "#bccabf",
+            "on-primary": "#ffffff",
+            "tertiary-fixed": "#ffdad8",
+            "on-error": "#ffffff",
+            "on-surface-variant": "#3d4a41",
+            "surface-container-highest": "#e0e3e5",
+            "tertiary": "#a33b3c",
+            "tertiary-fixed-dim": "#ffb3b0",
+            "on-surface": "#191c1e",
+            "on-error-container": "#93000a",
+            "primary": "#006c46",
+            "surface": "#f8f9fb",
+            "surface-container-lowest": "#ffffff",
+            "surface-container": "#eceef0",
+            "surface-container-low": "#f2f4f6",
+            "error": "#ba1a1a",
+            "surface-container-high": "#e6e8ea",
+            "on-primary-container": "#00321f",
+            "secondary-fixed-dim": "#a1d1b4",
+            "inverse-primary": "#5adda0",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed": "#410006",
+            "secondary-fixed": "#bceecf",
+            "secondary-container": "#bceecf",
+            "surface-bright": "#f8f9fb",
+            "background": "#f8f9fb"
+          },
+          fontFamily: {
+            "headline": ["Public Sans"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.75rem", "lg": "1rem", "xl": "1.25rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Public Sans', sans-serif; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface hover:scale-105 transition-transform" data-icon="menu">menu</span>
+<h1 class="text-xl font-black text-slate-900 dark:text-slate-50 font-['Public_Sans'] font-bold tracking-tight">Student Service</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface hover:scale-105 transition-transform" data-icon="search">search</span>
+</div>
+</header>
+<main class="pt-20 px-6 space-y-8">
+<!-- Active Participation Card (Hero) -->
+<section>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_32px_rgba(25,28,30,0.04)] overflow-hidden relative border border-outline-variant/15">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">Live Session</span>
+</div>
+<div class="space-y-1 mb-6">
+<p class="text-on-surface-variant text-sm font-medium">Active Participation</p>
+<h2 class="text-2xl font-extrabold tracking-tight text-on-surface">Community Kitchen Helper</h2>
+</div>
+<div class="flex flex-col items-center py-4 bg-surface-container-low rounded-xl mb-6">
+<span class="text-5xl font-black font-headline tracking-tighter text-on-surface">02:45:32</span>
+<p class="text-primary font-bold text-xs mt-2 uppercase tracking-widest">Ongoing Task</p>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-surface-container-highest text-on-surface-variant font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="pause">pause</span>
+            Pause
+          </button>
+<button class="flex-1 bg-gradient-to-br from-primary to-primary-container text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform active:scale-95 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="stop">stop</span>
+            Stop
+          </button>
+</div>
+</div>
+</section>
+<!-- My Applications Section -->
+<section>
+<div class="flex justify-between items-end mb-4">
+<h3 class="text-xl font-bold tracking-tight">My Applications</h3>
+<span class="text-primary text-sm font-bold">View All</span>
+</div>
+<div class="space-y-4">
+<!-- Application Card 1 -->
+<div class="flex items-center gap-4 bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/15">
+<div class="h-12 w-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface text-sm">Library Catalog Assistant</h4>
+<p class="text-on-surface-variant text-xs">Applied 2 days ago</p>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase">Pending</span>
+</div>
+<!-- Application Card 2 -->
+<div class="flex items-center gap-4 bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/15">
+<div class="h-12 w-12 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="park">park</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface text-sm">Urban Garden Project</h4>
+<p class="text-on-surface-variant text-xs">Approved yesterday</p>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase">Approved</span>
+</div>
+</div>
+</section>
+<!-- Upcoming Sessions Section -->
+<section class="pb-8">
+<div class="flex justify-between items-end mb-4">
+<h3 class="text-xl font-bold tracking-tight">Upcoming Sessions</h3>
+</div>
+<div class="flex overflow-x-auto gap-4 no-scrollbar -mx-6 px-6">
+<!-- Session Card 1 -->
+<div class="min-w-[280px] bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/15">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-low px-3 py-1 rounded-lg">
+<span class="text-primary font-bold text-xs">OCT 24</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="more_horiz">more_horiz</span>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Morning Beach Cleanup</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-xs mb-4">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+            08:00 AM - 11:00 AM
+          </div>
+<div class="flex -space-x-2 overflow-hidden">
+<img alt="Team member" class="inline-block h-8 w-8 rounded-full ring-2 ring-surface-container-lowest" data-alt="Portrait of a young student volunteer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAill0SSrVVsYmEDBUX24W5vNPibJkTvE6drHu21TZCYbYAuAsp5ptC27gNHUzpMZK4JcgbLUY6-UAxhKBpwlR92U0j1eKCuj6RMsT6iNHcw_k2cVP6-hJ8HjojMW4f1bG42aysbDVD_IlZN7vBwXbl2Lsu8WnyGk2qIIv2w19llZl6h7GOca43ZiIuSIueKfl9zV3lA8i0OBY6gl7w4n331HydSkMXdSRyIdRiA5zaVtUHu-AN8s5MV3Q4uxXlGA0ZH5cbSIa8TxI3"/>
+<img alt="Team member" class="inline-block h-8 w-8 rounded-full ring-2 ring-surface-container-lowest" data-alt="Portrait of a male student volunteer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpA-AU-VhvO2UMNFe1n3uFv8GwkOcl8sV0RDUAERpy6PpwXH4b5zksoLv6uEJVYepfFDUxyY8JHplGSoCiBUv5Egocspynsn2_ppdweQuBbgAnySD_jSc-I1qu_PAyoj659y9jN7nWmIGRLEk1hzfK9S7i70gBknlKTECwFUdjHwINDYplgoT-cH52Wc-QvzvWq6yj9a0q_hTtbylS8Gm1w3bNRCa1_D-9IES61YOljifhf-qlZQEHp8gW77KPlxJvdWsIHHLOUZIv"/>
+<img alt="Team member" class="inline-block h-8 w-8 rounded-full ring-2 ring-surface-container-lowest" data-alt="Portrait of a female student volunteer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxhHmLIV154iIesjwnvkarmOktlTTsXMiUJEuvQQrNGv5twIr0NTgnCStCowup947FhzZrrPI-ug6rymMPMgAAubLlBRlZefjlf1jWUvl8qqQkgTYa8KZwssbPKnh-rwWTNgBmMoaDWEnQXro6nSDSu8VBhS6xquuLPHGWWA2rRoI2IHkxSzm6Shd7SwT2pK5NdmIYFdEQ4HIGdsv3HoSxLGaIgA_c2XPuFVltLhh-9N895FyRepTB_Y1XdeM3Ni1IN_uQKi1Rvmai"/>
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-surface-container-high text-[10px] font-bold ring-2 ring-surface-container-lowest">+12</div>
+</div>
+</div>
+<!-- Session Card 2 -->
+<div class="min-w-[280px] bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/15">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-low px-3 py-1 rounded-lg">
+<span class="text-primary font-bold text-xs">OCT 26</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="more_horiz">more_horiz</span>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Youth Mentorship Circle</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-xs mb-4">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+            04:00 PM - 06:00 PM
+          </div>
+<div class="flex -space-x-2 overflow-hidden">
+<img alt="Team member" class="inline-block h-8 w-8 rounded-full ring-2 ring-surface-container-lowest" data-alt="Smiling student mentor girl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKMuQsjKwLtd5JQ2o-E9XA3XhSWQ7sHlbWt0Py_jbHHbjSjzip8eGWDBXzZ4TarZjzHU0DVgi9J4zE_W4jZ2n9SXxb6RD-SneYX8duPGQ7frkPOfb8PqrxjgFfq-qgSWN7NejKPFQot630eEgcvEn7y4OiVvAojXoxgEl90wJwTSnwU_clVnTld5DI-aOtBu4szD0wgU1u0E_uwwvqglpFhue3Rg1BTfNfCIwVD-M8_tKcg7M4d7kwCylxV14jcfsQpnanEQCLKD9i"/>
+<img alt="Team member" class="inline-block h-8 w-8 rounded-full ring-2 ring-surface-container-lowest" data-alt="Male student smiling profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRNuw_6Q28nwghiy6UW-T6s_AyIG8xnlVJoZQzL1UN7x6Nq7hP-HsYeUebF8j5ncNx84GP1j2GpOrGhcCju3HWhAqxs0laU-7rukxranG-gBqKOFEdTpJFDGFF9CeIIQLmCGrl0Vx_10YFeECV16HFRO-ecJtmCFI08F3KLV3_WULYAhBO729xEQX-XYVwy4jRmS5y1c4f94GhOLmu7yiZnrCY12FU1_8noZmmk5MNSPjbU6qkgUartumobRUhguV8oApxNBfd-Uy1"/>
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-surface-container-high text-[10px] font-bold ring-2 ring-surface-container-lowest">+5</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl z-50 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.03)] border-t border-slate-100 dark:border-slate-800">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-[#00A76F] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Home</span>
+</a>
+<!-- Discover -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-[#00A76F] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="explore">explore</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Discover</span>
+</a>
+<!-- Service (ACTIVE) -->
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 active:scale-102 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="volunteer_activism" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Service</span>
+</a>
+<!-- Chat -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-[#00A76F] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="forum">forum</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Chat</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-[#00A76F] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-['Inter'] text-[11px] font-semibold">Profile</span>
+</a>
+</nav>
+</body></html>

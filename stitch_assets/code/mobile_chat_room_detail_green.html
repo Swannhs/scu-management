@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campus Social - Chat Room</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 168, 112, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-hidden border-x border-primary/10">
+<!-- Top Header -->
+<header class="sticky top-0 z-10 flex items-center bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-3 border-b border-primary/10 justify-between">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center p-1 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-200">arrow_back</span>
+</button>
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border border-primary/20" data-alt="Professional headshot of a young man smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbLqW4y5Db4PnAeT61RHwPxxZqSVs2yGn_7oIjYOoCO46cQ-HJVm-5JyXBooLnpkIV0eGmTNmvoQ9EZTFqQX2J7YqmFTYRCZfH_TKtjKJAsl7SGFehrH3al9IbzFi3EKXfawKWstLbbNF6WrUQriuR1LnxjpNPpcFXlu1KowA_gTOLDG8-HcELTsYaBv6L-INZ98IM2WwmDN7fO9F2v-z4c_m3m6IZ6mpnr6Cc7bqpFLv9z0YT4Rs2SKg3SU75RIs-GsRr6VpEXDOU")'>
+</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-white dark:border-background-dark rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<h2 class="text-slate-900 dark:text-slate-100 text-sm font-bold leading-none">Alex Rivera</h2>
+<p class="text-primary text-[11px] font-medium leading-tight mt-1">Online</p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[22px]">videocam</span>
+</button>
+<button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[22px]">call</span>
+</button>
+<button class="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[22px]">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Message Thread -->
+<main class="flex-1 overflow-y-auto p-4 custom-scrollbar space-y-6">
+<div class="flex justify-center">
+<span class="px-3 py-1 bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-wider rounded-full">Today</span>
+</div>
+<!-- Incoming Message -->
+<div class="flex items-end gap-2 max-w-[85%]">
+<div class="w-8 h-8 rounded-full bg-cover bg-center shrink-0 mb-5" data-alt="User profile thumbnail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDznfOOJtPeZ3-dxQnZMXLMpX0BtdKzJ0CJXrpRarG87Z94BlUIkzbu9FkxApu_5hKPs7xfIO-MfIiwRv-iSI9RyPQKThg5-dKWIHe_RolVyt34b5eKThvi0F77gPKWIreM8zUKZCgQ5O_GReske9xb4Hrgf41Tot2iQpgQEuLdeOha4e4HUE795t81JpYcwjPyps1OCdAtR9h_V2zVP0NtzLm6wLeHO6Nvf4q368N0VZJk5VcIZZtERW6JW7KD_vCPNxcKFO7U1As4")'>
+</div>
+<div class="flex flex-col gap-1">
+<div class="bg-white dark:bg-slate-800 p-3 rounded-2xl rounded-bl-none shadow-sm border border-primary/5">
+<p class="text-sm text-slate-800 dark:text-slate-200 leading-relaxed">Hey! Did you check the notes for the project? We need to submit by 5 PM.</p>
+</div>
+<span class="text-[10px] text-slate-400 ml-1">10:24 AM</span>
+</div>
+</div>
+<!-- Outgoing Message -->
+<div class="flex items-end gap-2 max-w-[85%] ml-auto justify-end">
+<div class="flex flex-col gap-1 items-end">
+<div class="bg-primary text-white p-3 rounded-2xl rounded-br-none shadow-md shadow-primary/20">
+<p class="text-sm leading-relaxed">Not yet, I'll check them in a bit. Just finished the lecture.</p>
+</div>
+<div class="flex items-center gap-1 mr-1">
+<span class="text-[10px] text-slate-400">10:26 AM</span>
+<span class="material-symbols-outlined text-[14px] text-primary">done_all</span>
+</div>
+</div>
+</div>
+<!-- Incoming Message with Image -->
+<div class="flex items-end gap-2 max-w-[85%]">
+<div class="w-8 h-8 rounded-full bg-cover bg-center shrink-0 mb-5" data-alt="User profile thumbnail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCR6cwukh_1kZMF5oVu82fSbcFYXt_SynlhMKjG-O0XRyFFJHT3-D_h_Rh7zWpLGTsAkEjXPri_Z51C7qM_a4YmWAAGVn20fRF5pxQpf01w7HzEPoukWt9Ghe2J-dUyAusLoh-RB8rQ7vEzhn8wIvBFHkuZ4-nIWwmmnkGK8_pCZSFcqWEC3JYci8X2oQFqMthckgm_JAT5dVuUuu35hlTl300TlJ9OK37QZ3xOa5OIT9aQ_CkOXpRSY91KryLspFqM-RTMmaYbTExu")'>
+</div>
+<div class="flex flex-col gap-1">
+<div class="bg-white dark:bg-slate-800 p-2 rounded-2xl rounded-bl-none shadow-sm border border-primary/5">
+<div class="rounded-xl overflow-hidden mb-2">
+<img class="w-full h-48 object-cover" data-alt="Close up of study notes and a laptop on a desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBndAbdbrTn_Obk6NJvfJ8Yy0rmHoIP-GiAZHXdMCRNvrWL_1pTeWddzDTMbU9PMB1HlVYNgaoSBq1p666s_CTmyvkcDq1bla1CcXM_SVn5W_uVpzJ1P2clbyt5VrxQGMczHCQAiUGUo5xDiKdO46acPJE2pxuNpY00faRHwzsN0gsVcjvAo1w4r_S-BYwM2VWzmGzgX5I6-6DXDBEDYN8zCtrZyO7mXfXDa3Jd8GDemkEF-PRIXiCEkwOZhE46CKXKRufv4Tz0K2CB"/>
+</div>
+<p class="text-sm text-slate-800 dark:text-slate-200 px-1 pb-1">I just sent over the reference image we discussed.</p>
+</div>
+<span class="text-[10px] text-slate-400 ml-1">10:28 AM</span>
+</div>
+</div>
+<!-- Outgoing Message Short -->
+<div class="flex items-end gap-2 max-w-[85%] ml-auto justify-end">
+<div class="flex flex-col gap-1 items-end">
+<div class="bg-primary text-white p-3 rounded-2xl rounded-br-none shadow-md shadow-primary/20">
+<p class="text-sm leading-relaxed">Perfect, looks good! 🙌</p>
+</div>
+<div class="flex items-center gap-1 mr-1">
+<span class="text-[10px] text-slate-400">10:30 AM</span>
+<span class="material-symbols-outlined text-[14px] text-primary">done_all</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Input Area -->
+<footer class="bg-white dark:bg-background-dark p-4 border-t border-primary/10">
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center size-10 shrink-0 bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<div class="flex-1 flex items-center bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-2 border border-transparent focus-within:border-primary/30 focus-within:bg-white dark:focus-within:bg-slate-900 transition-all">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">sentiment_satisfied</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm py-1 px-2 text-slate-900 dark:text-slate-100 placeholder:text-slate-400" placeholder="Type a message..." type="text"/>
+<button class="text-slate-400 hover:text-primary transition-colors ml-1">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</button>
+</div>
+<button class="flex items-center justify-center size-10 shrink-0 bg-primary text-white rounded-full shadow-lg shadow-primary/30 hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">mic</span>
+</button>
+</div>
+<!-- Safe Area Bottom Indicator (Mobile) -->
+<div class="h-4"></div>
+</footer>
+</div>
+</body></html>

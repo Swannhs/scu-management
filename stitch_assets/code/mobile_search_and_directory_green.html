@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto bg-white dark:bg-background-dark shadow-2xl">
+<header class="flex items-center justify-between px-4 pt-6 pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">school</span>
+<h1 class="text-xl font-bold tracking-tight">Campus Social</h1>
+</div>
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<div class="px-4 py-3">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-slate-400">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-xl py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary/50 text-sm" placeholder="Search students, faculty, or departments" type="text"/>
+</div>
+</div>
+<div class="flex gap-2 px-4 py-2 overflow-x-auto no-scrollbar">
+<button class="px-5 py-2 rounded-full bg-primary text-white text-sm font-semibold whitespace-nowrap">All</button>
+<button class="px-5 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors">Students</button>
+<button class="px-5 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors">Faculty</button>
+<button class="px-5 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors">Clubs</button>
+</div>
+<div class="flex-1 overflow-y-auto px-4 pb-20">
+<h2 class="text-sm font-bold text-slate-400 uppercase tracking-widest mt-6 mb-4">Directory</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Profile photo of a male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxKnQd9PBBHPYJnb2kDJzvShIBZcipirh9TAsm8o9mnjuDzN5Bx2Ab3FJ1Ys1r0i5dc2FK3UCcEWhZccfe0vP5nJYtoSTCm8E7r04ljYdSW_YUzCAA02KiqF0j-KvZS8T1BVDreXNrd8m1-utxsztEFmX0RCPdW8y3rwQufhQtd1xKYa_Tc9ixTT7j-RVVdRcVzkNL0UgyGXkB085uCGCUVaZyr4CTa6mxM9fjK9xIFrKNlo216Syif3yRYx7Wp32b2nEr4OpIcqJ_"/>
+<div>
+<h3 class="font-bold text-sm">Alex Thompson</h3>
+<p class="text-xs text-slate-500">Computer Science • Junior</p>
+</div>
+</div>
+<button class="bg-primary/10 text-primary px-4 py-2 rounded-lg text-xs font-bold hover:bg-primary hover:text-white transition-colors">
+                        Connect
+                    </button>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Profile photo of a female professor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUITBsQ6KzGKODA7mcOxijdj8YhaakpXl4uRVeK7saaEvq4-RsXU8k3UKlRUxnKUPHryW_ktfldATQp4Y6tC9fJSnPEYVgftTJ0PZNpxmfm39EVKsj1Y1nqlfnkheLLrWeKjt3LLkUNtFCDFvzEUmvg77p-jd0zmLlqdu3-FdpZHFRPxN5z4nZrAQGE81GVPWjQSVPgGjTjGYh5cTRnvIIJsfXL7kyqr3xb59Rza224nT0Um3oJ2DsbSfGv8hc7uia_S5ueqgj8Gdl"/>
+<div>
+<h3 class="font-bold text-sm">Dr. Sarah Jenkins</h3>
+<p class="text-xs text-slate-500">Faculty • Psychology Dept.</p>
+</div>
+</div>
+<button class="bg-primary/10 text-primary px-4 py-2 rounded-lg text-xs font-bold hover:bg-primary hover:text-white transition-colors">
+                        Message
+                    </button>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Profile photo of a male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAo0ozi9wX8XCnmlcEhTZLHsRbpGlp8wz66rDXBvXjYLXRxbI44e8KtPprul3T77-QWV0795FMP_vpZ9iXQGfEmCJ6AIZ_XuVTfvieW2kHHWLmHcCGi89Rl_Z-pflHWEg45fRHImsor2y0Kl384Yy_fyWzIz1Z1aKmaT4E8Jwl3d9xZmLZS78waVvq5hKQY8D3KMyS7DoCkmpHhlCUw8a9BkJXa54JLJjt-taJIulWyI-T4OOGfJFAABnbv_87ZYJCcbuzTkki3goY"/>
+<div>
+<h3 class="font-bold text-sm">Marcus Chen</h3>
+<p class="text-xs text-slate-500">Business Admin • Senior</p>
+</div>
+</div>
+<button class="bg-primary/10 text-primary px-4 py-2 rounded-lg text-xs font-bold hover:bg-primary hover:text-white transition-colors">
+                        Connect
+                    </button>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Profile photo of a female student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2DROVtz58WVr2qw2b_z4kpgU52JVkbT20rvPQSh9Ou230aOk5QDQcWsOlzkVPZe208OIgiLF_EVuzcNqSzegAmmgQTqmcx24aUKSl-Baa8I35g7AGaL0z4viKP9AAl6aXNexRu2qPts0DXov0zqYnyyE7Myk5B1nZ0N-2GAK4wkR8GcIflipNQzoDxS0NBUtqxBfMK5UG2OcaofrOx8oC7ZwbjFKm8qGLUozkiO_vfW64HEIAfTPxBOHcDerce7dxK_FzuHA7j9pn"/>
+<div>
+<h3 class="font-bold text-sm">Elena Rodriguez</h3>
+<p class="text-xs text-slate-500">Fine Arts • Sophomore</p>
+</div>
+</div>
+<button class="bg-primary/10 text-primary px-4 py-2 rounded-lg text-xs font-bold hover:bg-primary hover:text-white transition-colors">
+                        Connect
+                    </button>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Profile photo of a male professor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSUrqnp1WR8iotNfFTMF8mKhVt0HphTJkovMqjuZxcqQM9xcbr91O7ckrxrFj75HN5Je0A0fDXQf1iCUH1nlgvkBG-gBc7j_qKozJe-K1x_ay6VSt1iDOZtxyu4SE1ytl-SYsRh6k5oPzOzy63Sw2R-MeA5e1iMrRuod72MjIaWPEQAE9zwLJsfqRWGBOh89eGQXzc-yY5_8UuuJ8gjN59OXHfR387F6KS2RISiEpG8N044OqymbO-5LMdyUWhoksm4-rwiDcpG26r"/>
+<div>
+<h3 class="font-bold text-sm">Prof. David Miller</h3>
+<p class="text-xs text-slate-500">Faculty • Engineering</p>
+</div>
+</div>
+<button class="bg-primary/10 text-primary px-4 py-2 rounded-lg text-xs font-bold hover:bg-primary hover:text-white transition-colors">
+                        Message
+                    </button>
+</div>
+</div>
+</div>
+<nav class="absolute bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-slate-100 dark:border-slate-800 px-6 py-3 flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined active-icon">search</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Explore</span>
+</a>
+<div class="relative flex flex-col items-center">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Messages</span>
+</a>
+<span class="absolute -top-1 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>

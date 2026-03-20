@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Campus Social Notifications</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark border-x border-primary/10 overflow-x-hidden">
+<!-- Header -->
+<div class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 pb-2 justify-between border-b border-primary/10">
+<div class="flex items-center gap-3">
+<div class="text-primary flex size-10 items-center justify-center rounded-full bg-primary/10">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">Notifications</h2>
+</div>
+<button class="text-primary text-sm font-semibold hover:bg-primary/5 px-2 py-1 rounded transition-colors">
+                Mark all as read
+            </button>
+</div>
+<!-- Filter Tabs -->
+<div class="bg-background-light dark:bg-background-dark">
+<div class="flex border-b border-primary/10 px-4 gap-8">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4" href="#">
+<p class="text-sm font-bold tracking-wide">All</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4" href="#">
+<p class="text-sm font-semibold tracking-wide">Requests</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4" href="#">
+<p class="text-sm font-semibold tracking-wide">Mentions</p>
+</a>
+</div>
+</div>
+<!-- Content Area -->
+<div class="flex flex-col flex-1 pb-20">
+<!-- Section: Today -->
+<div class="px-4 py-3 bg-primary/5">
+<h4 class="text-primary text-xs font-bold uppercase tracking-widest">Today</h4>
+</div>
+<!-- Friend Request Notification -->
+<div class="flex items-start gap-4 bg-background-light dark:bg-background-dark px-4 py-4 border-b border-primary/5 hover:bg-primary/5 transition-colors">
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-white dark:border-slate-800 shadow-sm" data-alt="Profile picture of Alex Rivers" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCokklM4QTUPSt-hnvO3sWldcVr9ffyrYeoEDDqLpUrwScbZ_Xpgxb5mLnnBDZ0rjohd61hBNBc3Wy3EqyyiuyE8r3d7iP82Hr0k12xBLNg2x1LJuAhE-WbWI8WAWu_68bXlFfIX_fM2gAABRdweiKSfz1blpObMtqlvlw_fglN_g3d8jef7Aji-NSUc-YhS7Lw4ra-mlbkbwRgI_dWv-W-xVhHYUKEgcWBxpTL2jLRU4lRQH11AZbno76m3-eHeFW6tE0A9EZ1R6h5");'></div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white rounded-full p-0.5 flex items-center justify-center border-2 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-[14px]">person_add</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 gap-2">
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium leading-snug">
+<span class="font-bold">Alex Rivers</span> sent you a friend request
+                        </p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal">2 minutes ago</p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 cursor-pointer items-center justify-center rounded-lg h-9 px-4 bg-primary text-white text-sm font-bold transition-all active:scale-95">
+                            Accept
+                        </button>
+<button class="flex-1 cursor-pointer items-center justify-center rounded-lg h-9 px-4 bg-primary/10 text-primary text-sm font-bold transition-all active:scale-95">
+                            Decline
+                        </button>
+</div>
+</div>
+<div class="size-2 rounded-full bg-primary mt-2"></div>
+</div>
+<!-- Reaction Notification -->
+<div class="flex items-start gap-4 bg-background-light dark:bg-background-dark px-4 py-4 border-b border-primary/5 hover:bg-primary/5 transition-colors">
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-white dark:border-slate-800 shadow-sm" data-alt="Profile picture of Sarah Chen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZyccGgl7hpjFkG55lN3sATSYcR-3W4eYUOAoheahSYcJgVQxzfsZuNn68-teRJ2We8zFBXAxQB6PomDjJaLXAlpuKXYikb_WfOfJAKoIgH7D-q66JXfIoH-5IrOrUmwh6GpXkYXxZFua9xd9nzfbacPqgasDGt0P_ZIr7W24LK04cAPT8vGFl8giS2NFmqF3eK-wlztND9IGlN-K4lDQ42fD-elyFg7ABM65wnmSMj2Do_bhJGRwUIbaChL0qs9z0irjTWoGs3lDo");'></div>
+<div class="absolute -bottom-1 -right-1 bg-rose-500 text-white rounded-full p-0.5 flex items-center justify-center border-2 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-[14px]">favorite</span>
+</div>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium leading-snug">
+<span class="font-bold">Sarah Chen</span> loved your photo in <span class="text-primary font-semibold">Campus Life 2024</span>
+</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal mt-1">15 minutes ago</p>
+</div>
+<div class="size-2 rounded-full bg-primary mt-2"></div>
+</div>
+<!-- Group Invite Notification -->
+<div class="flex items-start gap-4 bg-background-light dark:bg-background-dark px-4 py-4 border-b border-primary/5 hover:bg-primary/5 transition-colors">
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-white dark:border-slate-800 shadow-sm" data-alt="Profile picture of Marcus Thorne" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBA3v73bhJFZ9E7jeoJPYqhcMC0s29f8A8IAX1cy5ETX4A0L8wJhGTwuC6YsVHl81Ovpay6Y57udbjXi5-LjvdeeWNdDTD0kMwLnaDgLGB2D2tdA7QCE63zJIOldn1S6t_HhmHskEwFbBO-JBX2HsX7OLnpyLYXd1ZFHI3q-u82zYaKCXIOX3AQpFcYvhL4zZrA0M4Qiq-DVuRW217WX4ChlJ2FuKLE6cN02w6B9GWq6CSEQ3VcXgn12SF2nSl_1P9QuuRkKUx_kY7Q");'></div>
+<div class="absolute -bottom-1 -right-1 bg-amber-500 text-white rounded-full p-0.5 flex items-center justify-center border-2 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-[14px]">groups</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 gap-2">
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium leading-snug">
+<span class="font-bold">Marcus Thorne</span> invited you to join <span class="font-bold">Green Tech Innovation Hub</span>
+</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal">1 hour ago</p>
+</div>
+<button class="w-full cursor-pointer items-center justify-center rounded-lg h-9 px-4 bg-primary/10 text-primary text-sm font-bold">
+                        View Invite
+                    </button>
+</div>
+</div>
+<!-- Section: Yesterday -->
+<div class="px-4 py-3 bg-primary/5">
+<h4 class="text-primary text-xs font-bold uppercase tracking-widest">Yesterday</h4>
+</div>
+<!-- Standard Notification -->
+<div class="flex items-start gap-4 bg-background-light dark:bg-background-dark px-4 py-4 border-b border-primary/5 opacity-80">
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-white dark:border-slate-800 shadow-sm" data-alt="Profile picture of Elena Grace" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAfU9magMcssZB030ibX4TAs5iLfso_KvgY8E4Hcch_Xmf7JYoiUDU0U2m6tfA3D993K2-CHBg7kRf9M1kyJDR8y4LudxbGTq6kVHykjS3feodtBHAH82ekhga6Gi1CJ9350RxV_ErTurauYm3mcCGMPfdm-rXPlm5q_boJENKuvykQLjucA08M2I45yBhWq3gbFxCfdYSmrMmFjYvmFlVcUHMCCSfyi4UJVQ6EkX6eKCiiQ1sIqqFDB6YMJGDrytu3XLAd-10qfYhl");'></div>
+<div class="absolute -bottom-1 -right-1 bg-blue-500 text-white rounded-full p-0.5 flex items-center justify-center border-2 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-[14px]">comment</span>
+</div>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium leading-snug">
+<span class="font-bold">Elena Grace</span> commented on your post: "This is exactly what the student council was talking about!"
+                    </p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal mt-1">Yesterday, 4:32 PM</p>
+</div>
+</div>
+<!-- Group Activity Notification -->
+<div class="flex items-start gap-4 bg-background-light dark:bg-background-dark px-4 py-4 border-b border-primary/5 opacity-80">
+<div class="relative shrink-0">
+<div class="bg-primary/10 text-primary rounded-full h-12 w-12 flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-sm">
+<span class="material-symbols-outlined text-2xl">campaign</span>
+</div>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium leading-snug">
+                        New announcement in <span class="font-bold">Design Department</span>: Mid-term portfolio reviews schedule released.
+                    </p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal mt-1">Yesterday, 11:15 AM</p>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-background-light dark:bg-background-dark border-t border-primary/10 pb-safe-area">
+<div class="flex items-center justify-around h-16">
+<a class="flex flex-col items-center justify-center flex-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium mt-0.5">Home</p>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">search</span>
+<p class="text-[10px] font-medium mt-0.5">Search</p>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 text-primary relative" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<p class="text-[10px] font-bold mt-0.5">Activity</p>
+<div class="absolute top-2 right-1/4 w-2 h-2 bg-primary rounded-full border-2 border-background-light dark:border-background-dark"></div>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<p class="text-[10px] font-medium mt-0.5">Profile</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>

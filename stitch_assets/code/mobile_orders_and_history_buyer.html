@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Campus Marketplace - Orders</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto bg-white dark:bg-slate-900 shadow-xl">
+<!-- Header -->
+<div class="flex items-center px-4 pt-6 pb-2 justify-between shrink-0">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-lg font-bold leading-tight flex-1 text-center">My Orders</h2>
+<div class="size-10 flex items-center justify-center">
+<span class="material-symbols-outlined">more_vert</span>
+</div>
+</div>
+<!-- Tabs -->
+<div class="px-4 shrink-0">
+<div class="flex border-b border-slate-100 dark:border-slate-800 justify-between">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary pb-3 pt-4 flex-1" href="#">
+<p class="text-primary text-sm font-bold">Active Orders</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 flex-1" href="#">
+<p class="text-sm font-medium">Past Purchases</p>
+</a>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto px-4 py-4 space-y-6">
+<!-- Active Section -->
+<section>
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-base font-bold">Waiting for Pickup</h3>
+<span class="text-xs font-semibold px-2 py-1 bg-primary/10 text-primary rounded-full uppercase tracking-wider">2 Items</span>
+</div>
+<!-- Active Order Card 1 -->
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 border border-slate-100 dark:border-slate-800 mb-4">
+<div class="flex gap-4 mb-4">
+<div class="size-20 bg-slate-200 dark:bg-slate-700 rounded-lg shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Modern organic cotton tote bag" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGWKwP9cCcljVn6YZuW3F8SQSI40eX7Ztf393csE36f9N-5cDLoaDgpzKloYj1rHdKOuCSbqYn1fUonxxb8QC4KiFM00Xw2k6JTWKnfe1BtFv7IDmzvvenyWZzdM3klzgKefM8ZxU7BAc41R5XqyZF7UroMzzwMX0U4D4Z5ki5bIi3LnxhXk8T8TD-hHJBr-qXGz1TpG3AbHeZQ32taCKVZLW5cjaKqL4vaaA1u2b84Wivmh-0i2j7KAK7pxFBjEOsrcAiGvWauURS"/>
+</div>
+<div class="flex flex-col justify-between flex-1">
+<div>
+<h4 class="font-bold text-sm">Organic Tote Bag</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Campus Bookstore Drop-off</p>
+</div>
+<p class="text-primary font-bold text-base">$12.00</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-white py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                            Track Order
+                        </button>
+<button class="flex-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+                            Contact Seller
+                        </button>
+</div>
+</div>
+<!-- Active Order Card 2 -->
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 border border-slate-100 dark:border-slate-800">
+<div class="flex gap-4 mb-4">
+<div class="size-20 bg-slate-200 dark:bg-slate-700 rounded-lg shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Spiral bound academic notebook and pen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs9cCRugAZdLtINEUPROISbuQS5Q86stkNkEeVegVbwxWT8Pb9Fr5UTP7bC9Q7odzYtUI7T7sgxItrnaoxwpWLgPwh6HyoqJm9eO6SprQhQs4dTsuE-gVW39Cz_BJE7apSp0vrnoAKpa2bkpTG00WzFom-F5G7biQo-d4ySnwE7MiXMcJHfLB1lttKm4xW8yxBlsbUkDaMN4jBQhmXtmrT2ckL4dRfmyEvw-eypdnY2fC3kVt775PbA7xC5TRp1cYz131amQHCpOHr"/>
+</div>
+<div class="flex flex-col justify-between flex-1">
+<div>
+<h4 class="font-bold text-sm">Calculus Textbook &amp; Notes</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Student Union, Level 2</p>
+</div>
+<p class="text-primary font-bold text-base">$45.00</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-white py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                            Track Order
+                        </button>
+<button class="flex-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+                            Contact Seller
+                        </button>
+</div>
+</div>
+</section>
+<!-- Past Purchases Preview Section -->
+<section class="pb-8">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-base font-bold">Past Purchases</h3>
+<a class="text-xs font-semibold text-primary" href="#">View All</a>
+</div>
+<!-- Past Order Card -->
+<div class="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 shadow-sm mb-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="size-12 bg-slate-100 dark:bg-slate-800 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">inventory_2</span>
+</div>
+<div>
+<h4 class="text-sm font-bold">Ergonomic Desk Lamp</h4>
+<p class="text-xs text-slate-500">Delivered on Oct 24, 2023</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">COMPLETED</span>
+</div>
+<div class="flex gap-2 pt-2 border-t border-slate-50 dark:border-slate-800">
+<button class="flex-1 text-primary text-xs font-bold py-2 rounded-lg hover:bg-primary/5 transition-colors">
+                            Leave Review
+                        </button>
+<button class="flex-1 text-slate-600 dark:text-slate-400 text-xs font-bold py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            Reorder
+                        </button>
+</div>
+</div>
+<!-- Cancelled Order Card -->
+<div class="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="size-12 bg-slate-100 dark:bg-slate-800 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">headphones</span>
+</div>
+<div>
+<h4 class="text-sm font-bold">Noise Cancelling Pods</h4>
+<p class="text-xs text-slate-500">Cancelled on Oct 20, 2023</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-red-500 bg-red-50 dark:bg-red-950 px-2 py-1 rounded">CANCELLED</span>
+</div>
+<div class="flex gap-2 pt-2 border-t border-slate-50 dark:border-slate-800">
+<button class="w-full text-slate-600 dark:text-slate-400 text-xs font-bold py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            View Details
+                        </button>
+</div>
+</div>
+</section>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="flex gap-2 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pb-6 pt-2 shrink-0">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">storefront</span>
+</div>
+<p class="text-xs font-medium">Shop</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</div>
+<p class="text-xs font-medium">Search</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">receipt_long</span>
+</div>
+<p class="text-xs font-bold">Orders</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<p class="text-xs font-medium">Profile</p>
+</a>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campus Social - Groups</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto bg-white dark:bg-slate-950 shadow-2xl">
+<!-- Top Header -->
+<header class="flex items-center justify-between px-6 pt-6 pb-2">
+<h1 class="text-2xl font-bold tracking-tight">Groups</h1>
+<div class="flex gap-2">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Search Bar -->
+<div class="px-6 py-4">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-slate-400">search</span>
+<input class="w-full rounded-xl border-none bg-slate-100 dark:bg-slate-800 py-3 pl-12 pr-4 text-sm focus:ring-2 focus:ring-primary/50 dark:placeholder-slate-500" placeholder="Search groups, clubs, or batches" type="text"/>
+</div>
+</div>
+<!-- Categories / Filters -->
+<div class="flex gap-3 px-6 pb-4 overflow-x-auto no-scrollbar">
+<button class="flex h-9 shrink-0 items-center justify-center rounded-lg bg-primary px-5 text-sm font-semibold text-white">
+                All
+            </button>
+<button class="flex h-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 px-5 text-sm font-medium text-slate-600 dark:text-slate-300">
+                Academic
+            </button>
+<button class="flex h-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 px-5 text-sm font-medium text-slate-600 dark:text-slate-300">
+                Clubs
+            </button>
+<button class="flex h-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 px-5 text-sm font-medium text-slate-600 dark:text-slate-300">
+                Social
+            </button>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 overflow-y-auto px-6 space-y-8 pb-24">
+<!-- My Groups Section -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold">My Groups</h2>
+<button class="text-primary text-sm font-semibold">See all</button>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Group Card 1 -->
+<div class="flex items-center gap-4 rounded-xl border border-slate-100 dark:border-slate-800 p-3 bg-white dark:bg-slate-900 shadow-sm">
+<div class="h-14 w-14 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Abstract code on a computer screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqig8bykac6_KP-0XH6e30nfq_AzmxYnYCCcGUGTOSFYyso545qe70yrZJnYhr6cgbfBz-5PIJZawv2Z_QrByupk1ahRIkAbb2-YvI-1u2nnnGdpnl3eaStAP-jWKsrUExKqhpUiLpgIAnCx-MHQYZNCOxmF5Aglimg0Xm3dLlPP3VWjPSNs8dbAz0qGjOxYnIFkKWgamFVFiv2y-IkREac5LgClbfBjkf3iGwHkFKbT7NY7WCLdZLuOnNUvAWuIvjrSkamK7hQ01o"/>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-slate-900 dark:text-white">CS Batch 2024</h3>
+<p class="text-xs text-slate-500">128 Members • 3 new posts</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+<!-- Group Card 2 -->
+<div class="flex items-center gap-4 rounded-xl border border-slate-100 dark:border-slate-800 p-3 bg-white dark:bg-slate-900 shadow-sm">
+<div class="h-14 w-14 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="A group of students sitting around a table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9lmcF55xduCF3Fl3uuPNb9IUBExAmsIUzHZRhefWjyJtVyQaG03gNknxfLlMw5SYyufutOfZPd0koNCQBzVcfhslIk2CmtNTZ02BUnmPW8dOplysU3KnMr2KrQXr8F1Lg8AO5M3pld-F8weyhtXIm4wr6md2VgiSPSsEHvqVqWot2ZqJNooekkmcB83gU8zKQ2Cx7MZN3W_mXsR6BvgohEL4jGR9tqojWPh1KlysyGv1B1tyuhg4B3CUbOd-vWpogJQ16D4YkYgmE"/>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-slate-900 dark:text-white">Design Society</h3>
+<p class="text-xs text-slate-500">45 Members • 1 new post</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Discover Section -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold">Discover</h2>
+<button class="text-primary text-sm font-semibold">Explore</button>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<!-- Suggested Group 1 -->
+<div class="min-w-[160px] flex-col rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+<div class="mb-3 h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Modern robot arm illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1gMrWIXhVByEhhSLlzgYChAB2agsHWZHFzsty2ettIVTCz0Im7Rrq7pJFH4wjBzon_i8R7u4GHYRmrTDxWgubZGVNQDzJT76wR1Oq6kG9hw9_BHmv2QhvnEQVfyNW6mSdRbvXzB4k6hMUB4d1H6UtmOFvgJDIvi4uONjdKW99LN8HbuAEHyAWF4BcIgAUS4e14JU042xQP_h8uUi009dMEV61m1AEYD-ZGpejpXjHhmruta1us93HMZEwaewOKW-KrYZrw2t8YzYm"/>
+</div>
+<h3 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Robotics Club</h3>
+<p class="text-[10px] text-slate-500 mb-3">850 members are here</p>
+<button class="w-full rounded-lg bg-primary/10 py-2 text-xs font-bold text-primary">Join</button>
+</div>
+<!-- Suggested Group 2 -->
+<div class="min-w-[160px] flex-col rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+<div class="mb-3 h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="People talking at a university event" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg9O7TXM346U-oZseSCCwyXKygKF44pC-BRSjTsDuYn7xAK9mU_Q4DJfTUjQIKPftxSWCzSbQYONTs0rS7rR_wt8HtGtmZHzzh65JjB6RK8tQ4gVED7i6833icFaJUgHQBrvt6tKi9amkMUbTDPhOZ3kzFUT1GfiLXXweAZKZircq5h_yCueMc79p-Qr3o2dmkAPXE4bfiMu7K18rvANVNH1G5_hr8K2zaVAjnInT-8IL1SO8YBk_fwWNJ8MFjJ39HkCjil0N-wz7D"/>
+</div>
+<h3 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Campus Events</h3>
+<p class="text-[10px] text-slate-500 mb-3">2.4k members active</p>
+<button class="w-full rounded-lg bg-primary/10 py-2 text-xs font-bold text-primary">Join</button>
+</div>
+<!-- Suggested Group 3 -->
+<div class="min-w-[160px] flex-col rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+<div class="mb-3 h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Creative workspace team" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA63dYyqIBX2N3nVUl_rXs1xXekqttiaKSNuMhJpnJ9eKL-gS9bjULjXrXJsdN9b2TrQpssguGkmeUA9O97BIRgACYlpLR4bvJ2jQC7YFwviuPbcZcAnQaL8726cxDhRxdlb1UV8DubzxiKT7Rlot4KQmXObLRUvCNXjX5xbq4U7stKvDKrVQS1c6QRRzdSr3g8D0KFnLFT9aaWroticlLCqD3Y5k2yrjHDbQmyJk1dPnf5kqrRoVRgRhoLlvJN4lLlAwtll4rJBt25"/>
+</div>
+<h3 class="text-sm font-bold text-slate-900 dark:text-white mb-1">StartUp Lab</h3>
+<p class="text-[10px] text-slate-500 mb-3">310 members active</p>
+<button class="w-full rounded-lg bg-primary/10 py-2 text-xs font-bold text-primary">Join</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Floating Action Button -->
+<button class="absolute bottom-24 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white shadow-xl hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="absolute bottom-0 w-full border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 px-6 pb-6 pt-3">
+<div class="flex items-center justify-between">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary active-tab" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-[10px] font-bold">Groups</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-medium">Events</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px] font-medium">Chat</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

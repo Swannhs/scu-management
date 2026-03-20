@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Account Settings - Campus Social</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<!-- Main Container -->
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark overflow-x-hidden pb-24">
+<!-- Header -->
+<div class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 justify-between border-b border-primary/10">
+<div class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Account Settings</h2>
+</div>
+<!-- Content -->
+<div class="flex flex-col gap-6 p-4">
+<!-- Profile Section -->
+<section>
+<h3 class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1 pb-3">Profile Information</h3>
+<div class="bg-white dark:bg-slate-900 rounded-lg p-4 shadow-sm border border-primary/5">
+<div class="flex items-center gap-4 mb-4">
+<div class="relative size-16 shrink-0 rounded-full overflow-hidden border-2 border-primary/20 bg-cover bg-center" data-alt="Student profile picture wearing casual clothes" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7GBcZ-zeukyGhxfBd59olNyqxjYHxMe9hXCAL03iL740lG8oW2XjbZfuawVXXf982sCcTxit05whsw8GGJBIZP89N2dccwSLS8TppHWiZv3AVDpRa3NyQ4FwhwhiTDhAd7Q0VAr4g4bES2HudoSLYByjct-_j2iO3rpv6cuqj3EKReSAsQJQ-1Cds9fT5vIfm7BCrTBToclLRYdItr0zXhHbHP8_qm1FoThnIcQUix2gZb1zGQQ5wb9sfT6bkDaj6VNWZ4UvT3tQb')"></div>
+<div class="flex flex-col flex-1">
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold">Alex Johnson</p>
+<p class="text-primary text-sm font-medium">alex.j@campus.edu</p>
+</div>
+<button class="bg-primary/10 text-primary p-2 rounded-full hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+<div class="border-t border-primary/5 pt-4">
+<p class="text-slate-400 dark:text-slate-500 text-xs font-medium mb-1">Bio</p>
+<p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Computer Science '24 | Coffee Lover | Hackathon Enthusiast. Always looking for new projects!</p>
+</div>
+</div>
+</section>
+<!-- Security Section -->
+<section>
+<h3 class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1 pb-3">Password &amp; Security</h3>
+<div class="bg-white dark:bg-slate-900 rounded-lg overflow-hidden shadow-sm border border-primary/5">
+<div class="flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<div class="text-primary bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<span class="text-sm font-medium">Change Password</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
+</div>
+<div class="border-t border-primary/5 flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<div class="text-primary bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">security</span>
+</div>
+<span class="text-sm font-medium">Two-Factor Authentication</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-slate-400">On</span>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Account Management Section -->
+<section>
+<h3 class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1 pb-3">Account Management</h3>
+<div class="bg-white dark:bg-slate-900 rounded-lg overflow-hidden shadow-sm border border-primary/5">
+<div class="flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<div class="text-primary bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</div>
+<span class="text-sm font-medium">Notifications</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
+</div>
+<div class="border-t border-primary/5 flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<div class="text-primary bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</div>
+<span class="text-sm font-medium">Privacy Settings</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
+</div>
+<div class="border-t border-primary/5 flex items-center justify-between p-4 hover:bg-red-50 dark:hover:bg-red-900/10 cursor-pointer transition-colors group">
+<div class="flex items-center gap-3">
+<div class="text-red-500 bg-red-500/10 p-2 rounded-lg group-hover:bg-red-500/20">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</div>
+<span class="text-sm font-medium text-red-500">Log Out</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto border-t border-primary/10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg px-4 pb-6 pt-2 z-20">
+<div class="flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium leading-none">Home</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<p class="text-[10px] font-medium leading-none">Events</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">groups</span>
+<p class="text-[10px] font-medium leading-none">Social</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<p class="text-[10px] font-medium leading-none">Profile</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>

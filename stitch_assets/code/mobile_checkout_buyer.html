@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Campus Marketplace Checkout</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="max-w-md mx-auto min-h-screen flex flex-col bg-background-light dark:bg-background-dark">
+<!-- Top App Bar -->
+<div class="flex items-center p-4 sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10 border-b border-primary/10">
+<div class="flex size-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">arrow_back</span>
+</div>
+<h1 class="ml-4 text-lg font-bold tracking-tight">Checkout</h1>
+</div>
+<div class="flex-1 overflow-y-auto px-4 py-6 space-y-8 pb-32">
+<!-- Order Summary Section -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-base font-bold">Order Summary</h2>
+<span class="text-xs font-medium text-primary px-2 py-1 bg-primary/10 rounded-full">1 Item</span>
+</div>
+<div class="bg-white dark:bg-slate-800/50 rounded-xl p-4 shadow-sm border border-primary/5">
+<div class="flex gap-4">
+<div class="size-20 rounded-lg bg-center bg-no-repeat bg-cover flex-shrink-0" data-alt="Green university hoodie on a flat surface" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuANyEW1j13VPixjviSKqVY8mKNRpHQwudZ9Iik6duaR6I9Pq-f13WnT7NGU2CmyCLIywQT2bB1nZeCFAkqzfvhYr_TmDfBUMxYWTV5yEW24uuAeg9NrhE5XUArpzwR0jOefB-k0yQ6zaP6Yp8ahWdXJKQSOvRTmEJR5RYOMPcwdw4Dz4dpiiB03RLvp7LRsBIN2F4k7ij-MOPqpxly8uygBSAxMOmLRmGUuHMUGm-iCf8iPyHACPDmSgVruFbbXCHzYzy15CAUnmA4w");'></div>
+<div class="flex flex-col justify-between flex-1">
+<div>
+<h3 class="font-semibold text-sm">University Heritage Hoodie</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Size: Medium • Color: Forest Green</p>
+</div>
+<p class="text-primary font-bold text-base">$45.00</p>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 space-y-2">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Subtotal</span>
+<span>$45.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Campus Fee</span>
+<span>$1.50</span>
+</div>
+<div class="flex justify-between text-base font-bold pt-2 border-t border-dashed border-slate-200 dark:border-slate-600">
+<span>Total</span>
+<span class="text-primary">$46.50</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Pickup Location Section -->
+<section>
+<h2 class="text-base font-bold mb-4">Pickup Location</h2>
+<div class="space-y-3">
+<label class="relative flex items-center p-4 rounded-xl border-2 border-primary bg-primary/5 cursor-pointer">
+<input checked="" class="hidden" name="pickup" type="radio"/>
+<span class="material-symbols-outlined text-primary mr-3">account_balance</span>
+<div class="flex-1">
+<p class="text-sm font-semibold">Student Union Hub</p>
+<p class="text-xs text-slate-500">Open until 9:00 PM</p>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</label>
+<label class="relative flex items-center p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 cursor-pointer hover:border-primary/50 transition-colors">
+<input class="hidden" name="pickup" type="radio"/>
+<span class="material-symbols-outlined text-slate-400 mr-3">local_library</span>
+<div class="flex-1">
+<p class="text-sm font-semibold">Main Library Lobby</p>
+<p class="text-xs text-slate-500">24/7 Pickup Available</p>
+</div>
+<div class="size-5 rounded-full border-2 border-slate-300 dark:border-slate-600"></div>
+</label>
+</div>
+</section>
+<!-- Payment Method Section -->
+<section>
+<h2 class="text-base font-bold mb-4">Payment Method</h2>
+<div class="grid grid-cols-1 gap-3">
+<button class="flex items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-primary mr-3">stars</span>
+<span class="flex-1 text-left text-sm font-medium">Campus Points</span>
+<span class="text-xs font-bold text-slate-400">840 pts available</span>
+</button>
+<button class="flex items-center p-4 rounded-xl border border-primary bg-primary/5 ring-1 ring-primary transition-colors">
+<span class="material-symbols-outlined text-primary mr-3">credit_card</span>
+<span class="flex-1 text-left text-sm font-medium">Credit Card</span>
+<span class="text-xs font-bold text-primary">•••• 4242</span>
+</button>
+<button class="flex items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<div class="flex items-center justify-center mr-3">
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M17.05 20.28c-.96.95-2.26 1.72-3.81 1.72-1.46 0-2.43-.88-3.69-.88-1.27 0-2.39.86-3.71.86-1.46 0-2.85-.85-3.87-1.89-2.1-2.13-2.11-6.28 0-8.41 1.02-1.04 2.41-1.88 3.87-1.88 1.32 0 2.44.85 3.71.85 1.25 0 2.22-.85 3.69-.85.73 0 1.41.2 2.01.55-2.28 1.14-2.82 4.49-1.01 6.13.43.41.92.74 1.48.97-.18.57-.42 1.11-.67 1.58zM12.03 7.25c-.02-2.23 1.83-4.11 4.06-4.11.05 2.14-1.91 4.11-4.06 4.11z"></path>
+</svg>
+</div>
+<span class="flex-1 text-left text-sm font-medium">Apple Pay</span>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Sticky Footer Action -->
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 pb-8">
+<div class="flex items-center justify-between mb-4 px-2">
+<div>
+<p class="text-xs text-slate-500 uppercase tracking-wider font-bold">Total Amount</p>
+<p class="text-xl font-bold text-primary">$46.50</p>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-xs text-slate-400">Secured with SSL</p>
+<div class="flex gap-1 mt-1">
+<span class="material-symbols-outlined text-slate-400 text-xs">lock</span>
+<span class="material-symbols-outlined text-slate-400 text-xs">verified_user</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+                Complete Purchase
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

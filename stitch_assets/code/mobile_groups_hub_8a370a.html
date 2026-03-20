@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Groups Hub - Campus Social</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<!-- Main Container -->
+<div class="relative flex h-screen w-full max-w-[480px] mx-auto flex-col overflow-hidden bg-background-light dark:bg-background-dark shadow-2xl">
+<!-- Header -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between shrink-0">
+<div class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Groups Hub</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex items-center justify-center rounded-xl h-12 bg-transparent text-slate-900 dark:text-slate-100 p-0">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto pb-24">
+<!-- Search Bar -->
+<div class="px-4 py-3">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full shadow-sm border border-primary/10">
+<div class="text-primary flex bg-white dark:bg-slate-800 items-center justify-center pl-4 rounded-l-xl">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-slate-900 dark:text-slate-100 focus:outline-0 focus:ring-0 border-none bg-white dark:bg-slate-800 h-full placeholder:text-slate-400 px-4 rounded-l-none pl-2 text-base font-normal leading-normal" placeholder="Search groups, clubs, or interests"/>
+</div>
+</label>
+</div>
+<!-- Categories -->
+<div class="flex gap-3 px-4 py-2 overflow-x-auto no-scrollbar">
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary px-5 text-white">
+<p class="text-sm font-semibold">All</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/10 dark:bg-primary/20 px-5 text-primary">
+<p class="text-sm font-semibold">Academic</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/10 dark:bg-primary/20 px-5 text-primary">
+<p class="text-sm font-semibold">Clubs</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/10 dark:bg-primary/20 px-5 text-primary">
+<p class="text-sm font-semibold">Social</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/10 dark:bg-primary/20 px-5 text-primary">
+<p class="text-sm font-semibold">Sports</p>
+</div>
+</div>
+<!-- My Groups (Horizontal Scroll) -->
+<div class="mt-6">
+<div class="flex items-center justify-between px-4 mb-4">
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold">My Groups</h2>
+<a class="text-primary text-sm font-semibold" href="#">See all</a>
+</div>
+<div class="flex gap-4 px-4 overflow-x-auto no-scrollbar">
+<div class="flex flex-col gap-2 shrink-0 w-32">
+<div class="w-32 h-32 rounded-2xl bg-slate-200 dark:bg-slate-800 overflow-hidden border border-primary/10">
+<img class="w-full h-full object-cover" data-alt="University students studying together in a library" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANz5-tkGaQW1jU6frxV9ep9dAMGJ8Bb46V7s5dlLJV325TQdUEItUFUePHeF433B_jYawADnqUstAq8GxtT48tLsfeAUD5EndsYc-phHTtGXHdbirzptXq1U6LJPYWEQLw5fltvBJHaky74_xQt5HmT72jOSTIkCljvaUDxCEB0yjyEXWEvY31bKj1-xwALMo43-Z8sntYRhyWaeKP-Y6zj_yhYIv_GqIIiV2ix7jjDVaoYrM-UoFdItwbuzn_NlrXhc1fByLgPdaq"/>
+</div>
+<p class="text-sm font-bold text-center truncate">Data Science Study</p>
+</div>
+<div class="flex flex-col gap-2 shrink-0 w-32">
+<div class="w-32 h-32 rounded-2xl bg-slate-200 dark:bg-slate-800 overflow-hidden border border-primary/10">
+<img class="w-full h-full object-cover" data-alt="Modern chess pieces on a board" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlicgadSqKS8n1I--EJkbcRv11CAuh67EDPFSx6nGAKQCCw2t7y-3rYkhHF-up71JmrZ7p59mnUVl1TwlYVEjMI0msi3vhcIThhCvUzLJA5b9R88UOFm9vX0a_xcgJsooKPTmoBcEvF-2wyzZ1eR2luTgXrREUvAFUzWl87om2SuoxnnrKIbFHweqxT7u8QLIYBQLTLBKEhVtIA2QKlM3pnsYznZ_hq-kGq3tufFFQrO8MNYUBwDVlmLUEBQNbFbMPS2YYDeGK4sh1"/>
+</div>
+<p class="text-sm font-bold text-center truncate">Chess Club</p>
+</div>
+<div class="flex flex-col gap-2 shrink-0 w-32">
+<div class="w-32 h-32 rounded-2xl bg-slate-200 dark:bg-slate-800 overflow-hidden border border-primary/10">
+<img class="w-full h-full object-cover" data-alt="Professional microphone in a radio studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY3_e9IruyTMQBIELNSgTyrS-72azL0NDTS8FWBcuuW4UHHN3mdJu5zrtxPmL6OpbN1Q4nhvHhq7Sp7zaNlF7XMkurJ9RRd4JksfpwCRhBDWG90hmQz-UjD4Yf5etmwxsCLCGSd4kyCRs2GjD9VHDmE59EdsztbimpW2ZDyWBVX8sflzgDopFev0dPRRXPJ92gxvklTVEblkDm1P9o_c0rN2E-NT8yf5nRr45FTppiOnGIEdzDgLKyHcbqDs2wkl-vyM-yT81Wa-Uw"/>
+</div>
+<p class="text-sm font-bold text-center truncate">Campus Podcast</p>
+</div>
+</div>
+</div>
+<!-- Suggested for You -->
+<div class="mt-8 px-4">
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold mb-4">Suggested for You</h2>
+<div class="grid grid-cols-1 gap-4">
+<!-- Vertical Card 1 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-primary/5 shadow-sm">
+<div class="h-40 w-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Outdoor group yoga session at sunrise" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq8gP6TvM_ApVB-_NxMdFOqVWxUwajvlqA7IZqNKrJMK32wxGfTT1vZ6tWVcqAHr1UHVhGViw5aNz1aeXIZielwkQCZl5OxO5pWMgazfN-1UBwIwHnpFgKIRKPvkjVOrplH0HdsdAZGa_zxgt8tguVbk9lQJG5xXbwApspLkOQiZ8_ceXaGtE_5ljfuESWxyGR-GvsNtw5CJNYmZ8pPBJUucu2m7snAClvpuAc59Le2ZZLU-klEb5aGyTtK9Xwv8yfbc9gRigg8CmN"/>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-lg">Morning Yoga Society</h3>
+<p class="text-slate-500 text-sm">1.2k members • 3 events this week</p>
+</div>
+<button class="bg-primary text-white px-4 py-1.5 rounded-full text-sm font-bold">Join</button>
+</div>
+</div>
+</div>
+<!-- Vertical Card 2 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-primary/5 shadow-sm">
+<div class="h-40 w-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Dynamic group of people brainstorming ideas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyACGLeUPTb3GiCgu1opPZIIjsrg5cdyzeiCV_jhP77HeJ46OHDDHA7r-Kxb6YFT45z0FBIGysKCyuTPg5wmbwz_ktpgLrjIRNWUuWO5y1ovwXbvbTNULnPO7iF3MS0yKzC4tPjncP1y_6ClR13b72rm3wy2kRXLfrGavL9dRiX3-c-nVomtLCOs2Y8bkWFanIeYFt4s9XTh3-yJojltoIf7Gde9odBhXRnBscvs57zGNIXg44KK_A5zkpMzhP85xVADyF-i4hNOcV"/>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-lg">Tech Entrepreneurs</h3>
+<p class="text-slate-500 text-sm">850 members • 1 meeting today</p>
+</div>
+<button class="bg-primary text-white px-4 py-1.5 rounded-full text-sm font-bold">Join</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button -->
+<div class="absolute bottom-24 right-6 z-10">
+<button class="bg-primary text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<!-- Bottom NavBar -->
+<div class="absolute bottom-0 left-0 w-full border-t border-primary/10 bg-white dark:bg-slate-900 px-4 pb-6 pt-2 flex justify-between items-center">
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-xs font-medium">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined font-fill-1">groups</span>
+<p class="text-xs font-medium">Groups</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<p class="text-xs font-medium">Events</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-xs font-medium">Profile</p>
+</a>
+</div>
+</div>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .font-fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</body></html>

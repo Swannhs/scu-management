@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Group Management</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-xl overflow-hidden">
+<!-- Header -->
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10">
+<button class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 px-2">Group Management</h2>
+<button class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<!-- Search Bar -->
+<div class="px-4 py-3">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full shadow-sm">
+<div class="text-primary flex border-none bg-primary/10 items-center justify-center pl-4 rounded-l-xl border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-slate-900 dark:text-slate-100 focus:outline-0 focus:ring-0 border-none bg-primary/10 focus:border-none h-full placeholder:text-primary/60 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal" placeholder="Find specific members" value=""/>
+</div>
+</label>
+</div>
+<!-- Tabs -->
+<div class="pb-1">
+<div class="flex border-b border-primary/10 px-4 justify-between">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 flex-1 hover:text-primary transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-wide">Members</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-primary pb-3 pt-4 flex-1" href="#">
+<p class="text-sm font-bold leading-normal tracking-wide">Join Requests (8)</p>
+</a>
+</div>
+</div>
+<!-- List of Requests -->
+<div class="flex-1 overflow-y-auto pb-24">
+<!-- Request Item 1 -->
+<div class="flex flex-col gap-3 bg-background-light dark:bg-background-dark px-4 py-4 border-b border-primary/5">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-primary/20" data-alt="Close up portrait of a male college student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAzsE9a92UGztQsOKWri6IgDfPXXfAqTt61FdfR2lZN5i6sOuWJrIPVZEiH375ni-dWkSgJpOXDn798cajAYjezIwgvSOClGgIme6Gop02Ifzjx9fVm8bfpy_nQKMGt-0YyP6sa9cszCx1G9YCZq5DA6E3M1Lhc8mySq6q0rwaa0iQuZ7Id7NUEcENEQF8yZJX3eyTtkrFQlA5Wik_vzyv0yclRepHZq6mlebo-uuy-gu0Wg8YSwELeBizNH0m5pN1mYayzRxCd90Od");'></div>
+<div class="flex flex-col justify-center flex-1">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold leading-tight">Alex Johnson</p>
+<p class="text-primary text-sm font-medium leading-tight">Computer Science Senior</p>
+</div>
+</div>
+<div class="flex gap-2 mt-1">
+<button class="flex-1 py-2 px-4 bg-primary text-white rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">Approve</button>
+<button class="flex-1 py-2 px-4 bg-primary/10 text-primary rounded-lg font-bold text-sm hover:bg-primary/20 transition-colors">Reject</button>
+</div>
+</div>
+<!-- Request Item 2 -->
+<div class="flex flex-col gap-3 bg-background-light dark:bg-background-dark px-4 py-4 border-b border-primary/5">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-primary/20" data-alt="Close up portrait of a female university student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDhcaF3pO2p-qwr5H0CwYpS9xgh99ntQaazH49VJUaFoAZFbxwZ0zPu1U5R-ws-8LkXgJ78ckpXs7zpI7PCfFLoUVqubiED3NJgOAA0HRJr_Ekdw5RXFvb8gHCQydMZ_1s4du-gmV8_SrqDRdgdMsE4PWaZfmDpcRQjRaLQpNIynXJfCtCqCIxQPq4cO8ZwKinS75t-9Eij5w2VjAIqQR9sfi6cwyO7uibVcYI8A85DDtEExktd-mDEd3mUqBg4U4csu1J5ZO7_a75J");'></div>
+<div class="flex flex-col justify-center flex-1">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold leading-tight">Sarah Chen</p>
+<p class="text-primary text-sm font-medium leading-tight">Design &amp; Innovation Sophomore</p>
+</div>
+</div>
+<div class="flex gap-2 mt-1">
+<button class="flex-1 py-2 px-4 bg-primary text-white rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">Approve</button>
+<button class="flex-1 py-2 px-4 bg-primary/10 text-primary rounded-lg font-bold text-sm hover:bg-primary/20 transition-colors">Reject</button>
+</div>
+</div>
+<!-- Request Item 3 -->
+<div class="flex flex-col gap-3 bg-background-light dark:bg-background-dark px-4 py-4 border-b border-primary/5">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-primary/20" data-alt="Close up portrait of a male graduate student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9_x9f2yPjHI7FozGWAX8uy_9ZEqsPJ4q0cfD4ouP1OyR0OeSUs6UnEdJh1tuC71itPVa1enj-t-R3u6fZTLX7oxqnureOLfjaRE_H_49T9s8pl8VKR1bVibl2GVYohuZYgJS4aqMf3Qe7wCaXROlqLFhSbF8O5pl5OGr00uKksi7gPYO0uVNvuQX2TMeBfXlytaGs7GmHib0N2ehaBLsbmnfwR7v9hu4o01G052GQWRgZkQxTI281yipy_QNFB99sy9Hp5C3q4Ji7");'></div>
+<div class="flex flex-col justify-center flex-1">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold leading-tight">Marcus Williams</p>
+<p class="text-primary text-sm font-medium leading-tight">Business Administration PhD</p>
+</div>
+</div>
+<div class="flex gap-2 mt-1">
+<button class="flex-1 py-2 px-4 bg-primary text-white rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">Approve</button>
+<button class="flex-1 py-2 px-4 bg-primary/10 text-primary rounded-lg font-bold text-sm hover:bg-primary/20 transition-colors">Reject</button>
+</div>
+</div>
+<!-- Request Item 4 -->
+<div class="flex flex-col gap-3 bg-background-light dark:bg-background-dark px-4 py-4 border-b border-primary/5">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-primary/20" data-alt="Portrait of a female student with glasses" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuACQwhsth53GCygmimL0UvW9_8amGrEC_odu6P-iXve0NrynsBfBdt4QgZdIb2Wap_AfAm65ATm5DfpSykOTGr-_BgLsFj5Q1MUGdqRQeWbU7GoAPW7BeXESGPKbOxvIzMii2VZRxbOzkzP6D-5F1LTQp06Rb4fGVzI1G2tKfop9VVQ97t7nUgCgvQ_eG8qTWMjz9vWmkOJrnpP_scMBfkbv4MWRXWWapLN9X4HwkT7Dtp3RtjbuT3MoVG_RjGib_4_Ro145lAckGeE");'></div>
+<div class="flex flex-col justify-center flex-1">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold leading-tight">Elena Rodriguez</p>
+<p class="text-primary text-sm font-medium leading-tight">Bioengineering Junior</p>
+</div>
+</div>
+<div class="flex gap-2 mt-1">
+<button class="flex-1 py-2 px-4 bg-primary text-white rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">Approve</button>
+<button class="flex-1 py-2 px-4 bg-primary/10 text-primary rounded-lg font-bold text-sm hover:bg-primary/20 transition-colors">Reject</button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 w-full max-w-md border-t border-primary/10 bg-background-light dark:bg-background-dark px-4 pb-6 pt-2 z-20">
+<div class="flex gap-2 items-center justify-between">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-xs font-medium leading-normal">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-900 dark:text-slate-100" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">group</span>
+<p class="text-xs font-bold leading-normal">Groups</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<p class="text-xs font-medium leading-normal">Events</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-xs font-medium leading-normal">Profile</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>

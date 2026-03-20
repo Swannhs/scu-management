@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Group Detail - Robotics Club</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-xl overflow-x-hidden">
+<!-- Header Nav -->
+<div class="sticky top-0 z-20 flex items-center bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md p-4 justify-between border-b border-primary/10">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Group Details</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex items-center justify-center rounded-full size-10 hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Cover Photo Section -->
+<div class="relative">
+<div class="w-full bg-center bg-no-repeat bg-cover min-h-[180px]" data-alt="Futuristic robotic arm and circuit board background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDgBqv50TLHD60cQuI8aTL3Vaym78JRBDxHeRyKA07Rjf3Z3I1Ro-N3rFRZtj7_BUT0eNywW9IhQ1zpd_jNSirD2fycxKaBfNQlGhOWdWzl6uKqbJT40x4LcMJ2PpDCbKBHF0KeRZrVREYL7__3gdEiPS9PK8XFS2Hte2p0l0jlex5QadK-p5hnDvRDI0OfTR4wAuuNPEeKcdrQKSOPRp1qpNM2Li-QX8EuGEqzOprAvDg3n599fk8h1kwBxNb2rvdgeGjWTxNvEVIW");'>
+</div>
+<div class="px-4 -mt-12 flex flex-col gap-3 relative z-10">
+<div class="flex items-end justify-between">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl border-4 border-background-light dark:border-background-dark h-28 w-28 shadow-lg" data-alt="Abstract modern robot head logo icon" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCoxfvGVj1MsONTgxPeWv9-xbvNtK4zPMDaTMoHUO6hQa4eLdKpTWEgnbwT5MlzXywz5C-wOOlQB_oQMRCHb3mDlYjyfY5jyUy8uW2Om6n23H6Y-2bnTWkVJFH0Lv6hQRx79ANln1aOj_JyIVi8kXPL81Il3eO-Rv5yBlxiy8lq9jFvI093lDwVLjW1IkvdrvAXza3MZAovkccUNJTqzlwHxorLD9U43a41dAPPsv35c3qEzRJjFdUETpsX02qFqXLcGvgaboNcnkpn");'>
+</div>
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-5 bg-primary/10 text-primary border border-primary/20 text-sm font-bold transition-all hover:bg-primary/20">
+<span class="material-symbols-outlined text-sm mr-1">check_circle</span>
+<span>Joined</span>
+</button>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-slate-100 text-2xl font-bold tracking-tight">Robotics Club</h1>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-primary text-sm font-semibold">1,240 Members</span>
+<span class="text-slate-400">•</span>
+<span class="text-slate-500 dark:text-slate-400 text-sm">Public Group</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="mt-4 border-b border-primary/10 sticky top-[72px] bg-background-light dark:bg-background-dark z-20">
+<div class="flex px-4 gap-6 overflow-x-auto no-scrollbar">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-2 whitespace-nowrap" href="#">
+<p class="text-sm font-bold">Feed</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2 whitespace-nowrap hover:text-primary transition-colors" href="#">
+<p class="text-sm font-medium">Members</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2 whitespace-nowrap hover:text-primary transition-colors" href="#">
+<p class="text-sm font-medium">Events</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2 whitespace-nowrap hover:text-primary transition-colors" href="#">
+<p class="text-sm font-medium">Files</p>
+</a>
+</div>
+</div>
+<!-- Feed Content -->
+<div class="p-4 space-y-4 pb-24">
+<!-- Post Composer -->
+<div class="bg-white dark:bg-slate-800/50 rounded-xl p-4 shadow-sm border border-primary/5">
+<div class="flex gap-3">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div class="flex-1 bg-slate-100 dark:bg-slate-900 rounded-full px-4 flex items-center cursor-pointer">
+<span class="text-slate-500 text-sm">Start a discussion...</span>
+</div>
+</div>
+<div class="flex justify-between mt-4 pt-3 border-t border-primary/5">
+<button class="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400 px-2 py-1 rounded hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-primary text-lg">image</span> Photo
+                    </button>
+<button class="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400 px-2 py-1 rounded hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-primary text-lg">videocam</span> Video
+                    </button>
+<button class="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400 px-2 py-1 rounded hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-primary text-lg">event</span> Event
+                    </button>
+</div>
+</div>
+<!-- Post Card -->
+<div class="bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden shadow-sm border border-primary/5">
+<div class="p-4">
+<div class="flex items-center gap-3 mb-3">
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Profile picture of club member" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9mG1-Wq5XD00c7-rPbi3XHk0-BsIxZnoUrNlmemHmfzgKuL6sNOJNMDnAOxeYItLuFr1T0hKcAeawqKKtBAoX4FV-q1XN88z72s9cwArrb5AE1ThQLqqRpgwgjhew5QWiJdFTh46tNBEPDrEBtvExod1Xc26IIqsvHfaTKcccnDXP5YYc30sq1TQaLtD46A5VaSbbCCklAEqJHrAOuGMRoetmDib3VcCpZcwQepaU1OqUWwtEXn-hEhcoPfs9gxTvAmTO5TY3EUDU')"></div>
+<div>
+<h4 class="text-sm font-bold text-slate-900 dark:text-slate-100">Alex Rivers</h4>
+<p class="text-[10px] text-slate-500">2 hours ago</p>
+</div>
+<button class="ml-auto text-slate-400">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                        Just finished calibrating the new LIDAR sensors for our autonomous rover project. The precision is incredible compared to the old ultrasonic ones! 🤖🛰️
+                    </p>
+</div>
+<div class="w-full aspect-video bg-cover bg-center" data-alt="Autonomous rover with LIDAR sensors testing in a lab" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCy98u-RX_he5snNDrD2O3UXOV7-F1EI65awSwaWQMgIk95_GGKBAT717KjUnHY8cIvlFWHijrsQmQBIVtl0bwJRhnjHTZF2LkJY_VseqNgazupd4hQFe0z1EHqZxpTR9o1FoEde_Z1bprcg-mp_NX_ThH0t4UsA7J3fRE0WS5vhZW1QJ60ewILkyEwrfCcJ-n8fPfIIzq3axrsOca9jQs4w8ZCFx3a0lNGuZOtfvK6Z99_x6NLxByjRmZ45raTmYjhXzFP8xYVOlIJ')"></div>
+<div class="p-3 border-t border-primary/5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span class="text-xs font-semibold">42</span>
+</button>
+<button class="flex items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+<span class="text-xs font-semibold">12</span>
+</button>
+</div>
+<button class="flex items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">share</span>
+</button>
+</div>
+</div>
+<!-- Another Post Card (No Image) -->
+<div class="bg-white dark:bg-slate-800/50 rounded-xl p-4 shadow-sm border border-primary/5">
+<div class="flex items-center gap-3 mb-3">
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Profile picture of female member" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDaUeH5lsVY4ViWjBChUSRq9w2l_-VmrU6UZ3ZgoF5bGJdmyvGOP7fh-1NpXWKyW3Y_LDmylRpUy2hDky5JosD7LxAty6XduzfqrRAmMEJGhIqSBxT7q78tTyPqYSisz1TIKW6PRXrwv8DMeH6GLO9qb0t6egsOmaIEQaP4N8GuGMy7rlmphN5hRQgwXBPaFIJtTpzpXMzKjh74LTlGbZoCs0v_wo9ZqIEpXLVre7kVE5_OxAOEPE5LHBBkK1muGn3D-_Xhu-Qoz8jW')"></div>
+<div>
+<h4 class="text-sm font-bold text-slate-900 dark:text-slate-100">Sarah Chen</h4>
+<p class="text-[10px] text-slate-500">5 hours ago</p>
+</div>
+</div>
+<p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+                    Is anyone interested in a weekend workshop on ROS2 fundamentals? I have some materials from the last conference I attended.
+                </p>
+<div class="flex items-center gap-4 pt-3 border-t border-primary/5">
+<button class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span class="text-xs font-semibold">18</span>
+</button>
+<button class="flex items-center gap-1 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+<span class="text-xs font-semibold">5</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-30 flex gap-2 border-t border-primary/10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md px-4 pb-6 pt-3">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-bold">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">groups</span>
+<p class="text-[10px] font-medium">Groups</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">search</span>
+<p class="text-[10px] font-medium">Search</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<p class="text-[10px] font-medium">Alerts</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-medium">Profile</p>
+</a>
+</div>
+</div>
+</body></html>

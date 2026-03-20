@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCU Smart Campus - Discovery Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;0,900;1,900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#bceecf",
+              "on-tertiary-fixed-variant": "#842327",
+              "on-primary-fixed": "#002112",
+              "inverse-surface": "#2d3133",
+              "on-primary-fixed-variant": "#005234",
+              "secondary-fixed": "#bceecf",
+              "on-tertiary-container": "#5d040f",
+              "on-tertiary-fixed": "#410006",
+              "tertiary-fixed": "#ffdad8",
+              "surface-container": "#eceef0",
+              "on-primary-container": "#00321f",
+              "inverse-primary": "#5adda0",
+              "on-error": "#ffffff",
+              "on-background": "#191c1e",
+              "surface-container-low": "#f2f4f6",
+              "primary-fixed-dim": "#5adda0",
+              "error": "#ba1a1a",
+              "tertiary-container": "#e66d6c",
+              "primary": "#006c46",
+              "surface-tint": "#006c46",
+              "secondary-fixed-dim": "#a1d1b4",
+              "on-surface": "#191c1e",
+              "tertiary": "#a33b3c",
+              "on-primary": "#ffffff",
+              "outline-variant": "#bccabf",
+              "inverse-on-surface": "#eff1f3",
+              "on-surface-variant": "#3d4a41",
+              "on-secondary-fixed": "#002112",
+              "surface-container-highest": "#e0e3e5",
+              "surface-dim": "#d8dadc",
+              "primary-container": "#00a76f",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#406e55",
+              "primary-fixed": "#79fabb",
+              "background": "#f8f9fb",
+              "surface": "#f8f9fb",
+              "secondary": "#3a674f",
+              "on-secondary-fixed-variant": "#224f39",
+              "surface-container-high": "#e6e8ea",
+              "surface-bright": "#f8f9fb",
+              "outline": "#6d7a71",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#e0e3e5",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "on-secondary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Public Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.75rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .bg-vibrant-gradient {
+        background: linear-gradient(135deg, #006c46 0%, #00a76f 100%);
+      }
+      .tonal-shift-bg {
+        background-color: #f8f9fb;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased pb-32">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-none flex items-center justify-between px-5 h-16 w-full max-w-none">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#00A76F]" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="text-[#00A76F] font-black italic tracking-tighter text-xl">SCU Smart Campus</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-5 max-w-md mx-auto">
+<!-- Search & Filter Section -->
+<section class="mb-8">
+<h1 class="font-headline font-black text-3xl tracking-tight text-on-surface mb-6">Discovery Hub</h1>
+<!-- Search Bar -->
+<div class="relative mb-6">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full h-14 bg-surface-container-high border-none rounded-xl pl-12 pr-4 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline" placeholder="Search opportunities..." type="text"/>
+</div>
+<!-- Horizontal Category Scroll -->
+<div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide -mx-5 px-5">
+<button class="flex items-center gap-2 whitespace-nowrap bg-vibrant-gradient text-on-primary px-5 py-2.5 rounded-full font-label font-medium shadow-md transition-transform active:scale-95">
+<span class="material-symbols-outlined text-sm">grid_view</span>
+                    All
+                </button>
+<button class="flex items-center gap-2 whitespace-nowrap bg-surface-container-lowest text-on-surface-variant border border-outline-variant/15 px-5 py-2.5 rounded-full font-label font-medium transition-transform active:scale-95">
+<span class="material-symbols-outlined text-sm">nature_people</span>
+                    Environment
+                </button>
+<button class="flex items-center gap-2 whitespace-nowrap bg-surface-container-lowest text-on-surface-variant border border-outline-variant/15 px-5 py-2.5 rounded-full font-label font-medium transition-transform active:scale-95">
+<span class="material-symbols-outlined text-sm">menu_book</span>
+                    Tutoring
+                </button>
+<button class="flex items-center gap-2 whitespace-nowrap bg-surface-container-lowest text-on-surface-variant border border-outline-variant/15 px-5 py-2.5 rounded-full font-label font-medium transition-transform active:scale-95">
+<span class="material-symbols-outlined text-sm">favorite</span>
+                    Healthcare
+                </button>
+</div>
+</section>
+<!-- Featured Section -->
+<section class="space-y-6">
+<div class="flex justify-between items-end">
+<h2 class="font-headline font-bold text-xl tracking-tight">Featured Opportunities</h2>
+<span class="text-primary text-sm font-semibold cursor-pointer">View all</span>
+</div>
+<!-- Bento Card 1 (High Fidelity) -->
+<div class="relative group bg-surface-container-lowest rounded-[2rem] overflow-hidden shadow-[0px_12px_32px_rgba(25,28,30,0.04)] transition-all duration-300 hover:scale-[1.02]">
+<div class="aspect-[4/3] w-full relative">
+<img alt="Environmental Volunteers" class="w-full h-full object-cover" data-alt="Group of student volunteers planting trees in a sunny park" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8Xzq8Bn-U0VG23Ya5z4WAVwI1vWtHgO_7LUrThISQZBeSNDWgc0FvFcgX1CJMBBMqueVyzbmbMm9HJLfSD9BqVZnao6d179cHItcvJ-xFs2qr5AzluFglfnucUEI4HISucfgBxlS55eeLPjq810izHbNA2KVF4Bk6RGWmcT9RXeFMk5WfxRII-w1a1_Wseezg5SnznJ5CSgZKayudW2Z1fXA_Qnt5dwjJ64L5-3kBqyINcWDfWAWKOL7WHNj567vFVa5T0_OtR3wQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute top-4 right-4 bg-error-container text-on-error-container text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+                        Urgent
+                    </div>
+</div>
+<div class="p-6">
+<div class="flex gap-2 mb-3">
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">Environment</span>
+<span class="text-outline text-[10px] font-bold px-2 py-0.5 uppercase tracking-wide">4 Hours</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-on-surface leading-tight mb-2">Campus Green Project: Urban Garden Revitalization</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 mb-6">Help us transform the North Quad into a sustainable biodiversity hub. No experience needed!</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container">
+<img class="w-full h-full rounded-full object-cover" data-alt="Female student volunteer profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0o37JLeaGwxutPr1t63wyFpzcjxfQi72whPOJxTaXqkn8-40gHsf-g1OZvbzIVsItIScjcO8SHVk2KOCTCI-_ieB-fcBlartsM1WQcsOzv56Jxh3JYSJAwZ2xmoiWU2y-p0L5Wt2P9TB38e2hSDNe4l3c6drhL8ScQ6rY8eRg0CcHNU6c7S5gvvIOpUP-yTNmYT7mn-HNhS1h9vlZOjU5bj9hOAybnNZZnj9U2SzRATzZKdsxAyYlX6EMGo25fuNDTKyAcVtu3c_T"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container">
+<img class="w-full h-full rounded-full object-cover" data-alt="Male student volunteer profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALjYFhHne9vm0cfBjUcIuuGPXL_oLN4AavxE63mDH6_4BY09oWtngCoW9eF40qaQvIsJN61M0JApaHqJlOhAogJ2krW0QBMrH3R_gzmyyo5ViZhmBsNDPVa6O21iveGD2WfZzIw4cwawqkzMUqbdkYTczIfNfXAx_RVx3Ww8zWrNzUiRKhQ6uQw6o9zHg1LgFP-FqEqkKW8d0YFjYEWchMVQDbHgLKOiDKX0Uwi4odpPKIpFEGm9FHAHYvghz7OLmmbhhAD12YWd5D"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-primary-fixed flex items-center justify-center text-[10px] font-bold text-on-primary-fixed">
+                                +12
+                            </div>
+</div>
+<button class="bg-vibrant-gradient text-on-primary px-8 py-3 rounded-xl font-bold text-sm shadow-md transition-transform active:scale-95">
+                            Apply
+                        </button>
+</div>
+</div>
+</div>
+<!-- Bento Card 2 (Secondary) -->
+<div class="bg-surface-container-lowest rounded-[2rem] overflow-hidden shadow-[0px_12px_32px_rgba(25,28,30,0.04)] p-2">
+<div class="flex gap-4 p-4">
+<div class="w-24 h-24 rounded-2xl overflow-hidden shrink-0">
+<img alt="Tutoring Session" class="w-full h-full object-cover" data-alt="Close up of books and hands during a tutoring session" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPdWV40YGl6lPrHq30p8O-lutBa6QNVBbBvlkfrR2hYBU3pfw9_y3vbHWLz4rT2WJp81ZcaGr865fWElXgkaG_fxI77NtcSfu8mmfyxeX-7D88v9z77gHCqK86PeDYMh4jlPIdQhMLk7pRcibtaNcbKthPnXAx7zemEXxn6WPJS-ele-u9zSQyd0Q36nGuYGPmOh7b5Gd-Y_fzDWnK9UIRUdtndLUxgQ6Byh5gPDsstW_6xEoIHmRuaPZ3M7Zthb8Av5rTOhVfwNbC"/>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<span class="text-primary text-[10px] font-bold uppercase tracking-widest mb-1">Tutoring</span>
+<h3 class="font-headline font-bold text-base text-on-surface mb-3">Math &amp; Logic Peer Mentorship</h3>
+<div class="flex items-center justify-between">
+<div class="flex items-center text-outline text-xs">
+<span class="material-symbols-outlined text-sm mr-1">schedule</span>
+                                Weekly
+                            </div>
+<button class="bg-primary/5 text-primary px-4 py-1.5 rounded-lg font-bold text-xs transition-colors hover:bg-primary/10">
+                                Apply
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Map View Callout (Asymmetric) -->
+<div class="relative rounded-[2rem] h-40 overflow-hidden bg-surface-container-high group">
+<img alt="Campus Map" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Abstract aerial map view of campus surroundings" data-location="Santa Clara University" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0dZZI7KiYiYNIbXd3MJ7mvWCJfn5Tn0GpI9r4gp8RjV-TZIn4RcKWkc4jpKHUERkbTJnBmSczgZPGyumPAUzMIQ2f6bp4dSo3EAt-MsnT8h0A3g8Gl01tkujHivoxMvvKubu4_BFZ4PXBoQy17pEMREsjjCaryvZMQaW_HlFPtpJBcAfF7QKKy3TQkoz88mLePJ4mB4dGRA9LqqDh7Bls46S4tRSohq8A7H2a3vHCb6pINvru-9mIupg37KvnWUzrhbQVmesrssgV"/>
+<div class="absolute inset-0 flex flex-col justify-center px-8">
+<h3 class="font-headline font-black text-2xl text-on-surface leading-none mb-1">Near You</h3>
+<p class="text-on-surface-variant font-medium text-sm">Discover local impact</p>
+<div class="mt-4">
+<span class="bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold text-on-surface shadow-sm inline-flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                            8 Open Now
+                        </span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md tonal-shift-bg shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-50 rounded-t-2xl border-t border-slate-100 dark:border-slate-800">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-all" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-all" href="#">
+<span class="material-symbols-outlined mb-1">explore</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#00A76F] bg-[#00A76F]/10 rounded-xl px-3 py-1 transition-all scale-110" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Service</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-all" href="#">
+<span class="material-symbols-outlined mb-1">chat_bubble</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#00A76F] transition-all" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button - Specific to Service Discoverability -->
+<div class="fixed bottom-28 right-6 z-40">
+<button class="w-14 h-14 bg-vibrant-gradient text-on-primary rounded-2xl shadow-xl flex items-center justify-center transition-transform hover:scale-110 active:scale-95">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+</body></html>

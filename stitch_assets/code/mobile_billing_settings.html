@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00a870",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 sticky top-0 z-10 border-b border-primary/10">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center cursor-pointer" data-icon="arrow_back">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 ml-2">Billing &amp; Subscriptions</h2>
+</div>
+<!-- Content -->
+<div class="flex-1 overflow-y-auto pb-24">
+<!-- Current Plan -->
+<section class="px-4 pt-6">
+<h3 class="text-slate-900 dark:text-slate-100 text-sm font-semibold uppercase tracking-wider mb-3">Current Plan</h3>
+<div class="flex items-stretch justify-between gap-4 rounded-xl bg-white dark:bg-slate-900 p-5 shadow-sm border border-primary/5">
+<div class="flex flex-[2_2_0px] flex-col justify-between gap-4">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary w-fit">Active</span>
+<p class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight mt-1">Campus Premium</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal">$9.99 / month • Renews Oct 24, 2023</p>
+</div>
+<button class="flex min-w-[120px] max-w-fit cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-colors">
+                            Manage Plan
+                        </button>
+</div>
+<div class="w-24 h-24 bg-primary/10 rounded-lg flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-gradient-to-br from-primary to-primary/40 flex items-center justify-center" data-alt="Abstract green geometric pattern for premium plan">
+<span class="material-symbols-outlined text-white text-4xl">workspace_premium</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Payment Methods -->
+<section class="px-4 pt-8">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-slate-900 dark:text-slate-100 text-sm font-semibold uppercase tracking-wider">Payment Methods</h3>
+<button class="text-primary text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">add</span> Add New
+                    </button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Visa Card -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-white dark:bg-slate-900 border border-primary/5 shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-12 h-8 bg-slate-100 dark:bg-slate-800 rounded flex items-center justify-center overflow-hidden">
+<div class="bg-gradient-to-r from-blue-600 to-blue-400 w-full h-full flex items-center justify-center" data-alt="Visa credit card icon representation">
+<span class="text-white text-[10px] font-bold italic">VISA</span>
+</div>
+</div>
+<div>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-semibold">Visa ending in 4242</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Expires 12/26</p>
+</div>
+</div>
+<div class="text-primary">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<!-- PayPal -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-white dark:bg-slate-900 border border-primary/5 shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-12 h-8 bg-slate-100 dark:bg-slate-800 rounded flex items-center justify-center overflow-hidden">
+<div class="bg-slate-50 w-full h-full flex items-center justify-center" data-alt="PayPal service logo representation">
+<span class="material-symbols-outlined text-blue-800">payments</span>
+</div>
+</div>
+<div>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-semibold">PayPal</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">alex.campus@email.com</p>
+</div>
+</div>
+<div class="text-slate-400">
+<span class="material-symbols-outlined">more_horiz</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Billing History -->
+<section class="px-4 pt-8">
+<h3 class="text-slate-900 dark:text-slate-100 text-sm font-semibold uppercase tracking-wider mb-3">Billing History</h3>
+<div class="flex flex-col bg-white dark:bg-slate-900 rounded-xl border border-primary/5 shadow-sm overflow-hidden">
+<div class="flex items-center justify-between p-4 border-b border-primary/5">
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium">Campus Premium - Sept 2023</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Sept 24, 2023</p>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold">$9.99</p>
+<button class="text-primary text-xs font-medium">Invoice</button>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 border-b border-primary/5">
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium">Campus Premium - Aug 2023</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Aug 24, 2023</p>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold">$9.99</p>
+<button class="text-primary text-xs font-medium">Invoice</button>
+</div>
+</div>
+<div class="flex items-center justify-between p-4">
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium">Campus Premium - July 2023</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">July 24, 2023</p>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold">$9.99</p>
+<button class="text-primary text-xs font-medium">Invoice</button>
+</div>
+</div>
+</div>
+<button class="w-full text-center py-4 text-primary text-sm font-semibold">View All History</button>
+</section>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 border-t border-primary/10 bg-white dark:bg-slate-900 px-4 pb-6 pt-2">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">home</span>
+<p class="text-[10px] font-medium leading-normal">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">group</span>
+<p class="text-[10px] font-medium leading-normal">Social</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">calendar_today</span>
+<p class="text-[10px] font-medium leading-normal">Events</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">settings</span>
+<p class="text-[10px] font-medium leading-normal">Settings</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>
