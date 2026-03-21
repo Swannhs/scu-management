@@ -7,6 +7,7 @@ Production-grade social + communication service for campus tenants. This service
 - **Tenant safety**: every write/read is scoped by `tenant_id` derived from `X-Tenant-ID` header and the Keycloak token `tenant_id` claim.
 - **Keycloak** only: no local auth.
 - **Media** is stored in document-service; this service only stores `file_id` references.
+- Local filesystem uploads are not used for media persistence.
 - **Outbox** is used for all social event publication.
 
 ## Environment
@@ -194,7 +195,11 @@ Response:
   - `GET /v1/moderation/reports?status=`
   - `POST /v1/moderation/reports/:id/close`
 - Media integration:
-  - `POST /v1/media/upload` forwards binary content to document-service and returns the canonical `fileId` plus document-service URL.
+  - `POST /v1/media/upload` forwards binary content to document-service and returns canonical metadata for downstream post/message attachments.
+  - Response contract:
+    - `fileId` (canonical attachment reference used by post/message flows)
+    - `id` (temporary backward-compatible alias of `fileId`)
+    - `url`, `mimeType`, `size`, `tenantId`
 
 ### Friends
 - Block system:

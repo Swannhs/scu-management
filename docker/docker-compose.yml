@@ -199,8 +199,10 @@ services:
   # Microservices
 
 
+  # Legacy social service (non-canonical). Canonical service name is campus-social-service.
   social-service:
     build: ../services/social-service
+    profiles: ["legacy-social"]
     depends_on:
       - social-db
       - rabbitmq
@@ -245,8 +247,10 @@ services:
       - KEYCLOAK_CLIENT_ID=campus-social-service
       - KEYCLOAK_CLIENT_SECRET=change-me
 
+  # Legacy realtime companion for social-service. Canonical realtime stack is campus-social-service.
   social-reverb:
     build: ../services/social-service
+    profiles: ["legacy-social"]
     command: php artisan reverb:start
     depends_on:
       - social-service
@@ -524,6 +528,7 @@ services:
       - admin-config-service
       - redis
       - keycloak
+      - campus-social-service
     networks:
       - ums-network
     ports:

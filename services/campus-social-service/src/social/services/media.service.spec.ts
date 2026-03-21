@@ -74,6 +74,7 @@ describe('MediaService', () => {
     );
     expect(result).toEqual({
       fileId: 'file-1',
+      id: 'file-1',
       url: 'http://document-service:3000/v1/files/file-1/content',
       mimeType: 'image/png',
       size: 5,

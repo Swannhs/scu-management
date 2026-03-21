@@ -15,6 +15,15 @@ interface InitiateUploadResponse {
   uploadUrl: string;
 }
 
+interface UploadMediaResult {
+  fileId: string;
+  id: string; // Backward-compatible alias for clients that previously consumed `id`.
+  url: string;
+  mimeType: string;
+  size: number;
+  tenantId: string;
+}
+
 @Injectable()
 export class MediaService {
   constructor(private readonly httpService: HttpService) {}
@@ -24,7 +33,7 @@ export class MediaService {
     _uploadedBy: string,
     dto: UploadMediaDto,
     context: DocumentServiceContext,
-  ) {
+  ): Promise<UploadMediaResult> {
     const buf = Buffer.from(dto.contentBase64, 'base64');
     const documentServiceBaseUrl = (
       process.env.DOCUMENT_SERVICE_URL || 'http://document-service:3000'
@@ -67,6 +76,7 @@ export class MediaService {
 
     return {
       fileId: initiated.fileId,
+      id: initiated.fileId,
       url: `${documentServiceBaseUrl}/v1/files/${initiated.fileId}/content`,
       mimeType: dto.mimeType,
       size: buf.byteLength,
