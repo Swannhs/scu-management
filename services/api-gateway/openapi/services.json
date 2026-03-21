@@ -28,7 +28,7 @@
       "name": "campus-social-service",
       "version": "1.0.0",
       "url": "http://campus-social-service:3000/api-docs-json",
-      "fallbackFile": "../campus-social-service/openapi/openapi.json"
+      "fallbackFile": "openapi/specs/campus-social-service.json"
     },
     {
       "name": "placement-service",

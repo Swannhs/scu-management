@@ -3,7 +3,7 @@
   "info": {
     "title": "Campus Social Service API",
     "version": "1.0.0",
-    "description": "Tenant-aware social APIs for profiles, groups, posts, chat, calls, notifications, media, and event ingest."
+    "description": "Tenant-aware social APIs for profiles, friends, groups, posts, comments, reactions, conversations, messages, calls, notifications, reports, moderation, media, directory, chats, and event ingest."
   },
   "servers": [
     {
@@ -58,7 +58,8 @@
         "type": "object",
         "properties": {
           "fileId": {
-            "type": "string"
+            "type": "string",
+            "description": "Canonical file identifier for post/message attachments"
           },
           "url": {
             "type": "string"
@@ -71,8 +72,13 @@
           },
           "tenantId": {
             "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "description": "Backward-compatible alias of fileId"
           }
-        }
+        },
+        "description": "Document-service metadata. `fileId` is canonical; `id` is a backward-compatible alias."
       }
     }
   },
@@ -82,186 +88,24 @@
     }
   ],
   "paths": {
-    "/v1/profiles/me": {
-      "get": {
-        "summary": "Get my public profile"
-      },
-      "put": {
-        "summary": "Upsert my public profile"
-      }
-    },
-    "/v1/profiles/{userId}": {
-      "get": {
-        "summary": "Get another user's profile"
-      }
-    },
-    "/v1/friends/requests": {
+    "/v1/calls/{id}/end": {
       "post": {
-        "summary": "Create a friend request"
+        "summary": "End a call"
       }
     },
-    "/v1/friends/requests/{id}/accept": {
+    "/v1/calls/{id}/join": {
       "post": {
-        "summary": "Accept a friend request"
-      }
-    },
-    "/v1/friends/requests/{id}/reject": {
-      "post": {
-        "summary": "Reject a friend request"
-      }
-    },
-    "/v1/friends": {
-      "get": {
-        "summary": "List friendships"
-      }
-    },
-    "/v1/groups": {
-      "get": {
-        "summary": "List groups"
-      },
-      "post": {
-        "summary": "Create a group"
-      }
-    },
-    "/v1/groups/{id}/join": {
-      "post": {
-        "summary": "Join a group"
-      }
-    },
-    "/v1/groups/{id}/leave": {
-      "post": {
-        "summary": "Leave a group"
-      }
-    },
-    "/v1/groups/{id}/members": {
-      "get": {
-        "summary": "List group members"
-      }
-    },
-    "/v1/groups/{id}/requests": {
-      "get": {
-        "summary": "List pending join requests"
-      }
-    },
-    "/v1/groups/{id}/requests/{userId}/approve": {
-      "post": {
-        "summary": "Approve a join request"
-      }
-    },
-    "/v1/groups/{id}/requests/{userId}/reject": {
-      "post": {
-        "summary": "Reject a join request"
-      }
-    },
-    "/v1/feed": {
-      "get": {
-        "summary": "List the personalized feed"
-      }
-    },
-    "/v1/posts": {
-      "get": {
-        "summary": "List posts"
-      },
-      "post": {
-        "summary": "Create a post"
-      }
-    },
-    "/v1/posts/{id}": {
-      "get": {
-        "summary": "Get post detail"
-      },
-      "patch": {
-        "summary": "Update a post"
-      },
-      "delete": {
-        "summary": "Soft-delete a post"
-      }
-    },
-    "/v1/posts/{id}/comments": {
-      "get": {
-        "summary": "List post comments"
-      },
-      "post": {
-        "summary": "Create a comment"
-      }
-    },
-    "/v1/comments/{id}": {
-      "patch": {
-        "summary": "Update a comment"
-      },
-      "delete": {
-        "summary": "Soft-delete a comment"
-      }
-    },
-    "/v1/posts/{id}/react": {
-      "post": {
-        "summary": "React to a post"
-      }
-    },
-    "/v1/reports": {
-      "post": {
-        "summary": "Create a moderation report"
-      }
-    },
-    "/v1/moderation/reports": {
-      "get": {
-        "summary": "List moderation reports"
-      }
-    },
-    "/v1/moderation/reports/{id}/close": {
-      "post": {
-        "summary": "Close a moderation report"
-      }
-    },
-    "/v1/conversations/direct": {
-      "post": {
-        "summary": "Create a direct conversation"
-      }
-    },
-    "/v1/conversations/group": {
-      "post": {
-        "summary": "Create a group conversation"
-      }
-    },
-    "/v1/conversations": {
-      "get": {
-        "summary": "List conversations"
-      }
-    },
-    "/v1/conversations/{id}/messages": {
-      "get": {
-        "summary": "List conversation messages"
-      },
-      "post": {
-        "summary": "Send a conversation message"
-      }
-    },
-    "/v1/conversations/{id}/read": {
-      "post": {
-        "summary": "Mark a conversation as read"
-      }
-    },
-    "/v1/chats": {
-      "get": {
-        "summary": "List chat conversations"
-      }
-    },
-    "/v1/chats/dm": {
-      "post": {
-        "summary": "Create a DM chat"
-      }
-    },
-    "/v1/chats/{chatId}/messages": {
-      "get": {
-        "summary": "List chat messages"
-      },
-      "post": {
-        "summary": "Send a chat message"
+        "summary": "Join a call by session id"
       }
     },
     "/v1/calls/rooms": {
       "post": {
         "summary": "Create a call room"
+      }
+    },
+    "/v1/calls/rooms/{roomId}/invite": {
+      "post": {
+        "summary": "Invite call participants"
       }
     },
     "/v1/calls/rooms/{roomId}/join": {
@@ -279,9 +123,40 @@
         "summary": "List active call participants"
       }
     },
-    "/v1/calls/rooms/{roomId}/invite": {
+    "/v1/chats": {
+      "get": {
+        "summary": "List chat conversations"
+      }
+    },
+    "/v1/chats/{chatId}/messages": {
+      "get": {
+        "summary": "List chat messages"
+      },
       "post": {
-        "summary": "Invite call participants"
+        "summary": "Send a chat message"
+      }
+    },
+    "/v1/chats/dm": {
+      "post": {
+        "summary": "Create a DM chat"
+      }
+    },
+    "/v1/comments/{id}": {
+      "patch": {
+        "summary": "Update a comment"
+      },
+      "delete": {
+        "summary": "Soft-delete a comment"
+      }
+    },
+    "/v1/conversations": {
+      "get": {
+        "summary": "List conversations"
+      }
+    },
+    "/v1/conversations/{id}": {
+      "patch": {
+        "summary": "Update a conversation"
       }
     },
     "/v1/conversations/{id}/calls": {
@@ -289,29 +164,191 @@
         "summary": "Start a call from a conversation"
       }
     },
-    "/v1/calls/{id}/join": {
+    "/v1/conversations/{id}/members": {
       "post": {
-        "summary": "Join a call by session id"
+        "summary": "Add conversation member"
       }
     },
-    "/v1/calls/{id}/end": {
+    "/v1/conversations/{id}/members/{userId}": {
+      "delete": {
+        "summary": "Remove conversation member"
+      }
+    },
+    "/v1/conversations/{id}/messages": {
+      "get": {
+        "summary": "List conversation messages"
+      },
       "post": {
-        "summary": "End a call"
+        "summary": "Send a conversation message"
       }
     },
-    "/v1/notifications": {
-      "get": {
-        "summary": "List notifications"
+    "/v1/conversations/{id}/messages/{messageId}": {
+      "patch": {
+        "summary": "Edit a conversation message"
+      },
+      "delete": {
+        "summary": "Delete a conversation message"
       }
     },
-    "/v1/notifications/unread-count": {
+    "/v1/conversations/{id}/read": {
+      "post": {
+        "summary": "Mark a conversation as read"
+      }
+    },
+    "/v1/conversations/{id}/read-state": {
       "get": {
-        "summary": "Get unread notification count"
+        "summary": "Get conversation read state"
+      }
+    },
+    "/v1/conversations/direct": {
+      "post": {
+        "summary": "Create a direct conversation"
+      }
+    },
+    "/v1/conversations/group": {
+      "post": {
+        "summary": "Create a group conversation"
       }
     },
     "/v1/directory/users": {
       "get": {
         "summary": "Search the directory"
+      }
+    },
+    "/v1/events": {
+      "post": {
+        "summary": "Ingest platform events into campus-social"
+      }
+    },
+    "/v1/feed": {
+      "get": {
+        "summary": "List the personalized feed"
+      }
+    },
+    "/v1/friends": {
+      "get": {
+        "summary": "List friendships"
+      }
+    },
+    "/v1/friends/{userId}/mutual": {
+      "get": {
+        "summary": "List mutual friends"
+      }
+    },
+    "/v1/friends/block": {
+      "post": {
+        "summary": "Block a user"
+      }
+    },
+    "/v1/friends/blocked": {
+      "get": {
+        "summary": "List blocked users"
+      }
+    },
+    "/v1/friends/requests": {
+      "post": {
+        "summary": "Create a friend request"
+      },
+      "get": {
+        "summary": "List my friend requests"
+      }
+    },
+    "/v1/friends/requests/{id}/accept": {
+      "post": {
+        "summary": "Accept a friend request"
+      }
+    },
+    "/v1/friends/requests/{id}/cancel": {
+      "post": {
+        "summary": "Cancel a friend request"
+      }
+    },
+    "/v1/friends/requests/{id}/reject": {
+      "post": {
+        "summary": "Reject a friend request"
+      }
+    },
+    "/v1/friends/unblock": {
+      "post": {
+        "summary": "Unblock a user"
+      }
+    },
+    "/v1/groups": {
+      "get": {
+        "summary": "List groups"
+      },
+      "post": {
+        "summary": "Create a group"
+      }
+    },
+    "/v1/groups/{groupId}/chat": {
+      "post": {
+        "summary": "Create a group chat"
+      }
+    },
+    "/v1/groups/{id}": {
+      "get": {
+        "summary": "Get group detail"
+      }
+    },
+    "/v1/groups/{id}/invite": {
+      "post": {
+        "summary": "Invite a member to a group"
+      }
+    },
+    "/v1/groups/{id}/invites": {
+      "get": {
+        "summary": "List group invites"
+      }
+    },
+    "/v1/groups/{id}/invites/{inviteId}/accept": {
+      "post": {
+        "summary": "Accept a group invite"
+      }
+    },
+    "/v1/groups/{id}/invites/{inviteId}/reject": {
+      "post": {
+        "summary": "Reject a group invite"
+      }
+    },
+    "/v1/groups/{id}/join": {
+      "post": {
+        "summary": "Join a group"
+      }
+    },
+    "/v1/groups/{id}/leave": {
+      "post": {
+        "summary": "Leave a group"
+      }
+    },
+    "/v1/groups/{id}/members": {
+      "get": {
+        "summary": "List group members"
+      }
+    },
+    "/v1/groups/{id}/members/{userId}": {
+      "patch": {
+        "summary": "Update a group member role"
+      }
+    },
+    "/v1/groups/{id}/posts": {
+      "get": {
+        "summary": "List posts for a group"
+      }
+    },
+    "/v1/groups/{id}/requests": {
+      "get": {
+        "summary": "List pending join requests"
+      }
+    },
+    "/v1/groups/{id}/requests/{userId}/approve": {
+      "post": {
+        "summary": "Approve a join request"
+      }
+    },
+    "/v1/groups/{id}/requests/{userId}/reject": {
+      "post": {
+        "summary": "Reject a join request"
       }
     },
     "/v1/media/upload": {
@@ -346,9 +383,84 @@
         }
       }
     },
-    "/v1/events": {
+    "/v1/moderation/reports": {
+      "get": {
+        "summary": "List moderation reports"
+      }
+    },
+    "/v1/moderation/reports/{id}/close": {
       "post": {
-        "summary": "Ingest platform events into campus-social"
+        "summary": "Close a moderation report"
+      }
+    },
+    "/v1/notifications": {
+      "get": {
+        "summary": "List notifications"
+      }
+    },
+    "/v1/notifications/{id}/read": {
+      "post": {
+        "summary": "Mark a notification as read"
+      }
+    },
+    "/v1/notifications/unread-count": {
+      "get": {
+        "summary": "Get unread notification count"
+      }
+    },
+    "/v1/posts": {
+      "get": {
+        "summary": "List posts"
+      },
+      "post": {
+        "summary": "Create a post"
+      }
+    },
+    "/v1/posts/{id}": {
+      "get": {
+        "summary": "Get post detail"
+      },
+      "patch": {
+        "summary": "Update a post"
+      },
+      "delete": {
+        "summary": "Soft-delete a post"
+      }
+    },
+    "/v1/posts/{id}/comments": {
+      "get": {
+        "summary": "List post comments"
+      },
+      "post": {
+        "summary": "Create a comment"
+      }
+    },
+    "/v1/posts/{id}/react": {
+      "post": {
+        "summary": "React to a post"
+      }
+    },
+    "/v1/posts/{id}/reactions": {
+      "post": {
+        "summary": "React to a post (alias)"
+      }
+    },
+    "/v1/profiles/{userId}": {
+      "get": {
+        "summary": "Get another user's profile"
+      }
+    },
+    "/v1/profiles/me": {
+      "get": {
+        "summary": "Get my public profile"
+      },
+      "patch": {
+        "summary": "Update my public profile"
+      }
+    },
+    "/v1/reports": {
+      "post": {
+        "summary": "Create a moderation report"
       }
     }
   }

@@ -8,6 +8,7 @@ SCU Management is a multi-service university platform with an API gateway, acade
 - Campus social is the canonical social module: `services/campus-social-service`.
 - Media uploads for campus social are stored through `services/document-service`.
 - The canonical Docker Compose file is `docker/docker-compose.yml`.
+- Deprecated compose entrypoints: `docker-compose.yml` and `infra/docker-compose.yml` (kept as stubs to prevent split setup paths).
 
 ## Primary services
 
@@ -22,6 +23,10 @@ SCU Management is a multi-service university platform with an API gateway, acade
 - `api-gateway`
 
 Supporting services are also present in `services/` for finance, library, notifications, transport, analytics, maintenance, events, clubs, awards, platform admin, and additional legacy modules.
+
+Legacy note:
+- `services/social-service` is a legacy module kept for compatibility only.
+- `services/campus-social-service` is the canonical social service name for gateway, compose, and OpenAPI integration.
 
 ## Quick start
 
@@ -52,6 +57,18 @@ Each service lives under `services/<service-name>`.
 - Spring Boot services: `mvn spring-boot:run`
 - FastAPI services: `pip install -r requirements.txt && uvicorn main:app --reload`
 - Laravel services: `composer install && php artisan serve`
+
+## Campus-social client status
+
+- A frontend/mobile client workspace exists at `apps/campus-social` (Flutter multi-platform project: Android, iOS, web, desktop targets).
+- The current app is scaffold-level and does not contain discoverable runtime API/WebSocket base URL configuration for `campus-social-service` or `api-gateway`.
+- Until client integration is implemented, treat `services/campus-social-service` as backend-only from an integration perspective.
+
+### Recommended app location convention
+
+- Web client: `apps/campus-social-web`
+- Mobile client: `apps/campus-social-mobile`
+- Shared client SDKs/types: `libs/campus-social-client`
 
 ## OpenAPI
 

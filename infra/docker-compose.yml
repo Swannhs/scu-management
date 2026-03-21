@@ -1,0 +1,5 @@
+# DEPRECATED: infrastructure compose entrypoint moved.
+# Source of truth: ../docker/docker-compose.yml
+# Start with:
+#   docker compose -f docker/docker-compose.yml up --build
+services: {}

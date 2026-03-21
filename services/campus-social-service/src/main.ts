@@ -4,10 +4,29 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
+let openApiSpecCache: unknown;
+
 async function loadOpenApiSpec() {
-  const specPath = path.resolve(process.cwd(), 'openapi', 'openapi.json');
-  const raw = await readFile(specPath, 'utf8');
-  return JSON.parse(raw);
+  if (openApiSpecCache) {
+    return openApiSpecCache;
+  }
+
+  const candidates = [
+    path.resolve(process.cwd(), 'openapi', 'openapi.json'),
+    path.resolve(__dirname, '..', 'openapi', 'openapi.json'),
+  ];
+
+  for (const specPath of candidates) {
+    try {
+      const raw = await readFile(specPath, 'utf8');
+      openApiSpecCache = JSON.parse(raw);
+      return openApiSpecCache;
+    } catch {
+      // try next candidate
+    }
+  }
+
+  throw new Error('Unable to load openapi/openapi.json for campus-social-service');
 }
 
 async function bootstrap() {
