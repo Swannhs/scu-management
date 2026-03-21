@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { HttpModule } from '@nestjs/axios';
 import { PrismaModule } from '../prisma/prisma.module';
 import { ProfilesController } from './controllers/profiles.controller';
 import { FriendsController } from './controllers/friends.controller';
@@ -24,7 +25,13 @@ import { MediaService } from './services/media.service';
 import { RealtimeGateway } from './gateways/realtime.gateway';
 
 @Module({
-  imports: [PrismaModule],
+  imports: [
+    PrismaModule,
+    HttpModule.register({
+      timeout: Number(process.env.DOCUMENT_SERVICE_TIMEOUT_MS ?? 10000),
+      maxRedirects: 5,
+    }),
+  ],
   controllers: [
     ProfilesController,
     FriendsController,

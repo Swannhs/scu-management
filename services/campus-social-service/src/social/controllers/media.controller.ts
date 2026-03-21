@@ -17,6 +17,10 @@ export class MediaController {
     @Req() req: Request,
     @Body() dto: UploadMediaDto,
   ) {
-    return this.mediaService.upload(tenantContext.effectiveTenantId, req.user?.sub as string, dto);
+    return this.mediaService.upload(tenantContext.effectiveTenantId, req.user?.sub as string, dto, {
+      authorization: req.headers.authorization as string | undefined,
+      tenantId: tenantContext.effectiveTenantId,
+      userId: req.user?.sub as string | undefined,
+    });
   }
 }

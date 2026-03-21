@@ -50,7 +50,7 @@ print_header "Starting Microservices in Development Mode"
 echo "Building and starting all services with Docker Compose..."
 echo ""
 
-docker compose -f infra/docker-compose.yml up --build
+docker compose -f docker/docker-compose.yml up --build
 
 # If the user exits the process, show cleanup info
-trap 'print_header "Cleaning Up"; echo "To stop all services, press Ctrl+C again or run: docker compose -f infra/docker-compose.yml down"' EXIT
+trap 'print_header "Cleaning Up"; echo "To stop all services, press Ctrl+C again or run: docker compose -f docker/docker-compose.yml down"' EXIT

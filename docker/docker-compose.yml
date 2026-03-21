@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   # Infrastructure Services
   keycloak:
@@ -188,6 +187,15 @@ services:
     networks:
       - ums-network
 
+  document-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: documentdb
+      POSTGRES_USER: documentuser
+      POSTGRES_PASSWORD: documentpass
+    networks:
+      - ums-network
+
   # Microservices
 
 
@@ -223,12 +231,15 @@ services:
       - mongo
       - rabbitmq
       - keycloak
+      - document-service
     networks:
       - ums-network
     ports:
       - "3015:3000"
     environment:
       - DATABASE_URL=mongodb://mongo:27017/campus_social
+      - DOCUMENT_SERVICE_URL=http://document-service:3000
+      - DOCUMENT_SERVICE_TIMEOUT_MS=10000
       - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
       - KEYCLOAK_REALM=scu
       - KEYCLOAK_CLIENT_ID=campus-social-service
@@ -449,10 +460,15 @@ services:
 
   document-service:
     build: ../services/document-service
+    depends_on:
+      - document-db
     networks:
       - ums-network
     ports:
       - "3006:3000"
+    environment:
+      - DATABASE_URL=postgresql://documentuser:documentpass@document-db:5432/documentdb
+      - PORT=3000
 
   maintenance-service:
     build: ../services/maintenance-service
@@ -516,6 +532,14 @@ services:
       - PORT=3000
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - USER_SERVICE_URL=http://user-service:3000
+      - COURSE_SERVICE_URL=http://course-service:3000
+      - ASSESSMENT_SERVICE_URL=http://assessment-service:3000
+      - ATTENDANCE_SERVICE_URL=http://attendance-service:3000
+      - GRADES_SERVICE_URL=http://grades-service:3000
+      - PLACEMENT_SERVICE_URL=http://placement-service:3000
+      - CAMPUS_SOCIAL_SERVICE_URL=http://campus-social-service:3000
+      - DOCUMENT_SERVICE_URL=http://document-service:3000
       - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
       - KEYCLOAK_REALM=university-platform
       - KEYCLOAK_CLIENT_ID=api-gateway
@@ -530,4 +554,3 @@ networks:
 volumes:
   keycloak_db_data:
   mongo_data:
-

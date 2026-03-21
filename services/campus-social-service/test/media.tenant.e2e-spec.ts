@@ -23,7 +23,12 @@ describe('Media tenant scoping (e2e)', () => {
   let app: INestApplication;
 
   const mediaService = {
-    upload: jest.fn(async (tenantId: string) => ({ fileId: 'f1', url: `/uploads/${tenantId}/x.png` })),
+    upload: jest.fn(async (tenantId: string, _userId: string, _dto: any, context: any) => ({
+      fileId: 'f1',
+      url: `http://document-service:3000/v1/files/f1/content`,
+      tenantId,
+      authHeader: context.authorization,
+    })),
   };
 
   @Module({ controllers: [MediaController], providers: [{ provide: MediaService, useValue: mediaService }] })
@@ -77,7 +82,19 @@ describe('Media tenant scoping (e2e)', () => {
       .expect(201)
       .expect((res) => {
         expect(res.body.data.fileId).toBe('f1');
-        expect(res.body.data.url).toContain('/uploads/tenant-1/');
+        expect(res.body.data.url).toBe('http://document-service:3000/v1/files/f1/content');
+        expect(res.body.data.tenantId).toBe('tenant-1');
       });
+
+    expect(mediaService.upload).toHaveBeenCalledWith(
+      'tenant-1',
+      'u1',
+      body,
+      expect.objectContaining({
+        authorization: `Bearer ${token('u1', 'tenant-1')}`,
+        tenantId: 'tenant-1',
+        userId: 'u1',
+      }),
+    );
   });
 });

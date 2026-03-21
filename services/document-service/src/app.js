@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const fs = require('fs/promises');
+const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { extractTenantAndUser } = require('./middleware/auth');
 const { isAccessAllowed } = require('./access');
@@ -11,6 +13,7 @@ const errorResponse = (res, status, code, message, details) =>
 
 const createApp = ({ pool }) => {
   const app = express();
+  const storageRoot = path.join(process.cwd(), 'uploads');
 
   app.use(cors());
   app.use(bodyParser.json());
@@ -24,6 +27,8 @@ const createApp = ({ pool }) => {
     );
     return result.rows[0];
   };
+
+  const storagePathForFile = (file) => path.join(storageRoot, file.storage_key);
 
   const hasGrant = async ({ fileId, tenantId, userId, roles, groups }) => {
     const grantQuery = `
@@ -49,6 +54,17 @@ const createApp = ({ pool }) => {
 
     return grantRes.rows.length > 0;
   };
+
+  const resolveServiceUrl = (req, relativePath) => {
+    const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'http';
+    const host = req.get('host');
+    return `${protocol}://${host}${relativePath}`;
+  };
+
+  app.get('/openapi.json', async (_req, res) => {
+    const specPath = path.join(process.cwd(), 'openapi.json');
+    res.json(JSON.parse(await fs.readFile(specPath, 'utf8')));
+  });
 
   app.post('/v1/files/initiate-upload', async (req, res) => {
     const {
@@ -102,7 +118,7 @@ const createApp = ({ pool }) => {
     try {
       await pool.query(query, values);
 
-      const uploadUrl = `https://mock-storage.com/upload/${storageKey}?token=mock-token`;
+      const uploadUrl = resolveServiceUrl(req, `/v1/files/${fileId}/content`);
 
       res.json({
         fileId,
@@ -113,6 +129,34 @@ const createApp = ({ pool }) => {
     } catch (err) {
       console.error(err);
       res.status(500).json({ code: 'DATABASE_ERROR', message: 'Database error' });
+    }
+  });
+
+  app.put('/v1/files/:fileId/content', bodyParser.raw({ type: '*/*', limit: '25mb' }), async (req, res) => {
+    const { fileId } = req.params;
+
+    if (!Buffer.isBuffer(req.body) || req.body.length === 0) {
+      return errorResponse(res, 400, 'VALIDATION_ERROR', 'Binary file content is required');
+    }
+
+    try {
+      const file = await loadFileForTenant(fileId, req.tenantId);
+      if (!file) {
+        return errorResponse(res, 404, 'NOT_FOUND', 'File not found');
+      }
+
+      if (file.uploaded_by !== req.user.id) {
+        return errorResponse(res, 403, 'FORBIDDEN', 'Only the owner can upload content');
+      }
+
+      const filePath = storagePathForFile(file);
+      await fs.mkdir(path.dirname(filePath), { recursive: true });
+      await fs.writeFile(filePath, req.body);
+
+      res.status(204).send();
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ code: 'INTERNAL_ERROR', message: 'Internal error' });
     }
   });
 
@@ -137,6 +181,13 @@ const createApp = ({ pool }) => {
       if (file.uploaded_by !== req.user.id) {
         await client.query('ROLLBACK');
         return errorResponse(res, 403, 'FORBIDDEN', 'Only the owner can complete upload');
+      }
+
+      try {
+        await fs.access(storagePathForFile(file));
+      } catch {
+        await client.query('ROLLBACK');
+        return errorResponse(res, 409, 'UPLOAD_INCOMPLETE', 'File content has not been uploaded');
       }
 
       if (file.status !== 'ACTIVE') {
@@ -238,9 +289,50 @@ const createApp = ({ pool }) => {
         return errorResponse(res, 403, 'FORBIDDEN', 'Access denied');
       }
 
-      const downloadUrl = `https://mock-storage.com/download/${file.storage_key}?token=mock-token`;
+      const downloadUrl = resolveServiceUrl(req, `/v1/files/${fileId}/content`);
 
       res.json({ downloadUrl });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ code: 'INTERNAL_ERROR', message: 'Internal error' });
+    }
+  });
+
+  app.get('/v1/files/:fileId/content', async (req, res) => {
+    const { fileId } = req.params;
+
+    try {
+      const file = await loadFileForTenant(fileId, req.tenantId);
+      if (!file) {
+        return errorResponse(res, 404, 'NOT_FOUND', 'File not found');
+      }
+
+      if (file.status !== 'ACTIVE') {
+        return errorResponse(res, 409, 'UPLOAD_INCOMPLETE', 'File upload not completed');
+      }
+
+      const granted = await hasGrant({
+        fileId,
+        tenantId: req.tenantId,
+        userId: req.user.id,
+        roles: req.user.roles,
+        groups: req.user.groups,
+      });
+
+      const hasAccess = isAccessAllowed({
+        file,
+        userId: req.user.id,
+        hasGrant: granted,
+      });
+
+      if (!hasAccess) {
+        return errorResponse(res, 403, 'FORBIDDEN', 'Access denied');
+      }
+
+      const filePath = storagePathForFile(file);
+      const content = await fs.readFile(filePath);
+      res.type(file.mime_type || 'application/octet-stream');
+      res.send(content);
     } catch (err) {
       console.error(err);
       res.status(500).json({ code: 'INTERNAL_ERROR', message: 'Internal error' });
@@ -348,6 +440,12 @@ const createApp = ({ pool }) => {
           ownerEntityId: file.owner_entity_id,
         },
       });
+
+      try {
+        await fs.unlink(storagePathForFile(file));
+      } catch {
+        // Ignore missing local content; metadata delete is still authoritative.
+      }
 
       await client.query('COMMIT');
 

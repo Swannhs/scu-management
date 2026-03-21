@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/api"
+      "url": "/"
     }
   ],
   "paths": {
@@ -50,6 +50,275 @@
         }
       }
     },
+    "/v1/profiles/me": {
+      "get": {
+        "summary": "Get my public profile"
+      },
+      "put": {
+        "summary": "Upsert my public profile"
+      }
+    },
+    "/v1/profiles/{userId}": {
+      "get": {
+        "summary": "Get another user's profile"
+      }
+    },
+    "/v1/friends/requests": {
+      "post": {
+        "summary": "Create a friend request"
+      }
+    },
+    "/v1/friends/requests/{id}/accept": {
+      "post": {
+        "summary": "Accept a friend request"
+      }
+    },
+    "/v1/friends/requests/{id}/reject": {
+      "post": {
+        "summary": "Reject a friend request"
+      }
+    },
+    "/v1/friends": {
+      "get": {
+        "summary": "List friendships"
+      }
+    },
+    "/v1/groups": {
+      "get": {
+        "summary": "List groups"
+      },
+      "post": {
+        "summary": "Create a group"
+      }
+    },
+    "/v1/groups/{id}/join": {
+      "post": {
+        "summary": "Join a group"
+      }
+    },
+    "/v1/groups/{id}/leave": {
+      "post": {
+        "summary": "Leave a group"
+      }
+    },
+    "/v1/groups/{id}/members": {
+      "get": {
+        "summary": "List group members"
+      }
+    },
+    "/v1/groups/{id}/requests": {
+      "get": {
+        "summary": "List pending join requests"
+      }
+    },
+    "/v1/groups/{id}/requests/{userId}/approve": {
+      "post": {
+        "summary": "Approve a join request"
+      }
+    },
+    "/v1/groups/{id}/requests/{userId}/reject": {
+      "post": {
+        "summary": "Reject a join request"
+      }
+    },
+    "/v1/feed": {
+      "get": {
+        "summary": "List the personalized feed"
+      }
+    },
+    "/v1/posts": {
+      "get": {
+        "summary": "List posts"
+      },
+      "post": {
+        "summary": "Create a post"
+      }
+    },
+    "/v1/posts/{id}": {
+      "get": {
+        "summary": "Get post detail"
+      },
+      "patch": {
+        "summary": "Update a post"
+      },
+      "delete": {
+        "summary": "Soft-delete a post"
+      }
+    },
+    "/v1/posts/{id}/comments": {
+      "get": {
+        "summary": "List post comments"
+      },
+      "post": {
+        "summary": "Create a comment"
+      }
+    },
+    "/v1/comments/{id}": {
+      "patch": {
+        "summary": "Update a comment"
+      },
+      "delete": {
+        "summary": "Soft-delete a comment"
+      }
+    },
+    "/v1/posts/{id}/react": {
+      "post": {
+        "summary": "React to a post"
+      }
+    },
+    "/v1/reports": {
+      "post": {
+        "summary": "Create a moderation report"
+      }
+    },
+    "/v1/moderation/reports": {
+      "get": {
+        "summary": "List moderation reports"
+      }
+    },
+    "/v1/moderation/reports/{id}/close": {
+      "post": {
+        "summary": "Close a moderation report"
+      }
+    },
+    "/v1/conversations/direct": {
+      "post": {
+        "summary": "Create a direct conversation"
+      }
+    },
+    "/v1/conversations/group": {
+      "post": {
+        "summary": "Create a group conversation"
+      }
+    },
+    "/v1/conversations": {
+      "get": {
+        "summary": "List conversations"
+      }
+    },
+    "/v1/conversations/{id}/messages": {
+      "get": {
+        "summary": "List conversation messages"
+      },
+      "post": {
+        "summary": "Send a conversation message"
+      }
+    },
+    "/v1/conversations/{id}/read": {
+      "post": {
+        "summary": "Mark a conversation as read"
+      }
+    },
+    "/v1/chats": {
+      "get": {
+        "summary": "List chat conversations"
+      }
+    },
+    "/v1/chats/dm": {
+      "post": {
+        "summary": "Create a DM chat"
+      }
+    },
+    "/v1/chats/{chatId}/messages": {
+      "get": {
+        "summary": "List chat messages"
+      },
+      "post": {
+        "summary": "Send a chat message"
+      }
+    },
+    "/v1/calls/rooms": {
+      "post": {
+        "summary": "Create a call room"
+      }
+    },
+    "/v1/calls/rooms/{roomId}/join": {
+      "post": {
+        "summary": "Join a call room"
+      }
+    },
+    "/v1/calls/rooms/{roomId}/leave": {
+      "post": {
+        "summary": "Leave a call room"
+      }
+    },
+    "/v1/calls/rooms/{roomId}/participants": {
+      "get": {
+        "summary": "List active call participants"
+      }
+    },
+    "/v1/calls/rooms/{roomId}/invite": {
+      "post": {
+        "summary": "Invite call participants"
+      }
+    },
+    "/v1/conversations/{id}/calls": {
+      "post": {
+        "summary": "Start a call from a conversation"
+      }
+    },
+    "/v1/calls/{id}/join": {
+      "post": {
+        "summary": "Join a call by session id"
+      }
+    },
+    "/v1/calls/{id}/end": {
+      "post": {
+        "summary": "End a call"
+      }
+    },
+    "/v1/notifications": {
+      "get": {
+        "summary": "List notifications"
+      }
+    },
+    "/v1/notifications/unread-count": {
+      "get": {
+        "summary": "Get unread notification count"
+      }
+    },
+    "/v1/directory/users": {
+      "get": {
+        "summary": "Search the directory"
+      }
+    },
+    "/v1/media/upload": {
+      "post": {
+        "summary": "Upload media through document-service",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantIdHeader"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadMediaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadMediaResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/events": {
+      "post": {
+        "summary": "Ingest platform events into campus-social"
+      }
+    },
     "/health": {
       "get": {
         "summary": "Health",
@@ -71,7 +340,7 @@
         ]
       }
     },
-    "/v1/events": {
+    "/services/events-service/v1/events": {
       "post": {
         "summary": "Create Event",
         "operationId": "create_event_v1_events_post",
@@ -2899,6 +3168,42 @@
           }
         }
       }
+    },
+    "/v1/files/initiate-upload": {
+      "post": {
+        "summary": "Create file metadata and return an upload URL"
+      }
+    },
+    "/v1/files/complete-upload": {
+      "post": {
+        "summary": "Mark an uploaded file as active"
+      }
+    },
+    "/v1/files/{fileId}": {
+      "get": {
+        "summary": "Get file metadata"
+      },
+      "delete": {
+        "summary": "Soft-delete a file"
+      }
+    },
+    "/v1/files/{fileId}/content": {
+      "put": {
+        "summary": "Upload binary content for a file"
+      },
+      "get": {
+        "summary": "Download file content"
+      }
+    },
+    "/v1/files/{fileId}/download-url": {
+      "get": {
+        "summary": "Get a download URL for file content"
+      }
+    },
+    "/v1/files/{fileId}/share": {
+      "post": {
+        "summary": "Grant access to a file"
+      }
     }
   },
   "components": {
@@ -2983,11 +3288,6 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       },
-      "social-service_bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
-      },
       "faculty-service_bearerAuth": {
         "type": "http",
         "scheme": "bearer",
@@ -3031,7 +3331,7 @@
           "type": "string"
         }
       },
-      "campus-social-service_TenantHeader": {
+      "TenantIdHeader": {
         "name": "X-Tenant-ID",
         "in": "header",
         "required": true,
@@ -3135,14 +3435,6 @@
           "type": "string"
         }
       },
-      "social-service_TenantHeader": {
-        "name": "X-Tenant-ID",
-        "in": "header",
-        "required": true,
-        "schema": {
-          "type": "string"
-        }
-      },
       "faculty-service_TenantHeader": {
         "name": "X-Tenant-ID",
         "in": "header",
@@ -3185,6 +3477,51 @@
       }
     },
     "schemas": {
+      "UploadMediaRequest": {
+        "type": "object",
+        "required": [
+          "fileName",
+          "mimeType",
+          "contentBase64"
+        ],
+        "properties": {
+          "fileName": {
+            "type": "string"
+          },
+          "mimeType": {
+            "type": "string",
+            "enum": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "application/pdf"
+            ]
+          },
+          "contentBase64": {
+            "type": "string"
+          }
+        }
+      },
+      "UploadMediaResponse": {
+        "type": "object",
+        "properties": {
+          "fileId": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "mimeType": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "tenantId": {
+            "type": "string"
+          }
+        }
+      },
       "EventCreate": {
         "properties": {
           "title": {
@@ -3796,10 +4133,6 @@
     {
       "name": "library-service",
       "description": "library-service (1.0.0)"
-    },
-    {
-      "name": "social-service",
-      "description": "social-service (1.0.0)"
     },
     {
       "name": "faculty-service",

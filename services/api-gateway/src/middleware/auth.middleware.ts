@@ -20,8 +20,8 @@ export function authMiddleware(
   const path = req.path;
   const serviceConfig = getServiceConfig(path);
 
-  // If no service config or auth not required, skip
-  if (!serviceConfig || !serviceConfig.requireAuth) {
+  // Keycloak-backed services authenticate downstream; only local user-service JWTs are validated here.
+  if (!serviceConfig || serviceConfig.authMode !== 'gateway-jwt') {
     return next();
   }
 
@@ -70,7 +70,7 @@ export function authMiddleware(
     req.headers['x-tenant-id'] = decoded.tenantId;
 
     next();
-  } catch (error) {
+  } catch (_error) {
     return res.status(401).json({
       success: false,
       error: {

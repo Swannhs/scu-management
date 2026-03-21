@@ -13,6 +13,8 @@ Production-grade social + communication service for campus tenants. This service
 
 ```
 DATABASE_URL=mongodb://mongo:27017/campus_social
+DOCUMENT_SERVICE_URL=http://document-service:3000
+DOCUMENT_SERVICE_TIMEOUT_MS=10000
 KEYCLOAK_AUTH_SERVER_URL=https://...
 KEYCLOAK_REALM=scu
 KEYCLOAK_CLIENT_ID=campus-social-service
@@ -191,8 +193,8 @@ Response:
   - `POST /v1/reports`
   - `GET /v1/moderation/reports?status=`
   - `POST /v1/moderation/reports/:id/close`
-- Media stub:
-  - `POST /v1/media/upload` (base64 payload -> local file URL)
+- Media integration:
+  - `POST /v1/media/upload` forwards binary content to document-service and returns the canonical `fileId` plus document-service URL.
 
 ### Friends
 - Block system:
@@ -234,7 +236,7 @@ Response:
 - `GET /api-docs`
 
 ### WebSocket usage
-- WebSocket gateway is not introduced in this patch; HTTP APIs include read receipts and call participant/invite primitives for UI integration.
+- The service exposes `/ws` directly and the API gateway proxies `/ws` to this service for realtime clients.
 
 
 ## Realtime WebSocket (/ws)

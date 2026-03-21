@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { getServiceConfig } from '../config/services.config';
 
 export interface TenantRequest extends Request {
   tenantId?: string;
@@ -9,6 +10,11 @@ export function tenantMiddleware(
   res: Response,
   next: NextFunction,
 ) {
+  const serviceConfig = getServiceConfig(req.path);
+  if (!serviceConfig || !serviceConfig.tenantRequired) {
+    return next();
+  }
+
   const tenantId = req.headers['x-tenant-id'] as string;
 
   if (!tenantId) {

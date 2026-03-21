@@ -28,7 +28,7 @@
       "name": "campus-social-service",
       "version": "1.0.0",
       "url": "http://campus-social-service:3000/api-docs-json",
-      "fallbackFile": "openapi/specs/campus-social-service.json"
+      "fallbackFile": "../campus-social-service/openapi/openapi.json"
     },
     {
       "name": "placement-service",
@@ -115,12 +115,6 @@
       "fallbackFile": "openapi/specs/library-service.json"
     },
     {
-      "name": "social-service",
-      "version": "1.0.0",
-      "url": "",
-      "fallbackFile": "openapi/specs/social-service.json"
-    },
-    {
       "name": "faculty-service",
       "version": "1.0.0",
       "url": "",
@@ -154,7 +148,7 @@
       "name": "document-service",
       "version": "1.0.0",
       "url": "http://document-service:3000/openapi.json",
-      "fallbackFile": "openapi/specs/document-service.json"
+      "fallbackFile": "../document-service/openapi.json"
     }
   ]
 }
