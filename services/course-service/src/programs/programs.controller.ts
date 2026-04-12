@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { ProgramsService } from './programs.service';
 import { TenantContextParam } from '../common/tenant-context.decorator';
 import type { TenantContext } from '../common/tenant-context';
 import { CreateProgramDto } from './dto/create-program.dto';
+import { UpdateProgramDto } from './dto/update-program.dto';
 
 @Controller('v1/programs')
 export class ProgramsController {
@@ -24,9 +25,28 @@ export class ProgramsController {
         return this.programsService.findAll(tenantContext.effectiveTenantId);
     }
 
+    @Get(':id')
+    @Roles({ roles: ['TENANT_ADMIN', 'STAFF', 'FACULTY'] })
+    async findOne(
+        @TenantContextParam() tenantContext: TenantContext,
+        @Param('id') id: string,
+    ) {
+        return this.programsService.findOne(tenantContext.effectiveTenantId, id);
+    }
+
     @Get(':id/structure')
     @Roles({ roles: ['TENANT_ADMIN', 'STAFF', 'FACULTY'] })
     async getStructure(@TenantContextParam() tenantContext: TenantContext, @Param('id') id: string) {
         return this.programsService.getStructure(tenantContext.effectiveTenantId, id);
+    }
+
+    @Patch(':id')
+    @Roles({ roles: ['TENANT_ADMIN'] })
+    async update(
+        @TenantContextParam() tenantContext: TenantContext,
+        @Param('id') id: string,
+        @Body() data: UpdateProgramDto,
+    ) {
+        return this.programsService.update(tenantContext.effectiveTenantId, id, data);
     }
 }

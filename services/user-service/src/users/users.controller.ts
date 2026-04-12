@@ -17,7 +17,7 @@ import { UpdateUserDto, ListUsersDto } from './dto/user.dto';
 import { ApiResponse as ApiResponseType } from '@university/shared';
 
 @ApiTags('Users')
-@Controller('v1/users')
+@Controller(['v1/users', 'users'])
 export class UsersController {
   constructor(private usersService: UsersService) {}
 

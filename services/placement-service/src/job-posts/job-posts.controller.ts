@@ -1,49 +1,55 @@
-import { Controller, Get, Post, Body, Param, Put, Patch } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { TenantId } from '../common/decorators/tenant.decorator';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Roles } from 'nest-keycloak-connect';
+import { TenantContextParam } from '../common/tenant-context.decorator';
+import type { TenantContext } from '../common/tenant-context';
+import { JobPostsService } from './job-posts.service';
+import { ApplicationsService } from '../applications/applications.service';
+import { CreateJobPostDto } from './dto/create-job-post.dto';
+import { ApplyJobDto } from '../applications/dto/apply-job.dto';
 
 @Controller('v1/job-posts')
 export class JobPostsController {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly jobPostsService: JobPostsService,
+    private readonly applicationsService: ApplicationsService,
+  ) {}
 
   @Post()
-  async create(@Body() data: any, @TenantId() tenantId: string) {
-    return this.prisma.jobPost.create({
-      data: {
-        ...data,
-        tenantId,
-      },
-    });
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR', 'STAFF'] })
+  async create(
+    @Body() data: CreateJobPostDto,
+    @TenantContextParam() tenantContext: TenantContext,
+  ) {
+    return this.jobPostsService.create(tenantContext.effectiveTenantId, data);
   }
 
   @Get()
-  async findAll(@TenantId() tenantId: string) {
-    return this.prisma.jobPost.findMany({
-      where: { tenantId, isActive: true },
-      include: { company: true },
-    });
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR', 'STAFF', 'STUDENT'] })
+  async findAll(@TenantContextParam() tenantContext: TenantContext) {
+    return this.jobPostsService.findAll(tenantContext.effectiveTenantId);
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string, @TenantId() tenantId: string) {
-    return this.prisma.jobPost.findFirstOrThrow({
-      where: { id, tenantId },
-      include: { company: true },
-    });
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR', 'STAFF', 'STUDENT'] })
+  async findOne(
+    @Param('id') id: string,
+    @TenantContextParam() tenantContext: TenantContext,
+  ) {
+    return this.jobPostsService.findOne(tenantContext.effectiveTenantId, id);
   }
 
   @Post(':id/apply')
-  async apply(@Param('id') jobPostId: string, @Body() data: any, @TenantId() tenantId: string) {
-    // data should contain studentId (extracted from token in real implementation)
-    // For now assuming data.studentId
-    return this.prisma.application.create({
-      data: {
-        jobPostId,
-        studentId: data.studentId,
-        tenantId,
-        resumeUrl: data.resumeUrl,
-        coverLetter: data.coverLetter,
-      },
-    });
+  @Roles({ roles: ['STUDENT'] })
+  async apply(
+    @Param('id') jobPostId: string,
+    @Body() data: ApplyJobDto,
+    @TenantContextParam() tenantContext: TenantContext,
+  ) {
+    return this.applicationsService.apply(
+      tenantContext.effectiveTenantId,
+      tenantContext.actorId,
+      jobPostId,
+      data,
+    );
   }
 }

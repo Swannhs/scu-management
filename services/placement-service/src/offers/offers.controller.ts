@@ -1,38 +1,32 @@
-import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { TenantId } from '../common/decorators/tenant.decorator';
+import { Controller, Get, Param, Patch } from '@nestjs/common';
+import { Roles } from 'nest-keycloak-connect';
+import { TenantContextParam } from '../common/tenant-context.decorator';
+import type { TenantContext } from '../common/tenant-context';
+import { OffersService } from './offers.service';
 
 @Controller('v1/offers')
 export class OffersController {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly offersService: OffersService) {}
 
   @Get('my')
-  async findMyOffers(@Body('studentId') studentId: string, @TenantId() tenantId: string) {
-    return this.prisma.offer.findMany({
-      where: {
-        tenantId,
-        application: { studentId }
-      },
-      include: { application: { include: { jobPost: true } } },
-    });
+  @Roles({ roles: ['STUDENT'] })
+  async findMyOffers(@TenantContextParam() tenantContext: TenantContext) {
+    return this.offersService.findMyOffers(
+      tenantContext.effectiveTenantId,
+      tenantContext.actorId,
+    );
   }
 
   @Patch(':id/accept')
-  async acceptOffer(@Param('id') id: string, @TenantId() tenantId: string) {
-    const offer = await this.prisma.offer.update({
-      where: { id },
-      data: { isAccepted: true },
-    });
-
-    // Outbox Event
-    await this.prisma.eventOutbox.create({
-      data: {
-        tenantId,
-        eventType: 'placement.offer.accepted',
-        payload: offer,
-      }
-    });
-
-    return offer;
+  @Roles({ roles: ['STUDENT'] })
+  async acceptOffer(
+    @Param('id') id: string,
+    @TenantContextParam() tenantContext: TenantContext,
+  ) {
+    return this.offersService.acceptOffer(
+      tenantContext.effectiveTenantId,
+      tenantContext.actorId,
+      id,
+    );
   }
 }

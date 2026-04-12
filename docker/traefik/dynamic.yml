@@ -9,7 +9,7 @@ http:
     user-auth:
       entryPoints:
         - web
-      rule: PathPrefix(`/v1/auth`)
+      rule: PathPrefix(`/v1/auth`) || PathPrefix(`/auth`)
       service: user-service
       middlewares:
         - edge-rate-limit
@@ -17,7 +17,7 @@ http:
     user-users:
       entryPoints:
         - web
-      rule: PathPrefix(`/v1/users`)
+      rule: PathPrefix(`/v1/users`) || PathPrefix(`/users`)
       service: user-service
       middlewares:
         - edge-auth
@@ -26,7 +26,7 @@ http:
     course-service:
       entryPoints:
         - web
-      rule: PathPrefix(`/v1/academic-years`) || PathPrefix(`/v1/terms`) || PathPrefix(`/v1/departments`) || PathPrefix(`/v1/programs`) || PathPrefix(`/v1/rooms`) || PathPrefix(`/v1/courses`) || PathPrefix(`/v1/sections`) || PathPrefix(`/v1/sessions`) || PathPrefix(`/v1/faculty`)
+      rule: PathPrefix(`/v1/academic-years`) || PathPrefix(`/v1/terms`) || PathPrefix(`/v1/departments`) || PathPrefix(`/v1/programs`) || PathPrefix(`/v1/rooms`) || PathPrefix(`/v1/courses`) || PathPrefix(`/courses`) || PathPrefix(`/v1/sections`) || PathPrefix(`/v1/sessions`) || PathPrefix(`/v1/faculty`)
       service: course-service
       middlewares:
         - edge-auth

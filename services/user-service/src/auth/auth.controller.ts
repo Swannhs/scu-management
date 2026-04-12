@@ -13,7 +13,7 @@ import { LoginDto, RegisterDto, RefreshTokenDto } from './dto/login.dto';
 import { ApiResponse as ApiResponseType } from '@university/shared';
 
 @ApiTags('Authentication')
-@Controller('v1/auth')
+@Controller(['v1/auth', 'auth'])
 export class AuthController {
   constructor(private authService: AuthService) {}
 

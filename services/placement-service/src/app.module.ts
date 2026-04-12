@@ -1,21 +1,38 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import {
+  AuthGuard,
+  KeycloakConnectModule,
+  ResourceGuard,
+  RoleGuard,
+} from 'nest-keycloak-connect';
 import { PrismaModule } from './prisma/prisma.module';
 import { CompaniesController } from './companies/companies.controller';
 import { JobPostsController } from './job-posts/job-posts.controller';
 import { ApplicationsController } from './applications/applications.controller';
 import { OffersController } from './offers/offers.controller';
-
-// Note: Keycloak Guards are removed for this step to focus on API implementation structure.
-// In a real scenario, we would re-enable them or mock them.
-// Since I don't have the nest-keycloak-connect in package.json (unless I check),
-// I will keep it minimal. Wait, package.json was copied from course-service which has it.
-// I will keep it simple and comment out Keycloak for now to ensure compile.
+import { CompaniesService } from './companies/companies.service';
+import { JobPostsService } from './job-posts/job-posts.service';
+import { ApplicationsService } from './applications/applications.service';
+import { OffersService } from './offers/offers.service';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+    }),
+    KeycloakConnectModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        authServerUrl: config.get<string>('KEYCLOAK_AUTH_SERVER_URL')!,
+        realm: config.get<string>('KEYCLOAK_REALM')!,
+        clientId: config.get<string>('KEYCLOAK_CLIENT_ID')!,
+        secret: config.get<string>('KEYCLOAK_CLIENT_SECRET')!,
+        cookieKey: 'KEYCLOAK_JWT',
+        logLevels: ['verbose'],
+        useNestLogger: true,
+      }),
     }),
     PrismaModule,
   ],
@@ -25,6 +42,23 @@ import { OffersController } from './offers/offers.controller';
     ApplicationsController,
     OffersController
   ],
-  providers: [],
+  providers: [
+    CompaniesService,
+    JobPostsService,
+    ApplicationsService,
+    OffersService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ResourceGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RoleGuard,
+    },
+  ],
 })
 export class AppModule { }

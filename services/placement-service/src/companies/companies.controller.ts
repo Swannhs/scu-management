@@ -1,41 +1,46 @@
-import { Controller, Get, Post, Body, Param, Put, UseGuards } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { TenantId } from '../common/decorators/tenant.decorator';
-// import { RolesGuard, Roles } from ... (Simulated for now)
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Roles } from 'nest-keycloak-connect';
+import { TenantContextParam } from '../common/tenant-context.decorator';
+import type { TenantContext } from '../common/tenant-context';
+import { CompaniesService } from './companies.service';
+import { CreateCompanyDto } from './dto/create-company.dto';
+import { UpdateCompanyDto } from './dto/update-company.dto';
 
 @Controller('v1/companies')
 export class CompaniesController {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly companiesService: CompaniesService) {}
 
   @Post()
-  async create(@Body() data: any, @TenantId() tenantId: string) {
-    return this.prisma.company.create({
-      data: {
-        ...data,
-        tenantId,
-      },
-    });
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR', 'STAFF'] })
+  async create(
+    @Body() data: CreateCompanyDto,
+    @TenantContextParam() tenantContext: TenantContext,
+  ) {
+    return this.companiesService.create(tenantContext.effectiveTenantId, data);
   }
 
   @Get()
-  async findAll(@TenantId() tenantId: string) {
-    return this.prisma.company.findMany({
-      where: { tenantId },
-    });
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR', 'STAFF', 'STUDENT'] })
+  async findAll(@TenantContextParam() tenantContext: TenantContext) {
+    return this.companiesService.findAll(tenantContext.effectiveTenantId);
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string, @TenantId() tenantId: string) {
-    return this.prisma.company.findFirstOrThrow({
-      where: { id, tenantId },
-    });
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR', 'STAFF', 'STUDENT'] })
+  async findOne(
+    @Param('id') id: string,
+    @TenantContextParam() tenantContext: TenantContext,
+  ) {
+    return this.companiesService.findOne(tenantContext.effectiveTenantId, id);
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() data: any, @TenantId() tenantId: string) {
-    return this.prisma.company.update({
-      where: { id }, // In production, verify tenantId match
-      data,
-    });
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR', 'STAFF'] })
+  async update(
+    @Param('id') id: string,
+    @Body() data: UpdateCompanyDto,
+    @TenantContextParam() tenantContext: TenantContext,
+  ) {
+    return this.companiesService.update(tenantContext.effectiveTenantId, id, data);
   }
 }

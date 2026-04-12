@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminConfigController;
 
 Route::get('resolve-domain', [TenantController::class, 'resolveDomain']);
 Route::apiResource('tenants', TenantController::class);
+Route::get('admin/settings', [AdminConfigController::class, 'settings']);
 
 Route::prefix('v1/admin')->group(function () {
     // Terms

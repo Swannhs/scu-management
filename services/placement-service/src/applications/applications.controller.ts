@@ -1,59 +1,55 @@
-import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { TenantId } from '../common/decorators/tenant.decorator';
-import { ApplicationStatus } from '@prisma/client';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Roles } from 'nest-keycloak-connect';
+import { TenantContextParam } from '../common/tenant-context.decorator';
+import type { TenantContext } from '../common/tenant-context';
+import { ApplicationsService } from './applications.service';
+import { UpdateApplicationStatusDto } from './dto/update-application-status.dto';
+import { CreateOfferDto } from './dto/create-offer.dto';
 
 @Controller('v1/applications')
 export class ApplicationsController {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly applicationsService: ApplicationsService) {}
 
   @Get('my')
-  async findMyApplications(@Body('studentId') studentId: string, @TenantId() tenantId: string) {
-    // In reality, studentId comes from User Decorator
-    return this.prisma.application.findMany({
-      where: { studentId, tenantId },
-      include: { jobPost: { include: { company: true } } },
-    });
+  @Roles({ roles: ['STUDENT'] })
+  async findMyApplications(@TenantContextParam() tenantContext: TenantContext) {
+    return this.applicationsService.findMyApplications(
+      tenantContext.effectiveTenantId,
+      tenantContext.actorId,
+    );
   }
 
   @Get()
-  async findAll(@TenantId() tenantId: string) {
-    return this.prisma.application.findMany({
-      where: { tenantId },
-      include: { jobPost: true },
-    });
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR', 'STAFF'] })
+  async findAll(@TenantContextParam() tenantContext: TenantContext) {
+    return this.applicationsService.findAll(tenantContext.effectiveTenantId);
   }
 
   @Patch(':id/status')
-  async updateStatus(@Param('id') id: string, @Body('status') status: ApplicationStatus, @TenantId() tenantId: string) {
-    return this.prisma.application.update({
-      where: { id },
-      data: { status },
-    });
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR', 'STAFF'] })
+  async updateStatus(
+    @Param('id') id: string,
+    @Body() data: UpdateApplicationStatusDto,
+    @TenantContextParam() tenantContext: TenantContext,
+  ) {
+    return this.applicationsService.updateStatus(
+      tenantContext.effectiveTenantId,
+      id,
+      data,
+    );
   }
 
   @Post(':id/offer')
-  async createOffer(@Param('id') applicationId: string, @Body() data: any, @TenantId() tenantId: string) {
-    const offer = await this.prisma.offer.create({
-      data: {
-        applicationId,
-        tenantId,
-        ctc: data.ctc,
-        currency: data.currency,
-        offerLetterUrl: data.offerLetterUrl,
-        isAccepted: null,
-      },
-    });
-
-    // Outbox Event
-    await this.prisma.eventOutbox.create({
-      data: {
-        tenantId,
-        eventType: 'placement.offer.created',
-        payload: offer,
-      }
-    });
-
-    return offer;
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR', 'STAFF'] })
+  async createOffer(
+    @Param('id') applicationId: string,
+    @Body() data: CreateOfferDto,
+    @TenantContextParam() tenantContext: TenantContext,
+  ) {
+    return this.applicationsService.createOffer(
+      tenantContext.effectiveTenantId,
+      applicationId,
+      data,
+    );
   }
 }

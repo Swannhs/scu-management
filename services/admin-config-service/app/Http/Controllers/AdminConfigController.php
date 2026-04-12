@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Firebase\JWT\JWT;
@@ -96,5 +97,46 @@ class AdminConfigController extends Controller
     public function userRoles(Request $request, $userId)
     {
         return $this->proxy($request, $this->userServiceUrl, "users/{$userId}/roles");
+    }
+
+    public function settings(Request $request)
+    {
+        $this->validateAdmin($request);
+
+        $tenantId = $this->getTenantId($request);
+        if (!$tenantId) {
+            return response()->json([
+                'message' => 'X-Tenant-ID header is required',
+            ], 400);
+        }
+
+        $tenant = Tenant::with(['campuses', 'domains'])->find($tenantId);
+        if (!$tenant) {
+            return response()->json([
+                'message' => 'Tenant not found',
+            ], 404);
+        }
+
+        return response()->json([
+            'tenant' => [
+                'id' => $tenant->id,
+                'name' => $tenant->name,
+                'status' => $tenant->status,
+                'config' => $tenant->config ?? $tenant->db_config ?? [],
+            ],
+            'campuses' => $tenant->campuses->map(fn ($campus) => [
+                'id' => $campus->id,
+                'name' => $campus->name,
+                'code' => $campus->code ?? null,
+                'address' => $campus->address,
+                'contact_info' => $campus->contact_info ?? null,
+                'is_main' => $campus->is_main ?? false,
+            ])->values(),
+            'domains' => $tenant->domains->map(fn ($domain) => [
+                'id' => $domain->id,
+                'domain' => $domain->domain ?? $domain->hostname,
+                'is_primary' => $domain->is_primary,
+            ])->values(),
+        ]);
     }
 }
