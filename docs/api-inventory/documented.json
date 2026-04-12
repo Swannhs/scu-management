@@ -3,357 +3,357 @@
     "service": "admin-config-service",
     "method": "GET",
     "path": "/admin/settings",
-    "file": "services/api-gateway/openapi/specs/admin-config-service.json",
+    "file": "archive/api-gateway/openapi/specs/admin-config-service.json",
     "handler": "openapi"
   },
   {
     "service": "awards-service",
     "method": "GET",
     "path": "/v1/awards",
-    "file": "services/api-gateway/openapi/specs/awards-service.json",
+    "file": "archive/api-gateway/openapi/specs/awards-service.json",
     "handler": "list_v1_awards_get"
   },
   {
     "service": "awards-service",
     "method": "POST",
     "path": "/v1/awards",
-    "file": "services/api-gateway/openapi/specs/awards-service.json",
+    "file": "archive/api-gateway/openapi/specs/awards-service.json",
     "handler": "create_v1_awards_post"
   },
   {
     "service": "awards-service",
     "method": "POST",
     "path": "/v1/awards/{award_id}/approve",
-    "file": "services/api-gateway/openapi/specs/awards-service.json",
+    "file": "archive/api-gateway/openapi/specs/awards-service.json",
     "handler": "approve_v1_awards__award_id__approve_post"
   },
   {
     "service": "awards-service",
     "method": "POST",
     "path": "/v1/awards/{award_id}/issue-certificate",
-    "file": "services/api-gateway/openapi/specs/awards-service.json",
+    "file": "archive/api-gateway/openapi/specs/awards-service.json",
     "handler": "issue_v1_awards__award_id__issue_certificate_post"
   },
   {
     "service": "awards-service",
     "method": "POST",
     "path": "/v1/awards/{award_id}/nominate",
-    "file": "services/api-gateway/openapi/specs/awards-service.json",
+    "file": "archive/api-gateway/openapi/specs/awards-service.json",
     "handler": "nominate_v1_awards__award_id__nominate_post"
   },
   {
     "service": "awards-service",
     "method": "GET",
     "path": "/v1/certificates/{certificate_id}",
-    "file": "services/api-gateway/openapi/specs/awards-service.json",
+    "file": "archive/api-gateway/openapi/specs/awards-service.json",
     "handler": "cert_v1_certificates__certificate_id__get"
   },
   {
     "service": "awards-service",
     "method": "GET",
     "path": "/v1/students/{student_id}/achievements",
-    "file": "services/api-gateway/openapi/specs/awards-service.json",
+    "file": "archive/api-gateway/openapi/specs/awards-service.json",
     "handler": "ach_v1_students__student_id__achievements_get"
   },
   {
     "service": "clubs-service",
     "method": "GET",
     "path": "/v1/clubs",
-    "file": "services/api-gateway/openapi/specs/clubs-service.json",
+    "file": "archive/api-gateway/openapi/specs/clubs-service.json",
     "handler": "list_v1_clubs_get"
   },
   {
     "service": "clubs-service",
     "method": "POST",
     "path": "/v1/clubs",
-    "file": "services/api-gateway/openapi/specs/clubs-service.json",
+    "file": "archive/api-gateway/openapi/specs/clubs-service.json",
     "handler": "create_v1_clubs_post"
   },
   {
     "service": "clubs-service",
     "method": "GET",
     "path": "/v1/clubs/{club_id}",
-    "file": "services/api-gateway/openapi/specs/clubs-service.json",
+    "file": "archive/api-gateway/openapi/specs/clubs-service.json",
     "handler": "get_v1_clubs__club_id__get"
   },
   {
     "service": "clubs-service",
     "method": "PATCH",
     "path": "/v1/clubs/{club_id}",
-    "file": "services/api-gateway/openapi/specs/clubs-service.json",
+    "file": "archive/api-gateway/openapi/specs/clubs-service.json",
     "handler": "patch_v1_clubs__club_id__patch"
   },
   {
     "service": "clubs-service",
     "method": "POST",
     "path": "/v1/clubs/{club_id}/events",
-    "file": "services/api-gateway/openapi/specs/clubs-service.json",
+    "file": "archive/api-gateway/openapi/specs/clubs-service.json",
     "handler": "event_v1_clubs__club_id__events_post"
   },
   {
     "service": "clubs-service",
     "method": "POST",
     "path": "/v1/clubs/{club_id}/join",
-    "file": "services/api-gateway/openapi/specs/clubs-service.json",
+    "file": "archive/api-gateway/openapi/specs/clubs-service.json",
     "handler": "join_v1_clubs__club_id__join_post"
   },
   {
     "service": "clubs-service",
     "method": "POST",
     "path": "/v1/clubs/{club_id}/leave",
-    "file": "services/api-gateway/openapi/specs/clubs-service.json",
+    "file": "archive/api-gateway/openapi/specs/clubs-service.json",
     "handler": "leave_v1_clubs__club_id__leave_post"
   },
   {
     "service": "clubs-service",
     "method": "GET",
     "path": "/v1/clubs/{club_id}/members",
-    "file": "services/api-gateway/openapi/specs/clubs-service.json",
+    "file": "archive/api-gateway/openapi/specs/clubs-service.json",
     "handler": "members_v1_clubs__club_id__members_get"
   },
   {
     "service": "clubs-service",
     "method": "PATCH",
     "path": "/v1/clubs/{club_id}/members/{user_id}",
-    "file": "services/api-gateway/openapi/specs/clubs-service.json",
+    "file": "archive/api-gateway/openapi/specs/clubs-service.json",
     "handler": "role_v1_clubs__club_id__members__user_id__patch"
   },
   {
     "service": "course-service",
     "method": "GET",
     "path": "/courses",
-    "file": "services/api-gateway/openapi/specs/course-service.json",
+    "file": "archive/api-gateway/openapi/specs/course-service.json",
     "handler": "openapi"
   },
   {
     "service": "events-service",
     "method": "GET",
     "path": "/health",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "health_health_get"
   },
   {
     "service": "events-service",
     "method": "GET",
     "path": "/v1/activities/me",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "my_activities_v1_activities_me_get"
   },
   {
     "service": "events-service",
     "method": "GET",
     "path": "/v1/calendar",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "calendar_v1_calendar_get"
   },
   {
     "service": "events-service",
     "method": "GET",
     "path": "/v1/events",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "list_events_v1_events_get"
   },
   {
     "service": "events-service",
     "method": "POST",
     "path": "/v1/events",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "create_event_v1_events_post"
   },
   {
     "service": "events-service",
     "method": "DELETE",
     "path": "/v1/events/{event_id}",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "delete_event_v1_events__event_id__delete"
   },
   {
     "service": "events-service",
     "method": "GET",
     "path": "/v1/events/{event_id}",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "get_event_v1_events__event_id__get"
   },
   {
     "service": "events-service",
     "method": "PATCH",
     "path": "/v1/events/{event_id}",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "patch_event_v1_events__event_id__patch"
   },
   {
     "service": "events-service",
     "method": "POST",
     "path": "/v1/events/{event_id}/check-in",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "checkin_v1_events__event_id__check_in_post"
   },
   {
     "service": "events-service",
     "method": "GET",
     "path": "/v1/events/{event_id}/participants",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "participants_v1_events__event_id__participants_get"
   },
   {
     "service": "events-service",
     "method": "POST",
     "path": "/v1/events/{event_id}/publish",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "publish_event_v1_events__event_id__publish_post"
   },
   {
     "service": "events-service",
     "method": "POST",
     "path": "/v1/events/{event_id}/register",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "register_v1_events__event_id__register_post"
   },
   {
     "service": "events-service",
     "method": "POST",
     "path": "/v1/events/{event_id}/unregister",
-    "file": "services/api-gateway/openapi/specs/events-service.json",
+    "file": "archive/api-gateway/openapi/specs/events-service.json",
     "handler": "unregister_v1_events__event_id__unregister_post"
   },
   {
     "service": "finance-service",
     "method": "GET",
     "path": "/finance/invoices",
-    "file": "services/api-gateway/openapi/specs/finance-service.json",
+    "file": "archive/api-gateway/openapi/specs/finance-service.json",
     "handler": "openapi"
   },
   {
     "service": "platform-admin-service",
     "method": "GET",
     "path": "/v1/health/services",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "hs_v1_health_services_get"
   },
   {
     "service": "platform-admin-service",
     "method": "GET",
     "path": "/v1/metrics/summary",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "ms_v1_metrics_summary_get"
   },
   {
     "service": "platform-admin-service",
     "method": "GET",
     "path": "/v1/plans",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "plist_v1_plans_get"
   },
   {
     "service": "platform-admin-service",
     "method": "POST",
     "path": "/v1/plans",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "pcreate_v1_plans_post"
   },
   {
     "service": "platform-admin-service",
     "method": "GET",
     "path": "/v1/tenants",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "tlist_v1_tenants_get"
   },
   {
     "service": "platform-admin-service",
     "method": "POST",
     "path": "/v1/tenants",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "tcreate_v1_tenants_post"
   },
   {
     "service": "platform-admin-service",
     "method": "GET",
     "path": "/v1/tenants/{tenant_id}",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "tget_v1_tenants__tenant_id__get"
   },
   {
     "service": "platform-admin-service",
     "method": "PATCH",
     "path": "/v1/tenants/{tenant_id}",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "tpatch_v1_tenants__tenant_id__patch"
   },
   {
     "service": "platform-admin-service",
     "method": "GET",
     "path": "/v1/tenants/{tenant_id}/features",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "fg_v1_tenants__tenant_id__features_get"
   },
   {
     "service": "platform-admin-service",
     "method": "PATCH",
     "path": "/v1/tenants/{tenant_id}/features",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "fp_v1_tenants__tenant_id__features_patch"
   },
   {
     "service": "platform-admin-service",
     "method": "GET",
     "path": "/v1/tenants/{tenant_id}/invoices",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "invl_v1_tenants__tenant_id__invoices_get"
   },
   {
     "service": "platform-admin-service",
     "method": "POST",
     "path": "/v1/tenants/{tenant_id}/invoices",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "inv_v1_tenants__tenant_id__invoices_post"
   },
   {
     "service": "platform-admin-service",
     "method": "GET",
     "path": "/v1/tenants/{tenant_id}/subscription",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "sget_v1_tenants__tenant_id__subscription_get"
   },
   {
     "service": "platform-admin-service",
     "method": "POST",
     "path": "/v1/tenants/{tenant_id}/subscription",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "sset_v1_tenants__tenant_id__subscription_post"
   },
   {
     "service": "platform-admin-service",
     "method": "POST",
     "path": "/v1/tenants/{tenant_id}/suspend",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "ts_v1_tenants__tenant_id__suspend_post"
   },
   {
     "service": "platform-admin-service",
     "method": "POST",
     "path": "/v1/tenants/{tenant_id}/unsuspend",
-    "file": "services/api-gateway/openapi/specs/platform-admin-service.json",
+    "file": "archive/api-gateway/openapi/specs/platform-admin-service.json",
     "handler": "tu_v1_tenants__tenant_id__unsuspend_post"
   },
   {
     "service": "student-service",
     "method": "GET",
     "path": "/students",
-    "file": "services/api-gateway/openapi/specs/student-service.json",
+    "file": "archive/api-gateway/openapi/specs/student-service.json",
     "handler": "openapi"
   },
   {
     "service": "user-service",
     "method": "POST",
     "path": "/auth/login",
-    "file": "services/api-gateway/openapi/specs/user-service.json",
+    "file": "archive/api-gateway/openapi/specs/user-service.json",
     "handler": "openapi"
   },
   {
     "service": "user-service",
     "method": "GET",
     "path": "/users",
-    "file": "services/api-gateway/openapi/specs/user-service.json",
+    "file": "archive/api-gateway/openapi/specs/user-service.json",
     "handler": "openapi"
   }
 ]

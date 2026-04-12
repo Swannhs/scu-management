@@ -94,7 +94,7 @@
     "service": "api-gateway",
     "method": "GET",
     "path": "/",
-    "file": "services/api-gateway/src/app.controller.ts",
+    "file": "archive/api-gateway/src/app.controller.ts",
     "handler": "getHello"
   },
   {

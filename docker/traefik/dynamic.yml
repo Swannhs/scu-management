@@ -1,0 +1,181 @@
+http:
+  routers:
+    health:
+      entryPoints:
+        - web
+      rule: Path(`/health`)
+      service: ping@internal
+
+    user-auth:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/v1/auth`)
+      service: user-service
+      middlewares:
+        - edge-rate-limit
+
+    user-users:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/v1/users`)
+      service: user-service
+      middlewares:
+        - edge-auth
+        - edge-rate-limit
+
+    course-service:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/v1/academic-years`) || PathPrefix(`/v1/terms`) || PathPrefix(`/v1/departments`) || PathPrefix(`/v1/programs`) || PathPrefix(`/v1/rooms`) || PathPrefix(`/v1/courses`) || PathPrefix(`/v1/sections`) || PathPrefix(`/v1/sessions`) || PathPrefix(`/v1/faculty`)
+      service: course-service
+      middlewares:
+        - edge-auth
+        - edge-rate-limit
+
+    assessment-service:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/exams`) || PathPrefix(`/questions`)
+      service: assessment-service
+      middlewares:
+        - edge-auth
+        - edge-rate-limit
+
+    attendance-service:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/v1/attendance`)
+      service: attendance-service
+      middlewares:
+        - edge-auth
+        - edge-rate-limit
+
+    grades-service:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/v1/assessments`) || PathPrefix(`/v1/final-grades`)
+      service: grades-service
+      middlewares:
+        - edge-auth
+        - edge-rate-limit
+
+    campus-social-http:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/v1/profiles`) || PathPrefix(`/v1/friends`) || PathPrefix(`/v1/groups`) || PathPrefix(`/v1/feed`) || PathPrefix(`/v1/posts`) || PathPrefix(`/v1/reports`) || PathPrefix(`/v1/moderation`) || PathPrefix(`/v1/conversations`) || PathPrefix(`/v1/calls`) || PathPrefix(`/v1/notifications`) || PathPrefix(`/v1/directory`) || PathPrefix(`/v1/media`)
+      service: campus-social-service
+      middlewares:
+        - edge-auth
+        - edge-rate-limit
+
+    campus-social-ws:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/ws`)
+      service: campus-social-service
+      middlewares:
+        - edge-rate-limit
+
+    document-service:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/v1/files`)
+      service: document-service
+      middlewares:
+        - edge-auth
+        - edge-rate-limit
+
+    user-service-docs:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/user-service`)
+      service: user-service
+      middlewares:
+        - edge-rate-limit
+        - strip-user-service
+
+    campus-social-docs:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/campus-social-service`)
+      service: campus-social-service
+      middlewares:
+        - edge-rate-limit
+        - strip-campus-social-service
+
+    document-service-docs:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/document-service`)
+      service: document-service
+      middlewares:
+        - edge-rate-limit
+        - strip-document-service
+
+  middlewares:
+    edge-auth:
+      forwardAuth:
+        address: http://edge-auth-service:3000/verify
+        trustForwardHeader: true
+        authResponseHeaders:
+          - X-User-Id
+          - X-User-Role
+          - X-Tenant-Id
+          - X-User-Email
+
+    edge-rate-limit:
+      rateLimit:
+        average: 100
+        burst: 50
+        period: 1m
+
+    strip-user-service:
+      stripPrefix:
+        prefixes:
+          - /user-service
+
+    strip-campus-social-service:
+      stripPrefix:
+        prefixes:
+          - /campus-social-service
+
+    strip-document-service:
+      stripPrefix:
+        prefixes:
+          - /document-service
+
+  services:
+    user-service:
+      loadBalancer:
+        servers:
+          - url: http://user-service:3000
+
+    course-service:
+      loadBalancer:
+        servers:
+          - url: http://course-service:3000
+
+    assessment-service:
+      loadBalancer:
+        servers:
+          - url: http://assessment-service:3000
+
+    attendance-service:
+      loadBalancer:
+        servers:
+          - url: http://attendance-service:3000
+
+    grades-service:
+      loadBalancer:
+        servers:
+          - url: http://grades-service:3000
+
+    campus-social-service:
+      loadBalancer:
+        servers:
+          - url: http://campus-social-service:3000
+
+    document-service:
+      loadBalancer:
+        servers:
+          - url: http://document-service:3000

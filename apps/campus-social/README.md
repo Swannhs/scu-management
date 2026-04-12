@@ -10,7 +10,7 @@ This project is currently a UI scaffold for a Flutter application.
 
 - No committed runtime API base URL, gateway URL, or WebSocket endpoint configuration is currently defined in this app.
 - No `.env`-style runtime configuration loader is currently wired.
-- Backend integration should target `services/api-gateway` and `services/campus-social-service` once client networking is added.
+- Backend integration should target the Traefik edge and `services/campus-social-service` once client networking is added.
 
 A few resources to get you started if this is your first Flutter project:
 

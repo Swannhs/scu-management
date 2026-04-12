@@ -63,7 +63,7 @@
 - `admin-config-service` `POST /v1/adminusers/{userId}/roles`
 - `analytics-service` `GET /`
 - `analytics-service` `GET /health`
-- `api-gateway` `GET /`
+- Archived: `api-gateway` `GET /`
 - `attendance-service` `GET /`
 - `audit-logging-service` `GET /`
 - `audit-logging-service` `GET /health`

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # University Management System - Development Mode Startup Script
-# This script starts the entire microservices project with Docker Compose
+# This script starts the platform with Docker Compose and Traefik ingress
 
 set -e
 
@@ -46,8 +46,8 @@ cd "$PROJECT_ROOT"
 print_success "Project root: $PROJECT_ROOT"
 
 # Start services
-print_header "Starting Microservices in Development Mode"
-echo "Building and starting all services with Docker Compose..."
+print_header "Starting Platform in Development Mode"
+echo "Building and starting all services behind Traefik..."
 echo ""
 
 docker compose -f docker/docker-compose.yml up --build

@@ -1,4 +1,34 @@
 services:
+  traefik:
+    image: traefik:v3.1
+    command:
+      - --configFile=/etc/traefik/traefik.yml
+    ports:
+      - "80:80"
+      - "8088:8080"
+    volumes:
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro
+    depends_on:
+      - edge-auth-service
+      - user-service
+      - course-service
+      - assessment-service
+      - attendance-service
+      - grades-service
+      - campus-social-service
+      - document-service
+    networks:
+      - ums-network
+
+  edge-auth-service:
+    build: ../services/edge-auth-service
+    environment:
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET:-your-secret-key}
+    networks:
+      - ums-network
+
   # Infrastructure Services
   keycloak:
     image: quay.io/keycloak/keycloak:22.0.5
@@ -445,6 +475,9 @@ services:
       - ums-network
     ports:
       - "3005:3000"
+    environment:
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET:-your-secret-key}
 
   assessment-service:
     build: ../services/assessment-service
@@ -521,36 +554,6 @@ services:
       - ums-network
     ports:
       - "8015:8000"
-
-  api-gateway:
-    build: ../services/api-gateway
-    depends_on:
-      - admin-config-service
-      - redis
-      - keycloak
-      - campus-social-service
-    networks:
-      - ums-network
-    ports:
-      - "80:3000"
-    environment:
-      - PORT=3000
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - USER_SERVICE_URL=http://user-service:3000
-      - COURSE_SERVICE_URL=http://course-service:3000
-      - ASSESSMENT_SERVICE_URL=http://assessment-service:3000
-      - ATTENDANCE_SERVICE_URL=http://attendance-service:3000
-      - GRADES_SERVICE_URL=http://grades-service:3000
-      - PLACEMENT_SERVICE_URL=http://placement-service:3000
-      - CAMPUS_SOCIAL_SERVICE_URL=http://campus-social-service:3000
-      - DOCUMENT_SERVICE_URL=http://document-service:3000
-      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
-      - KEYCLOAK_REALM=university-platform
-      - KEYCLOAK_CLIENT_ID=api-gateway
-      - KEYCLOAK_CLIENT_SECRET=secret
-      - ADMIN_CONFIG_SERVICE_URL=http://admin-config-service
-
 
 networks:
   ums-network:

@@ -2,10 +2,10 @@
 
 ## 1) Confirmed issues by file
 
-### `services/api-gateway/openapi/services.json`
-- `campus-social-service` uses a cross-service fallback path (`../campus-social-service/openapi/openapi.json`) instead of the gateway-local `openapi/specs/...` pattern used by most other services. This makes gateway OpenAPI generation depend on directory layout outside `services/api-gateway` and bypasses `services/api-gateway/openapi/specs/campus-social-service.json` as an effective fallback artifact.
+### `archive/api-gateway/openapi/services.json`
+- `campus-social-service` uses a cross-service fallback path (`../campus-social-service/openapi/openapi.json`) instead of the gateway-local `openapi/specs/...` pattern used by most other services. This made gateway OpenAPI generation depend on directory layout outside the archived gateway and bypass `archive/api-gateway/openapi/specs/campus-social-service.json` as an effective fallback artifact.
 
-### `services/api-gateway/openapi/specs/campus-social-service.json`
+### `archive/api-gateway/openapi/specs/campus-social-service.json`
 - This file duplicates the campus-social canonical spec content, but `services.json` is currently wired to a different fallback source path. Result: one of these artifacts is redundant or stale-risk depending on build path behavior.
 
 ### `services/campus-social-service/README.md`

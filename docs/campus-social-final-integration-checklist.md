@@ -4,20 +4,20 @@
 
 ### Must merge first
 1. **Gateway route/auth enforcement for campus-social**
-   - File: `services/api-gateway/src/config/services.config.ts`
+   - File: `archive/api-gateway/src/config/services.config.ts`
    - Status target:
      - campus-social route families mapped
      - `authMode: gateway-jwt`
      - `tenantRequired: true`
      - `allowedRoles: ['STUDENT', 'FACULTY', 'TENANT_ADMIN']`
 2. **Gateway OpenAPI registry fallback wiring**
-   - File: `services/api-gateway/openapi/services.json`
+   - File: `archive/api-gateway/openapi/services.json`
    - Status target:
      - `campus-social-service` fallback uses `openapi/specs/campus-social-service.json`
 3. **Campus-social OpenAPI parity between service and gateway fallback**
    - Files:
      - `services/campus-social-service/openapi/openapi.json`
-     - `services/api-gateway/openapi/specs/campus-social-service.json`
+     - `archive/api-gateway/openapi/specs/campus-social-service.json`
    - Status target:
      - equivalent route surface for integration-critical families
 
@@ -48,7 +48,7 @@
      - deprecated entrypoints explicitly labeled
 7. **Legacy naming clarity**
    - Files:
-     - `services/api-gateway/openapi/specs/social-service.json`
+     - `archive/api-gateway/openapi/specs/social-service.json`
      - `docker/docker-compose.yml`
      - `README.md`
    - Status target:
@@ -58,9 +58,9 @@
 
 ## 2) Dependency order
 
-1. `services/api-gateway/src/config/services.config.ts` (routing/auth contract)
-2. `services/api-gateway/openapi/services.json` (spec registry contract)
-3. `services/campus-social-service/openapi/openapi.json` + `services/api-gateway/openapi/specs/campus-social-service.json` (API contract parity)
+1. `archive/api-gateway/src/config/services.config.ts` (routing/auth contract)
+2. `archive/api-gateway/openapi/services.json` (spec registry contract)
+3. `services/campus-social-service/openapi/openapi.json` + `archive/api-gateway/openapi/specs/campus-social-service.json` (API contract parity)
 4. `services/campus-social-service/src/main.ts` (runtime docs serving reliability)
 5. media alignment (`media.service.ts`, spec, README)
 6. compose/doc cleanup and legacy deprecation notes
@@ -71,9 +71,9 @@
 
 These files affect runtime routing, auth, infra startup, or API contract behavior and should be reverted only with coordinated validation:
 
-- `services/api-gateway/src/config/services.config.ts`
-- `services/api-gateway/openapi/services.json`
-- `services/api-gateway/openapi/specs/campus-social-service.json`
+- `archive/api-gateway/src/config/services.config.ts`
+- `archive/api-gateway/openapi/services.json`
+- `archive/api-gateway/openapi/specs/campus-social-service.json`
 - `services/campus-social-service/openapi/openapi.json`
 - `services/campus-social-service/src/main.ts`
 - `services/campus-social-service/src/social/services/media.service.ts`
@@ -84,7 +84,7 @@ Medium sensitivity (doc/process behavior):
 - `services/campus-social-service/README.md`
 - `docker-compose.yml`
 - `infra/docker-compose.yml`
-- `services/api-gateway/openapi/specs/social-service.json`
+- `archive/api-gateway/openapi/specs/social-service.json`
 
 ---
 
