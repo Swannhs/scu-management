@@ -18,6 +18,19 @@ const createApp = ({ pool }) => {
   app.use(cors());
   app.use(bodyParser.json());
 
+  app.get('/health', (_req, res) => {
+    res.json({ status: 'ok' });
+  });
+
+  app.get('/ready', async (_req, res) => {
+    try {
+      await pool.query({ text: 'SELECT 1', query_timeout: 3000 });
+      res.json({ status: 'ok' });
+    } catch (_err) {
+      res.status(503).json({ status: 'error', detail: 'Database not ready' });
+    }
+  });
+
   app.use(extractTenantAndUser);
 
   const loadFileForTenant = async (fileId, tenantId, client = pool) => {

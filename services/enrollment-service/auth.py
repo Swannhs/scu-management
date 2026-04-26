@@ -10,7 +10,7 @@ import requests
 security = HTTPBearer()
 
 KEYCLOAK_URL = os.getenv("KEYCLOAK_AUTH_SERVER_URL", "http://keycloak:8080")
-REALM = os.getenv("KEYCLOAK_REALM", "university-platform")
+REALM = os.getenv("KEYCLOAK_REALM", "scu")
 JWKS_URL = os.getenv(
     "KEYCLOAK_JWKS_URL",
     f"{KEYCLOAK_URL}/realms/{REALM}/protocol/openid-connect/certs",

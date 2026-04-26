@@ -22,8 +22,8 @@ See `ARCHITECTURE.md` for the service catalog and `AGENTS.md` for AI builder rul
 - [x] Add CI for Docker Compose config validation and secret scan
 - [x] Split Docker Compose: `infra`, `core`, `dev`, `prod`
 - [x] Clean hardcoded secrets from compose files
-- [ ] Add `README.md`, `.env.example`, `Dockerfile`, `/health`, `/ready` to every core service
-- [ ] Standardise Keycloak realm to `scu` across all services
+- [x] Add `README.md`, `.env.example`, `Dockerfile`, `/health`, `/ready` to every core service
+- [x] Standardise Keycloak realm to `scu` across all services
 
 ## Milestone 2 — Auth and user foundation
 
