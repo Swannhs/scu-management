@@ -1,0 +1,140 @@
+# docker-compose.prod.yml
+# Production configuration overlay.
+# - Secrets are REQUIRED (will fail fast if not set).
+# - Only the Traefik gateway port is exposed externally.
+# - Internal service ports are removed.
+# - NODE_ENV / PYTHON_ENV set to production.
+#
+# Usage:
+#   docker compose -f docker/docker-compose.yml -f docker/docker-compose.prod.yml up -d
+#
+# All variables marked with :? MUST be set in the environment or a .env file.
+# DO NOT use dev defaults in production.
+
+services:
+  # -------------------------------------------------------------------
+  # Gateway: only port 80 (and 443 if TLS is configured) is exposed.
+  # Remove the Traefik dashboard port in production.
+  # -------------------------------------------------------------------
+  traefik:
+    ports:
+      - "80:80"
+    # Traefik dashboard (8088) is intentionally not exposed in production.
+
+  # -------------------------------------------------------------------
+  # Auth
+  # -------------------------------------------------------------------
+  edge-auth-service:
+    environment:
+      - JWT_SECRET=${JWT_SECRET:?JWT_SECRET is required}
+    ports: []
+
+  user-service:
+    environment:
+      - JWT_SECRET=${JWT_SECRET:?JWT_SECRET is required}
+      - NODE_ENV=production
+    ports: []
+
+  # -------------------------------------------------------------------
+  # Keycloak
+  # -------------------------------------------------------------------
+  keycloak:
+    environment:
+      KC_DB_USERNAME: ${KEYCLOAK_DB_USER:?KEYCLOAK_DB_USER is required}
+      KC_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD:?KEYCLOAK_DB_PASSWORD is required}
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN:?KEYCLOAK_ADMIN is required}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:?KEYCLOAK_ADMIN_PASSWORD is required}
+    ports: []
+
+  keycloak-db:
+    environment:
+      POSTGRES_USER: ${KEYCLOAK_DB_USER:?KEYCLOAK_DB_USER is required}
+      POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD:?KEYCLOAK_DB_PASSWORD is required}
+
+  # -------------------------------------------------------------------
+  # Core services — remove exposed ports, set production env
+  # -------------------------------------------------------------------
+  course-service:
+    environment:
+      - KEYCLOAK_CLIENT_SECRET=${COURSE_KEYCLOAK_CLIENT_SECRET:?COURSE_KEYCLOAK_CLIENT_SECRET is required}
+      - NODE_ENV=production
+    ports: []
+
+  assessment-service:
+    environment:
+      - KEYCLOAK_CLIENT_SECRET=${ASSESSMENT_KEYCLOAK_CLIENT_SECRET:?ASSESSMENT_KEYCLOAK_CLIENT_SECRET is required}
+      - NODE_ENV=production
+    ports: []
+
+  enrollment-service:
+    environment:
+      - DATABASE_URL=postgresql://${ENROLLMENT_DB_USER:?ENROLLMENT_DB_USER is required}:${ENROLLMENT_DB_PASSWORD:?ENROLLMENT_DB_PASSWORD is required}@enrollment-db:5432/enrollmentdb
+    ports: []
+
+  attendance-service:
+    environment:
+      - NODE_ENV=production
+    ports: []
+
+  grades-service:
+    environment:
+      - NODE_ENV=production
+    ports: []
+
+  document-service:
+    environment:
+      - NODE_ENV=production
+    ports: []
+
+  campus-social-service:
+    environment:
+      - KEYCLOAK_CLIENT_SECRET=${CAMPUS_SOCIAL_KEYCLOAK_CLIENT_SECRET:?CAMPUS_SOCIAL_KEYCLOAK_CLIENT_SECRET is required}
+      - NODE_ENV=production
+    ports: []
+
+  notifications-service:
+    ports: []
+
+  # -------------------------------------------------------------------
+  # Databases — remove any exposed ports
+  # -------------------------------------------------------------------
+  social-db:
+    ports: []
+  grades-db:
+    ports: []
+  attendance-db:
+    ports: []
+  course-db:
+    ports: []
+  finance-db:
+    ports: []
+  library-db:
+    ports: []
+  faculty-db:
+    ports: []
+  hostel-db:
+    ports: []
+  parent-db:
+    ports: []
+  admin-db:
+    ports: []
+  transport-db:
+    ports: []
+  enrollment-db:
+    ports: []
+  user-auth-db:
+    ports: []
+  assessment-db:
+    ports: []
+  document-db:
+    ports: []
+
+  # -------------------------------------------------------------------
+  # Infrastructure — remove exposed ports
+  # -------------------------------------------------------------------
+  rabbitmq:
+    ports: []
+  redis:
+    ports: []
+  mongo:
+    ports: []
