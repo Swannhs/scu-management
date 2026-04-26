@@ -24,10 +24,10 @@ const createApp = ({ pool }) => {
 
   app.get('/ready', async (_req, res) => {
     try {
-      await pool.query('SELECT 1');
+      await pool.query({ text: 'SELECT 1', query_timeout: 3000 });
       res.json({ status: 'ok' });
-    } catch (err) {
-      res.status(503).json({ status: 'error', detail: err.message });
+    } catch (_err) {
+      res.status(503).json({ status: 'error', detail: 'Database not ready' });
     }
   });
 
