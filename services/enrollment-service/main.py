@@ -139,6 +139,18 @@ class StudentResponse(BaseModel):
 def health():
     return {"status": "ok"}
 
+@app.get("/ready")
+def ready():
+    try:
+        from sqlalchemy import text
+        db = database.SessionLocal()
+        db.execute(text("SELECT 1"))
+        db.close()
+        return {"status": "ok"}
+    except Exception as exc:
+        from fastapi.responses import JSONResponse
+        return JSONResponse(status_code=503, content={"status": "error", "detail": str(exc)})
+
 def ensure_roles(user: auth.UserContext, required_roles: List[str]):
     if not any(role in user.roles for role in required_roles):
         raise HTTPException(

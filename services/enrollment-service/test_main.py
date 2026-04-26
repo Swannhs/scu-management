@@ -14,8 +14,8 @@ from jose import jwt, jwk
 from jose.constants import ALGORITHMS
 
 os.environ["DATABASE_URL"] = "sqlite:///./test_enrollment.db"
-os.environ["KEYCLOAK_JWKS_URL"] = "http://keycloak.test/realms/university-platform/protocol/openid-connect/certs"
-os.environ["KEYCLOAK_ISSUER"] = "http://keycloak.test/realms/university-platform"
+os.environ["KEYCLOAK_JWKS_URL"] = "http://keycloak.test/realms/scu/protocol/openid-connect/certs"
+os.environ["KEYCLOAK_ISSUER"] = "http://keycloak.test/realms/scu"
 os.environ["KEYCLOAK_AUDIENCE"] = "enrollment-service"
 
 from main import app  # noqa: E402

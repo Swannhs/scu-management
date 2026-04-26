@@ -168,6 +168,10 @@ const server = http.createServer((req, res) => {
     return writeJson(res, 200, { status: 'ok', service: 'edge-auth-service' });
   }
 
+  if (req.url === '/ready') {
+    return writeJson(res, 200, { status: 'ok', service: 'edge-auth-service' });
+  }
+
   if (req.url === '/verify') {
     return handleVerify(req, res);
   }
