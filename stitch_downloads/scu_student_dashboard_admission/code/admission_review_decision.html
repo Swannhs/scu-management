@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admission Review Decision - AdminPortal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#8993a1",
+                        "on-secondary-container": "#005f71",
+                        "secondary-fixed-dim": "#48d7f9",
+                        "outline-variant": "#bccabf",
+                        "on-secondary-fixed": "#001f27",
+                        "inverse-primary": "#5adda0",
+                        "background": "#f6f9ff",
+                        "surface-container": "#e2effe",
+                        "surface-variant": "#d7e4f2",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#f6f9ff",
+                        "on-tertiary-fixed": "#121c27",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#e6f2ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dceaf8",
+                        "on-primary-fixed": "#002112",
+                        "on-primary-container": "#00321f",
+                        "outline": "#6d7a71",
+                        "on-tertiary-container": "#222c37",
+                        "on-background": "#101d27",
+                        "surface-dim": "#cedce9",
+                        "secondary": "#00687b",
+                        "surface-tint": "#006c46",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004e5d",
+                        "tertiary": "#555f6c",
+                        "on-surface": "#101d27",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#50dcff",
+                        "primary": "#006c46",
+                        "on-surface-variant": "#3d4a41",
+                        "inverse-surface": "#25323c",
+                        "primary-container": "#00a76f",
+                        "surface-container-highest": "#d7e4f2",
+                        "surface-container-low": "#ecf4ff",
+                        "primary-fixed": "#79fabb",
+                        "tertiary-fixed": "#d9e3f2",
+                        "on-primary-fixed-variant": "#005234",
+                        "tertiary-fixed-dim": "#bdc7d6",
+                        "on-tertiary-fixed-variant": "#3e4854",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f6f9ff",
+                        "secondary-fixed": "#afecff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, .font-headline { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center px-6 w-full h-16 fixed top-0 z-50">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-[#212B36] dark:text-white">AdminPortal</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-[#919EAB] hover:text-[#212B36] dark:hover:text-white transition-colors cursor-pointer duration-200 active:opacity-80" href="#">Dashboard</a>
+<a class="text-[#00A76F] border-b-2 border-[#00A76F] pb-1 cursor-pointer duration-200 active:opacity-80" href="#">Applicants</a>
+<a class="text-[#919EAB] hover:text-[#212B36] dark:hover:text-white transition-colors cursor-pointer duration-200 active:opacity-80" href="#">Programs</a>
+<a class="text-[#919EAB] hover:text-[#212B36] dark:hover:text-white transition-colors cursor-pointer duration-200 active:opacity-80" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-gray-50 dark:hover:bg-gray-800 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-gray-50 dark:hover:bg-gray-800 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="professional portrait of a middle-aged academic administrator in a clean office setting, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgEjUSNHcciRfsnaBtVE1AoEunflVZE_1VqtEN1QjMCrUaLCwHFFdYiCf16h9qyyPVBH4iLqhAujrSIZo7jOBn1Ash2ZA5Kl-TQ1_L5yfJTMCIamvPsa_k-J8Vz9TYm5ba2nxu4fZiNLriofrpUuXs6t49YYlM96UAuqKU3L-vhLCdODNJczkN1PxrokGAxgAAh1F1gC1c_waLwx_G37aXt6WH7sbe2GbUr1gPNfb9eJ6ajasjqZkttcA6oCMjmQTpsY1T4kDx5KUh"/>
+</div>
+</header>
+<!-- Main Layout Container -->
+<div class="pt-16 flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 w-64 fixed left-0 top-16 h-[calc(100vh-64px)] p-4 flex flex-col gap-2 font-['Public_Sans'] text-sm hidden lg:flex">
+<div class="mb-6 px-4">
+<h3 class="text-lg font-bold text-[#00A76F]">Admission Review</h3>
+<p class="text-[#919EAB]">Fall 2024 Cycle</p>
+</div>
+<a class="flex items-center gap-3 text-[#919EAB] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg px-4 py-3 transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span> Overview
+            </a>
+<a class="flex items-center gap-3 text-[#919EAB] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg px-4 py-3 transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span> Academic History
+            </a>
+<a class="flex items-center gap-3 text-[#919EAB] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg px-4 py-3 transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span> Documents
+            </a>
+<a class="flex items-center gap-3 text-[#919EAB] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg px-4 py-3 transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span> Reviewer Notes
+            </a>
+<a class="flex items-center gap-3 bg-[#00A76F]/10 text-[#00A76F] font-semibold rounded-lg px-4 py-3 transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="gavel" style="font-variation-settings: 'FILL' 1;">gavel</span> Decision Panel
+            </a>
+<a class="flex items-center gap-3 text-[#919EAB] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg px-4 py-3 transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span> Activity Log
+            </a>
+<div class="mt-auto p-4">
+<button class="w-full bg-primary-container text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition-opacity active:scale-95">
+                    Finalize Review
+                </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 lg:ml-64 p-6 lg:p-8 grid grid-cols-1 xl:grid-cols-12 gap-8">
+<div class="xl:col-span-8 flex flex-col gap-8">
+<!-- 1. Applicant Information Summary -->
+<section class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
+<div class="flex flex-col md:flex-row items-center gap-6">
+<img alt="Applicant Photo" class="w-24 h-24 rounded-xl object-cover ring-4 ring-primary/10" data-alt="high-quality studio portrait of a young man with a confident expression, neutral gray background, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq5M5S2QeAwllqhFBb1c9Bs2KUrCmKQGXmCOki7z_HFWOvoM4myWZet4h_6HJB4TOs-daSNhPnE31U3w7hlifBstgLe7q0pkZT2_yGjozVhPh0U_oo5t2cwyjPmE5wqZ440jsegqR3D4ePwHZVMQZey678yQAarBkA7b5cWuaDQzerEe6mNIolOjdqVpFAjy2nGQwRWZwgq67oRu-POCF0c1Rwb1Iz_eEPZAhpLZb7JdxYZUzxzL3dsbj7fKa-8zgcQfwt9KKQYuwK"/>
+<div class="flex-1 text-center md:text-left">
+<div class="flex flex-wrap justify-center md:justify-start items-center gap-3 mb-2">
+<h1 class="text-2xl font-bold text-[#212B36] dark:text-white">Julianne Moore</h1>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container/20 text-on-secondary-container text-xs font-bold uppercase tracking-wider">Domestic</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+<div>
+<p class="text-[#919EAB] uppercase text-[10px] font-bold tracking-widest mb-1">Application ID</p>
+<p class="font-semibold text-on-surface">#APP-2024-8842</p>
+</div>
+<div>
+<p class="text-[#919EAB] uppercase text-[10px] font-bold tracking-widest mb-1">Applied Program</p>
+<p class="font-semibold text-on-surface">M.S. Data Science</p>
+</div>
+<div>
+<p class="text-[#919EAB] uppercase text-[10px] font-bold tracking-widest mb-1">Submission Date</p>
+<p class="font-semibold text-on-surface">Oct 12, 2023</p>
+</div>
+<div>
+<p class="text-[#919EAB] uppercase text-[10px] font-bold tracking-widest mb-1">Status</p>
+<p class="text-[#00A76F] font-bold">Under Review</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Academic Score Summary & 3. Document Verification -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Academic Score Summary -->
+<section class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-bold text-[#212B36] dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-[#00A76F]">analytics</span>
+                                Academic Scores
+                            </h2>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-[#919EAB] font-medium">Cumulative GPA</span>
+<span class="font-bold text-on-surface">3.88 / 4.0</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-800 h-2 rounded-full overflow-hidden">
+<div class="bg-[#00A76F] h-full rounded-full" style="width: 97%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-[#919EAB] font-medium">GRE Score</span>
+<span class="font-bold text-on-surface">324 / 340</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-800 h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 88%;"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-[#f6f9ff] dark:bg-slate-800/50 rounded-lg">
+<div>
+<p class="text-xs text-[#919EAB] font-bold uppercase mb-1">National Ranking</p>
+<p class="text-xl font-bold text-primary">Top 5%</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-[#00A76F]/20" data-icon="military_tech">military_tech</span>
+</div>
+</div>
+</section>
+<!-- Document Verification Summary -->
+<section class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-bold text-[#212B36] dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-[#00A76F]">verified</span>
+                                Documents
+                            </h2>
+<span class="text-xs font-bold text-[#00A76F]">80% Verified</span>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<div class="flex items-center justify-between p-3 border border-gray-100 dark:border-gray-800 rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span class="text-sm font-medium text-on-surface">Official Transcripts</span>
+</div>
+<button class="text-xs font-bold text-secondary hover:underline">View</button>
+</div>
+<div class="flex items-center justify-between p-3 border border-gray-100 dark:border-gray-800 rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span class="text-sm font-medium text-on-surface">Passport / ID</span>
+</div>
+<button class="text-xs font-bold text-secondary hover:underline">View</button>
+</div>
+<div class="flex items-center justify-between p-3 border border-gray-100 dark:border-gray-800 rounded-lg bg-red-50/50 dark:bg-red-900/10 border-red-100 dark:border-red-900/20">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500">error</span>
+<span class="text-sm font-medium text-on-surface">English Proficiency</span>
+</div>
+<span class="text-[10px] font-bold text-red-500 uppercase">Pending</span>
+</div>
+</div>
+</section>
+</div>
+<!-- 4. Reviewer Notes -->
+<section class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
+<h2 class="text-lg font-bold text-[#212B36] dark:text-white mb-6">Internal Reviewer Notes</h2>
+<div class="space-y-6">
+<!-- Note 1 -->
+<div class="flex gap-4">
+<img alt="Reviewer" class="w-10 h-10 rounded-full" data-alt="professional male academic in his 40s wearing glasses, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUg_xWZ6nP3NXxcjsljWhODU4WRrRZ7Gmipwz5N_ktyZW047mBPgfKBUE1aJLxk-SGIEy8VXP9v80NesY0V2LHhuN5vr4qf-79Vo4uQqJ-WGzi5LPd8KH9NQQBaFReljTGF5fCsislyuUEQFOj5sZ8_13TQf_fNhuUvinzp6-32VxmwwzOyIY17WjN4aIbDGiyjcQ6FBCb8NSFKPJ9tI-8wD7cqiZlLqNK3dDVasjmwf1XdbkNjOeYIBeRPDptN0KCyxsF0mjVGxmt"/>
+<div class="flex-1 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl rounded-tl-none">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-bold text-on-surface">Dr. Sarah Jenkins</span>
+<span class="text-[10px] text-[#919EAB]">2 days ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Candidate shows exceptional strength in quantitative methods. The research proposal on neural networks is well-aligned with our department's current focus areas. Recommend shortlisting for interview.</p>
+</div>
+</div>
+<!-- Note 2 -->
+<div class="flex gap-4">
+<img alt="Reviewer" class="w-10 h-10 rounded-full" data-alt="professional woman in business attire, modern corporate headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJVfkTvFBzh3lUDd_sESd4GNBiviquKn1E2P8hNjAImvgI1GSFFMjlEWTV5V_Ff0Bo4HFhZ3fwLvx1CPESpnLEkefZwIKD0i_LLbFiEaUSMYh6EJnbw7gvwRBoGKS1pbBJnxHhaJzqdu2k22k0_lKciOEG_zrd6x8XApxLBWcr-vu1dIC_grlZ495FABUtsf9e-Ilr29wYVA3VIHlELSWhQi_nBj4DXJzhoZG5XAKgMKeZbDa0S6vknzWrM-STPhiHRv8ooRMFdsWk"/>
+<div class="flex-1 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl rounded-tl-none border-l-4 border-primary/30">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-bold text-on-surface">Marc Thompson <span class="font-normal text-[#919EAB]">(Financial Office)</span></span>
+<span class="text-[10px] text-[#919EAB]">5 hours ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Proof of funding for the first year is confirmed. Waiting on the official bank endorsement for the full program duration. Otherwise, documentation looks solid.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- 5. Decision Panel (Prominent Right Sidebar) -->
+<aside class="xl:col-span-4">
+<div class="sticky top-24 space-y-6">
+<section class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-t-4 border-[#00A76F] p-8">
+<h2 class="text-xl font-bold text-[#212B36] dark:text-white mb-6">Final Decision Panel</h2>
+<div class="space-y-6">
+<!-- Status Selection -->
+<div>
+<label class="block text-[10px] font-bold text-[#919EAB] uppercase tracking-widest mb-2">Decision Status</label>
+<select class="w-full bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:ring-[#00A76F] focus:border-[#00A76F] p-3 font-medium">
+<option>Under Review</option>
+<option>Shortlisted</option>
+<option selected="">Approved</option>
+<option>Waitlisted</option>
+<option>Need More Info</option>
+<option>Rejected</option>
+</select>
+</div>
+<!-- Assigned Reviewer -->
+<div>
+<label class="block text-[10px] font-bold text-[#919EAB] uppercase tracking-widest mb-2">Assigned Reviewer</label>
+<div class="relative">
+<select class="w-full bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:ring-[#00A76F] focus:border-[#00A76F] p-3 font-medium appearance-none">
+<option>Dr. Sarah Jenkins</option>
+<option>Dr. Michael Chen</option>
+<option>Prof. Linda Rodriguez</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-gray-400">expand_more</span>
+</div>
+</div>
+<!-- Internal Notes -->
+<div>
+<label class="block text-[10px] font-bold text-[#919EAB] uppercase tracking-widest mb-2">Internal Notes (Hidden from Applicant)</label>
+<textarea class="w-full bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:ring-[#00A76F] focus:border-[#00A76F] p-3" placeholder="Enter private reasoning..." rows="3"></textarea>
+</div>
+<!-- Public Message -->
+<div>
+<label class="block text-[10px] font-bold text-[#919EAB] uppercase tracking-widest mb-2">Message to Applicant</label>
+<textarea class="w-full bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:ring-[#00A76F] focus:border-[#00A76F] p-3" placeholder="Write the notification message..." rows="4"></textarea>
+</div>
+<!-- Interview Toggle -->
+<div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">video_chat</span>
+<span class="text-sm font-semibold text-on-surface">Interview Required</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#00A76F]"></div>
+</label>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3 pt-4 border-t border-gray-100 dark:border-gray-800">
+<button class="w-full bg-[#00A76F] text-white font-bold py-4 rounded-xl hover:bg-[#008F5D] shadow-lg shadow-[#00A76F]/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">save</span>
+                                    Save Decision
+                                </button>
+<button class="w-full bg-white dark:bg-slate-800 text-secondary border-2 border-secondary font-bold py-4 rounded-xl hover:bg-secondary/5 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+<span class="material-symbols-outlined">send</span>
+                                    Send Notification
+                                </button>
+</div>
+</div>
+</section>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

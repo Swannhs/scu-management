@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Application History - Marcus Sterling</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Public Sans & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#121c27",
+                        "tertiary-fixed": "#d9e3f2",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6d7a71",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#bccabf",
+                        "secondary-container": "#50dcff",
+                        "background": "#f6f9ff",
+                        "inverse-surface": "#25323c",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-surface": "#101d27",
+                        "tertiary": "#555f6c",
+                        "on-tertiary-fixed-variant": "#3e4854",
+                        "surface-variant": "#d7e4f2",
+                        "surface-tint": "#006c46",
+                        "surface-container-high": "#dceaf8",
+                        "on-secondary-fixed-variant": "#004e5d",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#afecff",
+                        "inverse-on-surface": "#e6f2ff",
+                        "secondary": "#00687b",
+                        "on-primary-container": "#00321f",
+                        "on-secondary-fixed": "#001f27",
+                        "inverse-primary": "#5adda0",
+                        "on-surface-variant": "#3d4a41",
+                        "on-secondary-container": "#005f71",
+                        "on-primary-fixed-variant": "#005234",
+                        "on-background": "#101d27",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002112",
+                        "surface-dim": "#cedce9",
+                        "surface-bright": "#f6f9ff",
+                        "surface": "#f6f9ff",
+                        "primary": "#006c46",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#ecf4ff",
+                        "surface-container": "#e2effe",
+                        "primary-container": "#00a76f",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#79fabb",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#d7e4f2",
+                        "tertiary-fixed-dim": "#bdc7d6",
+                        "secondary-fixed-dim": "#48d7f9",
+                        "on-tertiary-container": "#222c37",
+                        "tertiary-container": "#8993a1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar Component -->
+<aside class="hidden md:flex flex-col h-screen w-64 border-r bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 sticky top-0">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h1 class="text-[#00A76F] font-bold text-xl leading-tight">EduManage</h1>
+<p class="text-xs text-slate-500 font-medium">Admin Portal</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#00A76F] font-['Public_Sans'] font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors duration-200 text-[#00A76F] bg-[#00A76F]/10 font-bold border-r-4 border-[#00A76F] font-['Public_Sans']" href="#">
+<span class="material-symbols-outlined" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
+<span>Applications</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#00A76F] font-['Public_Sans'] font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Applicants</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#00A76F] font-['Public_Sans'] font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span>Academics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#00A76F] font-['Public_Sans'] font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Payments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#00A76F] font-['Public_Sans'] font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 p-2 bg-white dark:bg-slate-800 rounded-xl">
+<img alt="Administrator Profile" class="w-10 h-10 rounded-full object-cover" data-alt="professional headshot of a middle-aged male administrator with a clean business casual appearance and a friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOYg-Ek1h9vYEE8tc34gPeeCekFW-5OucwTayR16iPpicxhoNuK6yMHgg20-5ZXxHgQz5Z4uEyKytU8-8mNJZZMWt4x1soAIALIQeZB0iXkjUaRERjin_4isAzQ85B8EyCJUkd_-rak0NTlU-tzZiwUQmdhgMt6_bj8hppayvB33UGkK5hKysxL7k2hM87fjRvXMXS8Gm-3wljqjPNCGtxnVT6L7OiPUMLjM85JaGH24KJMp3TnipWiGF-Kn5S9a3ElARZve3t3n1O"/>
+<div class="overflow-hidden">
+<p class="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate">Alex Rivera</p>
+<p class="text-xs text-slate-500 truncate">Senior Registrar</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-background">
+<!-- TopNavBar Component -->
+<header class="flex justify-between items-center px-6 h-16 w-full sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 font-['Public_Sans']">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-[#00A76F] transition-all" placeholder="Search applications..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-600 dark:text-slate-400 hover:text-[#00A76F] transition-all scale-95 active:scale-100">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-600 dark:text-slate-400 hover:text-[#00A76F] transition-all scale-95 active:scale-100">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:border-slate-800 mx-2"></div>
+<span class="text-sm font-semibold text-slate-800 dark:text-slate-100">Admission Management</span>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 max-w-6xl mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<a class="text-sm font-medium text-[#00A76F] hover:underline flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                            Back to Applications
+                        </a>
+</div>
+<h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Application #ADM-948210 - Marcus Sterling</h2>
+<p class="text-slate-500 mt-1 font-medium">Undergraduate Admission • Fall 2024 • Computer Science</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 transition-colors">
+                        Download PDF
+                    </button>
+<button class="px-4 py-2 bg-primary-container text-white rounded-lg text-sm font-semibold hover:bg-[#008f5e] transition-colors shadow-lg shadow-[#00A76F]/20">
+                        Take Action
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Main Timeline Column (Left) -->
+<div class="lg:col-span-8 space-y-6">
+<section class="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[#00A76F]">history</span>
+                                Activity Timeline
+                            </h3>
+<button class="text-[#00A76F] text-sm font-bold hover:underline">Filter Logs</button>
+</div>
+<!-- Vertical Audit Timeline -->
+<div class="relative space-y-8 before:content-[''] before:absolute before:left-[17px] before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-100 dark:before:bg-slate-800">
+<!-- Internal Comment -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 w-9 h-9 bg-[#00A76F]/10 rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-slate-900">
+<span class="material-symbols-outlined text-[#00A76F] text-[20px]" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+</div>
+<div class="bg-[#00A76F]/5 border border-[#00A76F]/20 rounded-xl p-4">
+<div class="flex justify-between items-start mb-1">
+<p class="font-bold text-[#00A76F]">Internal Comment</p>
+<span class="text-xs font-semibold text-slate-400">Oct 16, 2023 • 02:15 PM</span>
+</div>
+<p class="text-sm text-slate-700 dark:text-slate-300 italic">"Sarah Jenkins: Strong academic background, awaiting interview feedback."</p>
+</div>
+</div>
+<!-- Payment Update -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 w-9 h-9 bg-secondary-container/10 rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-slate-900">
+<span class="material-symbols-outlined text-secondary text-[20px]">payments</span>
+</div>
+<div>
+<div class="flex justify-between items-start mb-1">
+<p class="font-bold text-slate-900 dark:text-white">Payment Update</p>
+<span class="text-xs font-semibold text-slate-400">Oct 15, 2023 • 11:30 AM</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400">Application fee of $50.00 confirmed.</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded uppercase">Verified</span>
+<span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Ref: TXN_293810</span>
+</div>
+</div>
+</div>
+<!-- Status Change -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 w-9 h-9 bg-tertiary-fixed-dim/20 rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-slate-900">
+<span class="material-symbols-outlined text-tertiary text-[20px]">update</span>
+</div>
+<div>
+<div class="flex justify-between items-start mb-1">
+<p class="font-bold text-slate-900 dark:text-white">Status Change</p>
+<span class="text-xs font-semibold text-slate-400">Oct 15, 2023 • 09:00 AM</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-medium px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-slate-500">Pending</span>
+<span class="material-symbols-outlined text-slate-300 text-sm">trending_flat</span>
+<span class="text-xs font-bold px-2 py-1 bg-[#00A76F]/10 rounded text-[#00A76F]">Under Review</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Status updated from Pending to Under Review.</p>
+</div>
+</div>
+<!-- Document Review -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 w-9 h-9 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-slate-900">
+<span class="material-symbols-outlined text-slate-500 text-[20px]">verified_user</span>
+</div>
+<div>
+<div class="flex justify-between items-start mb-1">
+<p class="font-bold text-slate-900 dark:text-white">Document Review</p>
+<span class="text-xs font-semibold text-slate-400">Oct 14, 2023 • 04:45 PM</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400">Transcripts and ID verified. Personal statement under review.</p>
+</div>
+</div>
+<!-- Reviewer Assigned -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 w-9 h-9 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-slate-900">
+<span class="material-symbols-outlined text-slate-500 text-[20px]">person_add</span>
+</div>
+<div>
+<div class="flex justify-between items-start mb-1">
+<p class="font-bold text-slate-900 dark:text-white">Reviewer Assigned</p>
+<span class="text-xs font-semibold text-slate-400">Oct 13, 2023 • 10:20 AM</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400">Sarah Jenkins assigned as primary reviewer.</p>
+</div>
+</div>
+<!-- Submission Date -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 w-9 h-9 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-slate-900">
+<span class="material-symbols-outlined text-slate-500 text-[20px]">send</span>
+</div>
+<div>
+<div class="flex justify-between items-start mb-1">
+<p class="font-bold text-slate-900 dark:text-white">Submission Date</p>
+<span class="text-xs font-semibold text-slate-400">Oct 12, 2023 • 11:58 PM</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400">Initial application submitted by student.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Info Cards Column (Right) -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Applicant Card -->
+<div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 overflow-hidden relative">
+<div class="absolute top-0 left-0 w-full h-24 bg-[#00A76F]/5"></div>
+<div class="relative pt-4 flex flex-col items-center text-center">
+<img alt="Marcus Sterling Profile" class="w-24 h-24 rounded-2xl object-cover border-4 border-white dark:border-slate-900 shadow-xl mb-4" data-alt="portrait of a young adult male student with a bright, focused expression, wearing a professional navy blue polo shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdzBn9K0f68Z4G1h5Oy-2LMh-dKNdBkWQvgPueUXOXYXVqQso5gerINLcWqX52fW7wdNRYUjqM2ZCd_pfTA4VuCrmH9dDCF8VhRMSyjzWeQGbkZipeCHAI29IOXpJ52D-0mF7oory00MTbFVMXIbmUP_k3pXjr5t4DyKALSmGT91WIrgBVgZtrTmyszKZ2ydT4bfXaHAafv9ykIkDsqrUSyKqNC1Pt3llCV0u5KNggaWYo_ryg9DxKDpacbAA4-mHaY_SatDj5d3Wx"/>
+<h4 class="text-xl font-bold text-slate-900 dark:text-white">Marcus Sterling</h4>
+<p class="text-sm text-slate-500 mb-6">m.sterling@example.edu</p>
+<div class="w-full grid grid-cols-2 gap-4 text-left">
+<div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+<p class="text-[10px] uppercase font-extrabold text-slate-400 tracking-wider mb-1">GPA</p>
+<p class="text-lg font-bold text-[#00A76F]">3.92</p>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+<p class="text-[10px] uppercase font-extrabold text-slate-400 tracking-wider mb-1">SAT Score</p>
+<p class="text-lg font-bold text-[#00A76F]">1480</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Assigned Reviewer -->
+<div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
+<h4 class="text-sm font-extrabold text-slate-400 uppercase tracking-widest mb-4">Primary Reviewer</h4>
+<div class="flex items-center gap-4">
+<img alt="Sarah Jenkins Profile" class="w-12 h-12 rounded-full object-cover" data-alt="close-up of a professional woman with glasses, smiling warmly in a bright office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYZW27T6OCyiiq_CnUgo91uLnrh6TErkMREdvqCXDmKS2zDE8JW7UEzv8ik-WC51SX1hAL38pqxQfLjRzRk0JNJk0Ktsc8qkttPuDslTMJhnk8KS34s8gVLQLzqdSxaxgajTao_u8LQgsElMhvbYRGWoqR72wVzNrWGt_YJ07KGxceSgN44aERXSdDJdHfSuAiVMx-To46JKUNUuskO1fcHPpC--kKzUTrcgdp1OwqMTzQSPSk8oao37QWSzw1KBQUkAcN7qpHOmOh"/>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Sarah Jenkins</p>
+<p class="text-xs text-slate-500">Admissions Officer</p>
+</div>
+<button class="ml-auto w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-[#00A76F] transition-colors">
+<span class="material-symbols-outlined text-sm">mail</span>
+</button>
+</div>
+</div>
+<!-- Quick Stats Bento Item -->
+<div class="bg-[#212B36] rounded-2xl p-6 text-white overflow-hidden relative group">
+<div class="absolute -right-12 -top-12 w-32 h-32 bg-[#00A76F]/20 rounded-full blur-3xl group-hover:bg-[#00A76F]/40 transition-all"></div>
+<h4 class="text-sm font-bold text-[#00A76F] mb-4">Submission Health</h4>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs font-bold mb-2">
+<span>DOCUMENT COMPLETION</span>
+<span>85%</span>
+</div>
+<div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#00A76F] h-full w-[85%] rounded-full"></div>
+</div>
+</div>
+<div class="pt-2 border-t border-white/10">
+<p class="text-xs text-slate-400">Expected decision by:</p>
+<p class="font-bold mt-1 text-sm">November 20, 2023</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-center justify-around z-50">
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">DASHBOARD</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#00A76F]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="text-[10px] font-bold">APPLICATIONS</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-bold">APPLICANTS</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold">SETTINGS</span>
+</button>
+</nav>
+</body></html>

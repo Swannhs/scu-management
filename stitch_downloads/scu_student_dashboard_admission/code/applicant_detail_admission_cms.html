@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Applicant Detail - AdmissionPro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#bdc7d6",
+                        "tertiary-container": "#8993a1",
+                        "inverse-on-surface": "#e6f2ff",
+                        "on-tertiary-fixed-variant": "#3e4854",
+                        "surface-container-highest": "#d7e4f2",
+                        "tertiary-fixed": "#d9e3f2",
+                        "surface-tint": "#006c46",
+                        "surface-dim": "#cedce9",
+                        "on-primary-container": "#00321f",
+                        "outline": "#6d7a71",
+                        "tertiary": "#555f6c",
+                        "secondary-fixed": "#afecff",
+                        "outline-variant": "#bccabf",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#00687b",
+                        "surface-variant": "#d7e4f2",
+                        "surface-bright": "#f6f9ff",
+                        "background": "#f6f9ff",
+                        "on-primary-fixed": "#002112",
+                        "on-error-container": "#93000a",
+                        "surface": "#f6f9ff",
+                        "on-tertiary-fixed": "#121c27",
+                        "primary-fixed": "#79fabb",
+                        "surface-container-low": "#ecf4ff",
+                        "on-surface": "#101d27",
+                        "secondary-fixed-dim": "#48d7f9",
+                        "inverse-surface": "#25323c",
+                        "on-secondary-fixed": "#001f27",
+                        "surface-container-high": "#dceaf8",
+                        "on-secondary-fixed-variant": "#004e5d",
+                        "on-secondary-container": "#005f71",
+                        "on-tertiary-container": "#222c37",
+                        "surface-container": "#e2effe",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#5adda0",
+                        "primary": "#006c46",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#005234",
+                        "inverse-primary": "#5adda0",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#50dcff",
+                        "on-surface-variant": "#3d4a41",
+                        "on-background": "#101d27",
+                        "error": "#ba1a1a",
+                        "primary-container": "#00a76f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .headline { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-[#f6f9ff] text-on-surface">
+<!-- SideNavBar (Predicted Component) -->
+<aside class="hidden md:flex flex-col fixed left-0 top-0 h-full w-64 border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 z-50">
+<div class="p-6">
+<div class="text-xl font-bold text-[#00A76F] headline">AdmissionPro</div>
+<div class="text-[10px] text-neutral font-medium uppercase tracking-wider mt-1">Management Portal</div>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-[#919EAB] hover:text-[#00A76F] hover:bg-slate-100 transition-colors font-publicSans font-medium text-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#919EAB] hover:text-[#00A76F] hover:bg-slate-100 transition-colors font-publicSans font-medium text-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                Applications
+            </a>
+<!-- Active State Logic: Mapping to Applicants -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#00A76F] bg-[#00A76F]/10 font-bold border-r-4 border-[#00A76F] font-publicSans text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                Applicants
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#919EAB] hover:text-[#00A76F] hover:bg-slate-100 transition-colors font-publicSans font-medium text-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+                Programs
+            </a>
+</nav>
+<div class="p-4 border-t border-slate-200 mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-[#919EAB] hover:text-[#00A76F] transition-colors font-publicSans font-medium text-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#919EAB] hover:text-[#00A76F] transition-colors font-publicSans font-medium text-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Help
+            </a>
+</div>
+</aside>
+<!-- TopNavBar (Predicted Component) -->
+<header class="flex justify-between items-center h-16 px-6 sticky top-0 z-40 ml-0 md:ml-64 bg-white/80 backdrop-blur-md border-b border-slate-200">
+<div class="flex items-center gap-4 flex-1">
+<button class="md:hidden p-2 hover:bg-slate-100 rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="relative w-full max-w-md hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20" placeholder="Search applicant, ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-[#919EAB] hover:bg-slate-100 rounded-full transition-all duration-200 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-[#919EAB] hover:bg-slate-100 rounded-full transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</button>
+<button class="p-2 text-[#919EAB] hover:bg-slate-100 rounded-full transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+</button>
+<div class="h-8 w-px bg-slate-200 mx-2"></div>
+<img alt="Administrator Profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary/20 cursor-pointer" data-alt="professional portrait of a male administrator in a light blue shirt with a friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfWk-NAmIDSrHRhg8KllZTFVEpRnmy8LjhvfjKpvhAdlr7TWLbLgF2-QA3qE38oW2NddOWmzTxOIRxQa0AFfZkADpnQUNwamHhkfXKyzrbMFlYbFNpfOkUtNxuW0oeBfOrHvbTJFdk9Dk_I9a2KhAgYOrpG2Zv3P8tzYEA-HEN_B2Pu85XhghUE9PuiZiUV0_1EL7oCWgsLlQlg7M1adKafi2YE1pkIZqwNOcEMhLXSpMuIMIZSZJLa-SJB9OLjk6duZ1se1HzwWwc"/>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-0 md:ml-64 p-4 md:p-8 bg-surface">
+<!-- Applicant Header Section -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
+<div class="flex items-center gap-5">
+<div class="relative">
+<img alt="Liam Henderson" class="w-20 h-20 rounded-xl object-cover shadow-md" data-alt="headshot of a young male student named Liam Henderson with short brown hair and a clean academic look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7UNi-_yADahC3Joh61EfZh12OJWHuoz1rGUBgE4GmldQ5Q4a9wpTfbB1nqaiE_XLg6qZmLgjQkFKZ8-G_4X0yKY0Rd0ZRsCsSOeV147l8Mv3QUs4xxxp0Li6MdDNSZubQY_zjxDbiybnzoLnIwdI2Yf2evFtrt_r5fHqrwlLVU3kCtkPATWIU8neg8UX5Yr4S--vil2H3xtPRAlCqtYl7eGQ0h1NfZBC5rMQT0LwbJ8_rOmgdXyvdcI0k60lVC0woiLRJC92cX7pC"/>
+<div class="absolute -bottom-2 -right-2 bg-white p-1 rounded-lg shadow-sm border border-slate-100">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div>
+<h1 class="text-2xl font-black text-on-surface headline">Liam Henderson</h1>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-neutral text-sm font-medium">Applicant ID: #AD-2024-8842</span>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-orange-100 text-orange-600 uppercase tracking-tight">Under Review</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<button class="px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-bold text-sm transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">edit</span>
+                    Request Revision
+                </button>
+<button class="px-4 py-2 bg-error/10 text-error hover:bg-error/20 rounded-lg font-bold text-sm transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">block</span>
+                    Reject
+                </button>
+<button class="px-6 py-2 bg-primary text-white hover:bg-primary/90 rounded-lg font-bold text-sm shadow-lg shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                    Approve
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Summary Sidebar -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Program Card -->
+<div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+<h3 class="text-xs font-bold text-neutral uppercase tracking-widest mb-4">Program Details</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">computer</span>
+</div>
+<div>
+<p class="text-xs text-neutral">Program Applied</p>
+<p class="text-sm font-bold text-on-surface">Computer Science (B.Sc.)</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div>
+<p class="text-xs text-neutral">Applied Date</p>
+<p class="text-sm font-bold text-on-surface">Oct 24, 2023</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="text-xs text-neutral">Payment Status</p>
+<span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded border border-green-200">PAID</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Guardian Details Card -->
+<div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+<h3 class="text-xs font-bold text-neutral uppercase tracking-widest mb-4">Guardian Details</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-sm text-neutral">Name</span>
+<span class="text-sm font-semibold">Robert Henderson</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-neutral">Relation</span>
+<span class="text-sm font-semibold">Father</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-neutral">Contact</span>
+<span class="text-sm font-semibold text-primary">+1 (555) 098-7654</span>
+</div>
+<button class="w-full mt-2 py-2 border border-slate-200 rounded-lg text-sm font-bold text-slate-600 hover:bg-slate-50 transition-colors">
+                            View Full Contact
+                        </button>
+</div>
+</div>
+<!-- Review Timeline -->
+<div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+<h3 class="text-xs font-bold text-neutral uppercase tracking-widest mb-4">Review Timeline</h3>
+<div class="relative space-y-6">
+<div class="absolute left-4 top-1 bottom-1 w-0.5 bg-slate-100"></div>
+<div class="relative flex gap-4">
+<div class="z-10 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-xs">done</span>
+</div>
+<div>
+<p class="text-sm font-bold">Application Submitted</p>
+<p class="text-[10px] text-neutral">Oct 24, 2023 • 10:30 AM</p>
+</div>
+</div>
+<div class="relative flex gap-4">
+<div class="z-10 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-xs">done</span>
+</div>
+<div>
+<p class="text-sm font-bold">Documents Verified</p>
+<p class="text-[10px] text-neutral">Oct 26, 2023 • 02:15 PM</p>
+</div>
+</div>
+<div class="relative flex gap-4">
+<div class="z-10 w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-md animate-pulse">
+<span class="material-symbols-outlined text-xs">sync</span>
+</div>
+<div>
+<p class="text-sm font-bold">Under Review</p>
+<p class="text-[10px] text-neutral">Currently Processing</p>
+</div>
+</div>
+<div class="relative flex gap-4">
+<div class="z-10 w-8 h-8 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-xs">hourglass_empty</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-400">Final Decision</p>
+<p class="text-[10px] text-neutral">Pending...</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Main Content -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Tab Navigation -->
+<div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+<div class="flex border-b border-slate-100 overflow-x-auto no-scrollbar">
+<button class="px-6 py-4 text-sm font-bold text-primary border-b-2 border-primary whitespace-nowrap">Overview</button>
+<button class="px-6 py-4 text-sm font-medium text-neutral hover:text-primary hover:bg-slate-50 transition-colors whitespace-nowrap">Documents</button>
+<button class="px-6 py-4 text-sm font-medium text-neutral hover:text-primary hover:bg-slate-50 transition-colors whitespace-nowrap">Review Notes</button>
+<button class="px-6 py-4 text-sm font-medium text-neutral hover:text-primary hover:bg-slate-50 transition-colors whitespace-nowrap">Payment</button>
+<button class="px-6 py-4 text-sm font-medium text-neutral hover:text-primary hover:bg-slate-50 transition-colors whitespace-nowrap">History</button>
+</div>
+<!-- Overview Content -->
+<div class="p-8">
+<section class="mb-10">
+<h2 class="text-lg font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">school</span>
+                                Academic Background
+                            </h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+<p class="text-xs text-neutral mb-1">Previous Institution</p>
+<p class="text-sm font-bold text-slate-800">Saint Jude Senior High School</p>
+</div>
+<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+<p class="text-xs text-neutral mb-1">GPA / Score</p>
+<p class="text-sm font-bold text-slate-800">3.92 / 4.00</p>
+</div>
+<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+<p class="text-xs text-neutral mb-1">Passing Year</p>
+<p class="text-sm font-bold text-slate-800">2023</p>
+</div>
+</div>
+</section>
+<section>
+<h2 class="text-lg font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span>
+                                Personal Information
+                            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+<div class="flex justify-between py-3 border-b border-slate-50">
+<span class="text-sm text-neutral">Full Name</span>
+<span class="text-sm font-semibold">Liam Benjamin Henderson</span>
+</div>
+<div class="flex justify-between py-3 border-b border-slate-50">
+<span class="text-sm text-neutral">Gender</span>
+<span class="text-sm font-semibold">Male</span>
+</div>
+<div class="flex justify-between py-3 border-b border-slate-50">
+<span class="text-sm text-neutral">Date of Birth</span>
+<span class="text-sm font-semibold">May 12, 2005</span>
+</div>
+<div class="flex justify-between py-3 border-b border-slate-50">
+<span class="text-sm text-neutral">Nationality</span>
+<span class="text-sm font-semibold">United States</span>
+</div>
+<div class="flex justify-between py-3 border-b border-slate-50">
+<span class="text-sm text-neutral">Email Address</span>
+<span class="text-sm font-semibold text-primary">liam.h@example.com</span>
+</div>
+<div class="flex justify-between py-3 border-b border-slate-50">
+<span class="text-sm text-neutral">Phone Number</span>
+<span class="text-sm font-semibold">+1 202-555-0143</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Review Notes Quick Panel (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<h3 class="font-bold text-sm">Internal Review Notes</h3>
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">add</span>
+                                Add Note
+                            </button>
+</div>
+<div class="bg-slate-50 p-4 rounded-lg italic text-sm text-neutral border-l-4 border-primary/40">
+                            "Applicant has a strong mathematical background. Recommended for the Honors track if approved."
+                            <p class="not-italic text-[10px] font-bold mt-2 text-slate-400">— Sarah Jenkins (Academic Dean)</p>
+</div>
+</div>
+<div class="bg-[#212B36] p-6 rounded-xl shadow-xl flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-white font-bold text-sm mb-1">Application Health</h3>
+<p class="text-slate-400 text-xs mb-4">Verification score based on documents</p>
+<div class="flex items-end gap-3">
+<div class="text-3xl font-black text-[#00A76F]">98%</div>
+<div class="text-xs text-green-400 font-bold pb-1 flex items-center">
+<span class="material-symbols-outlined text-xs">trending_up</span> High
+                                </div>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[100px] text-white">security</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Quick Action for Mobile -->
+<div class="fixed bottom-6 right-6 md:hidden">
+<button class="w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+</div>
+</body></html>

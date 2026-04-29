@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fee Management - EduAdmin Admissions Portal</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#6d7a71",
+                    "on-primary-container": "#00321f",
+                    "on-tertiary-container": "#222c37",
+                    "surface-dim": "#cedce9",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#f6f9ff",
+                    "tertiary": "#555f6c",
+                    "primary": "#006c46",
+                    "inverse-on-surface": "#e6f2ff",
+                    "surface-container": "#e2effe",
+                    "tertiary-fixed-dim": "#bdc7d6",
+                    "tertiary-fixed": "#d9e3f2",
+                    "primary-fixed": "#79fabb",
+                    "on-secondary-container": "#005f71",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004e5d",
+                    "on-tertiary-fixed": "#121c27",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#00a76f",
+                    "inverse-primary": "#5adda0",
+                    "surface-variant": "#d7e4f2",
+                    "on-primary-fixed": "#002112",
+                    "on-secondary-fixed": "#001f27",
+                    "outline-variant": "#bccabf",
+                    "inverse-surface": "#25323c",
+                    "on-surface": "#101d27",
+                    "secondary": "#00687b",
+                    "secondary-fixed-dim": "#48d7f9",
+                    "secondary-fixed": "#afecff",
+                    "tertiary-container": "#8993a1",
+                    "secondary-container": "#50dcff",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#006c46",
+                    "on-tertiary-fixed-variant": "#3e4854",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#005234",
+                    "on-background": "#101d27",
+                    "background": "#f6f9ff",
+                    "surface-container-low": "#ecf4ff",
+                    "surface-container-high": "#dceaf8",
+                    "surface-bright": "#f6f9ff",
+                    "surface-container-highest": "#d7e4f2",
+                    "primary-fixed-dim": "#5adda0",
+                    "on-surface-variant": "#3d4a41"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Public Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-screen w-64 border-r border-slate-200 bg-white dark:bg-slate-900 flex flex-col font-['Public_Sans'] antialiased z-50">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-[#00A76F]">EduAdmin</h1>
+<p class="text-xs text-slate-500 font-medium">Admissions Portal</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#00A76F] hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors rounded-lg duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#00A76F] hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors rounded-lg duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-medium">Applications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#00A76F] font-semibold border-r-4 border-[#00A76F] bg-emerald-50/50 dark:bg-emerald-900/10 transition-colors rounded-l-lg duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined" data-icon="payments" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-medium">Fee Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#00A76F] hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors rounded-lg duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+<span class="font-medium">Financial Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#00A76F] hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors rounded-lg duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full py-3 px-4 bg-primary-container text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+                New Application
+            </button>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="flex justify-between items-center h-16 px-8 sticky top-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-40">
+<div class="flex items-center gap-4 flex-1">
+<h2 class="text-xl font-bold font-headline text-on-surface">Fee Management</h2>
+<div class="relative w-full max-w-md ml-8">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-slate-100 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary-container/20" placeholder="Search applicant or ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-5">
+<button class="relative p-2 text-slate-600 hover:text-primary-container transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-slate-600 hover:text-primary-container transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-px bg-slate-200"></div>
+<button class="flex items-center gap-3 group">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200 group-hover:border-primary-container transition-all">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional headshot of an academic administrator in a clean office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVGxTUTp2LaFy_MlEK1x3Mjq0mBXseuuXuhW9iUGrrn_97hqF_-gQlkysmACx96azYvokgbp4kWAdwxG23v3XWL6XLEKX9NUQqEB81q8fD90r7-ma3MmTDMBCS0xf_WVGqtdWRqoySP-pT8I0OWpHiKTLdt6FKLVwLXo-F2P-Obxyu2jM1SjQQaJENSmQOTH-RxVH2Tj6yoyymMcCN1msKOWEjW0m0DGTxbkH7rywbl48o3LqccsJjbRUGYXxnwvaGRwAtlLXidx_2"/>
+</div>
+<span class="material-symbols-outlined text-slate-600">expand_more</span>
+</button>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-8">
+<!-- Metric Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between group hover:border-primary-container/30 transition-all">
+<div>
+<p class="text-sm font-medium text-slate-500 mb-1">Total Revenue</p>
+<h3 class="text-3xl font-extrabold text-on-surface">$1.2M</h3>
+<p class="text-xs text-[#00A76F] mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +12.5% from last month
+                        </p>
+</div>
+<div class="w-14 h-14 rounded-2xl bg-emerald-50 text-[#00A76F] flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between group hover:border-error/30 transition-all">
+<div>
+<p class="text-sm font-medium text-slate-500 mb-1">Pending Fees</p>
+<h3 class="text-3xl font-extrabold text-on-surface">$45k</h3>
+<p class="text-xs text-error mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">warning</span>
+                            24 invoices overdue
+                        </p>
+</div>
+<div class="w-14 h-14 rounded-2xl bg-red-50 text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between group hover:border-secondary/30 transition-all">
+<div>
+<p class="text-sm font-medium text-slate-500 mb-1">Collection Rate</p>
+<h3 class="text-3xl font-extrabold text-on-surface">96%</h3>
+<div class="w-32 h-1.5 bg-slate-100 rounded-full mt-4 overflow-hidden">
+<div class="h-full bg-primary-container w-[96%]"></div>
+</div>
+</div>
+<div class="w-14 h-14 rounded-2xl bg-cyan-50 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">donut_large</span>
+</div>
+</div>
+</div>
+<!-- Table Section -->
+<div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+<!-- Table Controls -->
+<div class="p-6 border-b border-slate-100 flex flex-wrap gap-4 items-center justify-between">
+<div class="flex items-center gap-4">
+<select class="bg-slate-50 border border-slate-200 text-sm font-medium text-slate-700 rounded-lg px-4 py-2 focus:ring-primary-container">
+<option>All Status</option>
+<option>Paid</option>
+<option>Unpaid</option>
+</select>
+<div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-4 py-2">
+<span class="material-symbols-outlined text-slate-400 text-sm">calendar_month</span>
+<span class="text-sm font-medium text-slate-700">Jan 1, 2024 - Dec 31, 2024</span>
+</div>
+</div>
+<button class="flex items-center gap-2 text-primary-container font-semibold hover:bg-emerald-50 px-4 py-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">download</span>
+                        Export Report
+                    </button>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Applicant Name</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Application ID</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Program</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Fee Amount</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Payment Date</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Row 1: Paid -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Applicant" class="w-10 h-10 rounded-full" data-alt="close-up portrait of a cheerful young woman with curly hair and glasses in a bright studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIwLDAWU45I2Z39airyXkd_CLAoRVUA1vfKW46hWiBz0RrNqOTGAwuKwfX70pmVWhnXP0IhVYbylnE6p7G4HikjU1e9Cow38n6EYa5cb4eO_AfYpbJHeQxHVaNKbLLNRRlXm_RJgGGlSH5lmYeSWTpGrbNu-DRzuwnN_nRPJmq9zVDwxJpoiadq0g-dbdfI-S77u03OuRgRp273sBhTgr6qvnSHmucrud0gKrZaW9ByOMD7g4Im6vTOWxiCEc9GA-AGtrS03RqvFJJ"/>
+<div>
+<p class="font-semibold text-on-surface">Elena Rodriguez</p>
+<p class="text-xs text-slate-500">elena.r@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-700">ADM-2024-001</td>
+<td class="px-6 py-4 text-sm text-slate-600">Computer Science</td>
+<td class="px-6 py-4 text-sm font-bold text-on-surface">$50.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+                                        Paid
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">Oct 12, 2023</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-slate-400 hover:text-primary-container transition-colors" title="View Receipt">
+<span class="material-symbols-outlined">receipt_long</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary-container transition-colors" title="View Details">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Unpaid (Highlighted) -->
+<tr class="bg-red-50/30 hover:bg-red-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Applicant" class="w-10 h-10 rounded-full" data-alt="modern close-up of a stylish young man with a slight beard in soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO9LaX8502WzbbjIWa8lYln5suVSyVhh51hZjzb-fHPf9HiJqssoibiyFN9r0OiFLbpq8OfIA2WX-9HNOUCZM7aPEfWPERhdkoP7mrdiN4m0qXkePhb3Bkxx97Kufq-DQFHTJ1iChF72rHKZFEGw9lJVpTzrb2ZlzrL40ULMfR3DlZRbD7EBa9eSgf2HQd1iNUSm1fC11hjCbvt-f4Wn8jFF3W5nwDr32eTHgLGN4TmpzWqDhHQPli_bnVE0qp3wKEIPOuvO7jHzKz"/>
+<div>
+<p class="font-semibold text-on-surface">Marcus Chen</p>
+<p class="text-xs text-slate-500">m.chen@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-700">ADM-2024-002</td>
+<td class="px-6 py-4 text-sm text-slate-600">Business Admin</td>
+<td class="px-6 py-4 text-sm font-bold text-on-surface">$50.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-error-container text-error">
+                                        Unpaid
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-400 font-medium italic">---</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-error hover:scale-110 transition-transform" title="Send Reminder">
+<span class="material-symbols-outlined">forward_to_inbox</span>
+</button>
+<button class="px-3 py-1 bg-primary-container text-white text-xs font-bold rounded-lg hover:opacity-90 transition-opacity">
+                                            Mark Paid
+                                        </button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Paid -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Applicant" class="w-10 h-10 rounded-full" data-alt="portrait of a confident woman with short dark hair in a professional creative studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHVTPV8wMrDcY9yfk_59pflAO31P4QqiwOhe0Equ5cDOY-LZo2wd2gk65HWsBtmh6c9WecEmLLjzHTL1LcmNZHdjGp2I9DvYUt8TNq2CfocG58ZBnCG12LFQQj_AoraY7nfErdj9MdJPAJH6nACCybi4zEk7tmc1lB4ZulKLyjlW0RGfjAc07ucQYsbkf3PAT7_i_sxfpVap_m3LTzUdUEc6Lznxtmo8mronlCC4Y28xZF6aEagcd-X2SJoTOESd925wUyE8sHoADM"/>
+<div>
+<p class="font-semibold text-on-surface">Sarah Jenkins</p>
+<p class="text-xs text-slate-500">s.jenkins@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-700">ADM-2024-003</td>
+<td class="px-6 py-4 text-sm text-slate-600">Visual Arts</td>
+<td class="px-6 py-4 text-sm font-bold text-on-surface">$50.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+                                        Paid
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">Oct 11, 2023</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-slate-400 hover:text-primary-container transition-colors" title="View Receipt">
+<span class="material-symbols-outlined">receipt_long</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary-container transition-colors" title="View Details">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Unpaid -->
+<tr class="bg-red-50/30 hover:bg-red-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Applicant" class="w-10 h-10 rounded-full" data-alt="smiling young student with a friendly expression in a modern bright environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSu6kWdZW4CbQwtLt9IXkvI17ojOHnXiMaVksbaRSk-TVITy_kadLL_i5phnkXCsjUsHzJBt8c3PkhXHZzMrl_q9NRWvRBzIdey-qN0JHCo1arTI13Abyfo3estly8Hh0sNHQjy76EOsXDuxpFIUP80vSGP1csgeZwRYrLDPG3XfJ5vKx0HPSWOXis35QBrHOy2iL8RSKBAZMDCEp5HSMsRAUszYqiYUjt7PwJkXMpU7OUXe2vBvJr4jT4TWk_eyZeozQOeWGarXV8"/>
+<div>
+<p class="font-semibold text-on-surface">David Okafor</p>
+<p class="text-xs text-slate-500">d.okafor@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-700">ADM-2024-004</td>
+<td class="px-6 py-4 text-sm text-slate-600">Civil Engineering</td>
+<td class="px-6 py-4 text-sm font-bold text-on-surface">$50.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-error-container text-error">
+                                        Unpaid
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-400 font-medium italic">---</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-error hover:scale-110 transition-transform" title="Send Reminder">
+<span class="material-symbols-outlined">forward_to_inbox</span>
+</button>
+<button class="px-3 py-1 bg-primary-container text-white text-xs font-bold rounded-lg hover:opacity-90 transition-opacity">
+                                            Mark Paid
+                                        </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-slate-100 flex items-center justify-between bg-slate-50/30">
+<p class="text-sm text-slate-500">Showing 1-4 of 248 applicants</p>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:border-primary-container transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary-container text-white font-bold text-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:border-primary-container transition-colors text-sm">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:border-primary-container transition-colors text-sm">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Meta -->
+<div class="mt-8 flex justify-between items-center opacity-60">
+<p class="text-xs text-slate-500">© 2024 EduAdmin Admission Portal. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="text-xs text-slate-500 hover:text-primary-container underline decoration-dotted" href="#">Privacy Policy</a>
+<a class="text-xs text-slate-500 hover:text-primary-container underline decoration-dotted" href="#">System Status</a>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB Suppression: This screen is focused on Management/Settings/Data and navigation is already present in SideNav. FAB is suppressed per rules. -->
+</body></html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Program Management | EduManage</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#3e4854",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#e2effe",
+                    "on-tertiary-fixed": "#121c27",
+                    "secondary-container": "#50dcff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#8993a1",
+                    "surface-container-low": "#ecf4ff",
+                    "surface-container-high": "#dceaf8",
+                    "primary": "#006c46",
+                    "on-primary-fixed": "#002112",
+                    "surface-dim": "#cedce9",
+                    "on-primary-fixed-variant": "#005234",
+                    "surface-tint": "#006c46",
+                    "surface-bright": "#f6f9ff",
+                    "surface-container-highest": "#d7e4f2",
+                    "primary-fixed": "#79fabb",
+                    "error": "#ba1a1a",
+                    "outline": "#6d7a71",
+                    "tertiary": "#555f6c",
+                    "inverse-on-surface": "#e6f2ff",
+                    "secondary-fixed": "#afecff",
+                    "on-tertiary-container": "#222c37",
+                    "tertiary-fixed-dim": "#bdc7d6",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "background": "#f6f9ff",
+                    "on-surface-variant": "#3d4a41",
+                    "primary-fixed-dim": "#5adda0",
+                    "surface": "#f6f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#d7e4f2",
+                    "secondary": "#00687b",
+                    "inverse-surface": "#25323c",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004e5d",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#005f71",
+                    "secondary-fixed-dim": "#48d7f9",
+                    "primary-container": "#00a76f",
+                    "tertiary-fixed": "#d9e3f2",
+                    "on-primary-container": "#00321f",
+                    "inverse-primary": "#5adda0",
+                    "outline-variant": "#bccabf",
+                    "on-secondary-fixed": "#001f27",
+                    "on-background": "#101d27",
+                    "on-surface": "#101d27"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Public Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full flex flex-col pt-4 bg-white dark:bg-gray-900 border-r w-64 border-gray-200 dark:border-gray-800 transition-all duration-200 font-publicSans text-sm z-30">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-[#00A76F]">Admin Portal</h2>
+<p class="text-[10px] text-[#919EAB] uppercase tracking-wider font-bold">Admissions Office</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<!-- Dashboard Tab -->
+<a class="text-[#919EAB] flex items-center px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Programs Tab (Active) -->
+<a class="bg-[#00A76F]/10 text-[#00A76F] font-bold border-r-4 border-[#00A76F] flex items-center px-4 py-3 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">school</span>
+<span>Programs</span>
+</a>
+<!-- Admissions Tab -->
+<a class="text-[#919EAB] flex items-center px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined mr-3">assignment_ind</span>
+<span>Admissions</span>
+</a>
+<!-- Students Tab -->
+<a class="text-[#919EAB] flex items-center px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span>Students</span>
+</a>
+<!-- Reports Tab -->
+<a class="text-[#919EAB] flex items-center px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined mr-3">assessment</span>
+<span>Reports</span>
+</a>
+</nav>
+<div class="p-4 mt-auto border-t border-gray-100 dark:border-gray-800">
+<a class="text-[#919EAB] flex items-center px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 left-64 right-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 h-16 z-20 flex justify-between items-center px-6 transition-colors duration-200">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#919EAB] text-xl">search</span>
+<input class="w-full bg-gray-50 dark:bg-gray-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-[#00A76F] transition-all" placeholder="Search anything..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center text-[#919EAB] hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-[#919EAB] hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-[1px] bg-gray-200 dark:bg-gray-800 mx-2"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-on-surface">Alex River</p>
+<p class="text-xs text-[#919EAB]">Administrator</p>
+</div>
+<img alt="User profile" class="w-10 h-10 rounded-full object-cover ring-2 ring-offset-2 ring-[#00A76F]/20" data-alt="professional headshot of a smiling middle-aged male administrator in a light blue shirt with a clean office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSu9BoiSnX-eRLqO4Jc7w_tJYq9gcjbYDn03aSkvYYFPd7pNQK9R9pdba6rGZISAgAnsESIouDH7gKZVtTemSmaU0Xwrw4rf1oIhewWIjIkVMmV9_n53WGOSK2VcbBcjFaPd56iFrUyPTyJ8uIx9DKK77qKegmNy4ZRlx1ArCBvIVSkHJdrqtR6HCCme8USyAPpFlwMGFX6oKNBj-Vnim-beNFeqOlgegLjvGtR3PMrrY-9tzwSIq1LNw4NA_IRBWECAtNWmzPDzjQ"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-24 px-8 pb-12 min-h-screen">
+<div class="max-w-7xl mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<h1 class="text-3xl font-bold font-headline text-on-surface tracking-tight">Program Management</h1>
+<p class="text-[#919EAB] mt-1">Configure and manage academic programs across all departments.</p>
+</div>
+<button class="bg-[#00A76F] hover:bg-[#008d5e] text-white px-6 py-2.5 rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg shadow-[#00A76F]/20">
+<span class="material-symbols-outlined text-xl">add</span>
+<span>Add Program</span>
+</button>
+</div>
+<!-- Dashboard Stats Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 bg-primary-container/10 text-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<span class="text-xs font-bold text-green-500 bg-green-50 px-2 py-1 rounded">+12%</span>
+</div>
+<p class="text-[#919EAB] text-sm font-medium">Total Programs</p>
+<h3 class="text-2xl font-bold font-headline mt-1">42</h3>
+</div>
+<div class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 bg-secondary-container/10 text-secondary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="text-xs font-bold text-blue-500 bg-blue-50 px-2 py-1 rounded">+5%</span>
+</div>
+<p class="text-[#919EAB] text-sm font-medium">Active Students</p>
+<h3 class="text-2xl font-bold font-headline mt-1">2,840</h3>
+</div>
+<div class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-xs font-bold text-red-500 bg-red-50 px-2 py-1 rounded">-2%</span>
+</div>
+<p class="text-[#919EAB] text-sm font-medium">Avg. Fee Collected</p>
+<h3 class="text-2xl font-bold font-headline mt-1">$45.2k</h3>
+</div>
+<div class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<span class="text-xs font-bold text-purple-500 bg-purple-50 px-2 py-1 rounded">New</span>
+</div>
+<p class="text-[#919EAB] text-sm font-medium">Pending Reviews</p>
+<h3 class="text-2xl font-bold font-headline mt-1">18</h3>
+</div>
+</div>
+<!-- Table Container -->
+<div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden">
+<!-- Table Filters Row -->
+<div class="p-6 border-b border-gray-100 dark:border-gray-800 flex flex-col sm:flex-row gap-4 items-center justify-between">
+<div class="relative w-full sm:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#919EAB] text-xl">search</span>
+<input class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-[#00A76F] focus:border-transparent transition-all" placeholder="Search programs..." type="text"/>
+</div>
+<div class="flex gap-3 w-full sm:w-auto">
+<select class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#00A76F] outline-none transition-all cursor-pointer">
+<option>Department</option>
+<option>Engineering</option>
+<option>Business</option>
+<option>Arts</option>
+<option>Science</option>
+</select>
+<select class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#00A76F] outline-none transition-all cursor-pointer">
+<option>Status</option>
+<option>Active</option>
+<option>Upcoming</option>
+<option>Archived</option>
+</select>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50 dark:bg-gray-800/50">
+<th class="px-6 py-4 text-xs font-bold text-[#919EAB] uppercase tracking-wider">Program Name</th>
+<th class="px-6 py-4 text-xs font-bold text-[#919EAB] uppercase tracking-wider">Department</th>
+<th class="px-6 py-4 text-xs font-bold text-[#919EAB] uppercase tracking-wider">Intake</th>
+<th class="px-6 py-4 text-xs font-bold text-[#919EAB] uppercase tracking-wider">Capacity</th>
+<th class="px-6 py-4 text-xs font-bold text-[#919EAB] uppercase tracking-wider">Application Fee</th>
+<th class="px-6 py-4 text-xs font-bold text-[#919EAB] uppercase tracking-wider text-center">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-[#919EAB] uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container/10 text-primary-container flex items-center justify-center font-bold text-xs">CS</div>
+<div>
+<p class="font-semibold text-on-surface">B.Sc. Computer Science</p>
+<p class="text-xs text-[#919EAB]">4 Years • Undergraduate</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">Engineering &amp; Tech</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">Fall 2024</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">120 Seats</td>
+<td class="px-6 py-4 text-sm font-semibold">$50.00</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#00A76F]/10 text-[#00A76F]">
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-[#919EAB] hover:text-[#00A76F] hover:bg-[#00A76F]/5 rounded-lg transition-all">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+<button class="p-2 text-[#919EAB] hover:text-[#00A76F] hover:bg-[#00A76F]/5 rounded-lg transition-all">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xs">MBA</div>
+<div>
+<p class="font-semibold text-on-surface">Master of Business Admin</p>
+<p class="text-xs text-[#919EAB]">2 Years • Postgraduate</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">Business School</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">Fall 2024</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">60 Seats</td>
+<td class="px-6 py-4 text-sm font-semibold">$75.00</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-600">
+                                        Upcoming
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-[#919EAB] hover:text-[#00A76F] hover:bg-[#00A76F]/5 rounded-lg transition-all">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+<button class="p-2 text-[#919EAB] hover:text-[#00A76F] hover:bg-[#00A76F]/5 rounded-lg transition-all">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-xs">MA</div>
+<div>
+<p class="font-semibold text-on-surface">MA in Creative Writing</p>
+<p class="text-xs text-[#919EAB]">2 Years • Postgraduate</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">Humanities</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">Spring 2024</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">30 Seats</td>
+<td class="px-6 py-4 text-sm font-semibold">$40.00</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-500">
+                                        Archived
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-[#919EAB] hover:text-[#00A76F] hover:bg-[#00A76F]/5 rounded-lg transition-all">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+<button class="p-2 text-[#919EAB] hover:text-[#00A76F] hover:bg-[#00A76F]/5 rounded-lg transition-all">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">EE</div>
+<div>
+<p class="font-semibold text-on-surface">B.E. Electrical Engineering</p>
+<p class="text-xs text-[#919EAB]">4 Years • Undergraduate</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">Engineering</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">Fall 2024</td>
+<td class="px-6 py-4 text-sm text-[#555f6c]">100 Seats</td>
+<td class="px-6 py-4 text-sm font-semibold">$50.00</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#00A76F]/10 text-[#00A76F]">
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-[#919EAB] hover:text-[#00A76F] hover:bg-[#00A76F]/5 rounded-lg transition-all">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+<button class="p-2 text-[#919EAB] hover:text-[#00A76F] hover:bg-[#00A76F]/5 rounded-lg transition-all">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
+<p class="text-sm text-[#919EAB]">Showing 1 to 4 of 42 programs</p>
+<div class="flex items-center gap-2">
+<button class="p-2 border border-gray-200 rounded-lg text-[#919EAB] hover:bg-gray-50 transition-all disabled:opacity-40" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex gap-1">
+<button class="w-10 h-10 bg-primary-container text-white rounded-lg font-bold">1</button>
+<button class="w-10 h-10 hover:bg-gray-50 text-on-surface rounded-lg">2</button>
+<button class="w-10 h-10 hover:bg-gray-50 text-on-surface rounded-lg">3</button>
+<span class="px-2 text-[#919EAB]">...</span>
+<button class="w-10 h-10 hover:bg-gray-50 text-on-surface rounded-lg">11</button>
+</div>
+<button class="p-2 border border-gray-200 rounded-lg text-[#919EAB] hover:bg-gray-50 transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Meta -->
+<div class="mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[#919EAB] text-sm">
+<p>© 2024 EduManage Portal. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-[#00A76F] transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-[#00A76F] transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-[#00A76F] transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for quick action (Optional, suppressed by shell rules but kept for functional richness if needed in some contexts, here suppressed per mandate as it is a management screen) -->
+</body></html>

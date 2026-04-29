@@ -1,0 +1,68 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "types": [
+      "next-auth"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "strictNullChecks": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "global.d.ts",
+    "src/type.d.ts",
+    "src/app/**/*.ts",
+    "src/app/**/*.tsx",
+    "src/api/**/*.ts",
+    "src/hooks/**/*.ts",
+    "src/hooks/**/*.tsx",
+    "src/lib/**/*.ts",
+    "src/lib/**/*.tsx",
+    "src/messages/**/*.json",
+    "src/modules/**/*.ts",
+    "src/modules/**/*.tsx",
+    "src/shared/**/*.ts",
+    "src/shared/**/*.tsx",
+    "src/types/**/*.ts",
+    "src/types/**/*.tsx",
+    "src/utils/**/*.ts",
+    "src/utils/**/*.tsx",
+    "src/components/Label.tsx",
+    "src/i18n.ts",
+    "src/navigation.ts",
+    "src/middleware.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/app/[locale]/account/(components)/properties/**/*",
+    "src/app/[locale]/property/(components)/**/*"
+  ]
+}

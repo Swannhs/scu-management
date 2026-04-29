@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Draft Applications | AdmissionPortal</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#3d4a41",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f6f9ff",
+                        "primary": "#006c46",
+                        "tertiary-container": "#8993a1",
+                        "on-tertiary-fixed-variant": "#3e4854",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#5adda0",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#dceaf8",
+                        "secondary-fixed-dim": "#48d7f9",
+                        "on-secondary-fixed": "#001f27",
+                        "on-surface": "#101d27",
+                        "on-secondary-fixed-variant": "#004e5d",
+                        "on-tertiary-container": "#222c37",
+                        "secondary-container": "#50dcff",
+                        "on-secondary-container": "#005f71",
+                        "outline-variant": "#bccabf",
+                        "secondary": "#00687b",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#e6f2ff",
+                        "surface": "#f6f9ff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#5adda0",
+                        "on-background": "#101d27",
+                        "error": "#ba1a1a",
+                        "outline": "#6d7a71",
+                        "surface-container-highest": "#d7e4f2",
+                        "tertiary": "#555f6c",
+                        "tertiary-fixed-dim": "#bdc7d6",
+                        "on-primary-container": "#00321f",
+                        "surface-container": "#e2effe",
+                        "on-primary-fixed-variant": "#005234",
+                        "primary-container": "#00a76f",
+                        "tertiary-fixed": "#d9e3f2",
+                        "surface-container-low": "#ecf4ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002112",
+                        "on-tertiary-fixed": "#121c27",
+                        "primary-fixed": "#79fabb",
+                        "inverse-surface": "#25323c",
+                        "surface-variant": "#d7e4f2",
+                        "surface-dim": "#cedce9",
+                        "background": "#f6f9ff",
+                        "surface-tint": "#006c46",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#afecff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="fixed left-0 top-0 h-screen flex flex-col z-40 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 w-64 transition-all duration-200">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white font-black text-lg">EM</div>
+<div>
+<h1 class="text-lg font-black text-gray-900 dark:text-white leading-tight">EduManage</h1>
+<p class="text-xs text-gray-500 font-medium">Admissions Admin</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 mt-4 px-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-[#00A76F] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<!-- Active State: Applications -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#00A76F] font-semibold border-r-4 border-[#00A76F] bg-primary-container/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-medium">Applications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-[#00A76F] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-medium">Applicants</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-[#00A76F] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-medium">Programs</span>
+</a>
+</nav>
+<div class="p-4 border-t border-gray-100 dark:border-gray-800">
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-[#00A76F] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Wrapper -->
+<div class="ml-64 min-h-screen flex flex-col">
+<!-- TopNavBar (Authority: JSON) -->
+<header class="flex justify-between items-center px-8 h-16 w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">search</span>
+<input class="w-full bg-gray-50 border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-[#00A76F]/20 transition-all outline-none" placeholder="Quick search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="flex items-center gap-3 ml-2 pl-4 border-l border-gray-100">
+<div class="text-right">
+<p class="text-sm font-bold text-gray-900 leading-none">AdmissionPortal</p>
+<p class="text-[10px] text-gray-500 font-medium uppercase tracking-wider mt-1">Admin Access</p>
+</div>
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container/20" data-alt="close-up portrait of professional male university administrator in business casual attire with warm neutral office lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDkgTlAoX0sW2LZ-Z6fS0MzB6XBIc1vGbZiqSnoe6b7Z7Aa6fI3TLNUyB7Arn0kGX4czv1AS2vNnutdiMMX3NPwT_gET9xZ1SPcHV5f79A-9V8EmVNrKOHdFm1baNtpL_3wz3lymKhmPTfSKXvvXdh4JpnAP-8iaIV2Q9FmLSlH7ELRqZQFd2L8N3aXr1_1xwvIuvZP0MezSjoY5nC6rugyJ1cshJhDKTI5SybV-0WDeRiAF-yy75Cc3Z_GMss2JZYXxwzIv68fE5J"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+<!-- Breadcrumbs & Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<nav class="flex items-center gap-2 text-xs font-medium text-gray-400 mb-2">
+<a class="hover:text-primary" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Applications</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-gray-900">Drafts</span>
+</nav>
+<h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Draft Applications</h2>
+<p class="text-gray-500 mt-1">Review and manage incomplete student admission records.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 text-sm font-semibold text-white bg-primary-container rounded-xl shadow-lg shadow-[#00A76F]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                        New Application
+                    </button>
+</div>
+</div>
+<!-- Dashboard Stats Bento (Subtle Context) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-container/10 text-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">drafts</span>
+</div>
+<div>
+<p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Total Drafts</p>
+<p class="text-xl font-bold text-gray-900">24</p>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary-container/10 text-secondary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+</div>
+<div>
+<p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Recently Active</p>
+<p class="text-xl font-bold text-gray-900">8</p>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
+<div class="w-12 h-12 bg-tertiary-container/10 text-tertiary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">hourglass_bottom</span>
+</div>
+<div>
+<p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Near Deadline</p>
+<p class="text-xl font-bold text-gray-900">12</p>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
+<div class="w-12 h-12 bg-on-surface/5 text-gray-700 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Ready to Submit</p>
+<p class="text-xl font-bold text-gray-900">5</p>
+</div>
+</div>
+</div>
+<!-- Main Table Container -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+<div class="p-6 border-b border-gray-50 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="w-full border border-gray-200 rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="Filter by applicant or program..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-2 text-sm font-medium text-gray-600 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                            Filters
+                        </button>
+<button class="px-3 py-2 text-sm font-medium text-gray-600 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">sort</span>
+                            Sort
+                        </button>
+</div>
+</div>
+<!-- Lightweight Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50/50">
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Applicant Name</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Program</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Last Updated</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Completion</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-50">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50/80 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="close-up portrait of a smiling young student with glowing skin in natural daylight for educational platform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_CiXMJCqH8uNbE8sGTeohCjEug8JD-gPR2OrQvNJfkin9-UZz3eJ_WlOtL0hps9tiigoc7AlGEj8KU8Y_picbMGaSJmQANX1dEazCCWxcIzLdpdLiszvZkv6YHQwYIz1nBhGMc87rH_ySMdcu2RupyiTutlYPDT9nORRHGAycbiPFeGq-7-hmVUvy5tcDkGkwGE8jTZi8Idcc5knwFMo9CUUd-FjE9yvtAB4lX2sBltr7wZvpqukZhapHUxbeL9E7gI_PPNGEZPHJ"/>
+<div>
+<p class="text-sm font-bold text-gray-900">Elena Rodriguez</p>
+<p class="text-[11px] text-gray-500 font-medium uppercase tracking-tight">ID: #AD-9281</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex px-2.5 py-1 rounded-full text-xs font-semibold bg-secondary-container/10 text-secondary">
+                                        MSc Cybersecurity
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-gray-600 font-medium">
+                                    2 hours ago
+                                </td>
+<td class="px-6 py-4">
+<div class="w-full max-w-[140px] flex items-center gap-3">
+<div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 85%"></div>
+</div>
+<span class="text-xs font-bold text-gray-700">85%</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-primary-container hover:bg-primary-container/10 rounded-lg transition-colors" title="Continue">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Submit">
+<span class="material-symbols-outlined text-lg">send</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50/80 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="portrait of a focused young man with glasses and short dark hair in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0IvUpY6f5Hvq7m2YLkahaKnpjZDOPYPvWzuXbFy49SQHT3rDoij2PXxc7LHeuCc8kf9UVxmXzuIHapzBy9mo5Fb7Dqnb8iLV2FcncfCd6PNVYXkI4ORA68-zwYL8zsiURT2vleFzcTELpZBMkHmYQWJ542HvyxW9_UzrM3ZGRuSNDe6XaWIJ1NJlS99tYSCPcgPPIworhlOe-l8kjHLpKMorDVjdNZT1KM3NwicP14ebaBYQ3qH7dLL70rjWmvk80yBoQVjFmoDen"/>
+<div>
+<p class="text-sm font-bold text-gray-900">Marcus Thorne</p>
+<p class="text-[11px] text-gray-500 font-medium uppercase tracking-tight">ID: #AD-8412</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex px-2.5 py-1 rounded-full text-xs font-semibold bg-tertiary-fixed-dim/30 text-tertiary">
+                                        BA Architecture
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-gray-600 font-medium">
+                                    Yesterday
+                                </td>
+<td class="px-6 py-4">
+<div class="w-full max-w-[140px] flex items-center gap-3">
+<div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 42%"></div>
+</div>
+<span class="text-xs font-bold text-gray-700">42%</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-primary-container hover:bg-primary-container/10 rounded-lg transition-colors" title="Continue">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Submit">
+<span class="material-symbols-outlined text-lg">send</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50/80 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="side profile of a thoughtful woman with curly hair looking towards soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASP9n3Xrqvv_GAYxHhBtj99H26Eg7g8lekO43dMj4Gjt4eEMo3m3izi4-ZsqY1KHYrNj0FjAHde5wtmAKnGlYPlxTrdwfXkGqn-uWRNWCUvUPjxWYKTDiMKDDF3p5LjN9lCiIOcOniZ-ac8xhDr82d0wocQ0IplOBsZEVmRdCKhJh-pOwKg1Qxh0MoS5-isTIE2EE-7vlphzglVFT2rmvVMHgKzq1fk0DxwA9BxBtaj3_okv2UK0qp-p1XMtYM9QDlFRIcnUmKSwMt"/>
+<div>
+<p class="text-sm font-bold text-gray-900">Sarah Jenkins</p>
+<p class="text-[11px] text-gray-500 font-medium uppercase tracking-tight">ID: #AD-7550</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex px-2.5 py-1 rounded-full text-xs font-semibold bg-secondary-container/10 text-secondary">
+                                        MBA Global Finance
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-gray-600 font-medium">
+                                    3 days ago
+                                </td>
+<td class="px-6 py-4">
+<div class="w-full max-w-[140px] flex items-center gap-3">
+<div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 15%"></div>
+</div>
+<span class="text-xs font-bold text-gray-700">15%</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-primary-container hover:bg-primary-container/10 rounded-lg transition-colors" title="Continue">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Submit">
+<span class="material-symbols-outlined text-lg">send</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50/80 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="smiling young man with beard and casual shirt in bright outdoor natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDILrWNzsCkhK0RENNWM68sBOKreB8uDFYC6U1HuCZAfTOY8H3XW942zyJQ4sxDBwLvRmZz5ntzDtWefz-0NVYyrd-fMx0vLqCNylBJAnVajKhtaYFEUVj_pGHi8_R9egvwTGrF_PVAZPNjs4HKVTczsZIKF12eXfQiGox_OX95QPot8iksDx_BB7YwoO5GYKhkwPMKTxR-Gdp-WUg534pIyytehUtpE8QTuXqd1TRVE_B-aRl6VVoit1WUN3FbNZgboqMW4Ms5KLKt"/>
+<div>
+<p class="text-sm font-bold text-gray-900">David Chen</p>
+<p class="text-[11px] text-gray-500 font-medium uppercase tracking-tight">ID: #AD-6332</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex px-2.5 py-1 rounded-full text-xs font-semibold bg-primary-fixed/30 text-primary">
+                                        BSc Data Science
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-gray-600 font-medium">
+                                    5 days ago
+                                </td>
+<td class="px-6 py-4">
+<div class="w-full max-w-[140px] flex items-center gap-3">
+<div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 98%"></div>
+</div>
+<span class="text-xs font-bold text-gray-700">98%</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-primary-container hover:bg-primary-container/10 rounded-lg transition-colors" title="Continue">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Submit">
+<span class="material-symbols-outlined text-lg">send</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 bg-gray-50/30 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-xs font-medium text-gray-500">Showing 1-4 of 24 applications</p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 text-gray-400 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary-container text-white font-bold text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-transparent text-gray-600 hover:bg-white hover:border-gray-200 font-bold text-xs transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-transparent text-gray-600 hover:bg-white hover:border-gray-200 font-bold text-xs transition-colors">3</button>
+<span class="px-2 text-gray-400">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-transparent text-gray-600 hover:bg-white hover:border-gray-200 font-bold text-xs transition-colors">6</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Help / Tips -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-primary-container/5 border border-primary-container/10 p-6 rounded-xl flex gap-4">
+<div class="text-primary-container">
+<span class="material-symbols-outlined text-3xl">lightbulb</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-gray-900 mb-1">Batch Submission</h4>
+<p class="text-sm text-gray-600">Drafts with over 90% completion can be selected for batch submission during the next maintenance window.</p>
+<button class="text-xs font-bold text-primary-container mt-3 hover:underline">Learn more about submission workflows</button>
+</div>
+</div>
+<div class="bg-secondary-container/5 border border-secondary-container/10 p-6 rounded-xl flex gap-4">
+<div class="text-secondary">
+<span class="material-symbols-outlined text-3xl">notification_important</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-gray-900 mb-1">Upcoming Deadline</h4>
+<p class="text-sm text-gray-600">Applications for the Autumn 2024 term must be finalized by the end of this month. Remind your applicants!</p>
+<button class="text-xs font-bold text-secondary mt-3 hover:underline">Send mass reminders</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

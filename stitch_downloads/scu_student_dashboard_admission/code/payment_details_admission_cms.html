@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Details - Admission CMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-primary": "#ffffff",
+                "surface-variant": "#d7e4f2",
+                "surface-tint": "#006c46",
+                "inverse-primary": "#5adda0",
+                "secondary": "#00687b",
+                "on-primary-fixed-variant": "#005234",
+                "tertiary-fixed": "#d9e3f2",
+                "surface-dim": "#cedce9",
+                "surface-container-low": "#ecf4ff",
+                "inverse-surface": "#25323c",
+                "secondary-fixed": "#afecff",
+                "inverse-on-surface": "#e6f2ff",
+                "on-error": "#ffffff",
+                "surface-container-highest": "#d7e4f2",
+                "primary-fixed": "#79fabb",
+                "on-tertiary-fixed-variant": "#3e4854",
+                "surface-container-lowest": "#ffffff",
+                "surface-container": "#e2effe",
+                "on-primary-container": "#00321f",
+                "tertiary": "#555f6c",
+                "secondary-container": "#50dcff",
+                "on-surface": "#101d27",
+                "on-tertiary": "#ffffff",
+                "primary": "#006c46",
+                "on-tertiary-fixed": "#121c27",
+                "on-secondary-fixed-variant": "#004e5d",
+                "on-secondary-container": "#005f71",
+                "on-surface-variant": "#3d4a41",
+                "on-secondary-fixed": "#001f27",
+                "surface-bright": "#f6f9ff",
+                "on-primary-fixed": "#002112",
+                "surface": "#f6f9ff",
+                "surface-container-high": "#dceaf8",
+                "primary-fixed-dim": "#5adda0",
+                "on-tertiary-container": "#222c37",
+                "tertiary-fixed-dim": "#bdc7d6",
+                "outline-variant": "#bccabf",
+                "secondary-fixed-dim": "#48d7f9",
+                "on-error-container": "#93000a",
+                "background": "#f6f9ff",
+                "error": "#ba1a1a",
+                "outline": "#6d7a71",
+                "on-secondary": "#ffffff",
+                "tertiary-container": "#8993a1",
+                "error-container": "#ffdad6",
+                "primary-container": "#00a76f",
+                "on-background": "#101d27"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.75rem",
+                "xl": "1rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Public Sans"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-800">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-[#00A76F]">Admission CMS</span>
+<div class="hidden md:flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg px-3 py-1.5 w-64">
+<span class="material-symbols-outlined text-gray-500 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full text-gray-600" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-500 hover:bg-gray-50 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-2 pl-2 border-l border-gray-200">
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-gray-200" data-alt="professional headshot of a university admissions officer in business casual attire with a friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrrphNh4phpU8dronvk99KZYPov6AoSaWXbky5w7TgIkpp-rSpuRJsoH7WXZFMt2SiREFXbb8-QmtnzKZJ11-xRbhNpjPRh-BA4ItETveCIXFNlWWGgVOiL1bEfRhPbSp9w7Ws6-m8wS4i8UYPAuztM-m1OJF5DDxKnxMg0gTL7DPmyWLvSb5AsMxI3F2HQUZUy6XzdmDakMoM2QF2tg5Ju-CwGFFzcn7CCplx5fGr5HN9O9J8XhLRvMygmRlXpfUWrDnDQv-_brGx"/>
+<span class="material-symbols-outlined text-gray-500">account_circle</span>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 p-4 flex flex-col bg-white border-r border-gray-200 dark:bg-gray-900 dark:border-gray-800">
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 text-gray-500 dark:text-gray-400 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-gray-500 dark:text-gray-400 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-medium">Applications</span>
+</a>
+<a class="flex items-center gap-3 bg-[#00A76F]/10 text-[#00A76F] font-semibold rounded-lg px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-medium">Payments</span>
+</a>
+<a class="flex items-center gap-3 text-gray-500 dark:text-gray-400 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</div>
+<div class="mt-auto p-4 bg-primary-container/10 rounded-xl border border-primary-container/20">
+<p class="text-xs font-bold text-primary mb-1 uppercase tracking-wider">System Status</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#00A76F] animate-pulse"></div>
+<span class="text-[11px] text-on-surface-variant">Gateway: Active</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 mt-16 p-8 min-h-screen">
+<!-- Header -->
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-600 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-2xl font-extrabold text-on-surface tracking-tight">Payment Details</h1>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-500">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>Oct 24, 2024</span>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<!-- Card 1: Applicant Info -->
+<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center">
+<div class="relative mb-4">
+<img alt="Applicant Profile" class="w-24 h-24 rounded-full border-4 border-primary-container/20 p-1" data-alt="modern professional headshot of a young asian male student named Marcus Chen with a warm friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfjeDIvNa8CYf_Ou-j57DyfOdlEXs-51t-p3fc9D9_e0qW7ft1U4kevZEwPCpSoPAN0rzt-n95trHuRJiGuTpKTeLZlQH_eWrrx7TOZoy6rwQX7pfoWHXxXq9351ETZ5_vXtnYbCxWHhMvKHoQYd-vk1qEIgRUuMS5P5yMAsCT3JmmUDYj9ySND6pLIbOZaOtyZELuESbkii2X6dfVj_9ZHJpOhD_iqV5Jaj11tQGUTjlyP-5faSMLox3HYEWMgZOU1tblhnOwr8HX"/>
+<span class="absolute bottom-1 right-1 w-5 h-5 bg-[#00A76F] rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">check</span>
+</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-1">Marcus Chen</h3>
+<p class="text-sm font-medium text-primary mb-3">ADM-2024-002</p>
+<div class="w-full pt-4 border-t border-gray-50">
+<span class="text-xs text-gray-400 uppercase tracking-widest font-bold">Enrolled Program</span>
+<p class="text-sm font-semibold text-on-surface-variant mt-1">Business Administration</p>
+</div>
+</div>
+<!-- Card 2: Payment Overview -->
+<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">account_balance_wallet</span>
+</div>
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase">Paid</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">Amount</span>
+<span class="text-xl font-extrabold text-on-surface">$50.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">Method</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-400 text-lg">credit_card</span>
+<span class="text-sm font-semibold">Credit Card</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">Transaction ID</span>
+<span class="text-sm font-mono text-secondary-fixed-dim bg-gray-50 px-2 py-0.5 rounded">TXN_882910</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Action Center -->
+<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col justify-center gap-3">
+<button class="w-full py-3 bg-[#00A76F] hover:bg-[#008f5d] text-white rounded-lg font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-[#00A76F]/20 transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Download Receipt
+                </button>
+<button class="w-full py-3 bg-on-surface hover:bg-on-surface/90 text-white rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">verified</span>
+                    Mark Verified
+                </button>
+<button class="w-full py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg font-semibold text-sm border border-gray-200 transition-all mt-1">
+                    Record Manual Payment
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+<!-- Payment History Section -->
+<div class="xl:col-span-7">
+<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+<div class="px-6 py-4 border-b border-gray-50 flex justify-between items-center">
+<h2 class="text-lg font-bold text-on-surface">Payment History</h2>
+<button class="text-primary text-xs font-bold hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-gray-50/50">
+<tr>
+<th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Date</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Description</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Amount</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-50">
+<tr class="hover:bg-gray-50/50 transition-colors">
+<td class="px-6 py-4 text-sm text-on-surface-variant">Oct 24, 2024</td>
+<td class="px-6 py-4">
+<p class="text-sm font-semibold text-on-surface">Application Fee</p>
+<p class="text-xs text-gray-400">Main Campus - Semester 1</p>
+</td>
+<td class="px-6 py-4 text-sm font-bold text-on-surface">$50.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold">
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+                                            SUCCESS
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-gray-50/50 transition-colors">
+<td class="px-6 py-4 text-sm text-on-surface-variant">Oct 20, 2024</td>
+<td class="px-6 py-4">
+<p class="text-sm font-semibold text-on-surface">Document Verification</p>
+<p class="text-xs text-gray-400">International Transcript</p>
+</td>
+<td class="px-6 py-4 text-sm font-bold text-on-surface">$25.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-secondary/10 text-secondary text-xs font-bold">
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+                                            PENDING
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Receipt Preview -->
+<div class="xl:col-span-5">
+<div class="bg-white rounded-xl shadow-xl border border-gray-100 p-8 relative overflow-hidden">
+<!-- Watermark -->
+<div class="absolute inset-0 flex items-center justify-center opacity-[0.03] rotate-[-35deg] pointer-events-none select-none">
+<span class="text-8xl font-black text-on-surface uppercase tracking-tighter">VERIFIED</span>
+</div>
+<!-- Receipt Header -->
+<div class="flex justify-between items-start mb-10 relative z-10">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<div class="w-10 h-10 bg-[#00A76F] rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<span class="text-lg font-extrabold text-[#00A76F]">Admission CMS</span>
+</div>
+<p class="text-xs text-gray-400 font-medium">Global University Network</p>
+</div>
+<div class="text-right">
+<h4 class="text-xl font-bold text-on-surface">OFFICIAL RECEIPT</h4>
+<p class="text-xs text-gray-500">NO: #REC-2024-8829</p>
+</div>
+</div>
+<!-- Receipt Body -->
+<div class="space-y-6 relative z-10">
+<div class="grid grid-cols-2 gap-4 pb-6 border-b border-dashed border-gray-200">
+<div>
+<p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Billed To</p>
+<p class="text-sm font-bold text-on-surface">Marcus Chen</p>
+<p class="text-xs text-gray-500">marcus.chen@email.com</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Issue Date</p>
+<p class="text-sm font-bold text-on-surface">24 Oct 2024</p>
+<p class="text-xs text-gray-500">14:32:01 GMT</p>
+</div>
+</div>
+<div class="py-4">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm text-on-surface-variant">Application Fee - Undergraduate</span>
+<span class="text-sm font-bold text-on-surface">$50.00</span>
+</div>
+<div class="flex justify-between items-center text-xs text-gray-400">
+<span>Platform Processing Fee</span>
+<span>$0.00</span>
+</div>
+</div>
+<div class="pt-6 border-t border-gray-100">
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-on-surface">Total Paid</span>
+<span class="text-2xl font-black text-primary">$50.00</span>
+</div>
+</div>
+<div class="mt-8 pt-8 flex flex-col items-center justify-center gap-3">
+<img alt="Verification QR" class="w-20 h-20 opacity-80" data-alt="clean black and white qr code for digital verification of admission payment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT-3IJxpaFyCDGF0YJSVJc6Gj7a94pHetdULa4xm9UUQK8tahjKCnI2hcHeQEEQQSYR4jhdMqss6SrecUi-pe069xSuhWkYMRHAWgbWXMf85l3uZDNWPGR0asg2pcU8UnKzUmcoJFDh6p0i-r4mjSv84tBNth668jXejD7RdNWl_qetRHA9XFtHn823LNoNBoCMVnpmJCbvKW44YNhkGwb09OMNc-X9n2Jv1n-YuIggE7pCNnV6ck5FTujCyA-KeOQWCvklAy-bG3n"/>
+<p class="text-[10px] text-center text-gray-400 italic">This is a system-generated document. No signature required.</p>
+</div>
+</div>
+<!-- Decorative elements -->
+<div class="absolute -bottom-6 -left-6 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
+<div class="absolute -top-6 -right-6 w-24 h-24 bg-secondary/5 rounded-full blur-2xl"></div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

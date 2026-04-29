@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AdmissionPro - Document Verification</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#3d4a41",
+                        "primary-container": "#00a76f",
+                        "outline": "#6d7a71",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dceaf8",
+                        "secondary-container": "#50dcff",
+                        "background": "#f6f9ff",
+                        "on-tertiary-fixed": "#121c27",
+                        "on-secondary-fixed-variant": "#004e5d",
+                        "on-secondary-fixed": "#001f27",
+                        "inverse-primary": "#5adda0",
+                        "secondary": "#00687b",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-secondary-container": "#005f71",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#ecf4ff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#006c46",
+                        "primary": "#006c46",
+                        "on-primary-container": "#00321f",
+                        "tertiary": "#555f6c",
+                        "inverse-on-surface": "#e6f2ff",
+                        "on-surface": "#101d27",
+                        "tertiary-fixed": "#d9e3f2",
+                        "outline-variant": "#bccabf",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#bdc7d6",
+                        "on-primary-fixed-variant": "#005234",
+                        "surface": "#f6f9ff",
+                        "on-background": "#101d27",
+                        "surface-dim": "#cedce9",
+                        "on-tertiary-container": "#222c37",
+                        "surface-bright": "#f6f9ff",
+                        "on-tertiary-fixed-variant": "#3e4854",
+                        "primary-fixed": "#79fabb",
+                        "surface-variant": "#d7e4f2",
+                        "secondary-fixed": "#afecff",
+                        "tertiary-container": "#8993a1",
+                        "surface-container-highest": "#d7e4f2",
+                        "surface-container": "#e2effe",
+                        "secondary-fixed-dim": "#48d7f9",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002112",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#25323c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.75rem", // 12px mapping
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-white border-b border-slate-200 font-['Public_Sans'] antialiased">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-[#00A76F]">AdmissionPro</span>
+<div class="hidden md:flex items-center space-x-6 h-full">
+<a class="text-slate-500 hover:bg-slate-50 transition-colors px-2 py-1 cursor-pointer" href="#">Dashboard</a>
+<a class="text-[#00A76F] font-semibold border-b-2 border-[#00A76F] px-2 py-1 cursor-pointer" href="#">Verification</a>
+<a class="text-slate-500 hover:bg-slate-50 transition-colors px-2 py-1 cursor-pointer" href="#">Applications</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors material-symbols-outlined">notifications</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors material-symbols-outlined">settings</button>
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Reviewer Profile portrait of a professional academic administrator in a modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnljHgMkth5mAZaSaioDQh65OyRzqCdrmbyFMly8eCCDdOdZ47hQ-GNEIhsXwyM521Lq0xUxQDwMPtKqjA1J3Ujr5GLwLf1jiJlTKweEi7nUe4lQ0Ck0EhgH3OD_zf0HMnpRni6pMwssluRxIO3mwBPr2Q-u0wDiWOJMUPge9GkuKAosqX3OfPHWQ-665QC7PjuJmM-ShoKsKEFBRnfHxbz2fq9BhBeDT_RKo-Nu3avC89G7TBag8ssGtlcO4AW1ymeoF-SI_Q9xFk"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col p-4 bg-slate-50 border-r border-slate-200 font-['Public_Sans'] text-sm">
+<div class="mb-8 px-2">
+<h2 class="text-[#00A76F] font-bold">Admin Panel</h2>
+<p class="text-xs text-slate-500">Verification Office</p>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">description</span>
+                Applications
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 bg-[#00A76F]/10 text-[#00A76F] font-bold rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+                Verification
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">school</span>
+                Programs
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Reports
+            </a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-8 min-h-screen bg-background">
+<div class="max-w-6xl mx-auto space-y-6">
+<!-- Applicant Summary -->
+<section class="bg-white rounded-lg p-6 shadow-sm border border-slate-100">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="h-16 w-16 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-4xl">account_circle</span>
+</div>
+<div>
+<h1 class="text-2xl font-bold text-on-background">Liam Henderson</h1>
+<div class="flex items-center gap-3 mt-1">
+<span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs font-semibold tracking-wide">#ADM-2023-8841</span>
+<span class="text-slate-400">•</span>
+<span class="text-slate-600 text-sm font-medium">Computer Science</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-sm font-medium text-slate-500">Current Status:</span>
+<span class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-full border border-amber-200 uppercase tracking-wider">Document Review</span>
+</div>
+</div>
+</section>
+<!-- Verification Workspace Header -->
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-on-surface">Documents for Review</h3>
+<span class="text-sm text-slate-500">4 total documents submitted</span>
+</div>
+<!-- Verification Items List -->
+<div class="space-y-4 pb-32">
+<!-- Academic Transcript -->
+<article class="bg-white rounded-lg border border-slate-200 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[300px]">
+<div class="lg:col-span-5 bg-slate-100 relative group overflow-hidden border-r border-slate-200">
+<img class="w-full h-full object-cover" data-alt="professional academic transcript document layout with official stamps and signatures in a clean flat lay view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJnf1TLVkIIlttnOVChqQ0Y6Eq6QOA0faxYgHnve6ZplpFqINPypne-rwDEGuzq4EW0tMmikKLZ6F2STGds_gGX8r5ElxrQLJr-SW3WuQgsMhklf1DB3O7com6Eh2LFgB2hcNtG3mx0YsvA4U2ac7jJdxeiyNeXuE88ZprC9WYxvwfKuYno0lov9xJjcAsZQzHTfppQguwBg_E19z2mu07sLICU8406lU_LF4uwoq4heab3sReShb9vRg0MYf-Dq3JowVnbQNttNHT"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
+</div>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm">Academic Transcript</span>
+</div>
+</div>
+<div class="lg:col-span-7 p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div>
+<h4 class="font-bold text-slate-900">University Transcript - Fall 2023</h4>
+<p class="text-sm text-slate-500 mt-1">Uploaded on Oct 24, 2023 • PDF (2.4 MB)</p>
+</div>
+<span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full">Pending</span>
+</div>
+<label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Reviewer Comments</label>
+<textarea class="w-full rounded-lg border-slate-200 focus:ring-primary focus:border-primary text-sm h-24 bg-slate-50" placeholder="Add internal notes or reasons for rejection..."></textarea>
+</div>
+<div class="flex gap-3 mt-6">
+<button class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-container text-white font-bold rounded-lg hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+                                Approve
+                            </button>
+<button class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-red-100 text-red-600 font-bold rounded-lg hover:bg-red-50 transition-all">
+<span class="material-symbols-outlined text-xl">cancel</span>
+                                Reject
+                            </button>
+</div>
+</div>
+</article>
+<!-- High School Certificate -->
+<article class="bg-white rounded-lg border border-slate-200 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[300px]">
+<div class="lg:col-span-5 bg-slate-100 relative group overflow-hidden border-r border-slate-200">
+<img class="w-full h-full object-cover" data-alt="formal diploma certificate with elegant gold seal and calligraphy on high quality paper texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWWtF9q7gSKqJvp46AfCTu6zYg6n-ZKTplbcGLzcqDRVoAFk4eo0K-YRJGKelAU-gW8FGShlbElBa2FdxxUgf5jPnA_xrVJWkSqnDoai3kwk1p-PEoI7b-KIbbTqPKdnhC7BhPy4Rxt9_dcxJbrs0ONQxAQb00aGuo5KFvPTtMHkzxWwgEQUqSnCiCmcn9M2pak_IoG41ZRDupA1gf6LNxtHh44Sjur2Nb8q6tXWmxcqBPdDvK5Osnw8kRq3MIHKGqR8RXBe790f6D"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
+</div>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm">High School Certificate</span>
+</div>
+</div>
+<div class="lg:col-span-7 p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div>
+<h4 class="font-bold text-slate-900">Secondary Education Diploma</h4>
+<p class="text-sm text-slate-500 mt-1">Uploaded on Oct 24, 2023 • JPG (4.1 MB)</p>
+</div>
+<span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full">Pending</span>
+</div>
+<label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Reviewer Comments</label>
+<textarea class="w-full rounded-lg border-slate-200 focus:ring-primary focus:border-primary text-sm h-24 bg-slate-50" placeholder="Add internal notes or reasons for rejection..."></textarea>
+</div>
+<div class="flex gap-3 mt-6">
+<button class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-container text-white font-bold rounded-lg hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+                                Approve
+                            </button>
+<button class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-red-100 text-red-600 font-bold rounded-lg hover:bg-red-50 transition-all">
+<span class="material-symbols-outlined text-xl">cancel</span>
+                                Reject
+                            </button>
+</div>
+</div>
+</article>
+<!-- National ID Card -->
+<article class="bg-white rounded-lg border border-slate-200 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[300px]">
+<div class="lg:col-span-5 bg-slate-100 relative group overflow-hidden border-r border-slate-200">
+<img class="w-full h-full object-cover" data-alt="front view of a generic professional identification card with placeholder photo and holographic security features" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATtpqAtGI-IaoiipEURlYIT01n7sdomTOHQj0ttJKk7ayBomNeWhViSJlStb6vUglmD28NUPW9T141GDU89j_p6Thh117_HjYJb7TgfVwAdO3CD_e2aMOFgvgXxkO6gvm4Cv7_g77wxqJZWfoz5hmh2IM7W5uQF98h7ECwUBB2oCJARQq2cGnsb6YSKH2J11BFfTDw0nsh8kJxDFBkmCZ-vND-dA0h2dZHU8kfxLkyKd1MaHspq2Y75If2HCuX5fjAOe27nen4qqdR"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
+</div>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm">National ID Card</span>
+</div>
+</div>
+<div class="lg:col-span-7 p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div>
+<h4 class="font-bold text-slate-900">National Identification (Front)</h4>
+<p class="text-sm text-slate-500 mt-1">Uploaded on Oct 25, 2023 • PNG (1.2 MB)</p>
+</div>
+<span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full">Pending</span>
+</div>
+<label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Reviewer Comments</label>
+<textarea class="w-full rounded-lg border-slate-200 focus:ring-primary focus:border-primary text-sm h-24 bg-slate-50" placeholder="Add internal notes or reasons for rejection..."></textarea>
+</div>
+<div class="flex gap-3 mt-6">
+<button class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-container text-white font-bold rounded-lg hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+                                Approve
+                            </button>
+<button class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-red-100 text-red-600 font-bold rounded-lg hover:bg-red-50 transition-all">
+<span class="material-symbols-outlined text-xl">cancel</span>
+                                Reject
+                            </button>
+</div>
+</div>
+</article>
+<!-- Passport Photo -->
+<article class="bg-white rounded-lg border border-slate-200 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[300px]">
+<div class="lg:col-span-5 bg-slate-100 relative group overflow-hidden border-r border-slate-200">
+<img class="w-full h-full object-cover" data-alt="clean passport size headshot of a young man against a neutral background with professional studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa0mdktjFc6zVJ7AL7tehmQGHEQCOVtLJqjRAG9XODGBq1A6YKK58rqgrMuSrzaDdlKi3YYAiAkhiMAZw3lYoTWVS7AZxDVeQriBfZSRRSaI4Y_8_iEDpgwXyOSMg5Sjr4G0P5EpsB74xUR3kX_W9xQcArDyNE1uw7Ks7-N4uDArI4KjOWKnZ-Z1bxTldoqMVUlAKHL3Nv2lc8v_EYNugmk_McOhOp-yr83DI2LP6RO6Z84lDUAa1m5elmik7C2Qx3ItAVozcFg4uz"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
+</div>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm">Passport-size Photo</span>
+</div>
+</div>
+<div class="lg:col-span-7 p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div>
+<h4 class="font-bold text-slate-900">Application Headshot</h4>
+<p class="text-sm text-slate-500 mt-1">Uploaded on Oct 25, 2023 • JPG (0.8 MB)</p>
+</div>
+<span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full">Pending</span>
+</div>
+<label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Reviewer Comments</label>
+<textarea class="w-full rounded-lg border-slate-200 focus:ring-primary focus:border-primary text-sm h-24 bg-slate-50" placeholder="Add internal notes or reasons for rejection..."></textarea>
+</div>
+<div class="flex gap-3 mt-6">
+<button class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-container text-white font-bold rounded-lg hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+                                Approve
+                            </button>
+<button class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-red-100 text-red-600 font-bold rounded-lg hover:bg-red-50 transition-all">
+<span class="material-symbols-outlined text-xl">cancel</span>
+                                Reject
+                            </button>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+<!-- Final Actions Footer -->
+<footer class="fixed bottom-0 right-0 left-64 bg-white/80 backdrop-blur-md border-t border-slate-200 p-6 z-40">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex gap-8">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 font-bold uppercase tracking-tighter">Total Documents</span>
+<span class="text-xl font-bold text-slate-900">04</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 font-bold uppercase tracking-tighter">Verified</span>
+<span class="text-xl font-bold text-primary">00</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 font-bold uppercase tracking-tighter">Action Needed</span>
+<span class="text-xl font-bold text-amber-500">04</span>
+</div>
+</div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<button class="px-6 py-3 font-bold text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">Save Draft</button>
+<button class="flex-1 md:flex-none px-10 py-3 bg-primary-container text-white font-bold rounded-lg shadow-lg shadow-primary-container/20 hover:scale-[1.02] transition-transform">
+                    Save Review &amp; Continue
+                </button>
+</div>
+</div>
+</footer>
+</body></html>

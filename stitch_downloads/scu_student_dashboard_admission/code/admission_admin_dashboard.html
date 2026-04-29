@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admission Management Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#bccabf",
+                    "secondary-fixed-dim": "#48d7f9",
+                    "on-tertiary-fixed-variant": "#3e4854",
+                    "on-tertiary-fixed": "#121c27",
+                    "primary-fixed": "#79fabb",
+                    "primary-fixed-dim": "#5adda0",
+                    "tertiary-container": "#8993a1",
+                    "surface-dim": "#cedce9",
+                    "background": "#f6f9ff",
+                    "surface-variant": "#d7e4f2",
+                    "surface-container": "#e2effe",
+                    "outline": "#6d7a71",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#5adda0",
+                    "inverse-on-surface": "#e6f2ff",
+                    "tertiary-fixed": "#d9e3f2",
+                    "on-secondary-fixed": "#001f27",
+                    "on-primary-container": "#00321f",
+                    "secondary-fixed": "#afecff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#00687b",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#005234",
+                    "tertiary": "#555f6c",
+                    "tertiary-fixed-dim": "#bdc7d6",
+                    "secondary-container": "#50dcff",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#d7e4f2",
+                    "surface-bright": "#f6f9ff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002112",
+                    "surface": "#f6f9ff",
+                    "primary-container": "#00a76f",
+                    "on-background": "#101d27",
+                    "on-tertiary-container": "#222c37",
+                    "surface-container-low": "#ecf4ff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#25323c",
+                    "surface-container-high": "#dceaf8",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#3d4a41",
+                    "primary": "#006c46",
+                    "on-secondary-container": "#005f71",
+                    "surface-tint": "#006c46",
+                    "on-surface": "#101d27",
+                    "on-secondary-fixed-variant": "#004e5d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Public Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="fixed left-0 top-0 h-full z-40 h-screen w-64 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 font-['Public_Sans'] text-sm font-medium">
+<div class="p-6 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary-container rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<div class="text-xl font-bold text-[#00A76F]">Admission CMS</div>
+<div class="text-[10px] text-neutral uppercase tracking-wider">Management Portal</div>
+</div>
+</div>
+<nav class="px-4 space-y-1 mt-4">
+<!-- Active: Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 bg-[#00A76F]/10 text-[#00A76F] rounded-lg font-bold transition-opacity" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span>Applications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Applicants</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<span>Programs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span>Documents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">rate_review</span>
+<span>Reviews</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Payments</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="absolute bottom-8 left-4 right-4 p-4 bg-surface-container rounded-xl">
+<div class="flex items-center gap-3 mb-3">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full border-2 border-white" data-alt="Professional headshot of a smiling university administrator in a modern office environment with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwMCxqozA5xw9hfeBdzNiMnGDhz9mImddylOBo3DTbj6zov-tn2Pazqp9r92DkU5KjXYoQeAjzq7BCs7cF4lOHNeeEp-XL2zDAFlzG21r2whWFfttnQgPRQCtHTUUVdFvAGHlSGeMOoZ4tClCy49Gs6htOOWoADxl4api48bOn2kJ4QXn2Xaic0kWbqshiCLKtgZJobPQk4mNZhHpQvLUlHDAuRDB-PH0bLQeWB3gE3Ql_E-RPk-49Mgrr8bgx_Ta2UbhAVWdgfLj6"/>
+<div>
+<div class="text-xs font-bold">Admin User</div>
+<div class="text-[10px] text-neutral">Chief Registrar</div>
+</div>
+</div>
+<button class="w-full py-2 text-xs font-bold text-white bg-primary-container rounded-lg shadow-sm">Upgrade Plan</button>
+</div>
+</aside>
+<!-- TopNavBar (Execution from JSON) -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-8 z-30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-dashed border-gray-200 dark:border-gray-800 font-['Public_Sans'] text-sm">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 ring-[#00A76F]" placeholder="Search applications, students..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-neutral hover:text-[#00A76F] transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-neutral hover:text-[#00A76F] transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-[1px] bg-gray-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<img alt="Admin Profile" class="w-8 h-8 rounded-full object-cover" data-alt="Close up portrait of a middle-aged professional academic administrator in business attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJab89OQfPIB2p0QyWTjf_v7VX-k8a-CiL3PgH8tMrrVfRLfEwAgjgsHTZph9nI0yt6NAouZiHNOheeX4qhQTATrEgRNNJ0uJ3zGq4KIyO5SM3UyClo46ZJ1D9_G9GTHSKdegWh_Ma6YUTL2g9_Ekv7p1aH6JpwnHDtE4pli7f2L7qK7KaebVVz26ntsufkFC_4bX1lnigj0rAFqJKQj6KQqmdeWKpYlwHYrfk6p4pZIjaZghrPbaX-MAjKC04geNtQVULBVGrA1Y9"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-8">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h1 class="text-2xl font-bold text-on-surface">Dashboard Overview</h1>
+<p class="text-sm text-neutral mt-1">Welcome back, here's what's happening with admissions today.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-primary-container text-white rounded-lg font-bold text-sm shadow-md hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm">add</span>
+                    New Application
+                </button>
+</div>
+</div>
+<!-- Statistic Cards - Bento Grid Style -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-8">
+<!-- Total Applications -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="text-2xl font-bold mt-2">2,482</div>
+<div class="text-xs font-semibold text-neutral uppercase">Total Applications</div>
+<div class="text-[10px] text-primary-container flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> +12% from last week
+                </div>
+</div>
+<!-- Pending Review -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<div class="text-2xl font-bold mt-2">156</div>
+<div class="text-xs font-semibold text-neutral uppercase">Pending Review</div>
+<div class="text-[10px] text-secondary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[12px]">schedule</span> 12 overdue
+                </div>
+</div>
+<!-- Approved -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2">
+<div class="w-10 h-10 rounded-full bg-[#E8F5E9] flex items-center justify-center text-emerald-600">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div class="text-2xl font-bold mt-2">1,840</div>
+<div class="text-xs font-semibold text-neutral uppercase">Approved</div>
+<div class="text-[10px] text-emerald-600 flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[12px]">done_all</span> 74% conversion rate
+                </div>
+</div>
+<!-- Rejected -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2">
+<div class="w-10 h-10 rounded-full bg-error-container/40 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">cancel</span>
+</div>
+<div class="text-2xl font-bold mt-2">312</div>
+<div class="text-xs font-semibold text-neutral uppercase">Rejected</div>
+<div class="text-[10px] text-error flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[12px]">trending_down</span> -2% from last year
+                </div>
+</div>
+<!-- Payment Pending -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div class="text-2xl font-bold mt-2">74</div>
+<div class="text-xs font-semibold text-neutral uppercase">Payment Pending</div>
+<div class="text-[10px] text-neutral flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[12px]">info</span> $18,500 outstanding
+                </div>
+</div>
+</div>
+<!-- Application Trends & Quick Actions -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-lg font-bold">Application Trends</h2>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-surface-container rounded-md text-xs font-semibold text-primary">Weekly</button>
+<button class="px-3 py-1 text-xs font-semibold text-neutral">Monthly</button>
+</div>
+</div>
+<div class="relative h-64 w-full flex flex-col justify-end">
+<!-- Faux Line Chart Graphic -->
+<div class="absolute inset-0 flex items-end">
+<svg class="w-full h-full" fill="none" viewbox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 180C50 160 100 170 150 140C200 110 250 150 300 100C350 50 400 80 450 60C500 40 550 90 600 70C650 50 700 30 750 10" stroke="#00A76F" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<path d="M0 180C50 160 100 170 150 140C200 110 250 150 300 100C350 50 400 80 450 60C500 40 550 90 600 70C650 50 700 30 750 10V200H0V180Z" fill="url(#paint0_linear)" fill-opacity="0.1"></path>
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="paint0_linear" x1="400" x2="400" y1="0" y2="200">
+<stop stop-color="#00A76F"></stop>
+<stop offset="1" stop-color="white" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<!-- Chart X-Axis Labels -->
+<div class="flex justify-between w-full pt-4 border-t border-gray-100 text-[10px] text-neutral font-medium">
+<span>MON</span>
+<span>TUE</span>
+<span>WED</span>
+<span>THU</span>
+<span>FRI</span>
+<span>SAT</span>
+<span>SUN</span>
+</div>
+</div>
+</div>
+<div class="bg-[#212B36] p-6 rounded-2xl shadow-lg flex flex-col justify-between text-white overflow-hidden relative">
+<div class="relative z-10">
+<h2 class="text-lg font-bold mb-2">Quick Actions</h2>
+<p class="text-xs text-neutral-400 mb-6">Manage high-priority tasks instantly</p>
+<div class="space-y-3">
+<button class="w-full flex items-center justify-between p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-colors text-sm font-medium group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">rate_review</span>
+                                Review Applications
+                            </div>
+<span class="material-symbols-outlined text-xs group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-colors text-sm font-medium group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#00B8D9]">library_add</span>
+                                Add Program
+                            </div>
+<span class="material-symbols-outlined text-xs group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-colors text-sm font-medium group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-yellow-400">upload_file</span>
+                                Bulk Upload Data
+                            </div>
+<span class="material-symbols-outlined text-xs group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="absolute -bottom-12 -right-12 w-48 h-48 bg-primary-container/20 rounded-full blur-3xl"></div>
+<div class="mt-8 pt-6 border-t border-white/10">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary-container rounded-lg">
+<span class="material-symbols-outlined text-sm">support_agent</span>
+</div>
+<div class="text-xs">
+<div class="font-bold">Need Help?</div>
+<div class="text-white/60">Contact system administrator</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Applications Table -->
+<div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+<div class="p-6 border-b border-gray-50 flex justify-between items-center">
+<h2 class="text-lg font-bold">Recent Applications</h2>
+<button class="text-sm font-semibold text-primary-container flex items-center gap-1">
+                    View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-xs font-bold text-neutral uppercase tracking-wider">
+<th class="px-6 py-4">Name</th>
+<th class="px-6 py-4">Program</th>
+<th class="px-6 py-4 text-center">Status</th>
+<th class="px-6 py-4">Date</th>
+<th class="px-6 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-50">
+<tr class="hover:bg-gray-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#FFB547]/20 text-[#B76E00] flex items-center justify-center font-bold text-xs">AS</div>
+<div class="text-sm font-semibold">Alice Simpson</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">MSc Data Science</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2 py-1 bg-secondary-container/20 text-secondary text-[10px] font-bold rounded-md">REVIEW</span>
+</td>
+<td class="px-6 py-4 text-sm text-neutral">Oct 24, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-gray-400">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#00B8D9]/20 text-[#006C9C] flex items-center justify-center font-bold text-xs">JM</div>
+<div class="text-sm font-semibold">James Miller</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">BA Architecture</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2 py-1 bg-[#FFF5CC] text-[#7A4100] text-[10px] font-bold rounded-md">PENDING</span>
+</td>
+<td class="px-6 py-4 text-sm text-neutral">Oct 23, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-gray-400">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Sarah Chen" class="w-8 h-8 rounded-full object-cover" data-alt="Portrait of a young Asian woman looking professional and confident" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXXGQnwFdfW_GlHDvh-Ig9Yr-ASC4Do05BgL5rSkboAxD0h6tt2-AewWLIP8hh7PU4LSM15PjhFHfvCuXQDfXUyA8NvKdfXuB40IpIwH5uSANS5PRCzuLv12zSaFJ2OKZFTeW6vEkGm5oW2CaTqbXxb6IVjS9WESuNa7LiRAdYoGgD6jV2-6v6G5lyMlOU_LqrrXhr_jiZ4nSvSGKelVBwYRmbvnx7VDLOciNZe-5bzU0AwOmatigXTswc8bwBuxAj8k8zylG_K-cD"/>
+<div class="text-sm font-semibold">Sarah Chen</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">PhD Artificial Intelligence</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2 py-1 bg-secondary-container/20 text-secondary text-[10px] font-bold rounded-md">REVIEW</span>
+</td>
+<td class="px-6 py-4 text-sm text-neutral">Oct 22, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-gray-400">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 text-primary-container flex items-center justify-center font-bold text-xs">RT</div>
+<div class="text-sm font-semibold">Robert Taylor</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">MBA Finance</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2 py-1 bg-[#FFF5CC] text-[#7A4100] text-[10px] font-bold rounded-md">PENDING</span>
+</td>
+<td class="px-6 py-4 text-sm text-neutral">Oct 22, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-gray-400">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-gray-50 flex justify-between items-center text-xs text-neutral">
+<span>Showing 4 of 2,482 applications</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center border border-gray-100 rounded-lg hover:bg-gray-50">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-primary-container text-white rounded-lg">1</button>
+<button class="w-8 h-8 flex items-center justify-center border border-gray-100 rounded-lg hover:bg-gray-50">2</button>
+<button class="w-8 h-8 flex items-center justify-center border border-gray-100 rounded-lg hover:bg-gray-50">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>
