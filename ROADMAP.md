@@ -1,47 +1,112 @@
-# University Management System - Project Roadmap
+# SCU Management Platform — Roadmap
 
-## Phase 0 — Foundation
-- [x] Multi-tenant by `institution_id` / `X-Tenant-ID`.
-- [x] Tech Stack: NestJS, FastAPI, Spring Boot, Laravel.
-- [x] API Standards: `/v1` prefix, Swagger/OpenAPI.
-- [x] Infrastructure: Docker-compose, Keycloak, Postgres, Mongo, Redis, RabbitMQ.
+See `ARCHITECTURE.md` for the service catalog and `AGENTS.md` for AI builder rules.
 
-## Phase 1 — Auth + Roles + Permissions (RBAC)
-- [x] Keycloak integration for all services.
-- [x] `user-service` for user management and profile linking.
-- [x] Roles: `TENANT_ADMIN`, `REGISTRAR`, `FACULTY`, `STUDENT`, `STAFF`.
-- [x] Object-level checks (e.g., Faculty can only access their assigned sections).
+---
 
-## Phase 2 — Academic Structure (The Backbone)
-- [x] `course-service`: Departments, Programs, Academic Years, Terms, Courses, Sections.
-- [x] Rules: Section capacity, Course-Term-Section uniqueness.
+## Current phase: Phase 1 — Foundation and cleanup
 
-## Phase 3 — Student Lifecycle (Profiles + Enrollment)
-- [x] `enrollment-service`: Admissions applications, Student creation, Course registrations (add/drop).
-- [x] Rules: Registration windows, basic capacity checks.
+**Goal:** Make the repo safe, understandable, runnable, and ready for AI-assisted continuous building.
 
-## Phase 4 — Attendance Module
-- [x] `attendance-service`: Attendance sessions and marking.
-- [x] Bulk marking support: `POST /v1/attendance/sessions/{id}/mark`.
-- [x] Reports: Student and Section-level attendance summaries.
+---
 
-## Phase 5 — Exams + Grading + Transcript
-- [x] `assessment-service`: Assessment definitions and weightage.
-- [x] `grades-service`: Marks recording, final grade computation, and transcript generation.
+## Milestone 1 — Repo stabilisation (current)
 
-## Phase 6 — Fees & Finance
-- [x] `finance-service`: Fee heads, plans, invoices, payments, and journal entries.
-- [x] Rules: Invoice immutability after payment, partial payment support.
+- [x] Add `AGENTS.md` and AI builder rules
+- [x] Add `ARCHITECTURE.md` with canonical service catalog
+- [x] Add `ROADMAP.md` with phased milestones
+- [x] Add `SECURITY.md` with secrets and vulnerability policy
+- [x] Add `CONTRIBUTING.md` with contribution guidelines
+- [x] Add `docs/decisions/` for Architecture Decision Records
+- [x] Add `docs/service-contracts/` for OpenAPI/AsyncAPI contracts
+- [x] Add CI for Docker Compose config validation and secret scan
+- [x] Split Docker Compose: `infra`, `core`, `dev`, `prod`
+- [x] Clean hardcoded secrets from compose files
+- [x] Add `README.md`, `.env.example`, `Dockerfile`, `/health`, `/ready` to every core service
+- [x] Standardise Keycloak realm to `scu` across all services
 
-## Phase 7 — Admin & Hardening (Current Focus)
-- [x] **Audit Logs**: Event-based logging implemented in `audit-logging-service`.
-- [ ] **Hardening: Consistent Error Formatting**
-  - Standardize error responses across polyglot services to follow `{ error: { code, message, details } }`.
-- [ ] **Hardening: Input Validation**
-  - Ensure 100% DTO coverage in NestJS/FastAPI and strict schema validation in Laravel/Spring Boot.
-- [ ] **Advanced Reporting**
-  - [ ] Attendance % by course/term.
-  - [ ] Financial dues vs. collection reports.
-- [ ] **System-Wide Integration Tests**
-  - [ ] Workflow test: Application -> Enrollment -> Invoice -> Payment.
-  - [ ] Workflow test: Attendance -> Assessment -> Final Grade -> Transcript.
+## Milestone 2 — Auth and user foundation
+
+- [ ] Finalise Keycloak `scu` realm configuration
+- [ ] Define canonical roles: `super_admin`, `university_admin`, `department_admin`, `faculty`, `student`, `parent`, `staff`, `finance_officer`
+- [ ] Complete student, faculty, and parent profile APIs in `user-service`
+- [ ] Add auth middleware standard to each stack (NestJS guard, FastAPI dependency, Spring Security config, Laravel middleware)
+- [ ] Add permission checks to all core services
+- [ ] Add auth integration tests to core services
+
+## Milestone 3 — Academic MVP
+
+- [ ] Course catalog: departments, programs, semesters, courses
+- [ ] Course sections: faculty assignment, capacity, schedule
+- [ ] Student enrollment: add/drop, waitlist, prerequisite checks
+- [ ] Attendance: sessions, bulk marking, percentage reports
+- [ ] Assessment: assignment/quiz/exam creation, submission tracking, rubrics
+- [ ] Gradebook: weighted scores, letter grades, GPA calculation
+- [ ] Transcript summary view
+
+## Milestone 4 — Student / faculty / admin UI
+
+- [ ] Student dashboard (profile, courses, schedule, grades, attendance)
+- [ ] Faculty dashboard (assigned courses, attendance, gradebook)
+- [ ] Admin dashboard (users, departments, programs, analytics)
+- [ ] Authenticated navigation and API integration
+
+## Milestone 5 — Operations
+
+- [ ] Document upload, approval, and access-controlled download
+- [ ] Notifications via RabbitMQ events
+- [ ] Finance: invoices, payments, fee structures
+- [ ] Library: catalog, borrow/return
+- [ ] Parent portal: linked student data
+- [ ] Hostel and transport assignments
+
+## Milestone 6 — Campus engagement
+
+- [ ] Campus social: posts, comments, announcements
+- [ ] Events and RSVP
+- [ ] Clubs: creation, membership, events
+- [ ] Awards and achievements
+- [ ] Moderation tools
+
+## Milestone 7 — Analytics and AI
+
+- [ ] Admin and faculty analytics dashboards
+- [ ] Student insights (attendance risk, grade trends)
+- [ ] AI campus assistant (role-aware, retrieval over APIs)
+- [ ] AI builder agent (reads issues, opens PRs, updates docs)
+
+## Milestone 8 — Production polish
+
+- [ ] Deployment guide
+- [ ] Seed and demo data
+- [ ] End-to-end tests for core workflows
+- [ ] Security audit
+- [ ] Performance pass
+- [ ] Demo script and portfolio README
+
+---
+
+## MVP scope
+
+A strong MVP is:
+
+```
+Auth · Users · Courses · Enrollment · Attendance · Assessment · Grades · Documents · Notifications
+Student portal · Faculty portal · Admin portal
+```
+
+Leave for post-MVP: Finance · Library · Hostel · Transport · Clubs · Awards · Advanced analytics · AI assistant
+
+---
+
+## Completed work (pre-milestone-1)
+
+- [x] Multi-service architecture with Traefik ingress
+- [x] Keycloak integration (partial — realm inconsistency to be fixed)
+- [x] `user-service`, `course-service`, `assessment-service`, `attendance-service`, `grades-service`
+- [x] `enrollment-service` with add/drop and capacity checks
+- [x] `finance-service` with invoices and payments
+- [x] `campus-social-service` with WebSocket feed
+- [x] `document-service` with file storage
+- [x] `audit-logging-service`
+- [x] Supporting services: library, notifications, transport, analytics, maintenance, events, clubs, awards

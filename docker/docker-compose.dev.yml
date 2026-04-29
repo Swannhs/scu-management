@@ -1,0 +1,36 @@
+# docker-compose.dev.yml
+# Development overlay for the full stack.
+# Adds volume mounts for hot-reload and exposes additional debug ports.
+# Use together with the main docker-compose.yml.
+#
+# Usage:
+#   docker compose -f docker/docker-compose.yml -f docker/docker-compose.dev.yml up --build
+#
+# This file intentionally does not redefine the full service config —
+# it only overrides or extends what's in docker-compose.yml.
+
+services:
+  # Edge auth: expose port for direct testing
+  edge-auth-service:
+    ports:
+      - "3000:3000"
+
+  # Grades: expose port for direct testing
+  grades-service:
+    environment:
+      - NODE_ENV=development
+
+  # Attendance: expose port for direct testing
+  attendance-service:
+    environment:
+      - NODE_ENV=development
+
+  # Analytics: expose port for direct testing
+  analytics-service:
+    environment:
+      - DEBUG=true
+
+  # Audit logging: verbose mode
+  audit-logging-service:
+    environment:
+      - LOG_LEVEL=DEBUG

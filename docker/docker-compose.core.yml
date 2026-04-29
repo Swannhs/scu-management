@@ -1,0 +1,144 @@
+# docker-compose.core.yml
+# Core application services required for the platform MVP.
+# Requires infrastructure to be running first (docker-compose.infra.yml) or
+# a full compose run with both files.
+#
+# Usage (with infra already running):
+#   docker compose -f docker/docker-compose.infra.yml -f docker/docker-compose.core.yml up --build
+#
+# Core services: traefik, edge-auth, user, course, enrollment, assessment,
+#                attendance, grades, document, campus-social, notifications
+
+services:
+  traefik:
+    image: traefik:v3.1
+    command:
+      - --configFile=/etc/traefik/traefik.yml
+    ports:
+      - "80:80"
+      - "8088:8080"
+    volumes:
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro
+    depends_on:
+      - edge-auth-service
+      - user-service
+      - course-service
+      - assessment-service
+      - attendance-service
+      - grades-service
+      - campus-social-service
+      - document-service
+    networks:
+      - ums-network
+
+  edge-auth-service:
+    build: ../services/edge-auth-service
+    environment:
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-development}
+    networks:
+      - ums-network
+
+  user-service:
+    build: ../services/user-service
+    networks:
+      - ums-network
+    ports:
+      - "3005:3000"
+    environment:
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-development}
+
+  course-service:
+    build: ../services/course-service
+    networks:
+      - ums-network
+    ports:
+      - "3004:3000"
+    environment:
+      - DATABASE_URL=postgresql://${COURSE_DB_USER:-courseuser}:${COURSE_DB_PASSWORD:-coursepass}@course-db:5432/coursedb
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=${KEYCLOAK_REALM:-scu}
+      - KEYCLOAK_CLIENT_ID=course-service
+      - KEYCLOAK_CLIENT_SECRET=${COURSE_KEYCLOAK_CLIENT_SECRET:-change-me-in-development}
+
+  enrollment-service:
+    build: ../services/enrollment-service
+    networks:
+      - ums-network
+    ports:
+      - "8008:8000"
+    environment:
+      - DATABASE_URL=postgresql://${ENROLLMENT_DB_USER:-enrollmentuser}:${ENROLLMENT_DB_PASSWORD:-enrollmentpass}@enrollment-db:5432/enrollmentdb
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=${KEYCLOAK_REALM:-scu}
+
+  assessment-service:
+    build: ../services/assessment-service
+    networks:
+      - ums-network
+    ports:
+      - "3008:3000"
+    environment:
+      - DATABASE_URL=postgresql://${ASSESSMENT_DB_USER:-assessmentuser}:${ASSESSMENT_DB_PASSWORD:-assessmentpass}@assessment-db:5432/assessmentdb
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=${KEYCLOAK_REALM:-scu}
+      - KEYCLOAK_CLIENT_ID=assessment-service
+      - KEYCLOAK_CLIENT_SECRET=${ASSESSMENT_KEYCLOAK_CLIENT_SECRET:-change-me-in-development}
+
+  attendance-service:
+    build: ../services/attendance-service
+    networks:
+      - ums-network
+    ports:
+      - "3003:3000"
+
+  grades-service:
+    build: ../services/grades-service
+    networks:
+      - ums-network
+    ports:
+      - "3002:3000"
+
+  document-service:
+    build: ../services/document-service
+    networks:
+      - ums-network
+    ports:
+      - "3006:3000"
+    environment:
+      - DATABASE_URL=postgresql://${DOCUMENT_DB_USER:-documentuser}:${DOCUMENT_DB_PASSWORD:-documentpass}@document-db:5432/documentdb
+      - PORT=3000
+
+  campus-social-service:
+    build: ../services/campus-social-service
+    depends_on:
+      - document-service
+    networks:
+      - ums-network
+    ports:
+      - "3015:3000"
+    environment:
+      - DATABASE_URL=mongodb://mongo:27017/campus_social
+      - DOCUMENT_SERVICE_URL=http://document-service:3000
+      - DOCUMENT_SERVICE_TIMEOUT_MS=10000
+      - KEYCLOAK_AUTH_SERVER_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=${KEYCLOAK_REALM:-scu}
+      - KEYCLOAK_CLIENT_ID=campus-social-service
+      - KEYCLOAK_CLIENT_SECRET=${CAMPUS_SOCIAL_KEYCLOAK_CLIENT_SECRET:-change-me-in-development}
+
+  notifications-service:
+    build: ../services/notifications-service
+    networks:
+      - ums-network
+    ports:
+      - "8001:8000"
+
+networks:
+  ums-network:
+    driver: bridge
+
+# External volumes/databases are provided by docker-compose.infra.yml.
+# When running standalone, ensure the ums-network and databases already exist
+# or start with both compose files.

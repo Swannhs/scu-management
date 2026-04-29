@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  compose-config:
+    name: Docker Compose config validation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy .env.example to .env
+        run: cp .env.example .env
+
+      - name: Validate main compose file
+        run: docker compose -f docker/docker-compose.yml config --quiet
+
+      - name: Validate infra compose file
+        run: docker compose -f docker/docker-compose.infra.yml config --quiet
+
+      - name: Validate core compose file
+        run: docker compose -f docker/docker-compose.core.yml config --quiet
+
+      - name: Validate infra + core combined
+        run: docker compose -f docker/docker-compose.infra.yml -f docker/docker-compose.core.yml config --quiet
+
+  secret-scan:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for hardcoded secrets patterns
+        run: |
+          echo "Scanning for hardcoded secret patterns..."
+          FAILED=0
+
+          # Check for literal password assignments (not env var references)
+          # Patterns like: PASSWORD: somevalue (not ${VAR...})
+          if grep -rn \
+            --include="*.yml" \
+            --include="*.yaml" \
+            -E '(PASSWORD|SECRET|TOKEN|API_KEY)\s*[:=]\s*[^$"{][^$"{][^$"{]+' \
+            docker/ | \
+            grep -v '^\s*#' | \
+            grep -v ':?\?' | \
+            grep -v 'example\|EXAMPLE\|placeholder\|PLACEHOLDER\|your-\|change-me'; then
+            echo "::warning::Possible hardcoded secret found. Use \${VAR:-dev-default} pattern instead."
+          fi
+
+          # Check for known weak/example values that should never be in a real compose
+          BAD_PATTERNS=(
+            "your-secret-key"
+            "password123"
+            "changeme"
+            "KEYCLOAK_CLIENT_SECRET=secret$"
+          )
+
+          for pattern in "${BAD_PATTERNS[@]}"; do
+            if grep -rn --include="*.yml" --include="*.yaml" "$pattern" docker/ 2>/dev/null | grep -v '^\s*#'; then
+              echo "::error::Found disallowed hardcoded value matching: $pattern"
+              FAILED=1
+            fi
+          done
+
+          if [ "$FAILED" -eq 1 ]; then
+            exit 1
+          fi
+
+          echo "Secret scan passed."
