@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Library Management - Precision Atrium</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f2f4f6",
+                    "on-error": "#ffffff",
+                    "secondary": "#486174",
+                    "on-background": "#191c1e",
+                    "error": "#ba1a1a",
+                    "surface": "#f8f9fb",
+                    "secondary-fixed": "#cbe6fc",
+                    "inverse-primary": "#5adda0",
+                    "on-tertiary-fixed": "#001d35",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary-fixed": "#79fabb",
+                    "surface-dim": "#d8dadc",
+                    "on-secondary-fixed-variant": "#304a5c",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eceef0",
+                    "primary-fixed-dim": "#5adda0",
+                    "tertiary": "#0062a0",
+                    "primary-container": "#00a76f",
+                    "surface-tint": "#006c46",
+                    "outline-variant": "#bccabf",
+                    "outline": "#6d7a71",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#eff1f3",
+                    "tertiary-container": "#4697e0",
+                    "on-secondary-container": "#4c6679",
+                    "on-primary-fixed": "#002112",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#00321f",
+                    "tertiary-fixed-dim": "#9bcaff",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-container": "#c8e3fa",
+                    "secondary-fixed-dim": "#b0cae0",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#005234",
+                    "surface-variant": "#e0e3e5",
+                    "on-surface-variant": "#3d4a41",
+                    "primary": "#006c46",
+                    "on-surface": "#191c1e",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f8f9fb",
+                    "tertiary-fixed": "#d0e4ff",
+                    "background": "#f8f9fb",
+                    "on-tertiary-fixed-variant": "#00497a",
+                    "on-tertiary-container": "#002d4e",
+                    "inverse-surface": "#2d3133",
+                    "on-secondary-fixed": "#011e2e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Public Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .skeleton {
+            background-color: #eceef0; /* surface-container */
+            position: relative;
+            overflow: hidden;
+        }
+        .skeleton::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.3) 20%,
+                rgba(255, 255, 255, 0.6) 60%,
+                rgba(255, 255, 255, 0)
+            );
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-[#f8f9fb] dark:bg-gray-950 flex flex-col h-full p-6 z-50">
+<div class="mb-10 px-2">
+<span class="text-xl font-bold text-[#006c46] dark:text-[#00a76f] tracking-tight font-headline">Precision Atrium</span>
+<p class="text-xs text-on-surface-variant font-label mt-1 opacity-70">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-2">
+<div class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-gray-400 hover:text-[#006c46] hover:bg-[#eceef0] dark:hover:bg-gray-800 transition-colors duration-200 font-['Public_Sans'] font-medium text-sm rounded-lg group cursor-pointer">
+<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-[#006c46] dark:text-[#00a76f] font-bold bg-[#eceef0] dark:bg-gray-800 rounded-lg font-['Public_Sans'] text-sm group cursor-pointer">
+<span class="material-symbols-outlined text-lg" data-icon="menu_book">menu_book</span>
+<span>Books</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-gray-400 hover:text-[#006c46] hover:bg-[#eceef0] dark:hover:bg-gray-800 transition-colors duration-200 font-['Public_Sans'] font-medium text-sm rounded-lg group cursor-pointer">
+<span class="material-symbols-outlined text-lg" data-icon="group">group</span>
+<span>Members</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-gray-400 hover:text-[#006c46] hover:bg-[#eceef0] dark:hover:bg-gray-800 transition-colors duration-200 font-['Public_Sans'] font-medium text-sm rounded-lg group cursor-pointer">
+<span class="material-symbols-outlined text-lg" data-icon="swap_horiz">swap_horiz</span>
+<span>Circulation</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-gray-400 hover:text-[#006c46] hover:bg-[#eceef0] dark:hover:bg-gray-800 transition-colors duration-200 font-['Public_Sans'] font-medium text-sm rounded-lg group cursor-pointer">
+<span class="material-symbols-outlined text-lg" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</div>
+</nav>
+<div class="pt-6 border-t-0 space-y-2">
+<div class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-gray-400 hover:text-[#006c46] hover:bg-[#eceef0] transition-colors duration-200 font-['Public_Sans'] font-medium text-sm rounded-lg group cursor-pointer">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+<span>Settings</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-error dark:text-error hover:bg-error-container/20 transition-colors duration-200 font-['Public_Sans'] font-medium text-sm rounded-lg group cursor-pointer">
+<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+<span>Logout</span>
+</div>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-40 bg-[#f8f9fb]/80 dark:bg-gray-950/80 backdrop-blur-xl flex items-center justify-between px-8">
+<div class="flex items-center gap-4 w-1/2">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl text-sm focus:ring-2 focus:ring-[#00a76f]/30 font-body" placeholder="Search resources..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-primary-container rounded-full"></span>
+</button>
+<button class="hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-on-surface-variant">help_outline</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-surface-container">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface">Alex Thompson</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Chief Librarian</p>
+</div>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="professional portrait of a male library administrator with a friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjMfH2o-bcQlK_gQ23w_aOAcga2K0SE3SjJ4xrM956s2lYVYMqGOVfpMarMSUrW12oRkZWty1PBXaU-uDKwSkynd-gH3xxozT22t23f6Jg6df_cQXSNkxXHI4vejFK0G12n5y7IYTXR8hNb20qp1juAEhce3earBd-pEzryygmielm6g-pCyxLA5GFpD-T9p-0Mv-VCES07WD2rR_SYx8wKEDS1Ezp-fr6q7om7sUyhH_7UeNGwdaaeyYWghbagClr2gyJ8X1FMGa5"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-24 pb-12 px-8 min-h-screen">
+<!-- Page Header Section -->
+<div class="flex items-end justify-between mb-10">
+<div>
+<h1 class="text-4xl font-extrabold font-headline tracking-tight text-on-surface mb-2">Book Inventory</h1>
+<p class="text-on-surface-variant font-body">Manage and monitor the entire physical catalog of resources.</p>
+</div>
+<button class="bg-gradient-to-br from-[#006c46] to-[#00a76f] text-white px-6 py-3 rounded-xl font-headline font-bold text-sm shadow-lg shadow-primary-container/20 flex items-center gap-2 hover:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-lg">add</span>
+                Add New Resource
+            </button>
+</div>
+<!-- Dashboard Content Grid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Filters & Controls Skeleton Layer -->
+<div class="col-span-12 flex items-center justify-between bg-surface-container-lowest p-6 rounded-2xl shadow-sm">
+<div class="flex gap-4">
+<!-- Skeleton Filter Chips -->
+<div class="skeleton h-10 w-28 rounded-full"></div>
+<div class="skeleton h-10 w-32 rounded-full"></div>
+<div class="skeleton h-10 w-24 rounded-full"></div>
+</div>
+<div class="flex gap-3">
+<div class="skeleton h-10 w-10 rounded-xl"></div>
+<div class="skeleton h-10 w-10 rounded-xl"></div>
+</div>
+</div>
+<!-- Table Section -->
+<div class="col-span-12 bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-8 py-5 text-left text-xs font-bold text-on-surface-variant uppercase tracking-widest font-label w-16">Cover</th>
+<th class="px-8 py-5 text-left text-xs font-bold text-on-surface-variant uppercase tracking-widest font-label">Title &amp; Catalog ID</th>
+<th class="px-8 py-5 text-left text-xs font-bold text-on-surface-variant uppercase tracking-widest font-label">Author</th>
+<th class="px-8 py-5 text-left text-xs font-bold text-on-surface-variant uppercase tracking-widest font-label">Status</th>
+<th class="px-8 py-5 text-right text-xs font-bold text-on-surface-variant uppercase tracking-widest font-label">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<!-- Row 1 Skeleton -->
+<tr class="hover:bg-surface-container/30 transition-colors">
+<td class="px-8 py-6">
+<div class="skeleton w-12 h-16 rounded-lg"></div>
+</td>
+<td class="px-8 py-6">
+<div class="space-y-2">
+<div class="skeleton h-5 w-48 rounded"></div>
+<div class="skeleton h-3 w-24 rounded opacity-60"></div>
+</div>
+</td>
+<td class="px-8 py-6">
+<div class="skeleton h-4 w-32 rounded"></div>
+</td>
+<td class="px-8 py-6">
+<div class="skeleton h-7 w-20 rounded-full"></div>
+</td>
+<td class="px-8 py-6 text-right">
+<div class="flex justify-end gap-2">
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+</div>
+</td>
+</tr>
+<!-- Row 2 Skeleton -->
+<tr class="bg-surface-container-low/20">
+<td class="px-8 py-6">
+<div class="skeleton w-12 h-16 rounded-lg"></div>
+</td>
+<td class="px-8 py-6">
+<div class="space-y-2">
+<div class="skeleton h-5 w-56 rounded"></div>
+<div class="skeleton h-3 w-28 rounded opacity-60"></div>
+</div>
+</td>
+<td class="px-8 py-6">
+<div class="skeleton h-4 w-36 rounded"></div>
+</td>
+<td class="px-8 py-6">
+<div class="skeleton h-7 w-20 rounded-full"></div>
+</td>
+<td class="px-8 py-6 text-right">
+<div class="flex justify-end gap-2">
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+</div>
+</td>
+</tr>
+<!-- Row 3 Skeleton -->
+<tr>
+<td class="px-8 py-6">
+<div class="skeleton w-12 h-16 rounded-lg"></div>
+</td>
+<td class="px-8 py-6">
+<div class="space-y-2">
+<div class="skeleton h-5 w-40 rounded"></div>
+<div class="skeleton h-3 w-20 rounded opacity-60"></div>
+</div>
+</td>
+<td class="px-8 py-6">
+<div class="skeleton h-4 w-28 rounded"></div>
+</td>
+<td class="px-8 py-6">
+<div class="skeleton h-7 w-20 rounded-full"></div>
+</td>
+<td class="px-8 py-6 text-right">
+<div class="flex justify-end gap-2">
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+</div>
+</td>
+</tr>
+<!-- Row 4 Skeleton -->
+<tr class="bg-surface-container-low/20">
+<td class="px-8 py-6">
+<div class="skeleton w-12 h-16 rounded-lg"></div>
+</td>
+<td class="px-8 py-6">
+<div class="space-y-2">
+<div class="skeleton h-5 w-64 rounded"></div>
+<div class="skeleton h-3 w-32 rounded opacity-60"></div>
+</div>
+</td>
+<td class="px-8 py-6">
+<div class="skeleton h-4 w-40 rounded"></div>
+</td>
+<td class="px-8 py-6">
+<div class="skeleton h-7 w-20 rounded-full"></div>
+</td>
+<td class="px-8 py-6 text-right">
+<div class="flex justify-end gap-2">
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+</div>
+</td>
+</tr>
+<!-- Row 5 Skeleton -->
+<tr>
+<td class="px-8 py-6">
+<div class="skeleton w-12 h-16 rounded-lg"></div>
+</td>
+<td class="px-8 py-6">
+<div class="space-y-2">
+<div class="skeleton h-5 w-52 rounded"></div>
+<div class="skeleton h-3 w-24 rounded opacity-60"></div>
+</div>
+</td>
+<td class="px-8 py-6">
+<div class="skeleton h-4 w-32 rounded"></div>
+</td>
+<td class="px-8 py-6">
+<div class="skeleton h-7 w-20 rounded-full"></div>
+</td>
+<td class="px-8 py-6 text-right">
+<div class="flex justify-end gap-2">
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Skeleton -->
+<div class="p-8 border-t border-surface-container flex items-center justify-between">
+<div class="skeleton h-4 w-40 rounded"></div>
+<div class="flex gap-2">
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+<div class="skeleton h-8 w-8 rounded-lg"></div>
+</div>
+</div>
+</div>
+<!-- Stats Asymmetric Layout -->
+<div class="col-span-12 md:col-span-4 bg-gradient-to-br from-primary to-primary-container p-8 rounded-3xl text-white">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-4xl opacity-50">auto_stories</span>
+<span class="text-xs font-bold uppercase tracking-widest opacity-80">Catalog Velocity</span>
+</div>
+<div class="skeleton bg-white/20 h-12 w-3/4 rounded-xl mb-4"></div>
+<div class="skeleton bg-white/10 h-6 w-1/2 rounded-lg"></div>
+</div>
+<div class="col-span-12 md:col-span-8 grid grid-cols-2 gap-8">
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm flex flex-col justify-between">
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Reserved Assets</p>
+<div class="skeleton h-10 w-24 rounded-xl"></div>
+</div>
+<div class="skeleton h-2 w-full rounded-full mt-8"></div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm flex flex-col justify-between">
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Average Cycle</p>
+<div class="skeleton h-10 w-32 rounded-xl"></div>
+</div>
+<div class="skeleton h-2 w-full rounded-full mt-8"></div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

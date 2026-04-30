@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LibraryAdmin - Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "inverse-on-surface": "#eff1f3",
+                "surface-container-low": "#f2f4f6",
+                "on-secondary-fixed-variant": "#304a5c",
+                "surface-variant": "#e0e3e5",
+                "primary-fixed": "#79fabb",
+                "tertiary": "#0062a0",
+                "error": "#ba1a1a",
+                "tertiary-fixed": "#d0e4ff",
+                "on-primary": "#ffffff",
+                "on-background": "#191c1e",
+                "on-tertiary-fixed": "#001d35",
+                "outline": "#6d7a71",
+                "secondary-container": "#c8e3fa",
+                "primary": "#006c46",
+                "tertiary-fixed-dim": "#9bcaff",
+                "outline-variant": "#bccabf",
+                "on-tertiary-container": "#002d4e",
+                "on-secondary-container": "#4c6679",
+                "on-tertiary-fixed-variant": "#00497a",
+                "on-error-container": "#93000a",
+                "secondary-fixed-dim": "#b0cae0",
+                "surface-bright": "#f8f9fb",
+                "on-secondary-fixed": "#011e2e",
+                "background": "#f8f9fb",
+                "surface-container-lowest": "#ffffff",
+                "secondary": "#486174",
+                "on-primary-container": "#00321f",
+                "primary-container": "#00a76f",
+                "on-tertiary": "#ffffff",
+                "tertiary-container": "#4697e0",
+                "on-surface": "#191c1e",
+                "surface-container-high": "#e6e8ea",
+                "secondary-fixed": "#cbe6fc",
+                "on-surface-variant": "#3d4a41",
+                "on-primary-fixed-variant": "#005234",
+                "on-primary-fixed": "#002112",
+                "surface-container": "#eceef0",
+                "surface": "#f8f9fb",
+                "on-error": "#ffffff",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#e0e3e5",
+                "primary-fixed-dim": "#5adda0",
+                "surface-tint": "#006c46",
+                "surface-dim": "#d8dadc",
+                "inverse-surface": "#2d3133",
+                "error-container": "#ffdad6",
+                "inverse-primary": "#5adda0"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Public Sans"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fb; }
+        h1, h2, h3 { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-[#f8f9fb] dark:bg-slate-950 docked full-width top-0 sticky z-40 flex justify-between items-center px-8 py-4 w-full">
+<div class="flex items-center gap-4">
+<span class="text-xl font-black text-[#191c1e] dark:text-slate-100 font-['Public_Sans'] font-bold tracking-tight">LibraryAdmin</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden md:block">
+<input class="bg-surface-container-low border-none rounded-xl px-4 py-2 text-sm w-64 focus:ring-2 focus:ring-primary-container focus:bg-surface-container-lowest transition-all" placeholder="Search notifications..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-full hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="p-2 rounded-full hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold overflow-hidden">
+<img alt="Admin Avatar" data-alt="Close up professional headshot of a library administrator smiling in a modern bright office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPgoMqgbvyyCbcm5vvekh6dy9yUoOcnlfrp-SoR6fd2svV-StcDYGB-vtOOXTmJV_mxz1HbxcEZgEk7G6Vx3FMsslzhLcrOadbSsHm_SBggKjaKP5CfLC71iqRjc3oVvIiF_NmiYNe-xD_nwdtN-o9oc1ODwLwmqP6i8KO15whnl3pLq3RD5JfamehCh_OQkirM3_ueNIkoTlxmOBp5QqUiAfTyzRTx_F_LGChZkquusSsQz14J89qslwlCtEEjNidBX741mo-d9C0"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="bg-[#f8f9fb] dark:bg-slate-950 h-screen w-64 fixed left-0 top-0 border-r-0 flex flex-col p-6 space-y-4 pt-24 hidden md:flex">
+<div class="mb-8 px-2">
+<h3 class="text-lg font-bold text-[#006c46] font-['Inter']">Main Branch</h3>
+<p class="text-xs opacity-60">Central Library System</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 opacity-80 hover:bg-[#eceef0] dark:hover:bg-slate-900 transition-all rounded-lg font-['Inter'] font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 opacity-80 hover:bg-[#eceef0] dark:hover:bg-slate-900 transition-all rounded-lg font-['Inter'] font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="book_5">book_5</span>
+<span>Catalog</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 opacity-80 hover:bg-[#eceef0] dark:hover:bg-slate-900 transition-all rounded-lg font-['Inter'] font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span>Circulation</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#006c46] dark:text-[#00a76f] font-bold bg-[#eceef0] dark:bg-slate-900 rounded-lg font-['Inter'] font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span>Notifications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 opacity-80 hover:bg-[#eceef0] dark:hover:bg-slate-900 transition-all rounded-lg font-['Inter'] font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</a>
+</nav>
+<button class="w-full bg-primary hover:opacity-90 text-white py-3 rounded-xl font-bold shadow-lg shadow-primary/10 transition-all text-sm mb-4">
+                New Announcement
+            </button>
+<div class="pt-4 border-t border-surface-container">
+<a class="flex items-center gap-3 px-4 py-2 text-[#191c1e] opacity-70 hover:opacity-100 text-sm" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="support_agent">support_agent</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-[#191c1e] opacity-70 hover:opacity-100 text-sm" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 p-4 md:p-10">
+<div class="max-w-6xl mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Notifications</h1>
+<p class="text-on-surface-variant font-medium">Manage and respond to system alerts and member activities.</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container-high px-4 py-2.5 rounded-xl font-bold text-sm hover:bg-surface-container transition-colors">Mark all as read</button>
+</div>
+</div>
+<!-- Three Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Sidebar: Filters -->
+<div class="lg:col-span-3 space-y-6">
+<div class="bg-surface-container-lowest rounded-2xl p-2 shadow-sm border-none">
+<h3 class="px-4 pt-4 pb-2 text-xs font-bold uppercase tracking-wider text-on-surface-variant opacity-50">Filter by</h3>
+<div class="space-y-1">
+<button class="w-full flex items-center justify-between px-4 py-3 bg-primary-container/10 text-primary font-bold rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="list">list</span>
+<span class="text-sm">All</span>
+</div>
+<span class="bg-primary text-white text-[10px] px-2 py-0.5 rounded-full">12</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="mark_chat_unread">mark_chat_unread</span>
+<span class="text-sm">Unread</span>
+</div>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">5</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="error_outline">error_outline</span>
+<span class="text-sm">Overdue</span>
+</div>
+<span class="bg-error-container text-on-error-container text-[10px] px-2 py-0.5 rounded-full">3</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="book_reservation">book_online</span>
+<span class="text-sm">Reservations</span>
+</div>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full">4</span>
+</button>
+</div>
+</div>
+<!-- Statistics Card -->
+<div class="bg-primary p-6 rounded-2xl relative overflow-hidden text-white shadow-xl shadow-primary/20">
+<div class="relative z-10">
+<h4 class="text-sm font-medium opacity-80 mb-1">Efficiency Rate</h4>
+<div class="text-3xl font-black mb-4">94.2%</div>
+<p class="text-xs opacity-70">Notifications addressed within 2 hours this week.</p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-20">
+<span class="material-symbols-outlined text-8xl" data-icon="bolt">bolt</span>
+</div>
+</div>
+</div>
+<!-- Main Center Column: Notification List -->
+<div class="lg:col-span-6 space-y-10">
+<!-- Group: Today -->
+<section>
+<h2 class="text-sm font-bold text-on-surface-variant mb-6 flex items-center gap-2">
+<span class="w-2 h-2 bg-primary rounded-full"></span>
+                                Today
+                            </h2>
+<div class="space-y-4">
+<!-- Urgent Notification (Unread) -->
+<div class="group relative bg-surface-container-lowest p-6 rounded-2xl transition-all hover:shadow-lg hover:shadow-on-surface/5 border-none">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-12 bg-error rounded-r-full"></div>
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-error-container/20 flex items-center justify-center text-error shrink-0">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Overdue: "The Great Gatsby"</h3>
+<span class="text-[10px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded-md">2m ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-4">Member #4492 (Sarah J.) has not returned the item. 3rd reminder automatically sent.</p>
+<div class="flex gap-3">
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-lg text-xs font-bold hover:opacity-90 transition-all">Resolve Now</button>
+<button class="text-on-surface-variant px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-surface-container transition-all">View Record</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Required (Unread) -->
+<div class="group relative bg-surface-container-lowest p-6 rounded-2xl transition-all hover:shadow-lg hover:shadow-on-surface/5 border-none">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-12 bg-primary rounded-r-full"></div>
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" data-icon="bookmark_added">bookmark_added</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">New Reservation Request</h3>
+<span class="text-[10px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded-md">45m ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-4">New request for "Modern Operating Systems" by Tanenbaum. 2 copies available.</p>
+<div class="flex gap-3">
+<button class="bg-primary text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:opacity-90 transition-all">Approve</button>
+<button class="text-on-surface-variant px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-surface-container transition-all">Deny</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Info (Read) -->
+<div class="group bg-surface-container-low p-6 rounded-2xl opacity-75 grayscale-[0.5] hover:grayscale-0 hover:opacity-100 transition-all border-none">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined" data-icon="system_update_alt">system_update_alt</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface">System Backup Complete</h3>
+<span class="text-[10px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded-md">3h ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Weekly cloud synchronization successfully completed. 1.2GB archived.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Group: Yesterday -->
+<section>
+<h2 class="text-sm font-bold text-on-surface-variant mb-6 flex items-center gap-2">
+                                Yesterday
+                            </h2>
+<div class="space-y-4">
+<!-- Reservation (Read) -->
+<div class="group bg-surface-container-low p-6 rounded-2xl opacity-75 border-none">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface">Reservation Expired</h3>
+<span class="text-[10px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded-md">Yesterday</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">The hold for "Design Patterns" has expired. Item returned to general catalog.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Quick Actions & Summary -->
+<div class="lg:col-span-3 space-y-6">
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border-none">
+<h3 class="text-base font-bold text-on-surface mb-6">Activity Snapshot</h3>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-xl" data-icon="trending_up">trending_up</span>
+</div>
+<div>
+<div class="text-sm font-bold">142 Items</div>
+<div class="text-[11px] text-on-surface-variant">Circulated today</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-error-container/20 flex items-center justify-center text-error shrink-0">
+<span class="material-symbols-outlined text-xl" data-icon="schedule">schedule</span>
+</div>
+<div>
+<div class="text-sm font-bold">12 Overdue</div>
+<div class="text-[11px] text-on-surface-variant">Action required</div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-surface-container">
+<h4 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant opacity-50 mb-4">Global Reach</h4>
+<div class="aspect-video bg-surface-container rounded-xl relative overflow-hidden">
+<img alt="System Activity Map" class="w-full h-full object-cover grayscale opacity-50" data-alt="Abstract minimalist topographic map in shades of gray and green indicating library branch locations across a metropolitan area" data-location="New York" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAicFcWGwIv2z88LlAkt__BjuzJ1NYZ8D_GyoqTgIwb63OygGwJCzr54fKtPmUkqI5OKOTTLAvzebOFf7OkSR921n3ac5wLlePw_IeRsR4JJHY8oFTRfd_wX22dc1STNIQB4qfQ0zT_5iYne0mKzXEubXxKotaumyegYxtJh-pyMmOI4db-BxxnywwdbStmz2lb5mwvnU8lOmAiZM3Cj1tHTPrxYxYBa0hUmMsJbJGXVqayIZR0qaoBvTeT-qY6iRGhUHB_ITtKSnyG"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</div>
+</div>
+<!-- System Health Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border-none">
+<h3 class="text-sm font-bold text-on-surface mb-4">Admin Resources</h3>
+<ul class="space-y-3">
+<li>
+<a class="flex items-center gap-2 text-xs font-medium text-primary hover:underline" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="auto_stories">auto_stories</span>
+                                        User Manual
+                                    </a>
+</li>
+<li>
+<a class="flex items-center gap-2 text-xs font-medium text-primary hover:underline" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="policy">policy</span>
+                                        Lending Policies
+                                    </a>
+</li>
+<li>
+<a class="flex items-center gap-2 text-xs font-medium text-primary hover:underline" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="contact_support">contact_support</span>
+                                        IT Support
+                                    </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Navigation Shell Logic Check: Mobile Bottom Bar -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-lowest flex justify-around items-center py-3 border-t border-surface-container z-50">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined" data-icon="book_5">book_5</span>
+<span class="text-[10px] font-bold">Catalog</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="text-[10px] font-bold">Alerts</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</button>
+</nav>
+</body></html>

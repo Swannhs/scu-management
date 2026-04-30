@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Precision Atrium - Library Admin Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#002d4e",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#005234",
+                    "surface-tint": "#006c46",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-fixed": "#cbe6fc",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#3d4a41",
+                    "on-surface": "#191c1e",
+                    "surface-variant": "#e0e3e5",
+                    "on-primary-fixed": "#002112",
+                    "inverse-surface": "#2d3133",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f8f9fb",
+                    "primary-fixed-dim": "#5adda0",
+                    "tertiary-container": "#4697e0",
+                    "on-tertiary-fixed": "#001d35",
+                    "surface-dim": "#d8dadc",
+                    "secondary-container": "#c8e3fa",
+                    "background": "#f8f9fb",
+                    "inverse-on-surface": "#eff1f3",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#304a5c",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#00497a",
+                    "primary-fixed": "#79fabb",
+                    "primary": "#006c46",
+                    "on-background": "#191c1e",
+                    "secondary": "#486174",
+                    "surface-container": "#eceef0",
+                    "tertiary": "#0062a0",
+                    "on-primary-container": "#00321f",
+                    "inverse-primary": "#5adda0",
+                    "surface": "#f8f9fb",
+                    "tertiary-fixed-dim": "#9bcaff",
+                    "on-secondary-container": "#4c6679",
+                    "tertiary-fixed": "#d0e4ff",
+                    "outline-variant": "#bccabf",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e6e8ea",
+                    "primary-container": "#00a76f",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-secondary-fixed": "#011e2e",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#b0cae0",
+                    "outline": "#6d7a71"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Public Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-bar { transition: height 0.3s ease; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col bg-[#ffffff] dark:bg-slate-950 border-r border-[#bccabf]/20 shadow-sm z-50 font-['Inter'] text-sm font-medium py-6 px-4 gap-2">
+<div class="flex items-center gap-3 px-2 mb-8">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">auto_stories</span>
+</div>
+<div>
+<h1 class="text-lg font-black tracking-tight text-on-surface">Precision Atrium</h1>
+<p class="text-[10px] text-outline uppercase tracking-widest font-bold">Central Library</p>
+</div>
+</div>
+<button class="mb-6 w-full py-3 px-4 bg-gradient-to-br from-[#006c46] to-[#00a76f] text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-lg transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined text-sm">add</span>
+            New Book Entry
+        </button>
+<nav class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-[#f8f9fb] hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-[#f8f9fb] hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+                Circulation
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-[#f8f9fb] hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-[#f8f9fb] hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                Members
+            </a>
+<!-- Active Navigation State: Reports -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#006c46] bg-[#f2f4f6] font-semibold border-r-4 border-[#006c46] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                Reports
+            </a>
+</nav>
+<div class="flex flex-col gap-1 pt-6 border-t border-outline-variant/20">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-[#f8f9fb] hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-error/80 hover:bg-error-container/20 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar (Authority Source: JSON) -->
+<header class="w-full sticky top-0 z-40 bg-[#f8f9fb] dark:bg-slate-900 flex justify-between items-center px-8 h-16 font-['Public_Sans'] font-semibold">
+<div class="flex items-center gap-8 flex-1">
+<span class="text-xl font-bold text-[#006c46] dark:text-[#00a76f]">Atrium Library Admin</span>
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 text-sm placeholder-outline/60" placeholder="Search analytics, records, or members..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#eceef0] transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-background"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#eceef0] transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/30 mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer hover:bg-[#eceef0] rounded-xl p-1 pr-3 transition-colors">
+<img alt="Administrator profile" class="w-8 h-8 rounded-full object-cover" data-alt="Close-up portrait of a professional man with a clean beard wearing a crisp white shirt in a brightly lit office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9TuOuzBzA0LEtHQHHnD51haDyREWFo_3qXueff260UU08x8uykG3pvJNQgfUP5G_QCDbbbgRMGRe9rqz_0cS2fmtqHA1V5Zm80qxBVrZflo-zyozHY3b8Eldx7o29ubnLy7aB5DYa8gdE4f1LCG_2exDFNqyRTwvZtXNwuJxOMA4DMlFp1dIvHeHxm8hMQ7kwlbRV4q8R17r0lbDyVXiFEElVRo84sKRHUlXKJBBevQkwXq8BahpJBCv7RaDhtP8B0zDDKbNGPgZZ"/>
+<span class="text-sm font-bold text-on-surface">Admin</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<section class="p-8 space-y-8">
+<!-- Hero Header -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline text-3xl font-extrabold tracking-tight text-on-surface">Analytics Overview</h2>
+<p class="font-body text-outline mt-1">Real-time performance metrics and library health indicators.</p>
+</div>
+<div class="flex gap-3">
+<div class="flex items-center gap-2 bg-surface-container-lowest px-4 py-2 rounded-xl shadow-sm">
+<span class="text-xs font-bold text-outline uppercase tracking-wider">Timeframe:</span>
+<select class="border-none bg-transparent text-sm font-semibold text-primary focus:ring-0 p-0 pr-6 cursor-pointer">
+<option>Last 12 Months</option>
+<option>Last Quarter</option>
+<option>Fiscal Year 2023</option>
+</select>
+</div>
+<button class="bg-primary/10 text-primary px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export PDF
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Main Bar Chart: Books Issued (8 cols) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline text-lg font-bold">Books Issued Per Month</h3>
+<p class="text-xs text-outline font-medium">Total volume compared across last 12 months</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-[10px] font-bold text-outline">PHYSICAL</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-tertiary-container"></div>
+<span class="text-[10px] font-bold text-outline">DIGITAL</span>
+</div>
+</div>
+</div>
+<!-- Mock Bar Chart -->
+<div class="h-64 flex items-end justify-between gap-2">
+<!-- Bars iterate -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[60%] group-hover:bg-primary transition-colors"></div>
+<div class="w-full bg-tertiary-container/30 rounded-t-sm h-[30%]"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">JAN</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[45%] group-hover:bg-primary transition-colors"></div>
+<div class="w-full bg-tertiary-container/30 rounded-t-sm h-[40%]"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">FEB</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[75%] group-hover:bg-primary transition-colors"></div>
+<div class="w-full bg-tertiary-container/30 rounded-t-sm h-[20%]"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">MAR</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[90%] group-hover:bg-primary transition-colors"></div>
+<div class="w-full bg-tertiary-container/30 rounded-t-sm h-[10%]"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">APR</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[65%] group-hover:bg-primary transition-colors"></div>
+<div class="w-full bg-tertiary-container/30 rounded-t-sm h-[25%]"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">MAY</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[55%] group-hover:bg-primary transition-colors"></div>
+<div class="w-full bg-tertiary-container/30 rounded-t-sm h-[35%]"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">JUN</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary rounded-t-sm h-[80%]"></div>
+<div class="w-full bg-tertiary-container rounded-t-sm h-[15%]"></div>
+</div>
+<span class="text-[10px] font-bold text-primary">JUL</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[40%] group-hover:bg-primary transition-colors"></div>
+<div class="w-full bg-tertiary-container/30 rounded-t-sm h-[50%]"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">AUG</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[85%] group-hover:bg-primary transition-colors"></div>
+<div class="w-full bg-tertiary-container/30 rounded-t-sm h-[10%]"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">SEP</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[70%] group-hover:bg-primary transition-colors"></div>
+<div class="w-full bg-tertiary-container/30 rounded-t-sm h-[20%]"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">OCT</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[50%] group-hover:bg-primary transition-colors"></div>
+<div class="w-full bg-tertiary-container/30 rounded-t-sm h-[30%]"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">NOV</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex flex-col-reverse gap-1 h-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[95%] group-hover:bg-primary transition-colors"></div>
+<div class="w-full bg-tertiary-container/30 rounded-t-sm h-[5%]"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">DEC</span>
+</div>
+</div>
+</div>
+<!-- Top Active Members (4 cols) -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+<h3 class="font-headline text-lg font-bold mb-6">Top Members</h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Member Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a young woman with a friendly smile, outdoor soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNeBIx169VutFc_QEO3kkrhVtvLfMPG6SHpTRlConEJPZH3MNLoCbVI2BR9o1hV4fAS3ZRZrGagy5OB2gbAsbEWJoCdbo4rAMo7rilJM9mGJ9x0wMtV-dCIr57jGegBajcfd3Soc_D0tm0BUk3g3kSIExc2IgRRrX73jqFlO7x5Qao3MUL2RUOLkYt1T1V5dhKSKKxTz8NwRfiyDgI8ussePkmvoNQnzFzh2yhl3q3fDFyRDGDIPruoQuqI-moRwLYSKTevFIbZ4xE"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-primary text-[10px] text-white flex items-center justify-center rounded-full font-bold border-2 border-white">1</div>
+</div>
+<div>
+<p class="text-sm font-bold group-hover:text-primary transition-colors">Sarah Jenkins</p>
+<p class="text-[11px] text-outline">Premium Member</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-black text-on-surface">124</p>
+<p class="text-[10px] font-bold text-outline uppercase">Books</p>
+</div>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Member Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a professional man in spectacles, clean studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE39zOqWXwBTw8E5moIw_C80n0jI_RoxjzwBalbbIU1DEtHWU0Dr4L_e3UMfP1ppoC1l5VgVoBImBDkrpgijKa0NKqD5fq254Dhq0mQsO3b1RaPT72eTa5hRCgnu9DlwtCdVhCNzr5Dg7coytcUaAS8Sn1LfhUSyVdCvyULsx7t8_QWluJ2OjESeti7ZUrPI0dLzMRlzJcjvHD64UNTelmokmkS96xrzvm-iah0_3DbGNEC5xyrLWNkmIjB9eZE6pYgma9_tESxBx6"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-primary/40 text-[10px] text-white flex items-center justify-center rounded-full font-bold border-2 border-white">2</div>
+</div>
+<div>
+<p class="text-sm font-bold group-hover:text-primary transition-colors">David Chen</p>
+<p class="text-[11px] text-outline">Faculty</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-black text-on-surface">98</p>
+<p class="text-[10px] font-bold text-outline uppercase">Books</p>
+</div>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Member Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Woman with short hair, warm artistic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeLTAGPWvWn-eJXKJtnL0pbhsnTUFM53SA0Q4sz7o_l5PMmZdl2uyCAbwwYnQXavXRmxCA3uHQcluimRjActLLqkwGO_eu9gAXV_pNr4_EpeCFwZfbZfwwl3iy0Y7ES6qeTcTI-ch4qyw5PTlYYuX8VYDJsbb_9LyG8Fhvu_JqvxYSu9mr8i7NbBCcMK3pZMM2FemNJyr9BiPx4Tg8pJ8MCdTqoj5rUeaSPjAYc0pVr1IYlRNEMM3Trl8h0ELb-yo1RGWr1XU8x-K1"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-primary/30 text-[10px] text-white flex items-center justify-center rounded-full font-bold border-2 border-white">3</div>
+</div>
+<div>
+<p class="text-sm font-bold group-hover:text-primary transition-colors">Elena Rodriguez</p>
+<p class="text-[11px] text-outline">Student</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-black text-on-surface">85</p>
+<p class="text-[10px] font-bold text-outline uppercase">Books</p>
+</div>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Member Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Man with casual attire, natural daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLRl_MGTkHdBOQ_l1wmHI-tSjN2h_JdeS_JDgSMQY5ADusaAY8VYfIFTj-dBwcwWEgbxtDvgfDXiM7RTFLKF3trCSUz7anz4_vy3z6bw0jp0I5pB3FYExuqY3MYLAt7Io21C6J5jf2jz9V4sgmfTZ1LEh2W7UcA0UycpOYmBmKLs32scqwKyqsdXJYYdK-jKBvMZHZtwuohZ3cmz4I9aoWO9bWcTX_SIFqMYKN6QAZ2W8rRcdTSlIWhOGIVXaVh0wqhNhP1NuItHDa"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-primary/20 text-[10px] text-white flex items-center justify-center rounded-full font-bold border-2 border-white">4</div>
+</div>
+<div>
+<p class="text-sm font-bold group-hover:text-primary transition-colors">Marcus Thorne</p>
+<p class="text-[11px] text-outline">Researcher</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-black text-on-surface">77</p>
+<p class="text-[10px] font-bold text-outline uppercase">Books</p>
+</div>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Member Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Close-up profile of a woman smiling, bright outdoor setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD94t8XB9aNvbJW7ihstc9T79wzrcIdJ2DtHvJgx8xxDs2z-ESFqmrXZHHbSayrhoo8r64wcgp4IfOiCFZG6Cr6jKfuvz0miMHeaZT3GWoVABo90byChcAfIdGY8k6gGrNzRidp53FBzMgUi25aw7YzRWUKm7qpsDbAmXwnftSPSOvhuBmBCExWK6j_IqOkQIZ415qo7YR4emBsFwpSzdjd7NPG5xpEjMoqDwEErfqQtz8h9qkoHZchkDFQJnsGonxSCnoZmHtlp6Hz"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-primary/10 text-[10px] text-white flex items-center justify-center rounded-full font-bold border-2 border-white">5</div>
+</div>
+<div>
+<p class="text-sm font-bold group-hover:text-primary transition-colors">Aisha Kim</p>
+<p class="text-[11px] text-outline">Student</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-black text-on-surface">62</p>
+<p class="text-[10px] font-bold text-outline uppercase">Books</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Overdue Trends (6 cols) -->
+<div class="col-span-12 lg:col-span-6 bg-surface-container-lowest rounded-xl p-6 shadow-sm overflow-hidden relative">
+<h3 class="font-headline text-lg font-bold mb-1">Overdue Trends</h3>
+<p class="text-xs text-outline font-medium mb-8">Incident count over the last 30 days</p>
+<div class="relative h-48 w-full">
+<!-- SVG Line Chart Mock -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 400 100">
+<defs>
+<lineargradient id="lineGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#ba1a1a" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#ba1a1a" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,80 Q50,70 100,85 T200,40 T300,60 T400,20 L400,100 L0,100 Z" fill="url(#lineGrad)"></path>
+<path d="M0,80 Q50,70 100,85 T200,40 T300,60 T400,20" fill="none" stroke="#ba1a1a" stroke-linecap="round" stroke-width="2"></path>
+<!-- Dots -->
+<circle cx="100" cy="85" fill="#ba1a1a" r="3"></circle>
+<circle cx="200" cy="40" fill="#ba1a1a" r="3"></circle>
+<circle cx="400" cy="20" fill="#ba1a1a" r="3"></circle>
+</svg>
+</div>
+<div class="flex justify-between mt-4">
+<span class="text-[10px] font-bold text-outline">30 DAYS AGO</span>
+<span class="text-[10px] font-bold text-outline">TODAY</span>
+</div>
+</div>
+<!-- Popular Book Categories (6 cols) -->
+<div class="col-span-12 lg:col-span-6 bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+<h3 class="font-headline text-lg font-bold mb-6">Popular Categories</h3>
+<div class="space-y-5">
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="text-sm font-bold">Science Fiction</span>
+<span class="text-xs font-black text-primary">82%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 82%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="text-sm font-bold">Biography</span>
+<span class="text-xs font-black text-primary">64%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 64%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="text-sm font-bold">Technology</span>
+<span class="text-xs font-black text-primary">59%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 59%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="text-sm font-bold">Historical Fiction</span>
+<span class="text-xs font-black text-primary">41%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 41%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action State Indicator (Glow rule applied) -->
+<div class="fixed bottom-8 right-8 flex items-center gap-3 bg-surface-container-lowest shadow-xl px-4 py-3 rounded-2xl border border-outline-variant/10">
+<div class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary shadow-[0_0_8px_#006c46]"></span>
+</div>
+<span class="text-xs font-bold text-on-surface uppercase tracking-wider">Live System Feed</span>
+</div>
+</body></html>

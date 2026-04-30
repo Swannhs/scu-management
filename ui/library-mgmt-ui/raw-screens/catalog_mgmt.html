@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Precision Atrium - Book Catalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#0062a0",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-container": "#4c6679",
+                        "on-primary-container": "#00321f",
+                        "on-secondary-fixed": "#011e2e",
+                        "inverse-primary": "#5adda0",
+                        "tertiary-container": "#4697e0",
+                        "surface": "#f8f9fb",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#005234",
+                        "on-primary-fixed": "#002112",
+                        "tertiary-fixed-dim": "#9bcaff",
+                        "surface-container": "#eceef0",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f2f4f6",
+                        "primary-fixed": "#79fabb",
+                        "secondary-fixed": "#cbe6fc",
+                        "tertiary-fixed": "#d0e4ff",
+                        "primary-container": "#00a76f",
+                        "surface-bright": "#f8f9fb",
+                        "on-background": "#191c1e",
+                        "background": "#f8f9fb",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed-dim": "#5adda0",
+                        "outline-variant": "#bccabf",
+                        "on-tertiary-fixed": "#001d35",
+                        "outline": "#6d7a71",
+                        "surface-tint": "#006c46",
+                        "on-surface-variant": "#3d4a41",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#002d4e",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-fixed-variant": "#00497a",
+                        "secondary-fixed-dim": "#b0cae0",
+                        "inverse-surface": "#2d3133",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#c8e3fa",
+                        "primary": "#006c46",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary": "#486174",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#304a5c",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .brand-logo { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar -->
+<aside class="h-screen w-72 fixed left-0 top-0 bg-[#f8f9fb] dark:bg-slate-950 flex flex-col p-4 space-y-2 border-r-0 z-50">
+<div class="flex items-center space-x-3 px-2 mb-8">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<h2 class="font-['Public_Sans'] text-lg font-black text-[#00A76F]">Precision Atrium</h2>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Management Console</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center space-x-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-lg font-['Inter'] text-sm font-medium duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#006c46] font-bold bg-[#eceef0] dark:bg-slate-800 rounded-lg font-['Inter'] text-sm duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span>Book Catalog</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-lg font-['Inter'] text-sm font-medium duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Member Directory</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-lg font-['Inter'] text-sm font-medium duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span>Lending Activity</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-lg font-['Inter'] text-sm font-medium duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span>Reports</span>
+</a>
+</nav>
+<div class="px-2 pb-4">
+<button class="w-full py-3 px-4 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl font-semibold shadow-lg shadow-primary/20 flex items-center justify-center space-x-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span class="text-sm">Add New Resource</span>
+</button>
+</div>
+<div class="pt-4 mt-4 border-t border-surface-container space-y-1">
+<a class="flex items-center space-x-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-lg font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span>Support</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-lg font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Wrapper -->
+<main class="ml-72 min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-40 bg-[#f8f9fb]/80 dark:bg-slate-900/80 backdrop-blur-md flex justify-between items-center px-6 h-20 w-full">
+<div class="flex items-center space-x-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/30 text-sm placeholder-slate-400" placeholder="Search systems or metadata..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<button class="p-2 text-slate-500 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-full cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-full cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-full cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-[1px] bg-surface-container mx-2"></div>
+<div class="flex items-center space-x-3 ml-2 group cursor-pointer">
+<div class="text-right">
+<p class="text-sm font-['Public_Sans'] font-semibold text-on-surface">Admin User</p>
+<p class="text-[11px] text-slate-500 font-medium">Head Librarian</p>
+</div>
+<img alt="Admin profile" class="w-10 h-10 rounded-full border-2 border-primary-container/20 p-0.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUM-0KNwn75-kRbMEpOLRFsNrH6CbpS1W_Gl6LP8e4Lqct7R5g2ozpBIh8RS9dEVHajr477UwPteIFk8oKxedMFF_yXNjx4fzCWGFjDm4nlw4WK9Y4e2AzIcfkEkUUmdjUnOXfUbdPwsnGC2RmTsYB3Bmq1RO2A6cirforhqkFDxrLRhqZT-wuht2gS2n_Nx6GAs4sByrdP7_Mrc1w-6-_vivTcZkIPJwCx22wl3lcTMNDiBv-ISCIm0HP319lEFUFBtYIuive9ZGu"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-8">
+<div class="max-w-7xl mx-auto">
+<!-- Page Title -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="text-3xl font-black text-on-surface tracking-tight mb-1">Book Catalog</h1>
+<p class="text-on-surface-variant font-medium">Manage and monitor the university's physical collection.</p>
+</div>
+<div class="flex space-x-3">
+<button class="px-4 py-2 bg-surface-container-high text-on-surface font-semibold rounded-xl text-sm flex items-center space-x-2 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="file_download">file_download</span>
+<span>Export CSV</span>
+</button>
+</div>
+</div>
+<!-- Filters Bar -->
+<div class="bg-surface-container-lowest p-4 rounded-xl mb-6 flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[300px] relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 text-sm" placeholder="Search books by title, author or ISBN..." type="text"/>
+</div>
+<div class="flex items-center space-x-3">
+<select class="bg-surface-container-low border-none rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-primary/20 cursor-pointer min-w-[140px]">
+<option>All Categories</option>
+<option>Computer Science</option>
+<option>Architecture</option>
+<option>Theoretical Physics</option>
+<option>Modern Art</option>
+</select>
+<select class="bg-surface-container-low border-none rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-primary/20 cursor-pointer min-w-[140px]">
+<option>Status: All</option>
+<option>Available</option>
+<option>Out of Stock</option>
+<option>On Hold</option>
+</select>
+<button class="bg-[#00A76F] hover:bg-[#008f5d] text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center space-x-2 transition-all active:scale-95 shadow-lg shadow-[#00A76F]/20">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span>Add Book</span>
+</button>
+</div>
+</div>
+<!-- Table Card -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 text-[11px] font-black uppercase tracking-wider text-on-surface-variant w-20">Cover</th>
+<th class="px-6 py-4 text-[11px] font-black uppercase tracking-wider text-on-surface-variant">Title &amp; Author</th>
+<th class="px-6 py-4 text-[11px] font-black uppercase tracking-wider text-on-surface-variant">ISBN</th>
+<th class="px-6 py-4 text-[11px] font-black uppercase tracking-wider text-on-surface-variant">Category</th>
+<th class="px-6 py-4 text-[11px] font-black uppercase tracking-wider text-on-surface-variant">Copies</th>
+<th class="px-6 py-4 text-[11px] font-black uppercase tracking-wider text-on-surface-variant">Status</th>
+<th class="px-6 py-4 text-[11px] font-black uppercase tracking-wider text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="w-12 h-16 rounded-md bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="minimalist book cover with geometric grid pattern in forest green and white palette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaX4nIiqjZaNd-A-o2RFWLLGJhcw9cdQ_rgXY_k8Rz-uVtGhNr_5vsNlcKCvLqMEvmIEhBDlNiLUKQ5zLy9I5YJSqiKokRZKj9T7Fdkb9po0chUaRHFXcYukcAl1SdJY0Z0Tw0EsZ-_13G4xBZte9fc5B8lrbUl8GmvPTafz_t4mw0-WHyGLauxAUM8G4ZDvM5fL0WrwcZAYdGV2gpLQjSoCgKQ3I7ZTwhbxEIIlO7tCr_FLp33elRbwSE7IKSWPxy5BmXSeEbeDru"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="font-bold text-on-surface text-sm">The Grid System in Architecture</p>
+<p class="text-xs text-on-surface-variant">Josef Müller-Brockmann</p>
+</td>
+<td class="px-6 py-4 font-mono text-xs text-on-surface-variant">978-3721201451</td>
+<td class="px-6 py-4">
+<span class="text-xs font-medium px-2 py-1 bg-surface-container text-on-surface-variant rounded-md">Architecture</span>
+</td>
+<td class="px-6 py-4 text-sm font-semibold">12/15</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#00A76F]/10 text-[#00A76F]">
+                                        Available
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error/10 hover:text-error rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="w-12 h-16 rounded-md bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="digital book cover illustration featuring glowing abstract neural network connections on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBha5TlE3IfUbk4fVfTlhAM4_n_i0NOXFve1MWFP_rKbt9mj_Ti85f_rJFkam_2KlgBmludfvezTKAh3SWU1gaC30sEikMvAFv4PPIV7YzEDbBI-neG8CZr_1Ss0qYJMCfpo6V5WQNv3-zqUgefmKvkmd7XfIAR8ZlwsG2vb7U8oKL6_difCEXD0XbAk32qqJvXgiY7O6JB0t2RHMXz722RG_KZ0_4XEdiD-4wVVT_YZgOjCBA7iOlDQqdiMNfhYOkKhuEi60XdrIdY"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="font-bold text-on-surface text-sm">Artificial Intelligence: A Modern Approach</p>
+<p class="text-xs text-on-surface-variant">Stuart Russell, Peter Norvig</p>
+</td>
+<td class="px-6 py-4 font-mono text-xs text-on-surface-variant">978-0136042594</td>
+<td class="px-6 py-4">
+<span class="text-xs font-medium px-2 py-1 bg-surface-container text-on-surface-variant rounded-md">CS &amp; AI</span>
+</td>
+<td class="px-6 py-4 text-sm font-semibold">0/8</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700">
+                                        Out
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error/10 hover:text-error rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="w-12 h-16 rounded-md bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="clean minimal book cover showing a single golden astronaut silhouette against a stark white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5duAnzaEqO7p46SQeX0DGEmgX1CcBtk_m_1CEBXUx5TCkKn42raYP5crdD0JO3QfjPW4FXzeAMViZ5Tu_tKzALBYibc_3QS6oDMRovgHJVaTDt0XrFfPLaUM1oLp2OkrwuMP9ZZrz8WNlphykTMWRUfD7MIjAMvUbbtez8jzTDgKEentJuR27hPgPLV1NMrh68K_FbGZZnweqYpuf4HiB3gKWACCv6YaSfQ0uAIBy6ea0tK8Cv6jpKR1uJn_wAXDz3_dgtDudIYQX"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="font-bold text-on-surface text-sm">Astrophysics for People in a Hurry</p>
+<p class="text-xs text-on-surface-variant">Neil deGrasse Tyson</p>
+</td>
+<td class="px-6 py-4 font-mono text-xs text-on-surface-variant">978-0393609394</td>
+<td class="px-6 py-4">
+<span class="text-xs font-medium px-2 py-1 bg-surface-container text-on-surface-variant rounded-md">Physics</span>
+</td>
+<td class="px-6 py-4 text-sm font-semibold">4/5</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#00A76F]/10 text-[#00A76F]">
+                                        Available
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error/10 hover:text-error rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="w-12 h-16 rounded-md bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="artistic book cover with bold Bauhaus style typography and red and yellow geometric shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYgLKKrroUTadWevFNrG7-0g994A6KhugtIj-yfVkdhV4dHPygTR2JL0DxQJEbv0pbgwlAi7150iBsKzWZbDlBz_NnFniZLHDbVNMp4e7z39BQQzKS_6jUuQe4ovpqX3XzezExjoAwNcSokhyKQbxlotdHI4J9Is-XqVE7uDLpJTqY47LRorNFj3y3OlB5SgdCmZgcQtCsWGd7L53KFNeZvNRvewC9NZbCW1JbH0klpqnxsXciE8zmD_AkuJppIIR5g-2flmlikB8z"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="font-bold text-on-surface text-sm">Design as Art</p>
+<p class="text-xs text-on-surface-variant">Bruno Munari</p>
+</td>
+<td class="px-6 py-4 font-mono text-xs text-on-surface-variant">978-0141035819</td>
+<td class="px-6 py-4">
+<span class="text-xs font-medium px-2 py-1 bg-surface-container text-on-surface-variant rounded-md">Modern Art</span>
+</td>
+<td class="px-6 py-4 text-sm font-semibold">22/22</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#00A76F]/10 text-[#00A76F]">
+                                        Available
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error/10 hover:text-error rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 flex items-center justify-between border-t border-surface-container-low">
+<p class="text-sm text-on-surface-variant font-medium">Showing <span class="font-bold">1-10</span> of <span class="font-bold">1,240</span> books</p>
+<div class="flex items-center space-x-2">
+<button class="p-2 text-slate-400 hover:text-on-surface disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-on-primary font-bold text-xs shadow-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container font-medium text-xs">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container font-medium text-xs">3</button>
+<span class="px-1 text-slate-400">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container font-medium text-xs">124</button>
+<button class="p-2 text-slate-400 hover:text-on-surface">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Summary (Optional High-End UI) -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+</div>
+<div>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Total Collection</p>
+<p class="text-2xl font-black text-on-surface">4,821</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-600">
+<span class="material-symbols-outlined" data-icon="outbox">outbox</span>
+</div>
+<div>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Currently Loaned</p>
+<p class="text-2xl font-black text-on-surface">632</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed-dim/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="event_busy">event_busy</span>
+</div>
+<div>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Overdue Items</p>
+<p class="text-2xl font-black text-on-surface">18</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

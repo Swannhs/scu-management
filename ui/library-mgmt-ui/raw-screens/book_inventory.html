@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventory Management | Atrium Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Public_Sans:wght@600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#4697e0",
+                    "on-secondary-container": "#4c6679",
+                    "secondary-fixed-dim": "#b0cae0",
+                    "outline-variant": "#bccabf",
+                    "on-secondary-fixed": "#011e2e",
+                    "inverse-primary": "#5adda0",
+                    "background": "#f8f9fb",
+                    "surface-container": "#eceef0",
+                    "surface-variant": "#e0e3e5",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface": "#f8f9fb",
+                    "on-tertiary-fixed": "#001d35",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e6e8ea",
+                    "on-primary-fixed": "#002112",
+                    "on-primary-container": "#00321f",
+                    "outline": "#6d7a71",
+                    "on-tertiary-container": "#002d4e",
+                    "on-background": "#191c1e",
+                    "surface-dim": "#d8dadc",
+                    "secondary": "#486174",
+                    "surface-tint": "#006c46",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#304a5c",
+                    "tertiary": "#0062a0",
+                    "on-surface": "#191c1e",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#c8e3fa",
+                    "primary": "#006c46",
+                    "on-surface-variant": "#3d4a41",
+                    "inverse-surface": "#2d3133",
+                    "primary-container": "#00a76f",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container-low": "#f2f4f6",
+                    "primary-fixed": "#79fabb",
+                    "tertiary-fixed": "#d0e4ff",
+                    "on-primary-fixed-variant": "#005234",
+                    "tertiary-fixed-dim": "#9bcaff",
+                    "on-tertiary-fixed-variant": "#00497a",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#5adda0",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#f8f9fb",
+                    "secondary-fixed": "#cbe6fc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Public Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .premium-gradient {
+            background: linear-gradient(135deg, #006c46 0%, #00a76f 100%);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #eceef0; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#ffffff] dark:bg-slate-900 border-r border-[#bccabf]/20 shadow-[40px_0_40px_-20px_rgba(25,28,30,0.04)] z-50 flex flex-col py-6">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 premium-gradient rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-[#191c1e] dark:text-white leading-tight">Atrium Library</h2>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-bold">Admin Console</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#191c1e] dark:text-slate-400 hover:bg-[#f2f4f6] dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#006c46] dark:text-[#00a76f] font-bold border-r-4 border-[#006c46] bg-[#f8f9fb] dark:bg-slate-800/50 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-medium text-sm">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#191c1e] dark:text-slate-400 hover:bg-[#f2f4f6] dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-medium text-sm">Lending</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#191c1e] dark:text-slate-400 hover:bg-[#f2f4f6] dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-medium text-sm">Members</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#191c1e] dark:text-slate-400 hover:bg-[#f2f4f6] dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-medium text-sm">Reports</span>
+</a>
+</nav>
+<div class="px-4 mt-auto pt-6 space-y-1 border-t border-outline-variant/10">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#191c1e] dark:text-slate-400 hover:bg-[#f2f4f6] dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-medium text-sm">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-error hover:bg-error/5 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-medium text-sm">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Content Area -->
+<main class="flex-1 ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-40 bg-[#f8f9fb] dark:bg-slate-950 flex justify-between items-center px-8 h-16">
+<div class="flex items-center gap-4 flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all" placeholder="Search book barcode, title, or shelf..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/30 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-on-surface">Admin User</p>
+<p class="text-[10px] text-on-surface-variant/60">Administrator</p>
+</div>
+<img alt="Administrator Profile" class="w-9 h-9 rounded-xl bg-surface-container-high object-cover" data-alt="clean professional profile avatar of a library administrator in a minimalist style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJMWp8VNGWZIKFkk6hk5I6JJ3Xb0f3EqDrcITY5oMN9vmn_Rle1Tk0y35m6P8m-RjX8kw-bgIElIZ7eWH2z9v0LUxE3lUtOmXGCbEMcfOhbHJGUFSmQHHr_nNavIlqecOkXSqldZeg6WSN6BOxAV8t0QcqjX1ceDKSoO3GDuibaGN3J7omz_KKzA_eM4rekVBBH6KmBEkJrmVVQCQGCEX_BoLOgzgwYZNJ1JqE1wMyGtpB1ebFQsiY5CsEl4TFjJxmQBJLKJ_fwufU"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<div class="p-8 space-y-8">
+<!-- Dashboard Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl font-black font-headline tracking-tight text-on-surface">Inventory Management</h1>
+<p class="text-on-surface-variant/70 mt-1">Manage and track 12,482 total book copies across all campus wings.</p>
+</div>
+<button class="premium-gradient text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                    Add New Copy
+                </button>
+</div>
+<!-- Bento Filters -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-2xl flex items-center gap-4 group hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest">Available</p>
+<p class="text-xl font-black">8,234</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-2xl flex items-center gap-4 group hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="book">book</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest">Issued</p>
+<p class="text-xl font-black">3,912</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-2xl flex items-center gap-4 group hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="error">error</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest">Damaged/Lost</p>
+<p class="text-xl font-black">336</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-2xl flex items-center gap-4 group hover:bg-surface-container-low transition-colors cursor-pointer border-2 border-dashed border-outline-variant/30">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Advanced Filters</p>
+<p class="text-xs text-on-surface-variant/60">By Wing, Shelf, or Genre</p>
+</div>
+</div>
+</div>
+<!-- Inventory Table Container -->
+<div class="bg-surface-container-lowest rounded-[2rem] overflow-hidden shadow-sm">
+<!-- Table Controls -->
+<div class="px-8 py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-surface-container">
+<div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
+<button class="px-4 py-2 bg-primary text-white text-xs font-bold rounded-full">All Copies</button>
+<button class="px-4 py-2 bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface text-xs font-bold rounded-full">New Arrivals</button>
+<button class="px-4 py-2 bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface text-xs font-bold rounded-full">Reference Only</button>
+<button class="px-4 py-2 bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface text-xs font-bold rounded-full">Digital Pairs</button>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 text-xs font-bold text-on-surface-variant hover:bg-surface-container rounded-xl transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="file_download">file_download</span>
+                            Export CSV
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 text-xs font-bold text-on-surface-variant hover:bg-surface-container rounded-xl transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="print">print</span>
+                            Print Labels
+                        </button>
+</div>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-[0.15em] text-on-surface-variant/60">Copy ID / Barcode</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-[0.15em] text-on-surface-variant/60">Book Title</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-[0.15em] text-on-surface-variant/60">Status</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-[0.15em] text-on-surface-variant/60">Shelf Location</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-[0.15em] text-on-surface-variant/60 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="barcode">barcode</span>
+<span class="text-sm font-mono font-bold text-on-surface">ATL-9823-X1</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div>
+<p class="text-sm font-bold text-on-surface">The Architecture of Light</p>
+<p class="text-xs text-on-surface-variant/60">T. Holl (2021) • Hardcover</p>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                        Available
+                                    </span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-sm" data-icon="location_on">location_on</span>
+<span class="text-sm text-on-surface font-medium">Wing A / Floor 2 / A-102</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-colors" title="Mark Lost">
+<span class="material-symbols-outlined text-sm" data-icon="do_not_disturb_on">do_not_disturb_on</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="barcode">barcode</span>
+<span class="text-sm font-mono font-bold text-on-surface">ATL-7741-C5</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div>
+<p class="text-sm font-bold text-on-surface">Principles of Quantum Dynamics</p>
+<p class="text-xs text-on-surface-variant/60">R. Shankar (1994) • Paperback</p>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-tertiary/10 text-tertiary text-[10px] font-black uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                        Issued
+                                    </span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-sm" data-icon="history">history</span>
+<span class="text-sm text-on-surface-variant font-medium italic">Due: Oct 24, 2023</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-colors" title="Mark Damaged">
+<span class="material-symbols-outlined text-sm" data-icon="report">report</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="barcode">barcode</span>
+<span class="text-sm font-mono font-bold text-on-surface">ATL-3329-D4</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div>
+<p class="text-sm font-bold text-on-surface">Modernist Cuisine</p>
+<p class="text-xs text-on-surface-variant/60">N. Myhrvold (2011) • Special Ed.</p>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#ff9800]/10 text-[#ff9800] text-[10px] font-black uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ff9800]"></span>
+                                        Damaged
+                                    </span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-sm" data-icon="build">build</span>
+<span class="text-sm text-on-surface font-medium">Repair Queue</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Restore">
+<span class="material-symbols-outlined text-sm" data-icon="restore_from_trash">restore_from_trash</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="barcode">barcode</span>
+<span class="text-sm font-mono font-bold text-on-surface">ATL-1105-Z8</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div>
+<p class="text-sm font-bold text-on-surface">Foundation and Empire</p>
+<p class="text-xs text-on-surface-variant/60">I. Asimov (1952) • Vintage</p>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-error/10 text-error text-[10px] font-black uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                        Lost
+                                    </span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2 text-error/60 italic">
+<span class="material-symbols-outlined text-sm" data-icon="search_off">search_off</span>
+<span class="text-sm font-medium">Not Located</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" title="Remove Record">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="barcode">barcode</span>
+<span class="text-sm font-mono font-bold text-on-surface">ATL-4481-B3</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div>
+<p class="text-sm font-bold text-on-surface">Thinking, Fast and Slow</p>
+<p class="text-xs text-on-surface-variant/60">D. Kahneman (2011) • Hardcover</p>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                        Available
+                                    </span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-sm" data-icon="location_on">location_on</span>
+<span class="text-sm text-on-surface font-medium">Wing B / Floor 1 / B-205</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-lg transition-colors" title="Mark Lost">
+<span class="material-symbols-outlined text-sm" data-icon="do_not_disturb_on">do_not_disturb_on</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-8 py-4 bg-surface-container-low/30 border-t border-surface-container flex items-center justify-between">
+<p class="text-xs text-on-surface-variant/60 font-medium">Showing 1 to 5 of 12,482 entries</p>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-lg hover:bg-surface-container transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container text-xs font-bold transition-colors">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container text-xs font-bold transition-colors">3</button>
+<span class="px-1 text-on-surface-variant/40">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container text-xs font-bold transition-colors">2497</button>
+<button class="p-2 rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Insights Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-[2rem] flex flex-col justify-between relative overflow-hidden h-48">
+<div class="relative z-10">
+<h3 class="text-xl font-black font-headline text-on-surface">Shelf Capacity Optimization</h3>
+<p class="text-on-surface-variant/70 text-sm max-w-md mt-2">Wing C is currently at 94% capacity. We recommend shifting 200+ historical records to the West Archive to balance the load.</p>
+</div>
+<div class="relative z-10">
+<button class="text-primary font-bold text-sm hover:underline flex items-center gap-1">
+                            Run Rebalance Tool <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="absolute -right-4 -bottom-4 w-40 h-40 bg-primary/5 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary/10 text-8xl" data-icon="database">database</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-[2rem] flex flex-col justify-between border border-primary-container/20">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-black font-headline text-on-surface">Recent Scans</h3>
+<span class="material-symbols-outlined text-primary" data-icon="sync">sync</span>
+</div>
+<ul class="space-y-3">
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-xs font-medium">ATL-0012-Y</span>
+</div>
+<span class="text-[10px] text-on-surface-variant/50">2m ago</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-xs font-medium">ATL-5521-K</span>
+</div>
+<span class="text-[10px] text-on-surface-variant/50">14m ago</span>
+</li>
+<li class="flex items-center justify-between opacity-50">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-surface-variant"></div>
+<span class="text-xs font-medium">ATL-1922-A</span>
+</div>
+<span class="text-[10px] text-on-surface-variant/50">1h ago</span>
+</li>
+</ul>
+</div>
+<button class="w-full py-2 bg-surface-container hover:bg-surface-container-high rounded-xl text-xs font-bold transition-colors mt-4">
+                        View Scan Log
+                    </button>
+</div>
+</div>
+</div>
+<footer class="mt-auto p-8 border-t border-surface-container flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant/60 text-xs">
+<p>© 2023 Atrium Campus Library. All systems operational.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy Protocol</a>
+<a class="hover:text-primary transition-colors" href="#">Safety Guidelines</a>
+<a class="hover:text-primary transition-colors" href="#">Support Portal</a>
+</div>
+</footer>
+</main>
+</body></html>

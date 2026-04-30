@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atrium Library Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#9bcaff",
+                        "surface-container-high": "#e6e8ea",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#4c6679",
+                        "on-primary-fixed": "#002112",
+                        "on-primary-container": "#00321f",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#005234",
+                        "secondary-container": "#c8e3fa",
+                        "secondary-fixed-dim": "#b0cae0",
+                        "tertiary-fixed": "#d0e4ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9fb",
+                        "background": "#f8f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface-variant": "#3d4a41",
+                        "primary": "#006c46",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-container": "#002d4e",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary-fixed-variant": "#00497a",
+                        "on-secondary-fixed": "#011e2e",
+                        "secondary": "#486174",
+                        "on-background": "#191c1e",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f2f4f6",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#001d35",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#cbe6fc",
+                        "inverse-primary": "#5adda0",
+                        "surface": "#f8f9fb",
+                        "surface-container": "#eceef0",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#304a5c",
+                        "primary-fixed": "#79fabb",
+                        "tertiary-container": "#4697e0",
+                        "surface-tint": "#006c46",
+                        "outline-variant": "#bccabf",
+                        "outline": "#6d7a71",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary": "#0062a0",
+                        "primary-container": "#00a76f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .headline { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #006c46 0%, #00a76f 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 bg-[#f8f9fb] dark:bg-slate-950 flex flex-col p-4 fixed left-0 top-0 overflow-y-auto">
+<div class="flex items-center gap-3 px-2 mb-10">
+<div class="w-10 h-10 rounded-xl bg-primary-gradient flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+</div>
+<div>
+<div class="text-xl font-bold text-[#191c1e] dark:text-white headline tracking-tight">Atrium Library</div>
+<div class="text-[10px] uppercase tracking-widest font-bold text-outline">Precision Management</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-lg font-['Public_Sans'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-lg font-['Public_Sans'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span>Catalog</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-lg font-['Public_Sans'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span>Circulation</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-lg font-['Public_Sans'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Members</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 transition-colors rounded-lg font-['Public_Sans'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#006c46] dark:text-[#00a76f] font-bold bg-[#eceef0] dark:bg-slate-800 rounded-lg font-['Public_Sans'] tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-surface-container-low rounded-2xl">
+<div class="flex items-center gap-3">
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover border-2 border-white" data-alt="professional portrait of a librarian with a friendly smile in a modern office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeeDE0HwcHJaLEj8Y8rn74CBydGu_lQIaTmO-LbDU_3HlJTBn2PkdS7_IlpPtprke7pj_pL3P1LLZ1OnkPeMp8pMle7bEpNKcelWeb0mrdfqDKqB35Yi-R8bEAqMHjke2WNQYNun6WoQl7aSMmclUOKV2tfzxdvR4c25XUYwmToKbfO1CTEO-rlcf60aITS4DuZa6WFC4QiaOMmcCurgMTpT-QyQCHlPO0QpG_vC0UncvW2_3-m7tot0nolUAtWi7R3CobYZFTjJbH"/>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate">Admin User</p>
+<p class="text-xs text-outline truncate">Chief Librarian</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full h-16 flex items-center justify-between px-8 bg-[#f8f9fb] sticky top-0 z-10">
+<div class="flex items-center flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Search settings..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-8">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all text-on-surface-variant relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3">
+<span class="text-sm font-bold headline">Settings</span>
+<img alt="User Profile" class="w-8 h-8 rounded-full bg-primary-container/20 p-1" data-alt="abstract circular geometric pattern in shades of green and white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfmr4-isqYqOlm1WvnljoPlww3N2oP1azR_N8Y81_CWDRENIy8ZuSBCR6CzVQDC-DqW0o7lgz4LuHTLGZZ7PJTuDr_K4Mb-t8Hompu6DRqQALBHVdL_kaI4bwvI6-WSdlE5c3CvmhvGnud8IuvRDyUVjJXdEdubYSHPUA8uwGjjrCWjV8nY2X3fPTOX_uCVWXbqSk9R-A_UA5sPgMikYTDBZngajtGgQ-UuU1w7noeo7KZSRY_4sXr_KnM4otpVrFLxd2vGx5WPEdg"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 max-w-6xl w-full mx-auto space-y-8">
+<section>
+<h2 class="text-3xl font-extrabold headline mb-2 tracking-tight">General Configuration</h2>
+<p class="text-on-surface-variant body-md">Manage your institutional rules, fine structures, and notification preferences.</p>
+</section>
+<!-- Bento Grid Layout for Settings -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<!-- Library Rules (Span 8) -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-2xl bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+</div>
+<div>
+<h3 class="text-xl font-bold headline">Library Rules</h3>
+<p class="text-sm text-outline">Define circulation limits and penalties</p>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-wider ml-1">Max Books per User</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-2xl px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all outline-none font-medium" type="number" value="5"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-outline text-sm">volumes</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-wider ml-1">Fine per Day</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-outline font-bold">$</span>
+<input class="w-full bg-surface-container-low border-none rounded-2xl pl-8 pr-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all outline-none font-medium" type="text" value="0.50"/>
+</div>
+</div>
+<div class="sm:col-span-2 space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-wider ml-1">Loan Duration</label>
+<select class="w-full bg-surface-container-low border-none rounded-2xl px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all outline-none font-medium appearance-none">
+<option>7 Days (Standard)</option>
+<option selected="">14 Days (Extended)</option>
+<option>21 Days (Professional)</option>
+<option>30 Days (Academic)</option>
+</select>
+</div>
+</div>
+<div class="mt-10 flex justify-end">
+<button class="bg-primary-gradient text-white px-8 py-3 rounded-2xl font-bold hover:opacity-90 transition-all flex items-center gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-sm" data-icon="save">save</span>
+                                Update Rules
+                            </button>
+</div>
+</div>
+<!-- Notification Settings (Span 4) -->
+<div class="md:col-span-4 space-y-8">
+<div class="bg-surface-container-lowest rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+</div>
+<h3 class="text-xl font-bold headline">Notifications</h3>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-bold text-sm">Email Notifications</p>
+<p class="text-xs text-outline">Weekly summary &amp; alerts</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-bold text-sm">SMS Alerts</p>
+<p class="text-xs text-outline">Urgent overdue notices</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="pt-4 border-t border-surface-container-low">
+<p class="text-[10px] font-bold text-outline uppercase tracking-widest mb-4">Event Subscriptions</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<input checked="" class="rounded border-none bg-surface-container-low text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium">Overdue Books</span>
+</div>
+<div class="flex items-center gap-3">
+<input checked="" class="rounded border-none bg-surface-container-low text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium">New Reservations</span>
+</div>
+<div class="flex items-center gap-3">
+<input class="rounded border-none bg-surface-container-low text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium">System Updates</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Roles & Permissions (Span 12) -->
+<div class="md:col-span-12 bg-surface-container-lowest rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="shield_person">shield_person</span>
+</div>
+<div>
+<h3 class="text-xl font-bold headline">Roles &amp; Permissions</h3>
+<p class="text-sm text-outline">Manage access levels for library staff</p>
+</div>
+</div>
+<button class="bg-surface-container-high text-on-surface px-5 py-2.5 rounded-xl font-bold hover:bg-surface-container-highest transition-all text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                                Create New Role
+                            </button>
+</div>
+<div class="overflow-hidden">
+<div class="grid grid-cols-12 px-6 py-4 bg-surface-container-low rounded-2xl mb-4">
+<div class="col-span-4 text-xs font-bold text-outline uppercase tracking-wider">Role Title</div>
+<div class="col-span-5 text-xs font-bold text-outline uppercase tracking-wider">Permission Level</div>
+<div class="col-span-3 text-right text-xs font-bold text-outline uppercase tracking-wider">Actions</div>
+</div>
+<div class="space-y-4">
+<!-- Role Item: Admin -->
+<div class="grid grid-cols-12 items-center px-6 py-4 hover:bg-surface-container-low/50 rounded-2xl transition-all">
+<div class="col-span-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="admin_panel_settings">admin_panel_settings</span>
+</div>
+<span class="font-bold">Admin</span>
+</div>
+<div class="col-span-5 flex gap-2">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full uppercase tracking-tighter">Full Access</span>
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full uppercase tracking-tighter">System Root</span>
+</div>
+<div class="col-span-3 text-right">
+<button class="text-primary font-bold text-sm hover:underline">Edit Permissions</button>
+</div>
+</div>
+<!-- Role Item: Librarian -->
+<div class="grid grid-cols-12 items-center px-6 py-4 hover:bg-surface-container-low/50 rounded-2xl transition-all">
+<div class="col-span-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="person_search">person_search</span>
+</div>
+<span class="font-bold">Librarian</span>
+</div>
+<div class="col-span-5 flex gap-2">
+<span class="px-3 py-1 bg-surface-container-high text-outline text-[10px] font-bold rounded-full uppercase tracking-tighter">Catalog Edit</span>
+<span class="px-3 py-1 bg-surface-container-high text-outline text-[10px] font-bold rounded-full uppercase tracking-tighter">Circulation</span>
+</div>
+<div class="col-span-3 text-right">
+<button class="text-primary font-bold text-sm hover:underline">Edit Permissions</button>
+</div>
+</div>
+<!-- Role Item: Assistant Librarian -->
+<div class="grid grid-cols-12 items-center px-6 py-4 hover:bg-surface-container-low/50 rounded-2xl transition-all">
+<div class="col-span-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-outline-variant/30 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-sm" data-icon="support_agent">support_agent</span>
+</div>
+<span class="font-bold">Assistant Librarian</span>
+</div>
+<div class="col-span-5 flex gap-2">
+<span class="px-3 py-1 bg-surface-container-high text-outline text-[10px] font-bold rounded-full uppercase tracking-tighter">View Only</span>
+<span class="px-3 py-1 bg-surface-container-high text-outline text-[10px] font-bold rounded-full uppercase tracking-tighter">Checkout Only</span>
+</div>
+<div class="col-span-3 text-right">
+<button class="text-primary font-bold text-sm hover:underline">Edit Permissions</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Support Section -->
+<div class="flex items-center justify-between p-8 bg-primary-gradient rounded-[2rem] text-white">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<h3 class="text-xl font-bold headline">Need Help with Configuration?</h3>
+<p class="text-white/80 text-sm">Our campus management specialists are available 24/7 for technical support.</p>
+</div>
+</div>
+<button class="bg-white text-primary px-8 py-3 rounded-2xl font-bold hover:bg-opacity-90 transition-all flex items-center gap-2">
+                        Contact Support
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

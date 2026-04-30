@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Precision Atrium - Add/Edit Book</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#191c1e",
+                        "background": "#f8f9fb",
+                        "surface-container": "#eceef0",
+                        "surface-variant": "#e0e3e5",
+                        "outline-variant": "#bccabf",
+                        "on-error-container": "#93000a",
+                        "outline": "#6d7a71",
+                        "inverse-primary": "#5adda0",
+                        "primary": "#006c46",
+                        "on-surface-variant": "#3d4a41",
+                        "tertiary-fixed-dim": "#9bcaff",
+                        "secondary": "#486174",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-container": "#00321f",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#002d4e",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#002112",
+                        "secondary-container": "#c8e3fa",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-fixed": "#011e2e",
+                        "on-background": "#191c1e",
+                        "surface-container-low": "#f2f4f6",
+                        "surface": "#f8f9fb",
+                        "secondary-fixed-dim": "#b0cae0",
+                        "on-tertiary-fixed-variant": "#00497a",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-container": "#00a76f",
+                        "on-secondary-container": "#4c6679",
+                        "tertiary": "#0062a0",
+                        "secondary-fixed": "#cbe6fc",
+                        "tertiary-fixed": "#d0e4ff",
+                        "surface-dim": "#d8dadc",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#4697e0",
+                        "on-primary-fixed-variant": "#005234",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001d35",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#006c46",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed": "#79fabb",
+                        "on-secondary-fixed-variant": "#304a5c",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f8f9fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #006c46 0%, #00a76f 100%);
+        }
+        .form-input-shadow {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col bg-[#f8f9fb] dark:bg-slate-950 z-50">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 bg-primary-gradient rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<h1 class="font-headline font-extrabold text-[#006c46] text-lg leading-tight">Precision Atrium</h1>
+<p class="text-xs text-slate-500 font-medium">Central Library Admin</p>
+</div>
+</div>
+<nav class="space-y-1">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 rounded-lg transition-all duration-200 hover:translate-x-1 group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<!-- Catalog (Active) -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#006c46] dark:text-[#00a76f] font-bold bg-[#eceef0] dark:bg-slate-800/50 rounded-lg transition-all duration-200 translate-x-1 group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-medium">Catalog</span>
+</a>
+<!-- Circulation -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 rounded-lg transition-all duration-200 hover:translate-x-1 group" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-medium">Circulation</span>
+</a>
+<!-- Members -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 rounded-lg transition-all duration-200 hover:translate-x-1 group" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-medium">Members</span>
+</a>
+<!-- Reports -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-[#eceef0] dark:hover:bg-slate-800 rounded-lg transition-all duration-200 hover:translate-x-1 group" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-medium">Reports</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 space-y-4">
+<button class="w-full bg-primary-gradient text-white py-3 px-4 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>Add New Book</span>
+</button>
+<div class="pt-4 border-t border-surface-container-high space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 hover:bg-[#eceef0] rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="text-sm">Help</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 hover:bg-[#eceef0] rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-sm">Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-40 bg-[#f8f9fb] dark:bg-slate-950 flex justify-between items-center px-8 h-16">
+<div class="flex items-center gap-4">
+<nav class="flex items-center gap-6">
+<a class="text-[#006c46] dark:text-[#00a76f] font-bold border-b-2 border-[#006c46] py-5" href="#">General Info</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#006c46] transition-colors py-5" href="#">Permissions</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#006c46] transition-colors py-5" href="#">History</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:bg-[#eceef0] rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-[#eceef0] rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-surface-container-high"></div>
+<div class="flex items-center gap-3 pl-2">
+<img alt="Admin profile" class="w-8 h-8 rounded-full bg-surface-container-high object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjiS782o-obdfc4nQYG5nNL-ewgPJjcEDuvo4IwRzRkHL1oabfF0MMwLS3Pft4kYqoE7jltQYJFUsA7XzsMDRuuuUnZdqG6nvSc-cnuEE71V_HWp1144cloae2c_inRL-btvcTl2eUIUjs3K2N-KXm-5RfnOy5on62P6at9XIhI9qR-sZ8-hRVtxXPeWqYWwhw54ETmyD2x8RePXRoD7KsWlQ6ocDOlpnjv70VsRvorDu1MbSdFcxqOOuVhXJPFkd2fyYkkCVN2BmO"/>
+<span class="font-headline font-semibold text-sm text-[#006c46]">Admin</span>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="flex-grow p-10 flex flex-col items-center">
+<!-- Header Section -->
+<div class="w-full max-w-4xl mb-8 flex justify-between items-end">
+<div>
+<h2 class="font-headline text-3xl font-extrabold tracking-tight text-on-surface">Book Management</h2>
+<p class="text-on-surface-variant font-medium mt-1">Refine and update library catalog entries with precision.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-xl border border-outline-variant/30 text-on-surface font-semibold hover:bg-surface-container transition-colors active:scale-95">Cancel</button>
+<button class="px-6 py-2.5 rounded-xl bg-primary-gradient text-white font-semibold shadow-lg shadow-primary/20 hover:scale-95 transition-transform">Save Book</button>
+</div>
+</div>
+<!-- Form Card -->
+<div class="w-full max-w-4xl bg-surface-container-lowest rounded-[24px] shadow-sm border border-outline-variant/10 overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-0">
+<!-- Form Content Left -->
+<div class="md:col-span-8 p-10 space-y-12">
+<!-- Section 1: Basic Info -->
+<section>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">info</span>
+<h3 class="font-headline font-bold text-lg">Basic Information</h3>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="col-span-2 space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">Title</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">title</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all form-input-shadow" placeholder="e.g. The Architecture of Tomorrow" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">Author</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">person</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all form-input-shadow" placeholder="Full name" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">ISBN</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">barcode</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all form-input-shadow" placeholder="978-3-16-148410-0" type="text"/>
+</div>
+</div>
+<div class="col-span-2 space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">Publisher</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">business</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all form-input-shadow" placeholder="Publishing House Name" type="text"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Classification -->
+<section>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">category</span>
+<h3 class="font-headline font-bold text-lg">Classification</h3>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">Category</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">list</span>
+<select class="w-full pl-12 pr-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all appearance-none cursor-pointer form-input-shadow">
+<option>Architecture</option>
+<option>Computer Science</option>
+<option>Philosophy</option>
+<option>History</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">Tags</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">label</span>
+<div class="w-full pl-12 pr-4 py-3 bg-surface-container-low border-none rounded-xl flex flex-wrap gap-2 items-center form-input-shadow">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-xs font-bold flex items-center gap-1">
+                                                Modern <span class="material-symbols-outlined text-[14px] cursor-pointer">close</span>
+</span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-xs font-bold flex items-center gap-1">
+                                                Urban <span class="material-symbols-outlined text-[14px] cursor-pointer">close</span>
+</span>
+<input class="bg-transparent border-none focus:ring-0 p-0 text-sm w-20" placeholder="Add..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Inventory -->
+<section>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<h3 class="font-headline font-bold text-lg">Inventory &amp; Logistics</h3>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">Total Copies</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">library_books</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all form-input-shadow" type="number" value="12"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">Shelf Location</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">grid_view</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all form-input-shadow" placeholder="e.g. A2-404" type="text"/>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Sidebar (Media/Upload) -->
+<div class="md:col-span-4 bg-surface-container-low/30 border-l border-outline-variant/10 p-10 flex flex-col items-center">
+<section class="w-full">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">image</span>
+<h3 class="font-headline font-bold text-lg">Media</h3>
+</div>
+<div class="w-full aspect-[3/4] relative rounded-2xl overflow-hidden group mb-6 bg-surface-container shadow-inner border-2 border-dashed border-outline-variant/40 hover:border-primary/40 transition-colors">
+<img alt="Current Book Cover" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" data-alt="Modern minimalist book cover featuring abstract architectural lines and soft sage green tones on a clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiSGJJ3vOSH_KzwyiSisvfJIn_QrjV9ETl3PLQQELmxd7o4uY--43oONQqr0UH1MUrj4qxxh-CIa77QJ602UsRyFBADUCFlBOvGXANlvpjeVDN97zrJO47VEBUFPznDswH_h3vtTg4ZXZxzw8evVF57usETX4bXdbzwi63HRgx0JDAYnfhZO2CC6zj2BtNBFSBDolLTulnOKuqD4S4f6O5cfQPCqCk4CstH6Evwz-vjcF5ERKldQ9NuPbRPMX-uJbTmLJZMpuHhPFO"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center">
+<span class="material-symbols-outlined text-white text-4xl mb-2">cloud_upload</span>
+<p class="text-white font-bold text-sm">Drop cover here or click to upload</p>
+<p class="text-white/70 text-xs mt-1">PNG, JPG up to 10MB</p>
+</div>
+</div>
+<button class="w-full py-3 rounded-xl bg-surface-container-lowest border border-outline-variant/20 font-bold text-on-surface hover:bg-white hover:shadow-md transition-all flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined text-lg">photo_camera</span>
+                                Change Cover
+                            </button>
+<div class="p-4 rounded-xl bg-primary/5 border border-primary/10">
+<h4 class="text-xs font-bold text-primary uppercase tracking-widest mb-2">Cover Guidelines</h4>
+<ul class="text-[11px] text-on-surface-variant space-y-1.5 list-disc pl-3 leading-relaxed">
+<li>Optimal resolution: 1200 x 1600 px</li>
+<li>Maintain a 3:4 aspect ratio</li>
+<li>Ensure title text is legible</li>
+</ul>
+</div>
+</section>
+</div>
+</div>
+<!-- Bottom Action Bar (Contextual) -->
+<div class="border-t border-outline-variant/10 p-6 flex justify-between items-center bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-xs font-medium text-slate-500 italic">Unsaved changes detected in classification...</span>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-xl text-on-surface font-semibold hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+                            Discard
+                        </button>
+<button class="flex items-center gap-2 px-8 py-2.5 rounded-xl bg-primary-gradient text-white font-bold shadow-lg shadow-primary/20 hover:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+                            Save Book
+                        </button>
+</div>
+</div>
+</div>
+<!-- Additional Help/Info -->
+<div class="w-full max-w-4xl mt-10 grid grid-cols-3 gap-6">
+<div class="p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/50 flex flex-col gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">auto_stories</span>
+</div>
+<h4 class="font-headline font-bold text-sm">Library Policy</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">All new additions are subject to librarian review before appearing in the public catalog.</p>
+</div>
+<div class="p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/50 flex flex-col gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">sync</span>
+</div>
+<h4 class="font-headline font-bold text-sm">Auto-Cataloging</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">We sync with the Global Book Registry to pull metadata based on ISBN numbers instantly.</p>
+</div>
+<div class="p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/50 flex flex-col gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">security</span>
+</div>
+<h4 class="font-headline font-bold text-sm">Access Control</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Changes are logged under your admin profile for auditing and version control.</p>
+</div>
+</div>
+</div>
+</main>
+</body></html>

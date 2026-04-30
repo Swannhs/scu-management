@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Transaction History | Lumina Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-on-surface": "#eff1f3",
+                      "secondary": "#486174",
+                      "secondary-fixed": "#cbe6fc",
+                      "surface-container-high": "#e6e8ea",
+                      "tertiary-container": "#4697e0",
+                      "surface-container-low": "#f2f4f6",
+                      "on-primary-fixed-variant": "#005234",
+                      "surface-tint": "#006c46",
+                      "inverse-surface": "#2d3133",
+                      "surface-container": "#eceef0",
+                      "on-surface": "#191c1e",
+                      "on-primary-container": "#00321f",
+                      "surface-bright": "#f8f9fb",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary": "#0062a0",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed-dim": "#b0cae0",
+                      "outline-variant": "#bccabf",
+                      "tertiary-fixed-dim": "#9bcaff",
+                      "on-tertiary-fixed-variant": "#00497a",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "on-tertiary": "#ffffff",
+                      "primary-container": "#00a76f",
+                      "primary-fixed": "#79fabb",
+                      "on-tertiary-fixed": "#001d35",
+                      "tertiary-fixed": "#d0e4ff",
+                      "surface": "#f8f9fb",
+                      "outline": "#6d7a71",
+                      "surface-dim": "#d8dadc",
+                      "surface-container-highest": "#e0e3e5",
+                      "primary": "#006c46",
+                      "on-secondary-fixed-variant": "#304a5c",
+                      "inverse-primary": "#5adda0",
+                      "on-secondary-fixed": "#011e2e",
+                      "background": "#f8f9fb",
+                      "primary-fixed-dim": "#5adda0",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#002d4e",
+                      "on-background": "#191c1e",
+                      "secondary-container": "#c8e3fa",
+                      "on-primary-fixed": "#002112",
+                      "error-container": "#ffdad6",
+                      "surface-variant": "#e0e3e5",
+                      "on-secondary-container": "#4c6679",
+                      "on-surface-variant": "#3d4a41",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Public Sans"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #006c46 0%, #00a76f 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Layout Wrapper -->
+<div class="flex min-h-screen">
+<!-- SideNavBar Component -->
+<aside class="hidden md:flex h-screen w-72 flex-col fixed left-0 top-0 border-r-0 bg-[#f8f9fb] dark:bg-slate-950 flex flex-col h-full p-6 space-y-2 z-50">
+<div class="flex items-center gap-3 px-2 mb-8">
+<div class="w-10 h-10 rounded-xl primary-gradient flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-[#006c46] leading-none">Precision Atrium</h2>
+<p class="text-[10px] uppercase tracking-wider text-[#637381] font-bold">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="text-[#637381] dark:text-[#919eab] transition-all hover:bg-[#eceef0] dark:hover:bg-slate-800 p-3 rounded-lg flex items-center gap-3 cursor-pointer group">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="font-medium text-sm">Dashboard</span>
+</div>
+<div class="text-[#637381] dark:text-[#919eab] transition-all hover:bg-[#eceef0] dark:hover:bg-slate-800 p-3 rounded-lg flex items-center gap-3 cursor-pointer group">
+<span class="material-symbols-outlined text-xl">menu_book</span>
+<span class="font-medium text-sm">Bookshelf</span>
+</div>
+<div class="text-[#637381] dark:text-[#919eab] transition-all hover:bg-[#eceef0] dark:hover:bg-slate-800 p-3 rounded-lg flex items-center gap-3 cursor-pointer group">
+<span class="material-symbols-outlined text-xl">group</span>
+<span class="font-medium text-sm">Members</span>
+</div>
+<div class="text-[#006c46] dark:text-[#00a76f] bg-[#00a76f]/10 rounded-lg font-bold p-3 flex items-center gap-3 cursor-pointer scale-100 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-medium text-sm">Transactions</span>
+</div>
+<div class="text-[#637381] dark:text-[#919eab] transition-all hover:bg-[#eceef0] dark:hover:bg-slate-800 p-3 rounded-lg flex items-center gap-3 cursor-pointer group">
+<span class="material-symbols-outlined text-xl">analytics</span>
+<span class="font-medium text-sm">Reports</span>
+</div>
+</nav>
+<div class="pt-6 mt-6 border-t border-surface-container flex flex-col gap-1">
+<div class="text-[#637381] hover:bg-[#eceef0] p-3 rounded-lg flex items-center gap-3 cursor-pointer text-sm">
+<span class="material-symbols-outlined text-xl">help</span>
+<span>Help Center</span>
+</div>
+<div class="text-[#637381] hover:bg-[#eceef0] p-3 rounded-lg flex items-center gap-3 cursor-pointer text-sm">
+<span class="material-symbols-outlined text-xl">logout</span>
+<span>Logout</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-72 bg-surface">
+<!-- TopAppBar Component -->
+<header class="w-full sticky top-0 z-40 bg-[#f8f9fb] dark:bg-slate-950 flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-xl font-bold text-[#006c46] dark:text-[#00a76f] tracking-tight">Lumina Library</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden sm:flex items-center bg-surface-container-low px-3 py-1.5 rounded-xl border-none focus-within:bg-white focus-within:ring-1 ring-primary/30 transition-all">
+<span class="material-symbols-outlined text-outline text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-outline/60" placeholder="Quick search..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-outline hover:bg-[#f2f4f6] rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 text-outline hover:bg-[#f2f4f6] rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="ml-2 w-10 h-10 rounded-full border-2 border-white ring-1 ring-surface-container shadow-sm overflow-hidden cursor-pointer">
+<img alt="Librarian profile picture" class="w-full h-full object-cover" data-alt="Professional portrait of a librarian in a bright library setting, soft natural lighting, warm and welcoming expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVO1XujueJuml96WABJf2093W0IJED8E0Mujb3eaczl2jpy0UpabSrsJdBh3E5A0KO5ZKvhGlaq25TYvZPxzhcm8tsoSs5vSRUoulbkXexP1cRSGnHeExPqJ13xuec8xXp7WlogsV63CQWB7hEOxYXnrSsTrSqsz0cg3KaidVjUPOdX9X2OfqB06vB7eRBHxomX6uJiIzAt6s7leMtMg0GULJhZFC8SFNXXe3tPtAU2-Vv4eVujfWaL9QnAlwlUfoe6h3yi8GA7EVh"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-6 md:p-10 max-w-7xl mx-auto space-y-8">
+<!-- Page Title Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-extrabold text-on-surface tracking-tight font-headline">Transaction History</h2>
+<p class="text-secondary font-medium mt-1">Review and manage the chronological record of all borrowed and returned assets.</p>
+</div>
+<button class="primary-gradient text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+                        New Transaction
+                    </button>
+</div>
+<!-- Advanced Filter Bar (Bento Inspired) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+<div class="lg:col-span-5 bg-surface-container-low rounded-xl p-4 flex flex-col gap-2">
+<label class="text-[10px] font-bold text-outline uppercase tracking-widest px-1">Date Range</label>
+<div class="flex items-center gap-3">
+<div class="flex-1 relative">
+<input class="w-full bg-surface-container-lowest border-none rounded-lg text-sm px-3 py-2.5 focus:ring-1 ring-primary/30" type="date"/>
+</div>
+<span class="text-outline">to</span>
+<div class="flex-1 relative">
+<input class="w-full bg-surface-container-lowest border-none rounded-lg text-sm px-3 py-2.5 focus:ring-1 ring-primary/30" type="date"/>
+</div>
+</div>
+</div>
+<div class="lg:col-span-3 bg-surface-container-low rounded-xl p-4 flex flex-col gap-2">
+<label class="text-[10px] font-bold text-outline uppercase tracking-widest px-1">Member Search</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline/60 text-lg">person_search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg text-sm pl-10 pr-3 py-2.5 focus:ring-1 ring-primary/30" placeholder="Search by name or ID..." type="text"/>
+</div>
+</div>
+<div class="lg:col-span-3 bg-surface-container-low rounded-xl p-4 flex flex-col gap-2">
+<label class="text-[10px] font-bold text-outline uppercase tracking-widest px-1">Book Filter</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline/60 text-lg">search_check</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg text-sm pl-10 pr-3 py-2.5 focus:ring-1 ring-primary/30" placeholder="ISBN or Title..." type="text"/>
+</div>
+</div>
+<div class="lg:col-span-1 bg-surface-container-low rounded-xl flex items-center justify-center cursor-pointer hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary">filter_list</span>
+</div>
+</div>
+<!-- Transaction Table (Glass & Depth Styling) -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm shadow-black/[0.04]">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container/50">
+<th class="px-6 py-5 text-[11px] font-bold text-outline uppercase tracking-wider">Member</th>
+<th class="px-6 py-5 text-[11px] font-bold text-outline uppercase tracking-wider">Asset / Book Title</th>
+<th class="px-6 py-5 text-[11px] font-bold text-outline uppercase tracking-wider">Timestamp</th>
+<th class="px-6 py-5 text-[11px] font-bold text-outline uppercase tracking-wider">Action</th>
+<th class="px-6 py-5 text-[11px] font-bold text-outline uppercase tracking-wider text-right">Details</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container flex-shrink-0 overflow-hidden ring-1 ring-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a young man with a casual style in a studio setting, soft neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNeSGCO4z9u7q6zvf6GQ31m2cfOKJPrEH54ACv75Mg-bp2CRQbq8HecRQBoHzFts5V9z8kxBlQN97QCChNhBBql_G_2iVIE-fpe8fisgtNq3O1qFP1CIrtbg04A-sLaho7ub_uw9OCaOgaVBle_R5G8XKytkEsID3HsxJ0CT9pnxT6jAb034HSyHPRHvI0HTKkZ9tTY9xZ6tikZ9bswxDc2BRClWxtTutCG_PWHrs3hlfsJ4XvAqTSL8cKeEbz4mBn-0GEi13iw2IJ"/>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Alex Rivers</div>
+<div class="text-[11px] text-outline">ID: LIB-2024-882</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-11 rounded bg-surface-container-highest flex-shrink-0 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Cover of a minimal modern book with clean typography and abstract geometric shapes in shades of blue and white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEW5Df203kbUk2F3imEpvjVws3HzqvYTM_bvCJoj_NTFFQDNU0w8wEsZ7V_qgjX9-s_Dt2T1v_zFtigr2IzMLxFPrBkZzlyOvGT2o21ZYRLhjrDzDXdZwiSCDK0k1-LHwzLMfTHaOIaEWsdzhUENKpgk0JSRQkMHkqfkXd-MWELdU3uWm6HF8PN3sR7ml-vAbVpvcjXHURu_9lXjNZI7OeLe2-yFUAzd0JvooBpoZDdlmgKyP4Fbik4_JuYFBP0SYaMkhfIFhuHwGy"/>
+</div>
+<div class="max-w-[200px]">
+<div class="text-sm font-semibold truncate text-on-surface">The Silent Patient</div>
+<div class="text-[11px] text-outline">By Alex Michaelides</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm text-on-surface font-medium">Oct 24, 2023</div>
+<div class="text-[11px] text-outline">02:45 PM</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,108,70,0.5)]"></span>
+                                            ISSUE
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-sm font-bold text-primary hover:bg-primary/5 px-4 py-2 rounded-lg transition-colors">View Details</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container flex-shrink-0 overflow-hidden ring-1 ring-surface-container">
+<img class="w-full h-full object-cover" data-alt="Portrait of a woman with a smiling friendly expression, bright airy lighting, soft focused urban background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdsXz4rERfpA1tBZLx_6R2KK9oBnRx-DT7R1GftarqsBwIcrb8L0_fmKRGYB_H_CV8mCNBNS6cgM_UtSBzTKXi5vh5xzBXJD4HgB_2v0a9o0ChTAbYx4LmxcovPAsK_DLU-fLMl4WwB0QxLzaoQh-RY_ILDYb7gPGdHN2kRBXS-rP4FWLpdQKMhe6XkOfhM5sXIqp1s4gutN8tBS5z_0bxoftTA1lq3V5LxzrqOrzxgDtScrTCdx9Az41x4lbCc9qwIPz1kIUtqSJI"/>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Elena Vance</div>
+<div class="text-[11px] text-outline">ID: LIB-2024-105</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-11 rounded bg-surface-container-highest flex-shrink-0 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Abstract book cover featuring vibrant fluid gradients in teal and purple, modern minimalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbTm5k-v9NJQEwkfhKPdXaTJP7S5xYLpXY641TOrW-bJsHDRMki_K_nsmy1UtBuVpqe6SYh9emfJbjCDKlI6rzqsApfe0_eElwyuQggp8gL6pK7Q1mVMDBmAqB8agXGhgy1exixsvTI_w1wUPxbJtopxsPJw4SKJF-Z5JmrZrF1TiglWBv8aJYIunrftijFiaNTqN1S30GpRceGmeRx4iKNtEjcP8vLzu9Gz4888ZPQxbGC6riNDNcCj4cMZRsQZGSYKTFd3cAv3HI"/>
+</div>
+<div class="max-w-[200px]">
+<div class="text-sm font-semibold truncate text-on-surface">Atomic Habits</div>
+<div class="text-[11px] text-outline">By James Clear</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm text-on-surface font-medium">Oct 24, 2023</div>
+<div class="text-[11px] text-outline">11:20 AM</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-container/10 text-tertiary-container text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+                                            RETURN
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-sm font-bold text-primary hover:bg-primary/5 px-4 py-2 rounded-lg transition-colors">View Details</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container flex-shrink-0 overflow-hidden ring-1 ring-surface-container">
+<img class="w-full h-full object-cover" data-alt="Professional man with a thoughtful look, neutral lighting, studio environment with a subtle textured backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7z5JVDd9SN-NNlDrcF-U48rz4zXJOyIwO0nEP1gCC_zrAkqaH2L6cHibzKnYNhXjai7r2GRK0Dr8yuSY6OR3i59L_l412z6-YMG9si67pmp2Ejr6u5zamWu417ELqzEfaeBpwFY8wBXFdiGQvntOC5xzTKTB4DXjI5a-nhRNFm66c0n7BwD1JCVPt8GAVd0HfbeJKzg5cImcUo4BZMHymMwvz8mlvviBD5hAq-X78Li8yOt5LAbafkHBsCatNg7scCTu5nYetKuzp"/>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Marcus Thorne</div>
+<div class="text-[11px] text-outline">ID: LIB-2023-492</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-11 rounded bg-surface-container-highest flex-shrink-0 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Classic hardbound book cover with embossed gold lettering on a dark leather texture, timeless library feel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhYxLfv-fXhST1hskYXYaR2-EF-G2EyfCo9FWe2mohHYT0o62cBj6tPtcY8ulARvn-VZxvZwu-bc5mRwcL6LIcdbUM3Lzn9w0jIm_y4aO1e3te2e9Ntmt6T4qMdVcUQwQ1VI-W9-KBLhD7zbAiujuCnTXFGXU0wDOZlQ6O3K98o9RvE3YJZ0CTUtKuZSm_vly1xBbPBjKxKOhTluPQlgd9HXoa4CA5N0IFB3l_jSvRNleLhQ0yQJDxOxngsURnXtzbkK_eTrsYMzOK"/>
+</div>
+<div class="max-w-[200px]">
+<div class="text-sm font-semibold truncate text-on-surface">Dune: Deluxe Edition</div>
+<div class="text-[11px] text-outline">By Frank Herbert</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm text-on-surface font-medium">Oct 23, 2023</div>
+<div class="text-[11px] text-outline">05:15 PM</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,108,70,0.5)]"></span>
+                                            ISSUE
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-sm font-bold text-primary hover:bg-primary/5 px-4 py-2 rounded-lg transition-colors">View Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container-lowest flex items-center justify-between">
+<span class="text-xs text-outline font-medium">Showing 1 to 3 of 1,240 entries</span>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg hover:bg-surface-container transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<div class="flex items-center">
+<button class="w-8 h-8 rounded-lg bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container text-xs font-bold text-on-surface">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container text-xs font-bold text-on-surface">3</button>
+<span class="px-1 text-outline">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container text-xs font-bold text-on-surface">42</button>
+</div>
+<button class="p-2 rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Summary (Optional UI Polish) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-6 rounded-2xl bg-white border-none shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">call_made</span>
+</div>
+<div>
+<div class="text-2xl font-bold text-on-surface">124</div>
+<div class="text-xs font-bold text-outline uppercase tracking-wider">Issued Today</div>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-white border-none shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/10 flex items-center justify-center text-tertiary-container">
+<span class="material-symbols-outlined text-2xl">call_received</span>
+</div>
+<div>
+<div class="text-2xl font-bold text-on-surface">98</div>
+<div class="text-xs font-bold text-outline uppercase tracking-wider">Returned Today</div>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-white border-none shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-2xl">priority_high</span>
+</div>
+<div>
+<div class="text-2xl font-bold text-on-surface">14</div>
+<div class="text-xs font-bold text-outline uppercase tracking-wider">Overdue Items</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

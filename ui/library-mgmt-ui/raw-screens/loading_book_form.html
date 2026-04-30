@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f2f4f6",
+                    "on-error": "#ffffff",
+                    "secondary": "#486174",
+                    "on-background": "#191c1e",
+                    "error": "#ba1a1a",
+                    "surface": "#f8f9fb",
+                    "secondary-fixed": "#cbe6fc",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container": "#eceef0",
+                    "tertiary": "#0062a0",
+                    "primary-container": "#00a76f",
+                    "outline-variant": "#bccabf",
+                    "outline": "#6d7a71",
+                    "on-surface-variant": "#3d4a41",
+                    "primary": "#006c46",
+                    "on-surface": "#191c1e",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#f8f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Public Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        @keyframes pulse-custom {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .animate-skeleton {
+            animation: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- SideNavBar (Shared Component) -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-[#f8f9fb] dark:bg-gray-950 flex flex-col h-full p-6 z-50">
+<div class="mb-10">
+<span class="text-xl font-bold text-[#006c46] dark:text-[#00a76f] tracking-tight font-headline">Precision Atrium</span>
+<p class="text-xs text-on-surface-variant opacity-70">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Active Tab: Books (Simulated for context) -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#006c46] dark:text-[#00a76f] font-bold bg-[#eceef0] dark:bg-gray-800 rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-['Public_Sans'] font-medium text-sm">Books</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-gray-400 hover:text-[#006c46] hover:bg-[#eceef0] dark:hover:bg-gray-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Public_Sans'] font-medium text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-gray-400 hover:text-[#006c46] hover:bg-[#eceef0] dark:hover:bg-gray-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-['Public_Sans'] font-medium text-sm">Members</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-gray-400 hover:text-[#006c46] hover:bg-[#eceef0] dark:hover:bg-gray-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-['Public_Sans'] font-medium text-sm">Circulation</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-gray-400 hover:text-[#006c46] hover:bg-[#eceef0] dark:hover:bg-gray-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-['Public_Sans'] font-medium text-sm">Reports</span>
+</a>
+</nav>
+<div class="mt-auto space-y-2 pt-6">
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-gray-400 hover:text-[#006c46] hover:bg-[#eceef0] dark:hover:bg-gray-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Public_Sans'] font-medium text-sm">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#191c1e] dark:text-gray-400 hover:text-[#006c46] hover:bg-[#eceef0] dark:hover:bg-gray-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-['Public_Sans'] font-medium text-sm">Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopAppBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-40 bg-[#f8f9fb]/80 dark:bg-gray-950/80 backdrop-blur-xl flex items-center justify-between px-8">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="w-full relative group">
+<div class="absolute left-3 top-1/2 -translate-y-1/2 text-outline animate-skeleton">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<div class="w-full h-10 bg-surface-container-low rounded-xl animate-skeleton"></div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer animate-skeleton" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer animate-skeleton" data-icon="help_outline">help_outline</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest animate-skeleton overflow-hidden">
+<img alt="Admin Profile" class="w-full h-full object-cover opacity-50" data-alt="Professional library administrator portrait with warm lighting and blurred library background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbNVBeFiaMuoS40UFxrhJ-UUSnJuXfVNC34VAkhfGh309LHg_J7KccUtX0zELL6AyVSpvpZ9hyMpudnDXYbcZ_KUrkhoGIze1m6i2cBBecQuSS0p-0MKXVmXkB5iskjqS3UaQkdJZEn-m-H4HkmtbpihF5r_-Sw0F5eHGflOXGWDGXAEiTLh-CXSFJJyKKRiGcho7i1EsZZQrUnQnbcls9yaEBWRToyVFvnn0Kyt1JDUeijmw6fgjrreBnrJkRzFpDJFbQyeoTOzTb"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas Content -->
+<main class="ml-64 pt-24 pb-12 px-12 min-h-screen">
+<div class="max-w-5xl mx-auto">
+<!-- Page Header Placeholder -->
+<div class="mb-10 flex justify-between items-end">
+<div class="space-y-3">
+<div class="h-10 w-64 bg-surface-container-highest rounded-lg animate-skeleton"></div>
+<div class="h-4 w-96 bg-surface-container rounded-lg animate-skeleton"></div>
+</div>
+<div class="flex gap-4">
+<div class="h-12 w-32 bg-surface-container rounded-xl animate-skeleton"></div>
+<div class="h-12 w-48 bg-primary-container/20 rounded-xl animate-skeleton"></div>
+</div>
+</div>
+<!-- Asymmetric Bento Grid Layout for Form Skeleton -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Left Column: Primary Details (Bigger Card) -->
+<div class="col-span-8 space-y-8">
+<div class="bg-surface-container-lowest rounded-[24px] p-8 space-y-8">
+<!-- Section Heading -->
+<div class="flex items-center gap-3">
+<div class="w-2 h-6 bg-primary rounded-full animate-skeleton"></div>
+<div class="h-6 w-40 bg-surface-container rounded-lg animate-skeleton"></div>
+</div>
+<!-- Form Fields Grid -->
+<div class="grid grid-cols-2 gap-6">
+<!-- Title Input -->
+<div class="col-span-2 space-y-2">
+<div class="h-4 w-20 bg-surface-container rounded animate-skeleton ml-1"></div>
+<div class="h-14 w-full bg-surface-container-low rounded-xl animate-skeleton"></div>
+</div>
+<!-- Author Input -->
+<div class="space-y-2">
+<div class="h-4 w-24 bg-surface-container rounded animate-skeleton ml-1"></div>
+<div class="h-14 w-full bg-surface-container-low rounded-xl animate-skeleton"></div>
+</div>
+<!-- ISBN Input -->
+<div class="space-y-2">
+<div class="h-4 w-16 bg-surface-container rounded animate-skeleton ml-1"></div>
+<div class="h-14 w-full bg-surface-container-low rounded-xl animate-skeleton"></div>
+</div>
+<!-- Publisher -->
+<div class="space-y-2">
+<div class="h-4 w-28 bg-surface-container rounded animate-skeleton ml-1"></div>
+<div class="h-14 w-full bg-surface-container-low rounded-xl animate-skeleton"></div>
+</div>
+<!-- Category -->
+<div class="space-y-2">
+<div class="h-4 w-24 bg-surface-container rounded animate-skeleton ml-1"></div>
+<div class="h-14 w-full bg-surface-container-low rounded-xl animate-skeleton"></div>
+</div>
+</div>
+<!-- Description Area -->
+<div class="space-y-2">
+<div class="h-4 w-32 bg-surface-container rounded animate-skeleton ml-1"></div>
+<div class="h-32 w-full bg-surface-container-low rounded-xl animate-skeleton"></div>
+</div>
+</div>
+<!-- Additional Metadata (Secondary Card) -->
+<div class="bg-surface-container-lowest rounded-[24px] p-8">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-2 h-6 bg-primary rounded-full animate-skeleton"></div>
+<div class="h-6 w-32 bg-surface-container rounded-lg animate-skeleton"></div>
+</div>
+<div class="grid grid-cols-3 gap-6">
+<div class="h-14 bg-surface-container-low rounded-xl animate-skeleton"></div>
+<div class="h-14 bg-surface-container-low rounded-xl animate-skeleton"></div>
+<div class="h-14 bg-surface-container-low rounded-xl animate-skeleton"></div>
+</div>
+</div>
+</div>
+<!-- Right Column: Media & Actions (Sticky Sidebar style) -->
+<div class="col-span-4 space-y-8">
+<!-- Media Upload Area -->
+<div class="bg-surface-container-lowest rounded-[24px] p-8 flex flex-col items-center justify-center text-center border-2 border-dashed border-outline-variant/30">
+<div class="w-16 h-16 rounded-full bg-surface-container-low mb-4 flex items-center justify-center animate-skeleton">
+<span class="material-symbols-outlined text-outline opacity-40">upload_file</span>
+</div>
+<div class="h-5 w-40 bg-surface-container rounded-lg mb-2 animate-skeleton"></div>
+<div class="h-4 w-56 bg-surface-container-low rounded-lg mb-6 animate-skeleton"></div>
+<div class="w-full h-48 bg-surface-container-low rounded-2xl animate-skeleton relative overflow-hidden">
+<!-- Subtle gradient to mimic the "Signature Texture" -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary-container/10 opacity-50"></div>
+</div>
+</div>
+<!-- Resource Settings / Toggle Area -->
+<div class="bg-surface-container-lowest rounded-[24px] p-8 space-y-6">
+<div class="flex items-center justify-between">
+<div class="h-5 w-32 bg-surface-container rounded animate-skeleton"></div>
+<div class="w-12 h-6 bg-surface-container-low rounded-full animate-skeleton"></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="h-5 w-24 bg-surface-container rounded animate-skeleton"></div>
+<div class="w-12 h-6 bg-primary/20 rounded-full animate-skeleton"></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="h-5 w-28 bg-surface-container rounded animate-skeleton"></div>
+<div class="w-12 h-6 bg-surface-container-low rounded-full animate-skeleton"></div>
+</div>
+</div>
+<!-- Floating Action Mimicry -->
+<div class="flex flex-col gap-4">
+<div class="w-full h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-container opacity-40 animate-skeleton flex items-center justify-center shadow-lg shadow-primary/5">
+<div class="h-5 w-32 bg-white/30 rounded-lg"></div>
+</div>
+<div class="w-full h-14 rounded-2xl bg-surface-container-high animate-skeleton flex items-center justify-center">
+<div class="h-5 w-24 bg-on-surface/10 rounded-lg"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Content (Review/Metadata Placeholder) -->
+<div class="mt-8 grid grid-cols-3 gap-8">
+<div class="h-32 bg-surface-container-lowest rounded-[24px] p-6 flex flex-col justify-between animate-skeleton">
+<div class="h-4 w-20 bg-surface-container rounded"></div>
+<div class="h-8 w-12 bg-primary/10 rounded"></div>
+</div>
+<div class="h-32 bg-surface-container-lowest rounded-[24px] p-6 flex flex-col justify-between animate-skeleton">
+<div class="h-4 w-24 bg-surface-container rounded"></div>
+<div class="h-8 w-16 bg-surface-container rounded"></div>
+</div>
+<div class="h-32 bg-surface-container-lowest rounded-[24px] p-6 flex flex-col justify-between animate-skeleton">
+<div class="h-4 w-20 bg-surface-container rounded"></div>
+<div class="h-8 w-14 bg-surface-container rounded"></div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

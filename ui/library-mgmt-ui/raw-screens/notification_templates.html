@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notification Template Management | LibraryAdmin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#0062a0",
+                        "on-secondary-container": "#4c6679",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-container": "#002d4e",
+                        "inverse-surface": "#2d3133",
+                        "secondary-container": "#c8e3fa",
+                        "on-tertiary-fixed": "#001d35",
+                        "on-error": "#ffffff",
+                        "primary": "#006c46",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "background": "#f8f9fb",
+                        "secondary": "#486174",
+                        "tertiary-container": "#4697e0",
+                        "primary-container": "#00a76f",
+                        "surface-tint": "#006c46",
+                        "tertiary-fixed": "#d0e4ff",
+                        "primary-fixed-dim": "#5adda0",
+                        "on-secondary-fixed": "#011e2e",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#bccabf",
+                        "error-container": "#ffdad6",
+                        "surface": "#f8f9fb",
+                        "on-background": "#191c1e",
+                        "on-tertiary-fixed-variant": "#00497a",
+                        "on-primary-fixed": "#002112",
+                        "tertiary-fixed-dim": "#9bcaff",
+                        "secondary-fixed-dim": "#b0cae0",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f8f9fb",
+                        "surface-container-low": "#f2f4f6",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#304a5c",
+                        "inverse-primary": "#5adda0",
+                        "secondary-fixed": "#cbe6fc",
+                        "on-surface-variant": "#3d4a41",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#005234",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed": "#79fabb",
+                        "on-error-container": "#93000a",
+                        "outline": "#6d7a71",
+                        "surface-container": "#eceef0",
+                        "on-primary-container": "#00321f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #006c46 0%, #00a76f 100%);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-[#f8f9fb] dark:bg-slate-950 flex justify-between items-center px-8 py-4 w-full">
+<div class="flex items-center gap-12">
+<span class="text-xl font-bold text-[#006c46] dark:text-[#00a76f] tracking-tight font-['Public_Sans']">LibraryAdmin</span>
+<nav class="hidden md:flex gap-8">
+<a class="text-slate-500 dark:text-slate-400 font-semibold hover:text-[#00a76f] transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-[#006c46] dark:text-[#00a76f] border-b-2 border-[#006c46] pb-1 font-semibold hover:text-[#00a76f] transition-colors duration-200" href="#">Templates</a>
+<a class="text-slate-500 dark:text-slate-400 font-semibold hover:text-[#00a76f] transition-colors duration-200" href="#">Analytics</a>
+<a class="text-slate-500 dark:text-slate-400 font-semibold hover:text-[#00a76f] transition-colors duration-200" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container ml-2">
+<img alt="Librarian profile picture" class="w-full h-full object-cover" data-alt="close-up portrait of a professional woman with glasses and a friendly smile, soft natural library lighting background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD43tOwh9TBRooR-IZVyj49uYNfaXrC5UAWm4P0036uRZxW2u9stCo4YzVFAZ-9_ogiyJQCOPSdLTykd31ACfxjHjARYQ0fg9onr2pdqulpoV2ogZZF3WtoC9ljXDSXU6jfhaqRXRk_LLVYBUNgddeMnUHyHvehL0ZEVAHUu83p5VZYrDnwST_pjvqfFndZBKBkjY2E5kORLMus0a_hiIw8LobLEHXtvCB4AvflabNhuhVGro78pUFUulchaVUU_S_qqiVaTDVMMQNM"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 border-r-0 bg-[#f8f9fb] dark:bg-slate-950 flex flex-col h-full p-4 space-y-2 mt-16 z-40">
+<div class="px-2 py-4 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-gradient flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<div class="text-lg font-black text-[#006c46] font-['Inter']">Template Engine</div>
+<div class="text-[10px] text-slate-400 font-medium">Precision Atrium v1.0</div>
+</div>
+</div>
+</div>
+<button class="bg-primary-gradient text-white py-3 px-4 rounded-xl font-bold flex items-center justify-center gap-2 mb-6 hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined">add_circle</span>
+<span>Create New Template</span>
+</button>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-[#eceef0] dark:bg-slate-800 text-[#006c46] dark:text-[#00a76f] rounded-lg font-medium translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">folder</span>
+<span>All Templates</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-[#f2f4f6] rounded-lg font-medium transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>Overdue Alerts</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-[#f2f4f6] rounded-lg font-medium transition-all" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span>Reservations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-[#f2f4f6] rounded-lg font-medium transition-all" href="#">
+<span class="material-symbols-outlined">settings_suggest</span>
+<span>System Logs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-[#f2f4f6] rounded-lg font-medium transition-all" href="#">
+<span class="material-symbols-outlined">archive</span>
+<span>Archived</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pl-64 pt-20 min-h-screen bg-surface">
+<div class="p-8 h-[calc(100vh-80px)] flex gap-8">
+<!-- Left Panel: Template List -->
+<section class="w-1/3 flex flex-col gap-6">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-2xl font-bold text-on-surface tracking-tight">Active Templates</h2>
+<p class="text-sm text-on-surface-variant">Manage your campus automated communications</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto no-scrollbar space-y-4">
+<!-- Template Item: Overdue (Active) -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-primary/20 shadow-sm relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex justify-between items-start mb-3">
+<span class="bg-primary/10 text-primary px-2 py-1 rounded text-[10px] font-bold tracking-wider uppercase">High Priority</span>
+<span class="text-[11px] text-on-surface-variant font-medium">Updated 2h ago</span>
+</div>
+<h3 class="font-bold text-lg text-primary mb-1">Overdue Book Reminder</h3>
+<div class="flex gap-3 mt-4">
+<div class="flex items-center gap-1 text-xs font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">mail</span> Email
+                            </div>
+<div class="flex items-center gap-1 text-xs font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">sms</span> SMS
+                            </div>
+</div>
+</div>
+<!-- Template Item: Reservation -->
+<div class="bg-surface-container-lowest p-5 rounded-xl hover:bg-surface-container-low transition-colors shadow-sm group cursor-pointer">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-surface-container text-on-surface-variant px-2 py-1 rounded text-[10px] font-bold tracking-wider uppercase">Transaction</span>
+<span class="text-[11px] text-on-surface-variant font-medium">Updated Oct 24</span>
+</div>
+<h3 class="font-bold text-lg text-on-surface mb-1 group-hover:text-primary transition-colors">Reservation Pickup Alert</h3>
+<div class="flex gap-3 mt-4">
+<div class="flex items-center gap-1 text-xs font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">mail</span> Email
+                            </div>
+</div>
+</div>
+<!-- Template Item: Announcement -->
+<div class="bg-surface-container-lowest p-5 rounded-xl hover:bg-surface-container-low transition-colors shadow-sm group cursor-pointer">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-surface-container text-on-surface-variant px-2 py-1 rounded text-[10px] font-bold tracking-wider uppercase">Global</span>
+<span class="text-[11px] text-on-surface-variant font-medium">Updated Oct 20</span>
+</div>
+<h3 class="font-bold text-lg text-on-surface mb-1 group-hover:text-primary transition-colors">System Announcement</h3>
+<div class="flex gap-3 mt-4">
+<div class="flex items-center gap-1 text-xs font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">sms</span> SMS Only
+                            </div>
+</div>
+</div>
+<!-- Template Item: Welcome -->
+<div class="bg-surface-container-lowest p-5 rounded-xl hover:bg-surface-container-low transition-colors shadow-sm group cursor-pointer">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-surface-container text-on-surface-variant px-2 py-1 rounded text-[10px] font-bold tracking-wider uppercase">Onboarding</span>
+<span class="text-[11px] text-on-surface-variant font-medium">Updated Oct 12</span>
+</div>
+<h3 class="font-bold text-lg text-on-surface mb-1 group-hover:text-primary transition-colors">New Member Welcome</h3>
+<div class="flex gap-3 mt-4">
+<div class="flex items-center gap-1 text-xs font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">mail</span> Email
+                            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Editor & Preview -->
+<section class="flex-1 flex flex-col gap-6 overflow-hidden">
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm flex flex-col h-full border border-surface-container">
+<!-- Tabs -->
+<div class="flex border-b border-surface-container-low p-2 gap-2">
+<button class="flex-1 py-3 px-4 rounded-xl bg-primary/10 text-primary font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">mail</span>
+                            Email Template
+                        </button>
+<button class="flex-1 py-3 px-4 rounded-xl text-on-surface-variant hover:bg-surface-container-low font-semibold flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined text-lg">sms</span>
+                            SMS Template
+                        </button>
+</div>
+<div class="flex-1 overflow-y-auto no-scrollbar p-8 space-y-8">
+<!-- Editor Fields -->
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-xs font-black uppercase tracking-widest text-on-surface-variant ml-1">Subject Line</label>
+<input class="w-full bg-surface-container-low border-0 focus:ring-1 focus:ring-primary/30 rounded-xl px-4 py-3 font-medium text-on-surface placeholder:text-slate-400" type="text" value="Attention: Overdue Book Reminder - {{Book_Title}}"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center mb-1">
+<label class="text-xs font-black uppercase tracking-widest text-on-surface-variant ml-1">Message Body</label>
+<div class="flex gap-2">
+<span class="bg-surface-container px-2 py-1 rounded text-[10px] font-bold text-on-surface-variant cursor-pointer hover:bg-primary/20 hover:text-primary transition-colors">{{Member_Name}}</span>
+<span class="bg-surface-container px-2 py-1 rounded text-[10px] font-bold text-on-surface-variant cursor-pointer hover:bg-primary/20 hover:text-primary transition-colors">{{Book_Title}}</span>
+<span class="bg-surface-container px-2 py-1 rounded text-[10px] font-bold text-on-surface-variant cursor-pointer hover:bg-primary/20 hover:text-primary transition-colors">{{Due_Date}}</span>
+</div>
+</div>
+<textarea class="w-full bg-surface-container-low border-0 focus:ring-1 focus:ring-primary/30 rounded-xl px-4 py-3 font-medium text-on-surface leading-relaxed no-scrollbar" rows="6">Dear {{Member_Name}},
+
+This is a friendly reminder that the book "{{Book_Title}}" was due back at the library on {{Due_Date}}. Please return it at your earliest convenience to avoid further fines.
+
+Thank you,
+Library Management</textarea>
+</div>
+</div>
+<!-- Preview Section -->
+<div class="space-y-4">
+<h4 class="text-xs font-black uppercase tracking-widest text-on-surface-variant ml-1">Live Preview</h4>
+<div class="bg-surface-container-low rounded-2xl p-8 flex justify-center items-center">
+<!-- Desktop Email View -->
+<div class="bg-white w-full max-w-md rounded-lg shadow-xl overflow-hidden border border-surface-container">
+<div class="bg-slate-50 border-b border-surface-container p-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-gradient flex items-center justify-center text-white text-[10px] font-bold">L</div>
+<div>
+<div class="text-[10px] font-bold text-slate-800">Library Services</div>
+<div class="text-[9px] text-slate-500">to: Alex Johnson</div>
+</div>
+</div>
+<div class="p-8">
+<h1 class="text-xl font-bold text-slate-900 mb-4">Attention: Overdue Book Reminder - The Great Gatsby</h1>
+<div class="space-y-4 text-sm text-slate-600 leading-relaxed">
+<p>Dear Alex Johnson,</p>
+<p>This is a friendly reminder that the book "The Great Gatsby" was due back at the library on October 25, 2023. Please return it at your earliest convenience to avoid further fines.</p>
+<p>Thank you,<br/>Library Management</p>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-100 flex justify-center">
+<button class="bg-primary-gradient text-white px-6 py-2 rounded-lg text-xs font-bold shadow-md">View My Account</button>
+</div>
+</div>
+<div class="bg-slate-50 p-4 text-[9px] text-slate-400 text-center uppercase tracking-widest">
+                                        Campus Library Admin • Sent via Precision Atrium
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions Footer -->
+<div class="p-6 border-t border-surface-container-low flex justify-end gap-4">
+<button class="px-6 py-2.5 rounded-xl text-on-surface-variant font-bold hover:bg-surface-container transition-all">Reset</button>
+<button class="px-8 py-2.5 rounded-xl bg-primary-gradient text-white font-bold shadow-lg hover:shadow-primary/20 transition-all active:scale-95">Save Changes</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Contextual FAB (Only on relevant screens as per mandate) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-primary-gradient text-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'opsz' 32;">bolt</span>
+</button>
+</body></html>

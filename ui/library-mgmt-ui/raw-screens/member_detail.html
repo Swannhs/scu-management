@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Member Details | Precision Library</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#191c1e",
+                        "tertiary-container": "#4697e0",
+                        "outline": "#6d7a71",
+                        "surface-container-highest": "#e0e3e5",
+                        "outline-variant": "#bccabf",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#4c6679",
+                        "primary-container": "#00a76f",
+                        "inverse-primary": "#5adda0",
+                        "tertiary-fixed-dim": "#9bcaff",
+                        "tertiary": "#0062a0",
+                        "on-tertiary-fixed-variant": "#00497a",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary-fixed-variant": "#304a5c",
+                        "primary-fixed": "#79fabb",
+                        "secondary-container": "#c8e3fa",
+                        "surface": "#f8f9fb",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#002d4e",
+                        "on-tertiary-fixed": "#001d35",
+                        "surface-container": "#eceef0",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary": "#486174",
+                        "on-primary-fixed-variant": "#005234",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#cbe6fc",
+                        "tertiary-fixed": "#d0e4ff",
+                        "on-secondary-fixed": "#011e2e",
+                        "on-background": "#191c1e",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-tint": "#006c46",
+                        "primary": "#006c46",
+                        "on-surface-variant": "#3d4a41",
+                        "on-primary-fixed": "#002112",
+                        "primary-fixed-dim": "#5adda0",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d8dadc",
+                        "secondary-fixed-dim": "#b0cae0",
+                        "background": "#f8f9fb",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f8f9fb",
+                        "on-primary-container": "#00321f",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #006c46 0%, #00a76f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #006c46 0%, #00a76f 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container/30">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed inset-y-0 left-0 flex flex-col py-8 px-4 h-full w-72 bg-[#f8f9fb] dark:bg-[#121212] border-none z-50">
+<div class="mb-10 px-4">
+<h1 class="font-headline font-extrabold text-xl text-[#191c1e] dark:text-[#f8f9fb] tracking-tight">Precision Library</h1>
+<p class="text-xs text-on-surface-variant/60 font-medium uppercase tracking-widest mt-1">Campus Management</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Nav Item: Members (Active) -->
+<a class="flex items-center px-4 py-3 gap-3 rounded-xl transition-all duration-150 text-[#006c46] dark:text-[#00a76f] font-bold border-r-4 border-[#006c46] dark:border-[#00a76f] bg-[#eceef0] dark:bg-[#252525]" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-['Inter'] text-sm font-medium tracking-tight">Members</span>
+</a>
+<a class="flex items-center px-4 py-3 gap-3 rounded-xl transition-colors duration-200 text-[#191c1e]/60 dark:text-[#f8f9fb]/60 hover:text-[#191c1e] dark:hover:text-[#f8f9fb] hover:bg-[#eceef0] dark:hover:bg-[#252525]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] text-sm font-medium tracking-tight">Dashboard</span>
+</a>
+<a class="flex items-center px-4 py-3 gap-3 rounded-xl transition-colors duration-200 text-[#191c1e]/60 dark:text-[#f8f9fb]/60 hover:text-[#191c1e] dark:hover:text-[#f8f9fb] hover:bg-[#eceef0] dark:hover:bg-[#252525]" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-['Inter'] text-sm font-medium tracking-tight">Catalog</span>
+</a>
+<a class="flex items-center px-4 py-3 gap-3 rounded-xl transition-colors duration-200 text-[#191c1e]/60 dark:text-[#f8f9fb]/60 hover:text-[#191c1e] dark:hover:text-[#f8f9fb] hover:bg-[#eceef0] dark:hover:bg-[#252525]" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-['Inter'] text-sm font-medium tracking-tight">Circulation</span>
+</a>
+<a class="flex items-center px-4 py-3 gap-3 rounded-xl transition-colors duration-200 text-[#191c1e]/60 dark:text-[#f8f9fb]/60 hover:text-[#191c1e] dark:hover:text-[#f8f9fb] hover:bg-[#eceef0] dark:hover:bg-[#252525]" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-['Inter'] text-sm font-medium tracking-tight">Fines</span>
+</a>
+<a class="flex items-center px-4 py-3 gap-3 rounded-xl transition-colors duration-200 text-[#191c1e]/60 dark:text-[#f8f9fb]/60 hover:text-[#191c1e] dark:hover:text-[#f8f9fb] hover:bg-[#eceef0] dark:hover:bg-[#252525]" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-['Inter'] text-sm font-medium tracking-tight">Reports</span>
+</a>
+</nav>
+<div class="mt-auto space-y-6">
+<button class="w-full bg-primary-gradient text-on-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>Quick Issue</span>
+</button>
+<div class="space-y-1">
+<a class="flex items-center px-4 py-2 gap-3 rounded-xl text-[#191c1e]/60 hover:bg-[#eceef0] transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="font-['Inter'] text-sm font-medium">Settings</span>
+</a>
+<a class="flex items-center px-4 py-2 gap-3 rounded-xl text-[#191c1e]/60 hover:bg-[#eceef0] transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help_outline">help_outline</span>
+<span class="font-['Inter'] text-sm font-medium">Help</span>
+</a>
+</div>
+<div class="flex items-center gap-3 px-2 pt-4 border-t border-outline-variant/10">
+<img alt="Library Admin Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="professional portrait of a senior library administrator with a warm smile in a brightly lit modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3jkCcLv7kFzMTMkSf2Ta50qz-RvFjh6mS6baaKO4rG9_8hxzle94mg9YAy9IocNsYLRsT_Ht1cteAfHnb65JKPSzPS_kjuqsIuMsbG-9SKN0H7sLwSqYgJLZUBZH_G4Bee9d0gzN016F9gEvuT7vLu8NifRc0-56Yqwhf5FcU76gebPatN93cfyDZBJ_ntdOz4aMVbsp4ElFhJrvb8aSEJtDl6SjkPshoR-eipFDgYkofU7Ax05MLL8gWyiIRZlri_viWXcyWUDTd"/>
+<div class="flex flex-col">
+<span class="text-sm font-bold">Admin Panel</span>
+<span class="text-xs text-on-surface-variant/70">Chief Librarian</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-72 min-h-screen bg-surface">
+<!-- TopAppBar (Shared Component) -->
+<header class="sticky top-0 z-40 flex justify-between items-center px-10 py-6 w-full bg-[#f8f9fb]/80 dark:bg-[#121212]/80 backdrop-blur-xl transition-all">
+<div class="flex flex-col">
+<h2 class="font-headline text-2xl font-bold tracking-tight text-on-surface">Member Details</h2>
+<div class="flex gap-6 mt-2">
+<a class="text-sm font-semibold text-[#006c46] border-b-2 border-[#006c46] pb-1" href="#">Overview</a>
+<a class="text-sm font-medium text-[#191c1e]/70 hover:text-[#006c46] transition-all" href="#">History</a>
+<a class="text-sm font-medium text-[#191c1e]/70 hover:text-[#006c46] transition-all" href="#">Settings</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50">search</span>
+<input class="bg-surface-container-low border-none rounded-xl pl-10 pr-4 py-2 w-64 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search members..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary px-5 py-2 rounded-xl text-sm font-bold hover:scale-[0.97] transition-transform">Issue Book</button>
+<div class="flex items-center gap-2 ml-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="px-10 py-8 max-w-7xl mx-auto space-y-8">
+<!-- Member Profile Header: Bento-style Editorial Layout -->
+<section class="grid grid-cols-12 gap-8 items-start">
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/10 flex flex-col md:flex-row gap-8 items-center md:items-start">
+<div class="relative">
+<img alt="Sarah Jenkins Avatar" class="w-32 h-32 rounded-xl object-cover shadow-xl" data-alt="professional studio portrait of Sarah Jenkins, a student with a friendly expression, soft lighting, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxwkCaofQXQDCYo6Y6JSGiyuHjOMHT2dWkqgBaGTp-13iJdrV7494pWbOpPKH6pZ9Df9euTpZmkD3auv2qV0w4rW-glQXtuMRcDbg_sw3zUZEaz9hmKI1RXixdkbPMABDRLTT-AEadbe9PAY-SsUwJQGT4uMEoWRkBz9S45j5pjswqJoJKboGI2LGx8rZsxK83qbqvfz5xK9oMGz773pgDwR6TlApRS5L-pqblQ_WY0RhPWPXNqtjkYf3SUZWx4uRBoIFAcxoqurP9"/>
+<div class="absolute -bottom-2 -right-2 bg-primary w-8 h-8 rounded-full border-4 border-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="flex-1 text-center md:text-left space-y-4">
+<div>
+<div class="flex flex-wrap items-center justify-center md:justify-start gap-3">
+<h3 class="text-3xl font-headline font-bold text-on-surface tracking-tight">Sarah Jenkins</h3>
+<span class="bg-primary-container/10 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Student</span>
+</div>
+<p class="text-on-surface-variant mt-1 font-medium">ID: #CS-2024-8892 • <span class="text-primary">Computer Science Dept.</span></p>
+</div>
+<div class="flex flex-wrap justify-center md:justify-start gap-6 pt-2">
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+<span>s.jenkins@university.edu</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary" data-icon="phone">phone</span>
+<span>+1 (555) 012-3456</span>
+</div>
+</div>
+<div class="flex gap-3 pt-4 justify-center md:justify-start">
+<button class="bg-primary-gradient text-on-primary px-6 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined">add_box</span>
+                                Issue Book
+                            </button>
+<button class="bg-surface-container-high text-on-surface px-6 py-2.5 rounded-xl font-bold border border-error/20 hover:bg-error/5 hover:text-error transition-all">
+                                Block Member
+                            </button>
+</div>
+</div>
+</div>
+<!-- Secondary Info Panel -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-low p-8 rounded-xl space-y-6">
+<h4 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant">Membership Status</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center p-3 bg-surface-container-lowest rounded-xl">
+<span class="text-sm font-medium">Account Valid Until</span>
+<span class="text-sm font-bold">Sept 20, 2025</span>
+</div>
+<div class="flex justify-between items-center p-3 bg-surface-container-lowest rounded-xl">
+<span class="text-sm font-medium">Borrowing Limit</span>
+<span class="text-sm font-bold">5 / 8 Books</span>
+</div>
+<div class="w-full bg-outline-variant/30 h-2 rounded-full overflow-hidden mt-2">
+<div class="bg-primary h-full w-[62%] rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Statistics Row -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-outline-variant/10 relative overflow-hidden group">
+<div class="absolute right-[-10%] top-[-10%] text-primary/5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-9xl">auto_stories</span>
+</div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Currently Issued</p>
+<div class="flex items-end gap-2 mt-2">
+<h4 class="text-4xl font-headline font-extrabold">03</h4>
+<span class="text-sm text-primary font-bold mb-1.5 flex items-center">
+<span class="material-symbols-outlined text-sm">arrow_upward</span>
+                            Active
+                        </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-outline-variant/10 relative overflow-hidden group">
+<div class="absolute right-[-10%] top-[-10%] text-tertiary/5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-9xl">history_edu</span>
+</div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Total Loans</p>
+<div class="flex items-end gap-2 mt-2">
+<h4 class="text-4xl font-headline font-extrabold">42</h4>
+<span class="text-sm text-tertiary font-bold mb-1.5">Historical</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-outline-variant/10 relative overflow-hidden group">
+<div class="absolute right-[-10%] top-[-10%] text-error/5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-9xl">payments</span>
+</div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Outstanding Fines</p>
+<div class="flex items-end gap-2 mt-2">
+<h4 class="text-4xl font-headline font-extrabold text-error">$12.50</h4>
+<span class="text-sm text-error font-bold mb-1.5">Unpaid</span>
+</div>
+</div>
+</section>
+<!-- Tabs Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden">
+<div class="flex border-b border-outline-variant/10">
+<button class="px-8 py-5 text-sm font-bold border-b-2 border-primary text-primary transition-all">Active Loans</button>
+<button class="px-8 py-5 text-sm font-medium text-on-surface-variant hover:text-primary transition-all">Fine History</button>
+<button class="px-8 py-5 text-sm font-medium text-on-surface-variant hover:text-primary transition-all">Activity Log</button>
+</div>
+<!-- Table Content: Active Loans -->
+<div class="p-4">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low rounded-lg">
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest rounded-l-xl">Book Title</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Issue Date</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Due Date</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest rounded-r-xl">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-14 bg-surface-container rounded shadow-sm flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">book</span>
+</div>
+<div>
+<div class="font-bold text-sm">Advanced Quantum Mechanics</div>
+<div class="text-xs text-on-surface-variant">ISBN: 978-0123456789</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-sm font-medium">May 12, 2024</td>
+<td class="px-6 py-5 text-sm font-bold text-primary">May 26, 2024</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase rounded-full">On Time</span>
+</td>
+<td class="px-6 py-5">
+<button class="text-primary text-xs font-bold hover:underline transition-all">Renew</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-14 bg-surface-container rounded shadow-sm flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">book</span>
+</div>
+<div>
+<div class="font-bold text-sm">Discrete Mathematics &amp; Logic</div>
+<div class="text-xs text-on-surface-variant">ISBN: 978-1567890123</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-sm font-medium">May 05, 2024</td>
+<td class="px-6 py-5 text-sm font-bold text-error">May 19, 2024</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-error/10 text-error text-[10px] font-bold uppercase rounded-full">Overdue</span>
+</td>
+<td class="px-6 py-5">
+<button class="text-primary text-xs font-bold hover:underline transition-all">Renew</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-14 bg-surface-container rounded shadow-sm flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">book</span>
+</div>
+<div>
+<div class="font-bold text-sm">Clean Code: A Handbook of Software</div>
+<div class="text-xs text-on-surface-variant">ISBN: 978-3210987654</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-sm font-medium">May 15, 2024</td>
+<td class="px-6 py-5 text-sm font-bold text-primary">May 29, 2024</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase rounded-full">On Time</span>
+</td>
+<td class="px-6 py-5">
+<button class="text-primary text-xs font-bold hover:underline transition-all">Renew</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Activity Log (Editorial List Pattern) -->
+<section class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-center mb-8">
+<h4 class="font-headline text-lg font-bold">Recent Activity</h4>
+<button class="text-sm font-bold text-primary flex items-center gap-2">
+                        View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-8 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-surface-container">
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-xs">book</span>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+<div>
+<span class="font-bold text-sm">Issued 'Clean Code'</span>
+<p class="text-xs text-on-surface-variant mt-1 italic">Handled by: Library Staff #4</p>
+</div>
+<span class="text-xs font-medium text-on-surface-variant/70">Today, 10:42 AM</span>
+</div>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 bg-error/10 text-error rounded-full flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-xs">payments</span>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+<div>
+<span class="font-bold text-sm">Fine Accrued ($2.50)</span>
+<p class="text-xs text-on-surface-variant mt-1">Reason: Late return - 'Data Structures'</p>
+</div>
+<span class="text-xs font-medium text-on-surface-variant/70">Yesterday, 06:00 PM</span>
+</div>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 bg-tertiary/10 text-tertiary rounded-full flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-xs">history</span>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+<div>
+<span class="font-bold text-sm">Returned 'Atomic Habits'</span>
+<p class="text-xs text-on-surface-variant mt-1 italic">Excellent condition check completed</p>
+</div>
+<span class="text-xs font-medium text-on-surface-variant/70">May 15, 2024</span>
+</div>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-xs">autorenew</span>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+<div>
+<span class="font-bold text-sm">Renewed 'Discrete Mathematics'</span>
+<p class="text-xs text-on-surface-variant mt-1">Extended for 14 days</p>
+</div>
+<span class="text-xs font-medium text-on-surface-variant/70">May 12, 2024</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Contextual FAB - Suppression Logic: Hidden on Profile Details -->
+</body></html>

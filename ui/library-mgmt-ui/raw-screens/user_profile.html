@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Profile | Atrium Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f2f4f6",
+                    "surface-bright": "#f8f9fb",
+                    "surface": "#f8f9fb",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-primary-fixed": "#002112",
+                    "tertiary-fixed": "#d0e4ff",
+                    "background": "#f8f9fb",
+                    "on-primary-container": "#00321f",
+                    "error": "#ba1a1a",
+                    "secondary": "#486174",
+                    "on-secondary-fixed-variant": "#304a5c",
+                    "on-primary-fixed-variant": "#005234",
+                    "tertiary-fixed-dim": "#9bcaff",
+                    "surface-tint": "#006c46",
+                    "inverse-on-surface": "#eff1f3",
+                    "tertiary-container": "#4697e0",
+                    "on-tertiary-fixed-variant": "#00497a",
+                    "outline": "#6d7a71",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#011e2e",
+                    "primary-fixed-dim": "#5adda0",
+                    "on-surface-variant": "#3d4a41",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed-dim": "#b0cae0",
+                    "secondary-container": "#c8e3fa",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001d35",
+                    "surface-container": "#eceef0",
+                    "primary-container": "#00a76f",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#0062a0",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#79fabb",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e0e3e5",
+                    "on-secondary-container": "#4c6679",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "outline-variant": "#bccabf",
+                    "secondary-fixed": "#cbe6fc",
+                    "surface-dim": "#d8dadc",
+                    "primary": "#006c46",
+                    "inverse-surface": "#2d3133",
+                    "on-tertiary-container": "#002d4e",
+                    "inverse-primary": "#5adda0",
+                    "on-background": "#191c1e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Public Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fb;
+        }
+        h1, h2, h3 {
+            font-family: 'Public Sans', sans-serif;
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #006c46 0%, #00a76f 100%);
+        }
+    </style>
+</head>
+<body class="text-on-surface flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="bg-[#f8f9fb] dark:bg-[#191c1e] h-screen w-64 border-r-0 flex flex-col py-8 gap-2 sticky top-0 hidden md:flex">
+<div class="px-6 mb-8">
+<h1 class="font-['Public_Sans'] font-black text-[#006c46] text-2xl tracking-tighter">Admin Portal</h1>
+<p class="text-xs text-on-surface-variant font-medium opacity-60 mt-1">Central Library Main</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-6 py-3 gap-3 text-[#191c1e] dark:text-[#e1e2e5] hover:bg-[#eceef0] hover:translate-x-1 transition-all duration-200 cursor-pointer active:opacity-70 group" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center px-6 py-3 gap-3 text-[#191c1e] dark:text-[#e1e2e5] hover:bg-[#eceef0] hover:translate-x-1 transition-all duration-200 cursor-pointer active:opacity-70 group" href="#">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+<span class="font-['Inter'] text-sm font-medium">Catalog</span>
+</a>
+<a class="flex items-center px-6 py-3 gap-3 text-[#191c1e] dark:text-[#e1e2e5] hover:bg-[#eceef0] hover:translate-x-1 transition-all duration-200 cursor-pointer active:opacity-70 group" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-['Inter'] text-sm font-medium">Members</span>
+</a>
+<a class="flex items-center px-6 py-3 gap-3 text-[#191c1e] dark:text-[#e1e2e5] hover:bg-[#eceef0] hover:translate-x-1 transition-all duration-200 cursor-pointer active:opacity-70 group" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span class="font-['Inter'] text-sm font-medium">Analytics</span>
+</a>
+<a class="flex items-center px-6 py-3 gap-3 text-[#006c46] dark:text-[#00a76f] bg-[#ffffff] dark:bg-[#00a76f]/10 rounded-r-full font-bold hover:translate-x-1 transition-all duration-200 cursor-pointer active:opacity-70 group" href="#">
+<span class="material-symbols-outlined active-icon" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-['Inter'] text-sm">Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto pt-8">
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl">
+<img alt="Library Admin Profile" class="w-10 h-10 rounded-full bg-surface-container-high" data-alt="professional headshot of a friendly librarian admin in a modern office setting, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzVsan-SDoDZNHiouPvdLNwdyejQwZj4y8_18lHTMwk5mSB5lBfvDQWdlxapdtKav50q22vZdvZ3dapvJ01Ani_Jul6y7RpeS02UvGT0euMShVEF-dbs63v7o67AwNRyAMaH8L94mV7ZMq8ZuAHTk5G7gq-tYL9xFIg2dFTDkgLSibLsKXWfBkQtwQHaGT4bmAyzPgYb9baUNT9DJo_X3QgrucMYKPU6PhNQD2fvFPJFLoxQ31eoTCdcIxtUo3MNLTHkq7FkAfCKMM"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Admin User</p>
+<p class="text-[10px] opacity-60 truncate">Chief Librarian</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 min-w-0 flex flex-col bg-surface overflow-y-auto">
+<!-- TopAppBar (Shared Component Implementation) -->
+<header class="bg-[#f8f9fb] dark:bg-[#191c1e] flex justify-between items-center px-6 py-4 w-full sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<span class="md:hidden material-symbols-outlined text-on-surface" data-icon="menu">menu</span>
+<h2 class="font-['Public_Sans'] font-bold tracking-tight text-on-surface text-xl">Settings</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-50 text-sm" data-icon="search">search</span>
+<input class="bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm w-64 focus:ring-1 focus:ring-primary/30 transition-all" placeholder="Search settings..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-[#eceef0] transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-[#eceef0] transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+</div>
+</header>
+<div class="w-full h-[1px] bg-[#f2f4f6] dark:bg-[#1f2123]"></div>
+<!-- Content Area -->
+<div class="p-6 md:p-10 max-w-5xl mx-auto w-full space-y-10">
+<!-- Hero Header Section -->
+<section class="flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-10">
+<div class="relative">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full primary-gradient p-1 shadow-2xl">
+<img alt="Admin avatar" class="w-full h-full rounded-full border-4 border-surface object-cover" data-alt="portrait of a professional administrator in a white collared shirt against a blurred library background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjXm55AZXH7rZQUDWivYPSEnoLaTYKfmK1UEqZrXyFgWatzlnuUh_FTVbmQEVbW332kNNN9EBRGaNqk5laynQEDMihov5nuyp0bSK44Sa-k-dPu2R7yIonzHLTYJuBcQ5ynMtBd1uHZOZo1KnnNjAp9KwIFgywHUUqYyARRi1OkImKNUtg328SdEpi8uRDFCxNxHMlAYwNKeEq0Sr1mME0Ok_Q-sdp9E3yzWDOX13NkwzIxeAQtz6bVnjCBUZNUNbJzhQYzgfuVqXk"/>
+</div>
+<button class="absolute bottom-2 right-2 p-2 primary-gradient text-white rounded-full shadow-lg hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="photo_camera">photo_camera</span>
+</button>
+</div>
+<div class="text-center md:text-left flex-1 space-y-1">
+<div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+<h1 class="text-3xl md:text-4xl font-extrabold tracking-tight font-headline text-on-surface">Admin User</h1>
+<span class="inline-flex px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-wider self-center md:self-auto">Chief Librarian</span>
+</div>
+<p class="text-on-surface-variant font-medium">admin@atrium.edu</p>
+<p class="text-xs text-outline font-medium">Account ID: LIB-00829-ADM</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-xl bg-surface-container-high text-on-surface font-semibold text-sm hover:translate-y-[-1px] transition-all active:opacity-70">
+                        View Public Profile
+                    </button>
+</div>
+</section>
+<!-- Grid Layout for Settings Cards -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Navigation/Tabs (Contextual) -->
+<div class="lg:col-span-1">
+<nav class="space-y-2 sticky top-24">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-container-lowest shadow-sm text-primary font-bold transition-all border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined active-icon" data-icon="person">person</span>
+<span>Personal Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+<span>Security</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span>Notifications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="cloud_done">cloud_done</span>
+<span>Data Management</span>
+</a>
+</nav>
+</div>
+<!-- Right Column: Form Modules -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Personal Information Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_4px_24px_rgba(25,28,30,0.04)] relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full primary-gradient opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-xl font-bold font-headline">Personal Information</h3>
+<button class="text-primary font-semibold text-sm hover:underline">Edit All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-widest px-1">Full Name</label>
+<div class="bg-surface-container-low px-4 py-3 rounded-xl text-on-surface font-medium border border-transparent focus-within:border-primary/30 focus-within:bg-white transition-all">
+                                    Admin User
+                                </div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-widest px-1">Email Address</label>
+<div class="bg-surface-container-low px-4 py-3 rounded-xl text-on-surface font-medium border border-transparent focus-within:border-primary/30 focus-within:bg-white transition-all">
+                                    admin@atrium.edu
+                                </div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-widest px-1">Phone Number</label>
+<div class="bg-surface-container-low px-4 py-3 rounded-xl text-on-surface font-medium border border-transparent focus-within:border-primary/30 focus-within:bg-white transition-all">
+                                    +1 (555) 012-3456
+                                </div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-widest px-1">Department</label>
+<div class="bg-surface-container-low px-4 py-3 rounded-xl text-on-surface font-medium border border-transparent focus-within:border-primary/30 focus-within:bg-white transition-all">
+                                    Central Library Management
+                                </div>
+</div>
+</div>
+</div>
+<!-- Security Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_4px_24px_rgba(25,28,30,0.04)]">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-full primary-gradient flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="lock_reset">lock_reset</span>
+</div>
+<div>
+<h3 class="text-xl font-bold font-headline">Change Password</h3>
+<p class="text-xs text-on-surface-variant font-medium opacity-60">Last updated 3 months ago</p>
+</div>
+</div>
+<form class="space-y-6 max-w-md">
+<div class="space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-widest px-1">Current Password</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-1 focus:ring-primary/30 transition-all placeholder:opacity-30" placeholder="••••••••••••" type="password"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline cursor-pointer text-xl" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-widest px-1">New Password</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-1 focus:ring-primary/30 transition-all" placeholder="Enter new password" type="password"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-widest px-1">Confirm New Password</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-1 focus:ring-primary/30 transition-all" placeholder="Repeat new password" type="password"/>
+</div>
+<div class="pt-4 flex items-center justify-between">
+<p class="text-[11px] text-on-surface-variant max-w-[200px]">Password must be at least 12 characters and include a special symbol.</p>
+<button class="px-8 py-3 rounded-xl primary-gradient text-white font-bold text-sm shadow-lg hover:shadow-primary/20 hover:translate-y-[-2px] transition-all active:scale-95" type="submit">
+                                    Update Password
+                                </button>
+</div>
+</form>
+</div>
+<!-- Additional Contextual Card: Activity Logs -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(25,28,30,0.04)]">
+<div class="p-8 border-b border-surface-container">
+<h3 class="text-xl font-bold font-headline">Recent Security Activity</h3>
+</div>
+<div class="divide-y divide-surface-container">
+<div class="px-8 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<div>
+<p class="text-sm font-bold">Successful Login</p>
+<p class="text-xs text-on-surface-variant">Chrome on MacOS • Los Angeles, CA</p>
+</div>
+</div>
+<span class="text-xs font-medium text-outline">2 mins ago</span>
+</div>
+<div class="px-8 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors opacity-70">
+<div class="flex items-center gap-4">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<div>
+<p class="text-sm font-bold">Profile Details Updated</p>
+<p class="text-xs text-on-surface-variant">Internal Admin Panel</p>
+</div>
+</div>
+<span class="text-xs font-medium text-outline">Oct 12, 10:45 AM</span>
+</div>
+</div>
+<div class="p-4 bg-surface-container-low text-center">
+<button class="text-xs font-bold text-primary uppercase tracking-widest hover:opacity-70 transition-opacity">View Full Audit Trail</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto p-10 border-t border-surface-container text-center">
+<p class="text-xs text-outline font-medium">© 2024 Atrium Library Systems • Version 4.2.1-stable</p>
+</footer>
+</main>
+<!-- Mobile Navigation (Shared Component Placeholder) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_24px_rgba(0,0,0,0.05)] flex justify-around items-center py-3 px-6 z-50">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+<span class="text-[10px] font-bold">Catalog</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined active-icon" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</nav>
+</body></html>
