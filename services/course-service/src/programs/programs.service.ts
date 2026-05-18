@@ -65,4 +65,13 @@ export class ProgramsService {
             include: { department: true, courses: true },
         });
     }
+
+    async remove(tenantId: string, programId: string) {
+        await this.findOne(tenantId, programId);
+        return this.prisma.program.update({
+            where: { id: programId },
+            data: { deletedAt: new Date() },
+            include: { department: true, courses: true },
+        });
+    }
 }

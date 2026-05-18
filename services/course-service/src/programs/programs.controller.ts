@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { Roles } from 'nest-keycloak-connect';
 import { ProgramsService } from './programs.service';
 import { TenantContextParam } from '../common/tenant-context.decorator';
@@ -48,5 +48,14 @@ export class ProgramsController {
         @Body() data: UpdateProgramDto,
     ) {
         return this.programsService.update(tenantContext.effectiveTenantId, id, data);
+    }
+
+    @Delete(':id')
+    @Roles({ roles: ['TENANT_ADMIN'] })
+    async remove(
+        @TenantContextParam() tenantContext: TenantContext,
+        @Param('id') id: string,
+    ) {
+        return this.programsService.remove(tenantContext.effectiveTenantId, id);
     }
 }
