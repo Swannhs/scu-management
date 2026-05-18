@@ -21,6 +21,9 @@ The course service is the academic catalog backbone:
 | GET | `/ready` | None | Readiness check (DB ping) |
 | GET | `/v1/departments` | Any authenticated | List departments |
 | POST | `/v1/departments` | `university_admin` | Create department |
+| GET | `/v1/departments/:id` | Any authenticated | Get department by ID |
+| PATCH | `/v1/departments/:id` | `university_admin` | Update department |
+| DELETE | `/v1/departments/:id` | `university_admin` | Soft delete department |
 | GET | `/v1/programs` | Any authenticated | List programs |
 | POST | `/v1/programs` | `university_admin` | Create program |
 | GET | `/v1/courses` | Any authenticated | List courses |

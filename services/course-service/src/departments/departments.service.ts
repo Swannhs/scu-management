@@ -46,4 +46,13 @@ export class DepartmentsService {
       include: { programs: true },
     });
   }
+
+  async remove(tenantId: string, id: string) {
+    await this.findOne(tenantId, id);
+    return this.prisma.department.update({
+      where: { id },
+      data: { deletedAt: new Date() },
+      include: { programs: true },
+    });
+  }
 }
