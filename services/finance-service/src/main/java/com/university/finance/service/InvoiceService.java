@@ -31,6 +31,9 @@ public class InvoiceService {
     @Autowired
     private PaymentRepository paymentRepository;
 
+    @Autowired
+    private OdooInvoiceSyncService odooInvoiceSyncService;
+
     @Transactional(readOnly = true)
     public List<Invoice> getAllInvoices() {
         return invoiceRepository.findByTenantId(TenantContext.getCurrentTenant());
@@ -68,7 +71,14 @@ public class InvoiceService {
             throw new IllegalStateException("Invoice is not in DRAFT status");
         }
         invoice.setStatus("ISSUED");
-        return invoiceRepository.save(invoice);
+        Invoice saved = invoiceRepository.save(invoice);
+        return odooInvoiceSyncService.syncIssuedInvoice(saved);
+    }
+
+    @Transactional
+    public Invoice retryOdooSync(UUID id) {
+        Invoice invoice = getInvoice(id);
+        return odooInvoiceSyncService.retrySync(invoice);
     }
 
     @Transactional
