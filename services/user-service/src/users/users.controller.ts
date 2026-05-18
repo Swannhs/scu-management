@@ -10,10 +10,12 @@ import {
   Headers,
   HttpCode,
   HttpStatus,
+  ForbiddenException,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { UpdateUserDto, ListUsersDto } from './dto/user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 import { ApiResponse as ApiResponseType } from '@university/shared';
 
 @ApiTags('Users')
@@ -33,6 +35,23 @@ export class UsersController {
       query.limit,
     );
     return ApiResponseType.success(result.data, result.meta);
+  }
+
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Create user' })
+  async create(
+    @Headers('x-tenant-id') tenantId: string,
+    @Headers('x-user-role') userRole: string,
+    @Body() createUserDto: CreateUserDto,
+  ) {
+    const normalizedRole = (userRole || '').toUpperCase();
+    if (!['SUPER_ADMIN', 'ADMIN'].includes(normalizedRole)) {
+      throw new ForbiddenException('Insufficient role to create users');
+    }
+
+    const user = await this.usersService.create(tenantId, createUserDto);
+    return ApiResponseType.success(user);
   }
 
   @Get('me')
