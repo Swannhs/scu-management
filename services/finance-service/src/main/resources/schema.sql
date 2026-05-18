@@ -51,6 +51,12 @@ CREATE TABLE invoices (
     due_date DATE NOT NULL,
     status fee_status DEFAULT 'PENDING',
 
+    odoo_partner_id VARCHAR(100),
+    odoo_invoice_id VARCHAR(100),
+    odoo_sync_status VARCHAR(20) DEFAULT 'PENDING',
+    odoo_last_sync_at TIMESTAMP WITH TIME ZONE,
+    odoo_sync_error VARCHAR(500),
+
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     deleted_at TIMESTAMP WITH TIME ZONE,

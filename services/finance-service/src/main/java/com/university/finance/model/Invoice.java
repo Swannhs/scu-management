@@ -48,4 +48,19 @@ public class Invoice {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "odoo_partner_id")
+    private String odooPartnerId;
+
+    @Column(name = "odoo_invoice_id")
+    private String odooInvoiceId;
+
+    @Column(name = "odoo_sync_status")
+    private String odooSyncStatus;
+
+    @Column(name = "odoo_last_sync_at")
+    private LocalDateTime odooLastSyncAt;
+
+    @Column(name = "odoo_sync_error", length = 500)
+    private String odooSyncError;
 }

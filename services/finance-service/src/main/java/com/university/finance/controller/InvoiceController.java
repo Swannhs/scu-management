@@ -53,6 +53,11 @@ public class InvoiceController {
         return ResponseEntity.ok(service.issueInvoice(id));
     }
 
+    @PostMapping("/{id}/odoo-sync/retry")
+    public ResponseEntity<Invoice> retryOdooSync(@PathVariable UUID id) {
+        return ResponseEntity.ok(service.retryOdooSync(id));
+    }
+
     @PostMapping("/{id}/void")
     public ResponseEntity<Invoice> voidInvoice(@PathVariable UUID id) {
         return ResponseEntity.ok(service.voidInvoice(id));
