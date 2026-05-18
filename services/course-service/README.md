@@ -27,6 +27,12 @@ The course service is the academic catalog backbone:
 | POST | `/v1/courses` | `university_admin` | Create course |
 | GET | `/v1/sections` | Any authenticated | List sections |
 | POST | `/v1/sections` | `university_admin` | Create section |
+| GET | `/v1/sections/:id` | Any authenticated | Get section by ID |
+| PATCH | `/v1/sections/:id` | `university_admin` | Update section |
+| DELETE | `/v1/sections/:id` | `university_admin` | Soft delete section |
+| GET | `/v1/sections/:id/roster` | Faculty/admin/registrar | Get section roster |
+| POST | `/v1/sections/:id/faculty` | `university_admin` | Assign faculty to section |
+| DELETE | `/v1/sections/:id/faculty/:facultyId` | `university_admin` | Remove faculty assignment |
 
 See `/docs` (Swagger UI) when the service is running for the full API.
 
