@@ -4,6 +4,9 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { CreateAttendanceMarkDto } from './dto/create-attendance-mark.dto';
+import { BulkAttendanceMarksDto } from './dto/bulk-attendance-marks.dto';
+import { UpdateAttendanceMarkDto } from './dto/update-attendance-mark.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateAttendanceSessionDto } from './dto/create-attendance-session.dto';
 import { MarkAttendanceDto } from './dto/mark-attendance.dto';
@@ -124,42 +127,147 @@ export class AttendanceService {
     });
   }
 
-  async markAttendance(tenantId: string, sessionId: string, dto: MarkAttendanceDto) {
+  async createMark(tenantId: string, sessionId: string, dto: CreateAttendanceMarkDto) {
     const session = await this.prisma.attendanceSession.findFirst({
       where: { id: sessionId, tenantId, deletedAt: null },
     });
+
     if (!session) {
-      throw new NotFoundException('NOT_FOUND');
+      throw new NotFoundException('Session not found');
     }
+
     if (session.status === 'closed') {
       throw new BadRequestException('Cannot mark attendance for closed session');
     }
 
-    const upserts = dto.records.map((record) =>
-      this.prisma.attendanceRecord.upsert({
-        where: {
-          attendanceSessionId_studentId: {
-            attendanceSessionId: sessionId,
-            studentId: record.studentId,
-          },
-        },
-        update: {
-          status: record.status as AttendanceStatus,
-          remarks: record.remarks,
-        },
-        create: {
-          tenantId,
-          attendanceSessionId: sessionId,
-          studentId: record.studentId,
-          status: record.status as AttendanceStatus,
-          remarks: record.remarks,
-        },
-      }),
-    );
+    const exists = await this.prisma.attendanceRecord.findFirst({
+      where: {
+        tenantId,
+        attendanceSessionId: sessionId,
+        studentId: dto.studentId,
+        deletedAt: null,
+      },
+      select: { id: true },
+    });
 
-    await this.prisma.$transaction(upserts);
+    if (exists) {
+      throw new ConflictException('Attendance mark already exists for this student and session');
+    }
+
+    return this.prisma.attendanceRecord.create({
+      data: {
+        tenantId,
+        attendanceSessionId: sessionId,
+        studentId: dto.studentId,
+        status: dto.status.toUpperCase() as AttendanceStatus,
+        remarks: dto.remarks,
+      },
+    });
+  }
+
+  async createBulkMarks(tenantId: string, sessionId: string, dto: BulkAttendanceMarksDto) {
+    const session = await this.prisma.attendanceSession.findFirst({
+      where: { id: sessionId, tenantId, deletedAt: null },
+    });
+
+    if (!session) {
+      throw new NotFoundException('Session not found');
+    }
+
+    if (session.status === 'closed') {
+      throw new BadRequestException('Cannot mark attendance for closed session');
+    }
+
+    const studentIds = dto.marks.map((m) => m.studentId);
+
+    const duplicatesInPayload = new Set<string>();
+    const seen = new Set<string>();
+    for (const studentId of studentIds) {
+      if (seen.has(studentId)) duplicatesInPayload.add(studentId);
+      seen.add(studentId);
+    }
+    if (duplicatesInPayload.size > 0) {
+      throw new ConflictException('Duplicate student entries in bulk marks payload');
+    }
+
+    const existing = await this.prisma.attendanceRecord.findMany({
+      where: {
+        tenantId,
+        attendanceSessionId: sessionId,
+        studentId: { in: studentIds },
+        deletedAt: null,
+      },
+      select: { studentId: true },
+    });
+
+    if (existing.length > 0) {
+      throw new ConflictException('One or more attendance marks already exist for this session');
+    }
+
+    await this.prisma.attendanceRecord.createMany({
+      data: dto.marks.map((mark) => ({
+        tenantId,
+        attendanceSessionId: sessionId,
+        studentId: mark.studentId,
+        status: mark.status.toUpperCase() as AttendanceStatus,
+        remarks: mark.remarks,
+      })),
+    });
+
     return this.prisma.attendanceRecord.findMany({
       where: { tenantId, attendanceSessionId: sessionId, deletedAt: null },
+      orderBy: { createdAt: 'asc' },
+    });
+  }
+
+  async updateMark(tenantId: string, markId: string, dto: UpdateAttendanceMarkDto) {
+    const mark = await this.prisma.attendanceRecord.findFirst({
+      where: { id: markId, tenantId, deletedAt: null },
+      include: { session: true },
+    });
+
+    if (!mark) {
+      throw new NotFoundException('Mark not found');
+    }
+
+    if (mark.session?.status === 'closed') {
+      throw new BadRequestException('Cannot update attendance mark for closed session');
+    }
+
+    return this.prisma.attendanceRecord.update({
+      where: { id: markId },
+      data: {
+        ...(dto.status !== undefined
+          ? { status: dto.status.toUpperCase() as AttendanceStatus }
+          : {}),
+        ...(dto.remarks !== undefined ? { remarks: dto.remarks } : {}),
+      },
+    });
+  }
+
+  async getSessionMarks(tenantId: string, sessionId: string) {
+    const session = await this.prisma.attendanceSession.findFirst({
+      where: { id: sessionId, tenantId, deletedAt: null },
+      select: { id: true },
+    });
+
+    if (!session) {
+      throw new NotFoundException('Session not found');
+    }
+
+    return this.prisma.attendanceRecord.findMany({
+      where: { tenantId, attendanceSessionId: sessionId, deletedAt: null },
+      orderBy: { createdAt: 'asc' },
+    });
+  }
+
+  async markAttendance(tenantId: string, sessionId: string, dto: MarkAttendanceDto) {
+    return this.createBulkMarks(tenantId, sessionId, {
+      marks: dto.records.map((record) => ({
+        studentId: record.studentId,
+        status: record.status.toLowerCase(),
+        remarks: record.remarks,
+      })),
     });
   }
 

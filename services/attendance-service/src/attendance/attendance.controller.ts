@@ -16,6 +16,9 @@ import type { TenantContext } from '../common/tenant-context';
 import { CreateAttendanceSessionDto } from './dto/create-attendance-session.dto';
 import { UpdateAttendanceSessionDto } from './dto/update-attendance-session.dto';
 import { MarkAttendanceDto } from './dto/mark-attendance.dto';
+import { CreateAttendanceMarkDto } from './dto/create-attendance-mark.dto';
+import { BulkAttendanceMarksDto } from './dto/bulk-attendance-marks.dto';
+import { UpdateAttendanceMarkDto } from './dto/update-attendance-mark.dto';
 import type { KeycloakUser } from '../common/keycloak-user.interface';
 
 @Controller('v1')
@@ -67,6 +70,45 @@ export class AttendanceController {
     @Param('id') id: string,
   ) {
     return this.attendanceService.deleteSession(tenantContext.effectiveTenantId, id);
+  }
+
+  @Post('attendance/sessions/:id/marks')
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
+  markOne(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Param('id') sessionId: string,
+    @Body() dto: CreateAttendanceMarkDto,
+  ) {
+    return this.attendanceService.createMark(tenantContext.effectiveTenantId, sessionId, dto);
+  }
+
+  @Post('attendance/sessions/:id/bulk-marks')
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
+  markBulk(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Param('id') sessionId: string,
+    @Body() dto: BulkAttendanceMarksDto,
+  ) {
+    return this.attendanceService.createBulkMarks(tenantContext.effectiveTenantId, sessionId, dto);
+  }
+
+  @Patch('attendance/marks/:markId')
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
+  updateMark(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Param('markId') markId: string,
+    @Body() dto: UpdateAttendanceMarkDto,
+  ) {
+    return this.attendanceService.updateMark(tenantContext.effectiveTenantId, markId, dto);
+  }
+
+  @Get('attendance/sessions/:id/marks')
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR', 'STAFF'] })
+  getSessionMarks(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Param('id') sessionId: string,
+  ) {
+    return this.attendanceService.getSessionMarks(tenantContext.effectiveTenantId, sessionId);
   }
 
   @Post('attendance/sessions/:id/mark')

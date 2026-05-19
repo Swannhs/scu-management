@@ -140,6 +140,34 @@
     "handler": "deleteSession"
   },
   {
+    "service": "attendance-service",
+    "method": "POST",
+    "path": "/v1/attendance/sessions/{id}/marks",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "markOne"
+  },
+  {
+    "service": "attendance-service",
+    "method": "POST",
+    "path": "/v1/attendance/sessions/{id}/bulk-marks",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "markBulk"
+  },
+  {
+    "service": "attendance-service",
+    "method": "PATCH",
+    "path": "/v1/attendance/marks/{markId}",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "updateMark"
+  },
+  {
+    "service": "attendance-service",
+    "method": "GET",
+    "path": "/v1/attendance/sessions/{id}/marks",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "getSessionMarks"
+  },
+  {
     "service": "audit-logging-service",
     "method": "GET",
     "path": "/",

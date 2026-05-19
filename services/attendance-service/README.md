@@ -24,7 +24,11 @@ The attendance service manages:
 | GET | `/v1/attendance/sessions/:id` | `faculty`, `university_admin`, `registrar`, `staff` | Get attendance session |
 | PATCH | `/v1/attendance/sessions/:id` | `faculty`, `university_admin`, `registrar` | Update attendance session |
 | DELETE | `/v1/attendance/sessions/:id` | `university_admin`, `registrar` | Delete attendance session |
-| POST | `/v1/attendance/sessions/:id/marks` | `faculty` | Mark attendance for session |
+| POST | `/v1/attendance/sessions/:id/marks` | `faculty`, `university_admin`, `registrar` | Mark one student attendance |
+| POST | `/v1/attendance/sessions/:id/bulk-marks` | `faculty`, `university_admin`, `registrar` | Mark many students attendance |
+| PATCH | `/v1/attendance/marks/:markId` | `faculty`, `university_admin`, `registrar` | Correct an attendance mark |
+| GET | `/v1/attendance/sessions/:id/marks` | `faculty`, `university_admin`, `registrar`, `staff` | List marks for session |
+| POST | `/v1/attendance/sessions/:id/mark` | `faculty` | Legacy bulk mark endpoint (compatibility) |
 | GET | `/v1/attendance/students/:id` | `faculty`, `student`, `parent` | Get student attendance history |
 | GET | `/v1/attendance/sections/:id/report` | `faculty`, `university_admin` | Section attendance report |
 
