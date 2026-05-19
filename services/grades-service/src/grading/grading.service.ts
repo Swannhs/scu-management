@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { BulkScoreDto } from './dto/bulk-score.dto';
 import { CreateAssessmentDto } from './dto/create-assessment.dto';
@@ -306,5 +306,87 @@ export class GradingService {
     });
 
     return { success: true, count: finalGrades.length };
+  }
+
+  updateAssessmentItem(tenantId: string, itemId: string, payload: Partial<CreateAssessmentDto>) {
+    return this.prisma.exam.update({
+      where: { id: itemId },
+      data: {
+        name: payload.name,
+        type: payload.type as ExamType,
+        date: payload.date ? new Date(payload.date) : undefined,
+        durationMinutes: payload.durationMinutes,
+        totalMarks: payload.maxScore,
+        weightagePercent: payload.weight,
+      },
+    });
+  }
+
+  async recordSingleScore(
+    tenantId: string,
+    itemId: string,
+    payload: { studentId: string; score: number; remarks?: string },
+  ) {
+    return this.recordScores(tenantId, itemId, { scores: [payload] });
+  }
+
+  async getStudentSectionGradebook(tenantId: string, studentId: string, sectionId: string) {
+    const gradebook = await this.getGradebook(tenantId, sectionId);
+    const assessments = gradebook.assessments;
+    const studentScores = gradebook.studentScores.filter((s) => s.studentId === studentId);
+
+    const weightedTotal = assessments.reduce((acc, assessment) => {
+      const score = studentScores.find((s) => s.assessmentId === assessment.id);
+      if (!score || assessment.total <= 0) return acc;
+      return acc + (score.obtained / assessment.total) * assessment.weight;
+    }, 0);
+
+    return {
+      sectionId,
+      studentId,
+      assessments,
+      studentScores,
+      weightedTotal,
+    };
+  }
+
+  async getStudentGrades(tenantId: string, studentId: string) {
+    return this.prisma.finalGrade.findMany({
+      where: { tenantId, studentId },
+      orderBy: { computedAt: 'desc' },
+    });
+  }
+
+  async getStudentGpa(tenantId: string, studentId: string) {
+    const transcripts = await this.prisma.studentTranscript.findMany({
+      where: { tenantId, studentId },
+      orderBy: { updatedAt: 'desc' },
+    });
+
+    const termGpa = transcripts.map((t) => ({
+      termId: t.termId,
+      gpa: t.gpa ? t.gpa.toNumber() : null,
+      cgpa: t.cgpa ? t.cgpa.toNumber() : null,
+    }));
+
+    const latest = termGpa[0] ?? null;
+    return {
+      studentId,
+      termGpa,
+      cumulativeGpa: latest?.cgpa ?? latest?.gpa ?? null,
+    };
+  }
+
+  async getTranscriptSummary(tenantId: string, studentId: string) {
+    const transcript = await this.getTranscript(tenantId, studentId);
+    const latestTerm = transcript.transcripts[0] ?? null;
+
+    return {
+      studentId,
+      totalCourses: transcript.finalGrades.length,
+      latestTermId: latestTerm?.termId ?? null,
+      latestTermGpa: latestTerm?.gpa ? Number(latestTerm.gpa) : null,
+      cumulativeGpa: latestTerm?.cgpa ? Number(latestTerm.cgpa) : null,
+    };
   }
 }

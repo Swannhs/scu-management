@@ -994,6 +994,111 @@
     "handler": "getHello"
   },
   {
+    "service": "grades-service",
+    "method": "GET",
+    "path": "/v1/gradebooks/sections/{sectionId}",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "getGradebookBySection"
+  },
+  {
+    "service": "grades-service",
+    "method": "POST",
+    "path": "/v1/gradebooks/sections/{sectionId}/items",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "createGradebookItem"
+  },
+  {
+    "service": "grades-service",
+    "method": "PATCH",
+    "path": "/v1/gradebooks/items/{itemId}",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "patchGradebookItem"
+  },
+  {
+    "service": "grades-service",
+    "method": "POST",
+    "path": "/v1/gradebooks/items/{itemId}/scores",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "postItemScore"
+  },
+  {
+    "service": "grades-service",
+    "method": "POST",
+    "path": "/v1/gradebooks/items/{itemId}/bulk-scores",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "postItemBulkScores"
+  },
+  {
+    "service": "grades-service",
+    "method": "GET",
+    "path": "/v1/gradebooks/students/{studentId}/sections/{sectionId}",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "getStudentSectionGradebook"
+  },
+  {
+    "service": "grades-service",
+    "method": "POST",
+    "path": "/v1/grades/sections/{sectionId}/calculate",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "calculateSectionGrades"
+  },
+  {
+    "service": "grades-service",
+    "method": "POST",
+    "path": "/v1/grades/sections/{sectionId}/publish",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "publishSectionGrades"
+  },
+  {
+    "service": "grades-service",
+    "method": "GET",
+    "path": "/v1/grades/students/{studentId}",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "getStudentGrades"
+  },
+  {
+    "service": "grades-service",
+    "method": "GET",
+    "path": "/v1/grades/me",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "getMyGrades"
+  },
+  {
+    "service": "grades-service",
+    "method": "GET",
+    "path": "/v1/gpa/students/{studentId}",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "getStudentGpa"
+  },
+  {
+    "service": "grades-service",
+    "method": "GET",
+    "path": "/v1/gpa/me",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "getMyGpa"
+  },
+  {
+    "service": "grades-service",
+    "method": "GET",
+    "path": "/v1/transcripts/students/{studentId}",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "getStudentTranscript"
+  },
+  {
+    "service": "grades-service",
+    "method": "GET",
+    "path": "/v1/transcripts/me",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "getMyTranscript"
+  },
+  {
+    "service": "grades-service",
+    "method": "GET",
+    "path": "/v1/transcripts/students/{studentId}/summary",
+    "file": "services/grades-service/src/grading/grading.controller.ts",
+    "handler": "getStudentTranscriptSummary"
+  },
+  {
     "service": "hostel-service",
     "method": "POST",
     "path": "/allotments",
