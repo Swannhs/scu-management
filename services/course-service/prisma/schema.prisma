@@ -82,6 +82,8 @@ model Course {
   description   String?
   
   offerings     CourseOffering[]
+  prerequisiteLinks     CoursePrerequisite[] @relation("CourseToPrerequisite")
+  requiredByLinks       CoursePrerequisite[] @relation("PrerequisiteToCourse")
   
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")
@@ -92,6 +94,22 @@ model Course {
   @@unique([tenantId, code])
   @@index([tenantId])
   @@map("courses")
+}
+
+model CoursePrerequisite {
+  id                   String   @id @default(uuid())
+  tenantId             String   @map("tenant_id")
+  courseId             String   @map("course_id")
+  prerequisiteCourseId String   @map("prerequisite_course_id")
+  createdAt            DateTime @default(now()) @map("created_at")
+
+  course               Course   @relation("CourseToPrerequisite", fields: [courseId], references: [id])
+  prerequisiteCourse   Course   @relation("PrerequisiteToCourse", fields: [prerequisiteCourseId], references: [id])
+
+  @@unique([tenantId, courseId, prerequisiteCourseId])
+  @@index([tenantId, courseId])
+  @@index([tenantId, prerequisiteCourseId])
+  @@map("course_prerequisites")
 }
 
 model AcademicTerm {

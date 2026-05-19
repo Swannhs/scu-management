@@ -31,6 +31,9 @@ The course service is the academic catalog backbone:
 | DELETE | `/v1/programs/:id` | `university_admin` | Soft delete program |
 | GET | `/v1/courses` | Any authenticated | List courses |
 | POST | `/v1/courses` | `university_admin` | Create course |
+| GET | `/v1/courses/:courseId/prerequisites` | Any authenticated | List course prerequisites |
+| POST | `/v1/courses/:courseId/prerequisites` | `university_admin` | Add a prerequisite course |
+| DELETE | `/v1/courses/:courseId/prerequisites/:prerequisiteCourseId` | `university_admin` | Remove prerequisite course |
 | GET | `/v1/sections` | Any authenticated | List sections |
 | POST | `/v1/sections` | `university_admin` | Create section |
 | GET | `/v1/sections/:id` | Any authenticated | Get section by ID |

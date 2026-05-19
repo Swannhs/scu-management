@@ -301,6 +301,27 @@
     "handler": "unassignFaculty"
   },
   {
+    "service": "course-service",
+    "method": "GET",
+    "path": "/v1/courses/{courseId}/prerequisites",
+    "file": "services/course-service/src/courses/courses.controller.ts",
+    "handler": "listPrerequisites"
+  },
+  {
+    "service": "course-service",
+    "method": "POST",
+    "path": "/v1/courses/{courseId}/prerequisites",
+    "file": "services/course-service/src/courses/courses.controller.ts",
+    "handler": "addPrerequisite"
+  },
+  {
+    "service": "course-service",
+    "method": "DELETE",
+    "path": "/v1/courses/{courseId}/prerequisites/{prerequisiteCourseId}",
+    "file": "services/course-service/src/courses/courses.controller.ts",
+    "handler": "removePrerequisite"
+  },
+  {
     "service": "enrollment-service",
     "method": "GET",
     "path": "/health",
