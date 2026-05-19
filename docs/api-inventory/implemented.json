@@ -105,6 +105,41 @@
     "handler": "getHello"
   },
   {
+    "service": "attendance-service",
+    "method": "GET",
+    "path": "/v1/attendance/sessions",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "listSessions"
+  },
+  {
+    "service": "attendance-service",
+    "method": "POST",
+    "path": "/v1/attendance/sessions",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "createSession"
+  },
+  {
+    "service": "attendance-service",
+    "method": "GET",
+    "path": "/v1/attendance/sessions/{id}",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "getSession"
+  },
+  {
+    "service": "attendance-service",
+    "method": "PATCH",
+    "path": "/v1/attendance/sessions/{id}",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "patchSession"
+  },
+  {
+    "service": "attendance-service",
+    "method": "DELETE",
+    "path": "/v1/attendance/sessions/{id}",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "deleteSession"
+  },
+  {
     "service": "audit-logging-service",
     "method": "GET",
     "path": "/",

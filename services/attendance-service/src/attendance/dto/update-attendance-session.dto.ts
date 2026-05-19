@@ -1,15 +1,9 @@
-import { IsDateString, IsIn, IsOptional, IsUUID } from 'class-validator';
+import { IsDateString, IsIn, IsOptional, IsString } from 'class-validator';
 
-export class CreateAttendanceSessionDto {
-  @IsUUID()
-  sectionId: string;
-
+export class UpdateAttendanceSessionDto {
   @IsOptional()
-  @IsUUID()
-  termId?: string;
-
   @IsDateString()
-  date: string;
+  date?: string;
 
   @IsOptional()
   @IsDateString()

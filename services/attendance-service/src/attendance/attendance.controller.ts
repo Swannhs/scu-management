@@ -1,9 +1,20 @@
-import { Body, Controller, ForbiddenException, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  ForbiddenException,
+  Get,
+  Param,
+  Patch,
+  Delete,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 import { AttendanceService } from './attendance.service';
 import { TenantContextParam } from '../common/tenant-context.decorator';
 import type { TenantContext } from '../common/tenant-context';
 import { CreateAttendanceSessionDto } from './dto/create-attendance-session.dto';
+import { UpdateAttendanceSessionDto } from './dto/update-attendance-session.dto';
 import { MarkAttendanceDto } from './dto/mark-attendance.dto';
 import type { KeycloakUser } from '../common/keycloak-user.interface';
 
@@ -11,14 +22,51 @@ import type { KeycloakUser } from '../common/keycloak-user.interface';
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
+  @Get('attendance/sessions')
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR', 'STAFF'] })
+  listSessions(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Query('sectionId') sectionId?: string,
+  ) {
+    return this.attendanceService.listSessions(tenantContext.effectiveTenantId, sectionId);
+  }
+
   @Post('attendance/sessions')
-  @Roles({ roles: ['FACULTY'] })
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
   createSession(
     @TenantContextParam() tenantContext: TenantContext,
     @AuthenticatedUser() user: KeycloakUser,
     @Body() dto: CreateAttendanceSessionDto,
   ) {
     return this.attendanceService.createSession(tenantContext.effectiveTenantId, user?.sub, dto);
+  }
+
+  @Get('attendance/sessions/:id')
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR', 'STAFF'] })
+  getSession(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Param('id') id: string,
+  ) {
+    return this.attendanceService.getSessionById(tenantContext.effectiveTenantId, id);
+  }
+
+  @Patch('attendance/sessions/:id')
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
+  patchSession(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Param('id') id: string,
+    @Body() dto: UpdateAttendanceSessionDto,
+  ) {
+    return this.attendanceService.updateSession(tenantContext.effectiveTenantId, id, dto);
+  }
+
+  @Delete('attendance/sessions/:id')
+  @Roles({ roles: ['TENANT_ADMIN', 'REGISTRAR'] })
+  deleteSession(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Param('id') id: string,
+  ) {
+    return this.attendanceService.deleteSession(tenantContext.effectiveTenantId, id);
   }
 
   @Post('attendance/sessions/:id/mark')
@@ -40,10 +88,6 @@ export class AttendanceController {
     @Query('termId') termId?: string,
     @Query('courseId') courseId?: string,
   ) {
-    // Relaxed check for user-service integration (UUID vs Keycloak ID mismatch)
-    // if (user?.realm_access?.roles?.includes('STUDENT') && user?.sub !== studentId) {
-    //   throw new ForbiddenException('FORBIDDEN');
-    // }
     return this.attendanceService.getStudentAttendance(tenantContext.effectiveTenantId, studentId, termId, courseId);
   }
 
@@ -79,8 +123,8 @@ export class AttendanceController {
     @Param('sectionId') sectionId: string,
     @Body() dto: CreateAttendanceSessionDto,
   ) {
-      dto.sectionId = sectionId;
-      return this.attendanceService.createSession(tenantContext.effectiveTenantId, user?.sub, dto);
+    dto.sectionId = sectionId;
+    return this.attendanceService.createSession(tenantContext.effectiveTenantId, user?.sub, dto);
   }
 
   @Get('sections/:sectionId/attendance-sessions')
@@ -89,6 +133,6 @@ export class AttendanceController {
     @TenantContextParam() tenantContext: TenantContext,
     @Param('sectionId') sectionId: string,
   ) {
-      return this.attendanceService.getSectionAttendance(tenantContext.effectiveTenantId, sectionId);
+    return this.attendanceService.getSectionAttendance(tenantContext.effectiveTenantId, sectionId);
   }
 }

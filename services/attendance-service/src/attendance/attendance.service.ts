@@ -1,14 +1,59 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateAttendanceSessionDto } from './dto/create-attendance-session.dto';
 import { MarkAttendanceDto } from './dto/mark-attendance.dto';
+import { UpdateAttendanceSessionDto } from './dto/update-attendance-session.dto';
 import { AttendanceStatus } from '@prisma/client';
 
 @Injectable()
 export class AttendanceService {
   constructor(private prisma: PrismaService) {}
 
+  listSessions(tenantId: string, sectionId?: string) {
+    return this.prisma.attendanceSession.findMany({
+      where: {
+        tenantId,
+        deletedAt: null,
+        ...(sectionId ? { courseOfferingId: sectionId } : {}),
+      },
+      orderBy: { date: 'desc' },
+    });
+  }
+
+  async getSessionById(tenantId: string, id: string) {
+    const session = await this.prisma.attendanceSession.findFirst({
+      where: { tenantId, id, deletedAt: null },
+    });
+
+    if (!session) {
+      throw new NotFoundException('Session not found');
+    }
+
+    return session;
+  }
+
   async createSession(tenantId: string, takenById: string | undefined, dto: CreateAttendanceSessionDto) {
+    const duplicate = await this.prisma.attendanceSession.findFirst({
+      where: {
+        tenantId,
+        courseOfferingId: dto.sectionId,
+        date: new Date(dto.date),
+        startTime: dto.startTime ? new Date(dto.startTime) : null,
+        endTime: dto.endTime ? new Date(dto.endTime) : null,
+        deletedAt: null,
+      },
+      select: { id: true },
+    });
+
+    if (duplicate) {
+      throw new ConflictException('Attendance session already exists for the same section and time');
+    }
+
     return this.prisma.attendanceSession.create({
       data: {
         tenantId,
@@ -17,17 +62,77 @@ export class AttendanceService {
         date: new Date(dto.date),
         startTime: dto.startTime ? new Date(dto.startTime) : undefined,
         endTime: dto.endTime ? new Date(dto.endTime) : undefined,
+        status: dto.status ?? 'draft',
         takenById,
       },
     });
   }
 
+  async updateSession(
+    tenantId: string,
+    id: string,
+    dto: UpdateAttendanceSessionDto,
+  ) {
+    const existing = await this.getSessionById(tenantId, id);
+
+    if (existing.status === 'closed') {
+      throw new BadRequestException('Closed attendance session cannot be modified');
+    }
+
+    const nextDate = dto.date ? new Date(dto.date) : existing.date;
+    const nextStart = dto.startTime ? new Date(dto.startTime) : existing.startTime;
+    const nextEnd = dto.endTime ? new Date(dto.endTime) : existing.endTime;
+
+    const duplicate = await this.prisma.attendanceSession.findFirst({
+      where: {
+        tenantId,
+        id: { not: id },
+        courseOfferingId: existing.courseOfferingId,
+        date: nextDate,
+        startTime: nextStart,
+        endTime: nextEnd,
+        deletedAt: null,
+      },
+      select: { id: true },
+    });
+
+    if (duplicate) {
+      throw new ConflictException('Attendance session already exists for the same section and time');
+    }
+
+    return this.prisma.attendanceSession.update({
+      where: { id },
+      data: {
+        ...(dto.date !== undefined ? { date: new Date(dto.date) } : {}),
+        ...(dto.startTime !== undefined ? { startTime: new Date(dto.startTime) } : {}),
+        ...(dto.endTime !== undefined ? { endTime: new Date(dto.endTime) } : {}),
+        ...(dto.status !== undefined ? { status: dto.status } : {}),
+      },
+    });
+  }
+
+  async deleteSession(tenantId: string, id: string) {
+    const existing = await this.getSessionById(tenantId, id);
+
+    if (existing.status === 'closed') {
+      throw new BadRequestException('Closed attendance session cannot be deleted');
+    }
+
+    return this.prisma.attendanceSession.update({
+      where: { id },
+      data: { deletedAt: new Date() },
+    });
+  }
+
   async markAttendance(tenantId: string, sessionId: string, dto: MarkAttendanceDto) {
     const session = await this.prisma.attendanceSession.findFirst({
-      where: { id: sessionId, tenantId },
+      where: { id: sessionId, tenantId, deletedAt: null },
     });
     if (!session) {
       throw new NotFoundException('NOT_FOUND');
+    }
+    if (session.status === 'closed') {
+      throw new BadRequestException('Cannot mark attendance for closed session');
     }
 
     const upserts = dto.records.map((record) =>
@@ -54,7 +159,7 @@ export class AttendanceService {
 
     await this.prisma.$transaction(upserts);
     return this.prisma.attendanceRecord.findMany({
-      where: { tenantId, attendanceSessionId: sessionId },
+      where: { tenantId, attendanceSessionId: sessionId, deletedAt: null },
     });
   }
 
@@ -63,7 +168,9 @@ export class AttendanceService {
       where: {
         tenantId,
         studentId,
+        deletedAt: null,
         session: {
+          deletedAt: null,
           ...(termId ? { termId } : {}),
           ...(courseId ? { courseOfferingId: courseId } : {}),
         },
@@ -79,6 +186,7 @@ export class AttendanceService {
     return this.prisma.attendanceSession.findMany({
       where: {
         tenantId,
+        deletedAt: null,
         courseOfferingId: sectionId,
         ...(fromDate || toDate
           ? {
@@ -98,6 +206,7 @@ export class AttendanceService {
       where: {
         tenantId,
         studentId,
+        deletedAt: null,
         session: { deletedAt: null },
       },
       include: {
@@ -129,7 +238,6 @@ export class AttendanceService {
       }
       const courseStats = byCourseMap.get(courseId)!;
 
-      // Update counts
       if (status === 'PRESENT') {
         overall.present++;
         courseStats.present++;
@@ -151,19 +259,19 @@ export class AttendanceService {
     }
 
     const calculatePercentage = (stats: typeof overall) => {
-       if (stats.total === 0) return 0;
-       return ((stats.present + stats.late) / stats.total) * 100;
+      if (stats.total === 0) return 0;
+      return ((stats.present + stats.late) / stats.total) * 100;
     };
 
     overall.percentage = calculatePercentage(overall);
 
     const byCourse = Array.from(byCourseMap.entries()).map(([courseId, stats]) => ({
       courseId,
-      courseCode: courseId, // Placeholder as we don't have course-service access here
+      courseCode: courseId,
       present: stats.present,
       absent: stats.absent,
       late: stats.late,
-      percentage: calculatePercentage(stats)
+      percentage: calculatePercentage(stats),
     }));
 
     return {
@@ -174,9 +282,9 @@ export class AttendanceService {
         late: overall.late,
         excused: overall.excused,
         total: overall.total,
-        percentage: overall.percentage
+        percentage: overall.percentage,
       },
-      byCourse
+      byCourse,
     };
   }
 }

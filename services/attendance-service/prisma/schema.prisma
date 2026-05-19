@@ -32,6 +32,7 @@ model AttendanceSession {
   endTime           DateTime? @map("end_time")
   
   takenById         String?   @map("taken_by_id") // Faculty/User ID
+  status            String    @default("draft")
   isFinalized       Boolean   @default(false) @map("is_finalized")
   
   records           AttendanceRecord[]

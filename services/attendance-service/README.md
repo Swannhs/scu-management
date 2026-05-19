@@ -20,6 +20,10 @@ The attendance service manages:
 | GET | `/health` | None | Liveness check |
 | GET | `/ready` | None | Readiness check (DB ping) |
 | POST | `/v1/attendance/sessions` | `faculty`, `university_admin` | Create attendance session |
+| GET | `/v1/attendance/sessions` | `faculty`, `university_admin`, `registrar`, `staff` | List attendance sessions |
+| GET | `/v1/attendance/sessions/:id` | `faculty`, `university_admin`, `registrar`, `staff` | Get attendance session |
+| PATCH | `/v1/attendance/sessions/:id` | `faculty`, `university_admin`, `registrar` | Update attendance session |
+| DELETE | `/v1/attendance/sessions/:id` | `university_admin`, `registrar` | Delete attendance session |
 | POST | `/v1/attendance/sessions/:id/marks` | `faculty` | Mark attendance for session |
 | GET | `/v1/attendance/students/:id` | `faculty`, `student`, `parent` | Get student attendance history |
 | GET | `/v1/attendance/sections/:id/report` | `faculty`, `university_admin` | Section attendance report |
