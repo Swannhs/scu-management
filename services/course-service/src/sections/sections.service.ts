@@ -1,4 +1,9 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateSectionDto } from './dto/create-section.dto';
 import { UpdateSectionDto } from './dto/update-section.dto';
@@ -10,8 +15,11 @@ export class SectionsService {
   async create(tenantId: string, data: CreateSectionDto) {
     await this.ensureCourseExists(tenantId, data.courseId);
     await this.ensureTermExists(tenantId, data.termId);
+    if (data.roomId) {
+      await this.ensureRoomExists(tenantId, data.roomId);
+    }
 
-    const sectionName = data.sectionName ?? 'A';
+    const sectionName = this.resolveSectionCode(data.sectionCode, data.sectionName);
     const duplicate = await this.prisma.courseOffering.findFirst({
       where: {
         tenantId,
@@ -27,13 +35,16 @@ export class SectionsService {
       throw new ConflictException('Section already exists for this course and term');
     }
 
-    return this.prisma.courseOffering.create({
+    const section = await this.prisma.courseOffering.create({
       data: {
         tenantId,
         courseId: data.courseId,
         termId: data.termId,
         sectionName,
         facultyId: data.facultyId,
+        roomId: data.roomId,
+        schedule: data.schedule,
+        status: data.status,
         capacity: data.capacity,
       },
       include: {
@@ -41,10 +52,12 @@ export class SectionsService {
         term: true,
       },
     });
+
+    return this.serializeSection(tenantId, section);
   }
 
-  findAll(tenantId: string, termId?: string) {
-    return this.prisma.courseOffering.findMany({
+  async findAll(tenantId: string, termId?: string) {
+    const sections = await this.prisma.courseOffering.findMany({
       where: {
         tenantId,
         deletedAt: null,
@@ -54,7 +67,10 @@ export class SectionsService {
         course: true,
         term: true,
       },
+      orderBy: { createdAt: 'desc' },
     });
+
+    return Promise.all(sections.map((section) => this.serializeSection(tenantId, section)));
   }
 
   async findById(tenantId: string, sectionId: string) {
@@ -70,21 +86,34 @@ export class SectionsService {
       throw new NotFoundException('Section not found');
     }
 
-    return section;
+    return this.serializeSection(tenantId, section);
   }
 
   async update(tenantId: string, sectionId: string, data: UpdateSectionDto) {
-    const existing = await this.findById(tenantId, sectionId);
+    const existing = await this.prisma.courseOffering.findFirst({
+      where: { tenantId, id: sectionId, deletedAt: null },
+      include: { course: true, term: true },
+    });
+
+    if (!existing) {
+      throw new NotFoundException('Section not found');
+    }
 
     const nextCourseId = data.courseId ?? existing.courseId;
     const nextTermId = data.termId ?? existing.termId;
-    const nextSectionName = data.sectionName ?? existing.sectionName;
+    const nextSectionName = this.resolveSectionCode(
+      data.sectionCode,
+      data.sectionName ?? existing.sectionName,
+    );
 
     if (data.courseId) {
       await this.ensureCourseExists(tenantId, data.courseId);
     }
     if (data.termId) {
       await this.ensureTermExists(tenantId, data.termId);
+    }
+    if (data.roomId) {
+      await this.ensureRoomExists(tenantId, data.roomId);
     }
 
     const duplicate = await this.prisma.courseOffering.findFirst({
@@ -103,13 +132,23 @@ export class SectionsService {
       throw new ConflictException('Section already exists for this course and term');
     }
 
-    return this.prisma.courseOffering.update({
+    const enrolledCount = await this.getEnrolledCount(tenantId, sectionId);
+    if (data.capacity !== undefined && data.capacity < enrolledCount) {
+      throw new BadRequestException('Capacity cannot be lower than enrolled count');
+    }
+
+    const updated = await this.prisma.courseOffering.update({
       where: { id: sectionId },
       data: {
         ...(data.courseId !== undefined ? { courseId: data.courseId } : {}),
         ...(data.termId !== undefined ? { termId: data.termId } : {}),
-        ...(data.sectionName !== undefined ? { sectionName: data.sectionName } : {}),
+        ...(data.sectionCode !== undefined || data.sectionName !== undefined
+          ? { sectionName: nextSectionName }
+          : {}),
         ...(data.facultyId !== undefined ? { facultyId: data.facultyId } : {}),
+        ...(data.roomId !== undefined ? { roomId: data.roomId } : {}),
+        ...(data.schedule !== undefined ? { schedule: data.schedule } : {}),
+        ...(data.status !== undefined ? { status: data.status } : {}),
         ...(data.capacity !== undefined ? { capacity: data.capacity } : {}),
       },
       include: {
@@ -117,6 +156,8 @@ export class SectionsService {
         term: true,
       },
     });
+
+    return this.serializeSection(tenantId, updated);
   }
 
   async softDelete(tenantId: string, sectionId: string) {
@@ -129,7 +170,7 @@ export class SectionsService {
 
   async assignFaculty(tenantId: string, sectionId: string, facultyId: string) {
     await this.findById(tenantId, sectionId);
-    return this.prisma.courseOffering.update({
+    const updated = await this.prisma.courseOffering.update({
       where: { id: sectionId },
       data: { facultyId },
       include: {
@@ -137,16 +178,28 @@ export class SectionsService {
         term: true,
       },
     });
+
+    return this.serializeSection(tenantId, updated);
   }
 
   async unassignFaculty(tenantId: string, sectionId: string, facultyId: string) {
-    const section = await this.findById(tenantId, sectionId);
+    const section = await this.prisma.courseOffering.findFirst({
+      where: { tenantId, id: sectionId, deletedAt: null },
+      include: {
+        course: true,
+        term: true,
+      },
+    });
+
+    if (!section) {
+      throw new NotFoundException('Section not found');
+    }
 
     if (section.facultyId && section.facultyId !== facultyId) {
       throw new NotFoundException('Faculty assignment not found for this section');
     }
 
-    return this.prisma.courseOffering.update({
+    const updated = await this.prisma.courseOffering.update({
       where: { id: sectionId },
       data: { facultyId: null },
       include: {
@@ -154,6 +207,8 @@ export class SectionsService {
         term: true,
       },
     });
+
+    return this.serializeSection(tenantId, updated);
   }
 
   getSessionsForFaculty(tenantId: string, facultyId: string) {
@@ -192,7 +247,9 @@ export class SectionsService {
     });
   }
 
-  getSectionRoster(tenantId: string, sectionId: string) {
+  async getSectionRoster(tenantId: string, sectionId: string) {
+    await this.findById(tenantId, sectionId);
+
     return this.prisma.courseEnrollment.findMany({
       where: {
         tenantId,
@@ -256,5 +313,59 @@ export class SectionsService {
     if (!term) {
       throw new NotFoundException('Term not found');
     }
+  }
+
+  private async ensureRoomExists(tenantId: string, roomId: string) {
+    const room = await this.prisma.room.findFirst({
+      where: { tenantId, id: roomId, deletedAt: null },
+      select: { id: true },
+    });
+
+    if (!room) {
+      throw new NotFoundException('Room not found');
+    }
+  }
+
+  private async getEnrolledCount(tenantId: string, sectionId: string) {
+    return this.prisma.courseEnrollment.count({
+      where: {
+        tenantId,
+        courseOfferingId: sectionId,
+        deletedAt: null,
+      },
+    });
+  }
+
+  private resolveSectionCode(sectionCode?: string, sectionName?: string) {
+    return sectionCode ?? sectionName ?? 'A';
+  }
+
+  private async serializeSection(
+    tenantId: string,
+    section: {
+      id: string;
+      sectionName: string;
+      tenantId: string;
+      courseId: string;
+      termId: string;
+      facultyId: string | null;
+      roomId: string | null;
+      schedule: string | null;
+      status: string;
+      capacity: number | null;
+      createdAt: Date;
+      updatedAt: Date;
+      deletedAt: Date | null;
+      course?: unknown;
+      term?: unknown;
+    },
+  ) {
+    const enrolledCount = await this.getEnrolledCount(tenantId, section.id);
+
+    return {
+      ...section,
+      sectionCode: section.sectionName,
+      enrolledCount,
+    };
   }
 }

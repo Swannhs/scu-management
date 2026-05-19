@@ -10,7 +10,7 @@ The course service is the academic catalog backbone:
 - Departments and programs
 - Academic years and terms (semesters)
 - Course catalog with prerequisites
-- Course sections with capacity, schedule, and faculty assignment
+- Course sections with section code, capacity, schedule, room, status, roster lookup, and faculty assignment
 - Room management
 
 ## Endpoints

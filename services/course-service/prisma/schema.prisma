@@ -143,8 +143,11 @@ model CourseOffering {
   courseId      String    @map("course_id")
   termId        String    @map("term_id")
 
-  sectionName   String    @default("A") // e.g. Section A
+  sectionName   String    @default("A") // section code / name (legacy compatibility)
   facultyId     String?   @map("faculty_id") // Primary instructor
+  roomId        String?   @map("room_id")
+  schedule      String?
+  status        String    @default("active")
   capacity      Int?
 
   enrollments   CourseEnrollment[]

@@ -245,6 +245,62 @@
     "handler": "getHello"
   },
   {
+    "service": "course-service",
+    "method": "GET",
+    "path": "/v1/sections",
+    "file": "services/course-service/src/sections/sections.controller.ts",
+    "handler": "findAll"
+  },
+  {
+    "service": "course-service",
+    "method": "POST",
+    "path": "/v1/sections",
+    "file": "services/course-service/src/sections/sections.controller.ts",
+    "handler": "create"
+  },
+  {
+    "service": "course-service",
+    "method": "GET",
+    "path": "/v1/sections/{id}",
+    "file": "services/course-service/src/sections/sections.controller.ts",
+    "handler": "findOne"
+  },
+  {
+    "service": "course-service",
+    "method": "PATCH",
+    "path": "/v1/sections/{id}",
+    "file": "services/course-service/src/sections/sections.controller.ts",
+    "handler": "update"
+  },
+  {
+    "service": "course-service",
+    "method": "DELETE",
+    "path": "/v1/sections/{id}",
+    "file": "services/course-service/src/sections/sections.controller.ts",
+    "handler": "remove"
+  },
+  {
+    "service": "course-service",
+    "method": "GET",
+    "path": "/v1/sections/{id}/roster",
+    "file": "services/course-service/src/sections/sections.controller.ts",
+    "handler": "getRoster"
+  },
+  {
+    "service": "course-service",
+    "method": "POST",
+    "path": "/v1/sections/{id}/faculty",
+    "file": "services/course-service/src/sections/sections.controller.ts",
+    "handler": "assignFaculty"
+  },
+  {
+    "service": "course-service",
+    "method": "DELETE",
+    "path": "/v1/sections/{id}/faculty/{facultyId}",
+    "file": "services/course-service/src/sections/sections.controller.ts",
+    "handler": "unassignFaculty"
+  },
+  {
     "service": "enrollment-service",
     "method": "GET",
     "path": "/health",
