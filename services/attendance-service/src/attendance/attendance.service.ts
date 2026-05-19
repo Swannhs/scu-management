@@ -309,6 +309,123 @@ export class AttendanceService {
     });
   }
 
+  async getStudentSummaryReport(
+    tenantId: string,
+    studentId: string,
+    from?: string,
+    to?: string,
+    sectionId?: string,
+  ) {
+    const dateFilter = {
+      ...(from ? { gte: new Date(from) } : {}),
+      ...(to ? { lte: new Date(to) } : {}),
+    };
+
+    const records = await this.prisma.attendanceRecord.findMany({
+      where: {
+        tenantId,
+        studentId,
+        deletedAt: null,
+        session: {
+          deletedAt: null,
+          ...(sectionId ? { courseOfferingId: sectionId } : {}),
+          ...(from || to ? { date: dateFilter } : {}),
+        },
+      },
+      include: {
+        session: {
+          select: { id: true, courseOfferingId: true, date: true },
+        },
+      },
+    });
+
+    const totals = this.calculateStatusTotals(records.map((r) => r.status));
+
+    return {
+      studentId,
+      sectionId: sectionId ?? null,
+      from: from ?? null,
+      to: to ?? null,
+      totalSessions: totals.total,
+      present: totals.present,
+      absent: totals.absent,
+      late: totals.late,
+      excused: totals.excused,
+      attendancePercentage: totals.percentage,
+    };
+  }
+
+  async getSectionReport(tenantId: string, sectionId: string, from?: string, to?: string) {
+    const session = await this.prisma.attendanceSession.findFirst({
+      where: { tenantId, courseOfferingId: sectionId, deletedAt: null },
+      select: { id: true },
+    });
+
+    if (!session) {
+      throw new NotFoundException('Section not found');
+    }
+
+    const dateFilter = {
+      ...(from ? { gte: new Date(from) } : {}),
+      ...(to ? { lte: new Date(to) } : {}),
+    };
+
+    const records = await this.prisma.attendanceRecord.findMany({
+      where: {
+        tenantId,
+        deletedAt: null,
+        session: {
+          deletedAt: null,
+          courseOfferingId: sectionId,
+          ...(from || to ? { date: dateFilter } : {}),
+        },
+      },
+      include: {
+        session: {
+          select: { id: true },
+        },
+      },
+    });
+
+    const sessionIds = new Set(records.map((r) => r.attendanceSessionId));
+    const byStudent = new Map<string, string[]>();
+
+    for (const record of records) {
+      const existing = byStudent.get(record.studentId) ?? [];
+      existing.push(record.status);
+      byStudent.set(record.studentId, existing);
+    }
+
+    const students = Array.from(byStudent.entries()).map(([studentId, statuses]) => {
+      const totals = this.calculateStatusTotals(statuses);
+      return {
+        studentId,
+        totalSessions: totals.total,
+        present: totals.present,
+        absent: totals.absent,
+        late: totals.late,
+        excused: totals.excused,
+        attendancePercentage: totals.percentage,
+      };
+    });
+
+    const sectionTotals = this.calculateStatusTotals(records.map((r) => r.status));
+
+    return {
+      sectionId,
+      from: from ?? null,
+      to: to ?? null,
+      totalSessions: sessionIds.size,
+      totalStudents: students.length,
+      present: sectionTotals.present,
+      absent: sectionTotals.absent,
+      late: sectionTotals.late,
+      excused: sectionTotals.excused,
+      attendancePercentage: sectionTotals.percentage,
+      students,
+    };
+  }
+
   async getStudentSummary(tenantId: string, studentId: string) {
     const records = await this.prisma.attendanceRecord.findMany({
       where: {
@@ -393,6 +510,24 @@ export class AttendanceService {
         percentage: overall.percentage,
       },
       byCourse,
+    };
+  }
+
+  private calculateStatusTotals(statuses: string[]) {
+    const present = statuses.filter((s) => s === 'PRESENT').length;
+    const absent = statuses.filter((s) => s === 'ABSENT').length;
+    const late = statuses.filter((s) => s === 'LATE').length;
+    const excused = statuses.filter((s) => s === 'EXCUSED').length;
+    const total = present + absent + late + excused;
+    const percentage = total === 0 ? 0 : ((present + late) / total) * 100;
+
+    return {
+      present,
+      absent,
+      late,
+      excused,
+      total,
+      percentage,
     };
   }
 }

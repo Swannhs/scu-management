@@ -168,6 +168,27 @@
     "handler": "getSessionMarks"
   },
   {
+    "service": "attendance-service",
+    "method": "GET",
+    "path": "/v1/attendance/students/{studentId}/summary",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "getStudentSummaryReport"
+  },
+  {
+    "service": "attendance-service",
+    "method": "GET",
+    "path": "/v1/attendance/sections/{sectionId}/report",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "getSectionReport"
+  },
+  {
+    "service": "attendance-service",
+    "method": "GET",
+    "path": "/v1/attendance/me/summary",
+    "file": "services/attendance-service/src/attendance/attendance.controller.ts",
+    "handler": "getMySummary"
+  },
+  {
     "service": "audit-logging-service",
     "method": "GET",
     "path": "/",

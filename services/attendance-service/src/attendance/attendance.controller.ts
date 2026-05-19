@@ -133,6 +133,62 @@ export class AttendanceController {
     return this.attendanceService.getStudentAttendance(tenantContext.effectiveTenantId, studentId, termId, courseId);
   }
 
+  @Get('attendance/students/:studentId/summary')
+  @Roles({ roles: ['STUDENT', 'TENANT_ADMIN', 'REGISTRAR', 'FACULTY'] })
+  getStudentSummaryReport(
+    @TenantContextParam() tenantContext: TenantContext,
+    @AuthenticatedUser() user: KeycloakUser,
+    @Param('studentId') studentId: string,
+    @Query('from') from?: string,
+    @Query('to') to?: string,
+    @Query('sectionId') sectionId?: string,
+  ) {
+    if (user?.realm_access?.roles?.includes('STUDENT') && user?.sub !== studentId) {
+      throw new ForbiddenException('FORBIDDEN');
+    }
+    return this.attendanceService.getStudentSummaryReport(
+      tenantContext.effectiveTenantId,
+      studentId,
+      from,
+      to,
+      sectionId,
+    );
+  }
+
+  @Get('attendance/sections/:sectionId/report')
+  @Roles({ roles: ['FACULTY', 'TENANT_ADMIN', 'REGISTRAR'] })
+  getSectionReport(
+    @TenantContextParam() tenantContext: TenantContext,
+    @Param('sectionId') sectionId: string,
+    @Query('from') from?: string,
+    @Query('to') to?: string,
+  ) {
+    return this.attendanceService.getSectionReport(
+      tenantContext.effectiveTenantId,
+      sectionId,
+      from,
+      to,
+    );
+  }
+
+  @Get('attendance/me/summary')
+  @Roles({ roles: ['STUDENT'] })
+  getMySummary(
+    @TenantContextParam() tenantContext: TenantContext,
+    @AuthenticatedUser() user: KeycloakUser,
+    @Query('from') from?: string,
+    @Query('to') to?: string,
+    @Query('sectionId') sectionId?: string,
+  ) {
+    return this.attendanceService.getStudentSummaryReport(
+      tenantContext.effectiveTenantId,
+      user.sub,
+      from,
+      to,
+      sectionId,
+    );
+  }
+
   @Get('students/:studentId/summary')
   @Roles({ roles: ['STUDENT', 'TENANT_ADMIN', 'REGISTRAR', 'FACULTY'] })
   getStudentSummary(
