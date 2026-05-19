@@ -42,30 +42,39 @@ model Question {
 }
 
 model Exam {
-  id                String    @id @default(uuid())
-  tenantId          String    @map("tenant_id")
-  courseOfferingId  String    @map("course_offering_id") // Links to Course Service
+  id                String           @id @default(uuid())
+  tenantId          String           @map("tenant_id")
+  courseOfferingId  String           @map("course_offering_id") // Links to Course Service
+  sectionId         String?          @map("section_id")
+
+  categoryId        String?          @map("category_id")
+  assessmentType    AssessmentType?  @map("assessment_type")
+  status            AssessmentStatus @default(DRAFT)
 
   title             String
   description       String?
 
-  startTime         DateTime  @map("start_time")
-  endTime           DateTime  @map("end_time")
-  durationMinutes   Int       @map("duration_minutes")
+  startTime         DateTime         @map("start_time")
+  endTime           DateTime         @map("end_time")
+  durationMinutes   Int              @map("duration_minutes")
 
-  totalMarks        Decimal   @map("total_marks") @db.Decimal(5, 2)
-  passingMarks      Decimal?  @map("passing_marks") @db.Decimal(5, 2)
+  totalMarks        Decimal          @map("total_marks") @db.Decimal(5, 2)
+  passingMarks      Decimal?         @map("passing_marks") @db.Decimal(5, 2)
+  weight            Decimal?         @db.Decimal(5, 2)
 
-  isPublished       Boolean   @default(false) @map("is_published")
+  isPublished       Boolean          @default(false) @map("is_published")
 
-  createdAt         DateTime  @default(now()) @map("created_at")
-  updatedAt         DateTime  @updatedAt @map("updated_at")
-  deletedAt         DateTime? @map("deleted_at")
+  createdAt         DateTime         @default(now()) @map("created_at")
+  updatedAt         DateTime         @updatedAt @map("updated_at")
+  deletedAt         DateTime?        @map("deleted_at")
 
+  category          AssessmentCategory? @relation(fields: [categoryId], references: [id])
   questions         ExamQuestion[]
   submissions       StudentExam[]
 
   @@index([tenantId, courseOfferingId])
+  @@index([tenantId, sectionId])
+  @@index([tenantId, categoryId])
   @@map("exams")
 }
 
@@ -85,6 +94,20 @@ model ExamQuestion {
 
   @@unique([examId, questionId])
   @@map("exam_questions")
+}
+
+enum AssessmentType {
+  ASSIGNMENT
+  QUIZ
+  EXAM
+  PROJECT
+  LAB
+  PRESENTATION
+}
+
+enum AssessmentStatus {
+  DRAFT
+  PUBLISHED
 }
 
 enum ExamStatus {
@@ -138,6 +161,24 @@ model ExamAnswer {
 
   @@unique([submissionId, questionId])
   @@map("exam_answers")
+}
+
+model AssessmentCategory {
+  id          String   @id @default(uuid())
+  tenantId    String   @map("tenant_id")
+
+  name        String
+  description String?
+  weight      Decimal? @db.Decimal(5, 2)
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  assessments Exam[]
+
+  @@unique([tenantId, name])
+  @@map("assessment_categories")
 }
 
 model EventOutbox {

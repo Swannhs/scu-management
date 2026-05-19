@@ -1398,5 +1398,117 @@
     "path": "/v1/me/schedule",
     "file": "services/user-service/src/users/me.controller.ts",
     "handler": "getSchedule"
+  },
+  {
+    "service": "assessment-service",
+    "method": "GET",
+    "path": "/v1/assessment-categories",
+    "file": "services/assessment-service/src/assessments/assessments.controller.ts",
+    "handler": "findAllCategories"
+  },
+  {
+    "service": "assessment-service",
+    "method": "POST",
+    "path": "/v1/assessment-categories",
+    "file": "services/assessment-service/src/assessments/assessments.controller.ts",
+    "handler": "createCategory"
+  },
+  {
+    "service": "assessment-service",
+    "method": "GET",
+    "path": "/v1/assessment-categories/{id}",
+    "file": "services/assessment-service/src/assessments/assessments.controller.ts",
+    "handler": "findOneCategory"
+  },
+  {
+    "service": "assessment-service",
+    "method": "PATCH",
+    "path": "/v1/assessment-categories/{id}",
+    "file": "services/assessment-service/src/assessments/assessments.controller.ts",
+    "handler": "updateCategory"
+  },
+  {
+    "service": "assessment-service",
+    "method": "DELETE",
+    "path": "/v1/assessment-categories/{id}",
+    "file": "services/assessment-service/src/assessments/assessments.controller.ts",
+    "handler": "deleteCategory"
+  },
+  {
+    "service": "assessment-service",
+    "method": "GET",
+    "path": "/v1/assessments",
+    "file": "services/assessment-service/src/assessments/assessments.controller.ts",
+    "handler": "findAllAssessments"
+  },
+  {
+    "service": "assessment-service",
+    "method": "POST",
+    "path": "/v1/assessments",
+    "file": "services/assessment-service/src/assessments/assessments.controller.ts",
+    "handler": "createAssessment"
+  },
+  {
+    "service": "assessment-service",
+    "method": "GET",
+    "path": "/v1/assessments/{id}",
+    "file": "services/assessment-service/src/assessments/assessments.controller.ts",
+    "handler": "findOneAssessment"
+  },
+  {
+    "service": "assessment-service",
+    "method": "PATCH",
+    "path": "/v1/assessments/{id}",
+    "file": "services/assessment-service/src/assessments/assessments.controller.ts",
+    "handler": "updateAssessment"
+  },
+  {
+    "service": "assessment-service",
+    "method": "DELETE",
+    "path": "/v1/assessments/{id}",
+    "file": "services/assessment-service/src/assessments/assessments.controller.ts",
+    "handler": "deleteAssessment"
+  },
+  {
+    "service": "assessment-service",
+    "method": "POST",
+    "path": "/v1/assessments/{id}/publish",
+    "file": "services/assessment-service/src/assessments/assessments.controller.ts",
+    "handler": "publishAssessment"
+  },
+  {
+    "service": "assessment-service",
+    "method": "GET",
+    "path": "/v1/assessments/{assessmentId}/submissions",
+    "file": "services/assessment-service/src/submissions/submissions.controller.ts",
+    "handler": "listByAssessment"
+  },
+  {
+    "service": "assessment-service",
+    "method": "POST",
+    "path": "/v1/assessments/{assessmentId}/submissions",
+    "file": "services/assessment-service/src/submissions/submissions.controller.ts",
+    "handler": "create"
+  },
+  {
+    "service": "assessment-service",
+    "method": "GET",
+    "path": "/v1/submissions/{id}",
+    "file": "services/assessment-service/src/submissions/submissions.controller.ts",
+    "handler": "getOne"
+  },
+  {
+    "service": "assessment-service",
+    "method": "PATCH",
+    "path": "/v1/submissions/{id}",
+    "file": "services/assessment-service/src/submissions/submissions.controller.ts",
+    "handler": "update"
+  },
+  {
+    "service": "assessment-service",
+    "method": "POST",
+    "path": "/v1/submissions/{id}/grade",
+    "file": "services/assessment-service/src/submissions/submissions.controller.ts",
+    "handler": "grade"
   }
 ]

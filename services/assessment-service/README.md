@@ -25,6 +25,22 @@ The assessment service handles the full assessment lifecycle:
 | POST | `/v1/questions` | `faculty`, `university_admin` | Create question |
 | POST | `/v1/submissions` | `student` | Submit assessment |
 | GET | `/v1/submissions` | `faculty`, `university_admin` | List submissions |
+| GET | `/v1/assessment-categories` | Any authenticated | List assessment categories |
+| POST | `/v1/assessment-categories` | `faculty`, `university_admin` | Create assessment category |
+| GET | `/v1/assessment-categories/:id` | Any authenticated | Get assessment category |
+| PATCH | `/v1/assessment-categories/:id` | `faculty`, `university_admin` | Update assessment category |
+| DELETE | `/v1/assessment-categories/:id` | `faculty`, `university_admin` | Delete assessment category |
+| GET | `/v1/assessments` | Any authenticated (students see published only) | List assessments |
+| POST | `/v1/assessments` | `faculty`, `university_admin` | Create assessment |
+| GET | `/v1/assessments/:id` | Any authenticated (students see published only) | Get assessment |
+| PATCH | `/v1/assessments/:id` | `faculty`, `university_admin` | Update assessment |
+| DELETE | `/v1/assessments/:id` | `faculty`, `university_admin` | Delete assessment |
+| POST | `/v1/assessments/:id/publish` | `faculty`, `university_admin` | Publish assessment |
+| GET | `/v1/assessments/:assessmentId/submissions` | `faculty`, `university_admin` | List submissions for assessment |
+| POST | `/v1/assessments/:assessmentId/submissions` | `student` | Create submission |
+| GET | `/v1/submissions/:id` | Authenticated | Get submission |
+| PATCH | `/v1/submissions/:id` | Authenticated | Update submission |
+| POST | `/v1/submissions/:id/grade` | `faculty`, `university_admin` | Grade submission |
 
 See `/docs` (Swagger UI) when the service is running for the full API.
 

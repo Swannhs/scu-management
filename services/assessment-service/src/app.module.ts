@@ -14,6 +14,7 @@ import { OutboxModule } from './outbox/outbox.module';
 import { QuestionsModule } from './questions/questions.module';
 import { ExamsModule } from './exams/exams.module';
 import { SubmissionsModule } from './submissions/submissions.module';
+import { AssessmentsModule } from './assessments/assessments.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { SubmissionsModule } from './submissions/submissions.module';
     QuestionsModule,
     ExamsModule,
     SubmissionsModule,
+    AssessmentsModule,
   ],
   controllers: [AppController],
   providers: [
