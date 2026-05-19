@@ -48,3 +48,34 @@ class NotificationOutbox(Base):
     sent_at = Column(DateTime, nullable=True)
 
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+
+class Notification(Base):
+    __tablename__ = "notifications"
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    recipient_id = Column(String, nullable=False, index=True)
+    tenant_id = Column(String, nullable=False, index=True)
+    type = Column(String, nullable=False)
+    title = Column(String, nullable=False)
+    body = Column(Text, nullable=False)
+    link = Column(String, nullable=True)
+    metadata = Column(JSONB, nullable=True)
+    read_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+
+
+class NotificationPreference(Base):
+    __tablename__ = "notification_preferences"
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    user_id = Column(String, nullable=False, index=True)
+    tenant_id = Column(String, nullable=False, index=True)
+    email_enabled = Column(Boolean, default=True)
+    sms_enabled = Column(Boolean, default=False)
+    push_enabled = Column(Boolean, default=True)
+    in_app_enabled = Column(Boolean, default=True)
+    muted_types = Column(JSONB, default=list)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)

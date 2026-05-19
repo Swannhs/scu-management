@@ -1615,5 +1615,61 @@
     "path": "/v1/submissions/{id}/grade",
     "file": "services/assessment-service/src/submissions/submissions.controller.ts",
     "handler": "grade"
+  },
+  {
+    "service": "notifications-service",
+    "method": "GET",
+    "path": "/v1/notifications",
+    "file": "services/notifications-service/main.py",
+    "handler": "list_notifications"
+  },
+  {
+    "service": "notifications-service",
+    "method": "GET",
+    "path": "/v1/notifications/me",
+    "file": "services/notifications-service/main.py",
+    "handler": "list_my_notifications"
+  },
+  {
+    "service": "notifications-service",
+    "method": "POST",
+    "path": "/v1/notifications",
+    "file": "services/notifications-service/main.py",
+    "handler": "create_notification"
+  },
+  {
+    "service": "notifications-service",
+    "method": "GET",
+    "path": "/v1/notifications/{notification_id}",
+    "file": "services/notifications-service/main.py",
+    "handler": "get_notification"
+  },
+  {
+    "service": "notifications-service",
+    "method": "PATCH",
+    "path": "/v1/notifications/{notification_id}/read",
+    "file": "services/notifications-service/main.py",
+    "handler": "mark_read"
+  },
+  {
+    "service": "notifications-service",
+    "method": "PATCH",
+    "path": "/v1/notifications/read-all",
+    "file": "services/notifications-service/main.py",
+    "handler": "mark_all_read"
+  },
+  {
+    "service": "notifications-service",
+    "method": "GET",
+    "path": "/v1/notification-preferences/me",
+    "file": "services/notifications-service/main.py",
+    "handler": "get_my_preferences"
+  },
+  {
+    "service": "notifications-service",
+    "method": "PATCH",
+    "path": "/v1/notification-preferences/me",
+    "file": "services/notifications-service/main.py",
+    "handler": "patch_my_preferences"
   }
 ]

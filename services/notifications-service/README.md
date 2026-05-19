@@ -1,12 +1,15 @@
 # notifications-service
 
-**Status:** `core` | **Stack:** FastAPI (Python) | **Port:** 8001
+Status: core | Stack: FastAPI (Python) | Port: 8001
 
 Delivers in-app and email notifications triggered by platform events via RabbitMQ.
 
 ## Overview
 
-The notifications service listens to domain events published to RabbitMQ (e.g., `attendance.low`, `grade.published`, `document.approved`) and dispatches notifications to affected users via email and in-app channels.
+The notifications service supports:
+- event-driven notification dispatching infrastructure (RabbitMQ/outbox)
+- in-app notification APIs for users/admin staff workflows
+- per-user notification preferences
 
 ## Endpoints
 
@@ -14,6 +17,14 @@ The notifications service listens to domain events published to RabbitMQ (e.g., 
 |--------|------|------|-------------|
 | GET | `/health` | None | Liveness check |
 | GET | `/ready` | None | Readiness check |
+| GET | `/v1/notifications` | Required | List current user notifications |
+| GET | `/v1/notifications/me` | Required | Alias of current user notifications list |
+| POST | `/v1/notifications` | Required (admin/staff/system) | Create notification |
+| GET | `/v1/notifications/:id` | Required | View notification by id (self or admin/staff) |
+| PATCH | `/v1/notifications/:id/read` | Required | Mark one notification as read |
+| PATCH | `/v1/notifications/read-all` | Required | Mark all current user notifications as read |
+| GET | `/v1/notification-preferences/me` | Required | Get current user notification preferences |
+| PATCH | `/v1/notification-preferences/me` | Required | Update current user notification preferences |
 
 ## Environment variables
 
@@ -21,6 +32,7 @@ The notifications service listens to domain events published to RabbitMQ (e.g., 
 |----------|----------|-------------|
 | `PORT` | No | Listening port (default: `8001`) |
 | `RABBITMQ_URL` | Yes | RabbitMQ connection string |
+| `DATABASE_URL` | Yes | SQLAlchemy database URL for notification persistence |
 
 Copy `.env.example` to `.env` and fill in values.
 
