@@ -248,6 +248,31 @@ def test_enrollment_idempotency():
     assert second.status_code == 409
     assert second.json()["code"] == "ALREADY_ENROLLED"
 
+def test_student_can_manage_only_own_enrollment():
+    tenant_id = "tenant-a"
+    student_user_id = "student-user-1"
+    admin_headers = auth_headers(tenant_id, ["TENANT_ADMIN"], tenant_header=tenant_id)
+    student_headers = auth_headers(tenant_id, ["STUDENT"], user_id=student_user_id, tenant_header=tenant_id)
+    profile = client.post("/v1/students", headers=admin_headers, json={
+        "userId": student_user_id,
+        "firstName": "Ada",
+        "lastName": "Lovelace",
+        "email": "ada@example.com",
+        "programId": "program-1",
+    })
+    assert profile.status_code == 201
+    student_id = profile.json()["id"]
+
+    enrolled = client.post("/v1/enrollments", headers=student_headers, json={"studentId": student_id, "sectionId": "section-1"})
+    assert enrolled.status_code == 201
+
+    listed = client.get(f"/v1/students/{student_id}/enrollments", headers=student_headers)
+    assert listed.status_code == 200
+    assert len(listed.json()) == 1
+
+    denied = client.post("/v1/enrollments", headers=student_headers, json={"studentId": "another-student", "sectionId": "section-2"})
+    assert denied.status_code == 403
+
 def test_application_approval_creates_student():
     tenant_id = "tenant-a"
     student_user_id = f"user-{uuid.uuid4()}"

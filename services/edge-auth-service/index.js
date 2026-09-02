@@ -21,6 +21,14 @@ const tenantOnlyPrefixes = [
   '/v1/attendance',
   '/v1/assessments',
   '/v1/final-grades',
+  '/v1/grades',
+  '/v1/gpa',
+  '/v1/transcripts',
+  '/v1/gradebooks',
+  '/v1/applications',
+  '/v1/enrollments',
+  '/v1/intake-terms',
+  '/v1/students',
   '/v1/files',
 ];
 

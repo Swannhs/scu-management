@@ -267,6 +267,19 @@ def list_applications(
         query = query.filter(AdmissionApplication.created_at > datetime.fromisoformat(cursor))
     return query.order_by(AdmissionApplication.created_at.asc()).limit(limit).all()
 
+def ensure_student_owns_profile(db: Session, user: auth.UserContext, student_id: str):
+    """Allow students to act only on the student profile linked to their token."""
+    if "STUDENT" not in user.roles:
+        return
+
+    student = db.query(Student).filter(
+        Student.id == student_id,
+        Student.user_id == user.user_id,
+        Student.tenant_id == user.tenant_id,
+    ).first()
+    if not student:
+        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
+
 @app.patch("/v1/applications/{application_id}/status", response_model=ApplicationResponse)
 def update_application_status(
     application_id: str,
@@ -506,7 +519,9 @@ def enroll_student(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if not any(role in user.roles for role in ["TENANT_ADMIN", "REGISTRAR"]):
+    if "STUDENT" in user.roles:
+        ensure_student_owns_profile(db, user, request.studentId)
+    elif not any(role in user.roles for role in ["TENANT_ADMIN", "REGISTRAR"]):
         raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
 
     existing = db.query(Enrollment).filter(
@@ -581,9 +596,9 @@ def get_student_enrollments(
     db: Session = Depends(database.get_db),
     user: auth.UserContext = Depends(auth.get_user_context)
 ):
-    if "STUDENT" in user.roles and student_id != user.user_id:
-        raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
-    if "STUDENT" not in user.roles and not any(role in user.roles for role in ["TENANT_ADMIN", "REGISTRAR"]):
+    if "STUDENT" in user.roles:
+        ensure_student_owns_profile(db, user, student_id)
+    elif not any(role in user.roles for role in ["TENANT_ADMIN", "REGISTRAR"]):
         raise HTTPException(status_code=403, detail={"code": "FORBIDDEN", "message": "Not authorized", "details": None})
 
     enrollments = db.query(Enrollment).filter(

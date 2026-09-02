@@ -6,8 +6,8 @@
 # Usage (with infra already running):
 #   docker compose -f docker/docker-compose.infra.yml -f docker/docker-compose.core.yml up --build
 #
-# Core services: traefik, edge-auth, user, course, enrollment, assessment,
-#                attendance, grades, document, campus-social, notifications
+# Core services: traefik, student-portal, edge-auth, user, course, enrollment,
+#                assessment, attendance, grades, document, campus-social, notifications
 
 services:
   traefik:
@@ -27,6 +27,8 @@ services:
       - assessment-service
       - attendance-service
       - grades-service
+      - enrollment-service
+      - student-portal
       - campus-social-service
       - document-service
     networks:
@@ -37,6 +39,16 @@ services:
     environment:
       - PORT=3000
       - JWT_SECRET=${JWT_SECRET:-change-me-in-development}
+    networks:
+      - ums-network
+
+  student-portal:
+    build: ../apps/student-portal
+    depends_on:
+      - user-service
+      - enrollment-service
+      - attendance-service
+      - grades-service
     networks:
       - ums-network
 

@@ -23,6 +23,15 @@ http:
         - edge-auth
         - edge-rate-limit
 
+    enrollment-service:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/v1/applications`) || PathPrefix(`/v1/enrollments`) || PathPrefix(`/v1/intake-terms`) || PathPrefix(`/v1/students`)
+      service: enrollment-service
+      middlewares:
+        - edge-auth
+        - edge-rate-limit
+
     course-service:
       entryPoints:
         - web
@@ -53,11 +62,19 @@ http:
     grades-service:
       entryPoints:
         - web
-      rule: PathPrefix(`/v1/assessments`) || PathPrefix(`/v1/final-grades`)
+      rule: PathPrefix(`/v1/assessments`) || PathPrefix(`/v1/final-grades`) || PathPrefix(`/v1/grades`) || PathPrefix(`/v1/gpa`) || PathPrefix(`/v1/transcripts`) || PathPrefix(`/v1/gradebooks`)
       service: grades-service
       middlewares:
         - edge-auth
         - edge-rate-limit
+
+    student-portal:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/portal`)
+      service: student-portal
+      middlewares:
+        - strip-student-portal
 
     campus-social-http:
       entryPoints:
@@ -144,11 +161,21 @@ http:
         prefixes:
           - /document-service
 
+    strip-student-portal:
+      stripPrefix:
+        prefixes:
+          - /portal
+
   services:
     user-service:
       loadBalancer:
         servers:
           - url: http://user-service:3000
+
+    enrollment-service:
+      loadBalancer:
+        servers:
+          - url: http://enrollment-service:8000
 
     course-service:
       loadBalancer:
@@ -179,3 +206,8 @@ http:
       loadBalancer:
         servers:
           - url: http://document-service:3000
+
+    student-portal:
+      loadBalancer:
+        servers:
+          - url: http://student-portal:80
