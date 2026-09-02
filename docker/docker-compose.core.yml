@@ -63,6 +63,11 @@ services:
     networks:
       - ums-network
 
+  admin-portal:
+    build: ../apps/admin-portal
+    networks:
+      - ums-network
+
   user-service:
     build: ../services/user-service
     networks:
