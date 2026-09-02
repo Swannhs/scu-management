@@ -20,10 +20,14 @@ async function login(event) {
   event.preventDefault();
   const data = Object.fromEntries(new FormData(event.currentTarget));
   try {
-    const result = await api('/v1/auth/login', { method: 'POST', body: JSON.stringify(data) });
-    state.token = result.accessToken;
+    const body = new URLSearchParams({ client_id: 'scu-portal', grant_type: 'password', username: data.email, password: data.password });
+    const response = await fetch('http://localhost:8080/realms/scu/protocol/openid-connect/token', { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, body });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error_description || 'Sign in failed');
+    state.token = result.access_token;
     sessionStorage.setItem('scu_access_token', state.token);
-    state.user = result.user;
+    const claims = JSON.parse(atob(state.token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+    state.user = { id: claims.sub, email: claims.email, firstName: claims.given_name, lastName: claims.family_name, tenantId: claims.tenant_id };
     await loadStudent();
     render();
   } catch (error) { renderLogin(error.message); }
