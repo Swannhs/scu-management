@@ -50,6 +50,7 @@ npm run smoke:traefik
 Key local endpoints:
 
 - Traefik edge: `http://localhost`
+- Student portal: `http://localhost/portal`
 - Traefik dashboard: `http://localhost:8088`
 - Traefik health: `http://localhost/health`
 - Campus social websocket: `ws://localhost/ws`

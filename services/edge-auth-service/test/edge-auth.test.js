@@ -28,6 +28,9 @@ function request(server, headers) {
 test('protects academic routes with JWT authentication', () => {
   assert.deepEqual(getPolicy('/v1/courses'), { authMode: 'jwt', tenantRequired: true });
   assert.deepEqual(getPolicy('/v1/attendance'), { authMode: 'jwt', tenantRequired: true });
+  assert.deepEqual(getPolicy('/v1/enrollments'), { authMode: 'jwt', tenantRequired: true });
+  assert.deepEqual(getPolicy('/v1/students/me'), { authMode: 'jwt', tenantRequired: true });
+  assert.deepEqual(getPolicy('/v1/grades/me'), { authMode: 'jwt', tenantRequired: true });
 });
 
 test('rejects an unauthenticated request to an academic route', async () => {
