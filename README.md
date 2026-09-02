@@ -61,6 +61,11 @@ Key local endpoints:
 - Keycloak: `http://localhost:8080`
 - RabbitMQ management: `http://localhost:15672`
 
+## Identity setup
+
+The development stack imports the `scu` Keycloak realm from `docker/keycloak-config/scu-realm.json`.
+Create portal users in that realm, assign one of the canonical roles, and set the user's `tenant_id` attribute before testing protected academic routes. The realm intentionally contains no seeded users, passwords, or client secrets.
+
 ## Development
 
 Each service lives under `services/<service-name>`.
