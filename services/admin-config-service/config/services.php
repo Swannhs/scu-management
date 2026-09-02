@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'keycloak' => [
+        'url' => env('KEYCLOAK_AUTH_SERVER_URL', 'http://keycloak:8080'),
+    ],
 
     /*
     |--------------------------------------------------------------------------

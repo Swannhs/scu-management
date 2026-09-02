@@ -26,4 +26,7 @@ Route::prefix('v1/admin')->group(function () {
 
     // User Roles
     Route::post('users/{userId}/roles', [AdminConfigController::class, 'userRoles']);
+    Route::get('keycloak/users', [AdminConfigController::class, 'keycloakUsers']);
+    Route::post('keycloak/users', [AdminConfigController::class, 'createKeycloakUser']);
+    Route::put('keycloak/users/{userId}/roles', [AdminConfigController::class, 'replaceKeycloakUserRoles']);
 });
