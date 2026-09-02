@@ -76,6 +76,14 @@ http:
       middlewares:
         - strip-student-portal
 
+    faculty-portal:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/faculty`)
+      service: faculty-portal
+      middlewares:
+        - strip-faculty-portal
+
     campus-social-http:
       entryPoints:
         - web
@@ -166,6 +174,11 @@ http:
         prefixes:
           - /portal
 
+    strip-faculty-portal:
+      stripPrefix:
+        prefixes:
+          - /faculty
+
   services:
     user-service:
       loadBalancer:
@@ -211,3 +224,8 @@ http:
       loadBalancer:
         servers:
           - url: http://student-portal:80
+
+    faculty-portal:
+      loadBalancer:
+        servers:
+          - url: http://faculty-portal:80
