@@ -6,70 +6,28 @@ datasource db {
   provider = "postgresql"
 }
 
-// Renamed from UserRole to Role to match code expectations
-enum Role {
-  TENANT_ADMIN
-  ADMISSION_OFFICER
-  FACULTY
-  STUDENT
-  ACCOUNTANT
-  LIBRARIAN
-  WARDEN
-  PLACEMENT_OFFICER
-  SUPPORT
-  ADMIN // Super admin for the SaaS platform itself if needed
-}
-
-enum UserStatus {
-  ACTIVE
-  INACTIVE
-  SUSPENDED
-  INVITED
-}
-
 model User {
-  id          String     @id @default(uuid())
-  tenantId    String     @map("tenant_id")
-  keycloakId  String     @map("keycloak_id") // Link to IDP
+  id        String   @id @default(uuid())
+  tenantId  String   @map("tenant_id")
   email       String
-
-  // Basic profile info that might be replicated here for performance or if needed before full profile load
-  firstName   String?    @map("first_name")
-  lastName    String?    @map("last_name")
-  phone       String?
-  address     String?
-  avatarUrl   String?    @map("avatar_url")
-  emergencyContact Json? @map("emergency_contact")
-
-  // Linked Profile IDs (Self-contained in User Service for quick access)
-  studentId   String?    @map("student_id")
-  facultyId   String?    @map("faculty_id")
-  parentId    String?    @map("parent_id")
-
-  status      UserStatus @default(ACTIVE)
-
-  role        Role
-
-  createdAt   DateTime   @default(now()) @map("created_at")
-  updatedAt   DateTime   @updatedAt @map("updated_at")
-  deletedAt   DateTime?  @map("deleted_at")
+  password  String
+  firstName String   @map("first_name")
+  lastName  String   @map("last_name")
+  role      UserRole
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@unique([tenantId, email])
-  @@unique([tenantId, keycloakId])
-  @@index([tenantId])
-  @@map("app_users")
+  @@map("users")
 }
 
-model EventOutbox {
-  id           String   @id @default(uuid())
-  tenantId     String   @map("tenant_id")
-  eventType    String   @map("event_type")
-  payload      Json
-  status       String   @default("PENDING") // PENDING, PUBLISHED, FAILED
-  retries      Int      @default(0)
-  createdAt    DateTime @default(now()) @map("created_at")
-  publishedAt  DateTime? @map("published_at")
-
-  @@index([status])
-  @@map("event_outbox")
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  PRINCIPAL
+  TEACHER
+  STUDENT
+  PARENT
+  ACCOUNTANT
 }

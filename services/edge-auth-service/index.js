@@ -2,7 +2,6 @@ const http = require('http');
 const jwt = require('jsonwebtoken');
 
 const PORT = Number(process.env.PORT || 3000);
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 const USER_SERVICE_ROLES = ['SUPER_ADMIN', 'ADMIN', 'PRINCIPAL'];
 const CAMPUS_SOCIAL_ROLES = ['STUDENT', 'FACULTY', 'TENANT_ADMIN'];
@@ -54,7 +53,7 @@ function getPolicy(pathname) {
   }
 
   if (startsWithOneOf(pathname, tenantOnlyPrefixes)) {
-    return { authMode: 'none', tenantRequired: true };
+    return { authMode: 'jwt', tenantRequired: true };
   }
 
   return { authMode: 'none', tenantRequired: false };
@@ -80,14 +79,22 @@ function normalizeRole(decoded) {
   return realmRoles[0] || '';
 }
 
-function verifyJwt(authHeader) {
+function verifyJwt(authHeader, jwtSecret = process.env.JWT_SECRET) {
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return { ok: false, statusCode: 401, payload: { code: 'UNAUTHORIZED', message: 'Access token required' } };
   }
 
+  if (!jwtSecret) {
+    return {
+      ok: false,
+      statusCode: 503,
+      payload: { code: 'AUTH_CONFIGURATION_ERROR', message: 'JWT verification is not configured' },
+    };
+  }
+
   try {
     const token = authHeader.slice(7);
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, jwtSecret);
     const tenantId = decoded.tenantId || decoded.tenant_id || '';
     const role = normalizeRole(decoded);
 
@@ -111,13 +118,6 @@ function handleVerify(req, res) {
   const requestedTenantId = typeof req.headers['x-tenant-id'] === 'string' ? req.headers['x-tenant-id'].trim() : '';
 
   if (policy.authMode !== 'jwt') {
-    if (policy.tenantRequired && !requestedTenantId) {
-      return writeJson(res, 400, {
-        code: 'TENANT_REQUIRED',
-        message: 'X-Tenant-ID header is required',
-      });
-    }
-
     res.writeHead(200);
     res.end();
     return;
@@ -128,10 +128,10 @@ function handleVerify(req, res) {
     return writeJson(res, verified.statusCode, verified.payload);
   }
 
-  if (policy.tenantRequired && !verified.tenantId && !requestedTenantId) {
-    return writeJson(res, 400, {
-      code: 'TENANT_REQUIRED',
-      message: 'Tenant context is required',
+  if (policy.tenantRequired && !verified.tenantId) {
+    return writeJson(res, 403, {
+      code: 'TENANT_CONTEXT_MISSING',
+      message: 'Token tenant context is required',
     });
   }
 
@@ -152,7 +152,7 @@ function handleVerify(req, res) {
   const responseHeaders = {
     'X-User-Id': verified.userId,
     'X-User-Role': verified.role,
-    'X-Tenant-Id': verified.tenantId || requestedTenantId,
+    'X-Tenant-Id': verified.tenantId,
   };
 
   if (verified.email) {
@@ -163,22 +163,34 @@ function handleVerify(req, res) {
   res.end();
 }
 
-const server = http.createServer((req, res) => {
-  if (req.url === '/health') {
-    return writeJson(res, 200, { status: 'ok', service: 'edge-auth-service' });
+function createServer() {
+  return http.createServer((req, res) => {
+    if (req.url === '/health') {
+      return writeJson(res, 200, { status: 'ok', service: 'edge-auth-service' });
+    }
+
+    if (req.url === '/ready') {
+      return writeJson(res, 200, { status: 'ok', service: 'edge-auth-service' });
+    }
+
+    if (req.url === '/verify') {
+      return handleVerify(req, res);
+    }
+
+    return writeJson(res, 404, { code: 'NOT_FOUND', message: 'Route not found' });
+  });
+}
+
+if (require.main === module) {
+  if (!process.env.JWT_SECRET) {
+    console.error('JWT_SECRET is required to start edge-auth-service');
+    process.exit(1);
   }
 
-  if (req.url === '/ready') {
-    return writeJson(res, 200, { status: 'ok', service: 'edge-auth-service' });
-  }
+  const server = createServer();
+  server.listen(PORT, () => {
+    console.log(`edge-auth-service listening on port ${PORT}`);
+  });
+}
 
-  if (req.url === '/verify') {
-    return handleVerify(req, res);
-  }
-
-  return writeJson(res, 404, { code: 'NOT_FOUND', message: 'Route not found' });
-});
-
-server.listen(PORT, () => {
-  console.log(`edge-auth-service listening on port ${PORT}`);
-});
+module.exports = { createServer, getPolicy, verifyJwt };

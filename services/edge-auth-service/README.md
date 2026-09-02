@@ -6,7 +6,7 @@ Traefik forward-auth sidecar. Validates JWT tokens on every inbound request and 
 
 ## Overview
 
-This service sits between Traefik and the internal services. Traefik forwards authentication checks here before routing requests. It validates `Authorization: Bearer <token>` JWTs, extracts tenant/role/user context, and returns identity headers to Traefik to forward.
+This service sits between Traefik and the internal services. Traefik forwards authentication checks here before routing requests. It validates `Authorization: Bearer <token>` JWTs, extracts tenant/role/user context, and returns identity headers to Traefik to forward. Protected routes require a verified token; `X-Tenant-ID` cannot establish tenant context by itself.
 
 ## Endpoints
 
@@ -49,5 +49,5 @@ Traefik is configured to forward auth checks to `http://edge-auth-service:3000/v
 { "code": "UNAUTHORIZED", "message": "Access token required" }
 { "code": "INVALID_TOKEN", "message": "Invalid or expired token" }
 { "code": "FORBIDDEN", "message": "Insufficient permissions" }
-{ "code": "TENANT_REQUIRED", "message": "X-Tenant-ID header is required" }
+{ "code": "TENANT_CONTEXT_MISSING", "message": "Token tenant context is required" }
 ```
