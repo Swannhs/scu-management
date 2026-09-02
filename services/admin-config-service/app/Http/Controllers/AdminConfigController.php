@@ -99,6 +99,64 @@ class AdminConfigController extends Controller
         return $this->proxy($request, $this->userServiceUrl, "users/{$userId}/roles");
     }
 
+    private function keycloakAdmin(Request $request)
+    {
+        $this->validateAdmin($request);
+        return Http::withToken($request->bearerToken())
+            ->acceptJson()
+            ->baseUrl(rtrim(config('services.keycloak.url'), '/') . '/admin/realms/scu');
+    }
+
+    public function keycloakUsers(Request $request)
+    {
+        $response = $this->keycloakAdmin($request)->get('users', [
+            'search' => $request->query('search'),
+            'first' => $request->query('first', 0),
+            'max' => min((int) $request->query('max', 50), 100),
+        ]);
+        return response()->json($response->json(), $response->status());
+    }
+
+    public function createKeycloakUser(Request $request)
+    {
+        $payload = $request->validate([
+            'username' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email'],
+            'firstName' => ['required', 'string', 'max:255'],
+            'lastName' => ['required', 'string', 'max:255'],
+            'temporaryPassword' => ['required', 'string', 'min:12'],
+            'roles' => ['array'],
+            'roles.*' => ['string'],
+            'tenantId' => ['required', 'string'],
+        ]);
+        $client = $this->keycloakAdmin($request);
+        $created = $client->post('users', [
+            'username' => $payload['username'], 'email' => $payload['email'],
+            'firstName' => $payload['firstName'], 'lastName' => $payload['lastName'],
+            'enabled' => true, 'attributes' => ['tenant_id' => [$payload['tenantId']]],
+            'credentials' => [['type' => 'password', 'value' => $payload['temporaryPassword'], 'temporary' => true]],
+        ]);
+        if (!$created->successful()) return response()->json($created->json(), $created->status());
+        $location = $created->header('Location'); $userId = basename((string) $location);
+        if (!empty($payload['roles'])) $this->syncKeycloakRoles($client, $userId, $payload['roles']);
+        return response()->json(['id' => $userId], 201);
+    }
+
+    public function replaceKeycloakUserRoles(Request $request, $userId)
+    {
+        $roles = $request->validate(['roles' => ['required', 'array'], 'roles.*' => ['string']])['roles'];
+        $client = $this->keycloakAdmin($request);
+        $this->syncKeycloakRoles($client, $userId, $roles);
+        return response()->json(['id' => $userId, 'roles' => array_values($roles)]);
+    }
+
+    private function syncKeycloakRoles($client, string $userId, array $roleNames): void
+    {
+        $available = collect($client->get("users/{$userId}/role-mappings/realm/available")->json());
+        $roles = $available->filter(fn ($role) => in_array($role['name'], $roleNames))->values()->all();
+        if (!empty($roles)) $client->post("users/{$userId}/role-mappings/realm", $roles);
+    }
+
     public function settings(Request $request)
     {
         $this->validateAdmin($request);
